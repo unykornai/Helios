@@ -1,14 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Helios — A Private Network Protocol{% endblock %}
-{% block og_title %}Helios — A Private Network Protocol{% endblock %}
-{% block og_description %}Power of 5. Fixed supply. Metal-backed treasury. Energy certificates. Conservation law enforced. $100 entry.{% endblock %}
+{% block title %}Helios — $100 In. Get Paid. Backed by Gold.{% endblock %}
+{% block og_title %}Helios — $100 In. Get Paid. Backed by Gold.{% endblock %}
+{% block og_description %}$100 entry. Get paid every time your network grows. Physical gold backs every dollar. Power of 5.{% endblock %}
 {% block og_url %}/{% endblock %}
 
 {% block content %}
-<!-- ═══ HERO — HELIOS COIN ═══ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
     <div class="hero-content">
-        <!-- Animated Helios Coin -->
         <div class="coin-container">
             <svg class="helios-coin" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -20,10 +19,7 @@
                     </radialGradient>
                     <filter id="coinGlow">
                         <feGaussianBlur stdDeviation="8" result="blur"/>
-                        <feMerge>
-                            <feMergeNode in="blur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
                     <radialGradient id="innerGrad" cx="50%" cy="45%" r="45%">
                         <stop offset="0%" style="stop-color:#fef3c7"/>
@@ -31,14 +27,10 @@
                         <stop offset="100%" style="stop-color:#b45309"/>
                     </radialGradient>
                 </defs>
-                <!-- Outer ring -->
                 <circle cx="120" cy="120" r="115" fill="none" stroke="url(#coinGrad)" stroke-width="4" filter="url(#coinGlow)"/>
-                <!-- Coin body -->
                 <circle cx="120" cy="120" r="108" fill="url(#coinGrad)" filter="url(#coinGlow)"/>
-                <!-- Inner ring -->
                 <circle cx="120" cy="120" r="95" fill="none" stroke="#92400e" stroke-width="1.5" opacity="0.5"/>
                 <circle cx="120" cy="120" r="88" fill="url(#innerGrad)" opacity="0.3"/>
-                <!-- Sun rays — 5 primary (Power of 5) -->
                 <g class="coin-rays" opacity="0.7">
                     <line x1="120" y1="50" x2="120" y2="20" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
                     <line x1="186" y1="81" x2="206" y2="62" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
@@ -46,17 +38,14 @@
                     <line x1="120" y1="190" x2="120" y2="220" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
                     <line x1="54" y1="81" x2="34" y2="62" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
                 </g>
-                <!-- Central sun symbol -->
                 <circle cx="120" cy="120" r="32" fill="none" stroke="#92400e" stroke-width="1.5" opacity="0.6"/>
                 <circle cx="120" cy="120" r="8" fill="#fde68a" opacity="0.9"/>
-                <!-- Neural geometry (5 nodes around center) -->
                 <g class="coin-neural" opacity="0.5">
                     <circle cx="120" cy="80" r="4" fill="#fde68a"/>
                     <circle cx="158" cy="103" r="4" fill="#fde68a"/>
                     <circle cx="144" cy="148" r="4" fill="#fde68a"/>
                     <circle cx="96" cy="148" r="4" fill="#fde68a"/>
                     <circle cx="82" cy="103" r="4" fill="#fde68a"/>
-                    <!-- Bond lines -->
                     <line x1="120" y1="80" x2="158" y2="103" stroke="#fde68a" stroke-width="0.8"/>
                     <line x1="158" y1="103" x2="144" y2="148" stroke="#fde68a" stroke-width="0.8"/>
                     <line x1="144" y1="148" x2="96" y2="148" stroke="#fde68a" stroke-width="0.8"/>
@@ -67,131 +56,176 @@
         </div>
 
         <h1 class="hero-title">HELIOS</h1>
-        <p class="hero-tagline">A private network protocol where human connections<br>inject energy and the system distributes it.<br><span style="color:var(--gold);font-size:.95rem;">$100 entry. Metal-backed treasury. Certificates. Conservation law enforced.</span></p>
-        <p class="hero-rule">Power of 5. Protocol enforced.</p>
+        <p class="hero-tagline">
+            $100 in. Get paid every time your network grows.<br>
+            <span style="color:var(--gold);">Backed by physical gold. Not promises.</span>
+        </p>
+        <p class="hero-rule">Power of 5 &mdash; Bring 5. They bring 5. You get paid on all of it.</p>
 
         <div class="hero-actions">
-            <a href="/activate" class="btn btn-primary btn-lg">Enter the Field — $100</a>
-            <a href="/ask" class="btn btn-ghost btn-lg">Ask HELIOS →</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Join Now — $100</a>
+            <a href="/ask" class="btn btn-ghost btn-lg">Talk to Helios AI →</a>
         </div>
     </div>
-
-    <!-- Neural Field Background Animation -->
     <canvas id="neural-bg" class="hero-neural-bg"></canvas>
 </section>
 
-<!-- ═══ PROTOCOL PRINCIPLES ═══ -->
+<!-- ═══ HOW YOU MAKE MONEY — SIMPLE ═══ -->
 <section class="section section-dark">
     <div class="container">
-        <h2>Protocol Architecture</h2>
-        <p class="section-subtitle">Fixed rules. No admin overrides. Verifiable by anyone.</p>
-        <div class="principle-grid">
-            <div class="principle-card">
-                <div class="principle-icon">⬡</div>
-                <h3>Bounded Field</h3>
-                <p>Every node holds a maximum of 5 bonds. No infinite chains. No unbounded growth. The field self-limits by design.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">⚡</div>
-                <h3>Energy Propagation</h3>
-                <p>Energy radiates outward through bonds. weight(hop) = 1/(2^hop). Strongest at direct connections, fading naturally over distance.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">🔒</div>
-                <h3>Fixed Supply</h3>
-                <p>100,000,000 HLS. No minting function. Founder tokens locked 3 years. The supply equation is closed.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">🌊</div>
-                <h3>Natural Absorption</h3>
-                <p>After hop 15, fractional remainder absorbs into protocol pools — stability, liquidity, intelligence, compliance.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">⟐</div>
-                <h3>No Hierarchy</h3>
-                <p>There is no above or below. Bonds are undirected. Peers connect to peers. Settlement follows physics, not position.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">◉</div>
-                <h3>Verifiable</h3>
-                <p>Every settlement, every pool balance, every propagation event — publicly auditable. Don't trust. Verify.</p>
-            </div>
-        </div>
+        <h2 style="text-align:center;">How You Make Money</h2>
+        <p class="section-subtitle" style="text-align:center;">Three ways. Real dollars. No catches.</p>
 
-        <!-- v3.0 — Energy Exchange additions -->
-        <div class="principle-grid" style="margin-top:1.5rem;">
-            <div class="principle-card">
-                <div class="principle-icon">🥇</div>
-                <h3>Metal-Backed Treasury</h3>
-                <p>Net surplus flows to physical metal purchases via APMEX. Vault Receipt NFTs anchored on XRPL. Quarterly proof-of-reserves.</p>
+        <div class="principle-grid" style="max-width:960px; margin:0 auto;">
+            <div class="principle-card" style="text-align:center;">
+                <div class="principle-icon" style="font-size:2.5rem;">💵</div>
+                <h3 style="color:var(--gold);font-size:1.6rem;margin:.5rem 0 .3rem;">$22.50</h3>
+                <p style="font-weight:700;margin-bottom:.5rem;">Instant Cash</p>
+                <p>Someone joins through your link → you get $22.50 immediately. Every single time. No delays.</p>
             </div>
-            <div class="principle-card">
-                <div class="principle-icon">🔋</div>
-                <h3>Energy Certificates</h3>
-                <p>Store energy in HC-NFT batteries. Redeem for gold or stablecoin anytime — no friction. Cancel returns energy with 2% burn.</p>
+            <div class="principle-card" style="text-align:center;">
+                <div class="principle-icon" style="font-size:2.5rem;">🌊</div>
+                <h3 style="color:var(--gold);font-size:1.6rem;margin:.5rem 0 .3rem;">15 Levels Deep</h3>
+                <p style="font-weight:700;margin-bottom:.5rem;">Network Ripple</p>
+                <p>When their people join, and their people join — you still get paid. Every signup ripples back to you up to 15 levels.</p>
             </div>
-            <div class="principle-card">
-                <div class="principle-icon">⚖</div>
-                <h3>Conservation Law</h3>
-                <p>Total inflows = routed + stored + pooled + burned. Every unit of energy is accounted for. No leaks. No hidden pools.</p>
+            <div class="principle-card" style="text-align:center;">
+                <div class="principle-icon" style="font-size:2.5rem;">🥇</div>
+                <h3 style="color:var(--gold);font-size:1.6rem;margin:.5rem 0 .3rem;">Real Gold</h3>
+                <p style="font-weight:700;margin-bottom:.5rem;">Gold-Backed Treasury</p>
+                <p>7% of every dollar goes to physical gold from APMEX. Your certificates appreciate as the treasury grows.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ HOW THE FIELD WORKS ═══ -->
+<!-- ═══ THE MATH — POWER OF 5 ═══ -->
 <section class="section">
-    <div class="container">
-        <h2>How the Field Works</h2>
-        <p class="section-subtitle">Three phases. No complexity hidden.</p>
+    <div class="container" style="max-width:960px;">
+        <h2 style="text-align:center;">The Math Is Simple</h2>
+        <p class="section-subtitle" style="text-align:center;">You bring 5. They each bring 5. Watch what happens.</p>
+
+        <div class="principle-grid" style="margin-top:2rem;">
+            <div class="principle-card" style="text-align:center;border-color:rgba(245,158,11,0.15);">
+                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">You Bring 5 People</p>
+                <p style="font-size:2.8rem;font-weight:900;color:var(--gold);line-height:1;">$742</p>
+                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">per month</p>
+                <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
+                    <div>→ 5 direct signups = $112.50</div>
+                    <div>→ Network propagation = $630</div>
+                    <div>→ + Gold certificate growth</div>
+                </div>
+            </div>
+            <div class="principle-card" style="text-align:center;border-color:rgba(245,158,11,0.25);">
+                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Power of 5 — They Each Bring 5</p>
+                <p style="font-size:2.8rem;font-weight:900;color:var(--gold);line-height:1;">$3,375</p>
+                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">per month</p>
+                <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
+                    <div>→ 5 direct + 25 second-level</div>
+                    <div>→ Network propagation = $2,700+</div>
+                    <div>→ + Gold certificate growth</div>
+                </div>
+            </div>
+            <div class="principle-card" style="text-align:center;border-color:rgba(245,158,11,0.4);">
+                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Builder — Consistent Growth</p>
+                <p style="font-size:2.8rem;font-weight:900;color:var(--gold);line-height:1;">$8,100</p>
+                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">per month</p>
+                <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
+                    <div>→ 5 bonds × steady monthly growth</div>
+                    <div>→ Deep network propagation</div>
+                    <div>→ + Significant gold position</div>
+                </div>
+            </div>
+        </div>
+
+        <p style="text-align:center;margin-top:1.5rem;">
+            <a href="/earnings" class="btn btn-ghost">See Full Earnings Breakdown →</a>
+        </p>
+    </div>
+</section>
+
+<!-- ═══ HOW IT WORKS — 3 STEPS ═══ -->
+<section class="section section-dark">
+    <div class="container" style="max-width:960px;">
+        <h2 style="text-align:center;">How It Works</h2>
+        <p class="section-subtitle" style="text-align:center;">Three steps. That's it.</p>
+
         <div class="phase-grid">
             <div class="phase">
-                <div class="phase-marker">01</div>
-                <h3>Acknowledgement</h3>
-                <p>When a new node joins, their initiator receives a one-time acknowledgement. Fixed amount. Immediate settlement. That's the only direct payment.</p>
+                <div class="phase-marker">1</div>
+                <h3>Join for $100</h3>
+                <p>Every dollar is tracked. $45 goes to the protocol. $22.50 goes to the person who invited you. $15 to gold. $10 to liquidity. $10 to compliance. No mystery fees.</p>
             </div>
             <div class="phase">
-                <div class="phase-marker">02</div>
-                <h3>Propagation</h3>
-                <p>Energy radiates outward from the join event through every connected bond. Hop 1 receives the most. Each hop attenuates by half. Up to 15 hops deep.</p>
+                <div class="phase-marker">2</div>
+                <h3>Share With 5 People</h3>
+                <p>You get 5 bond slots. Share your link. When they join, you get $22.50 instantly per person. That's $112.50 just from your direct 5.</p>
             </div>
             <div class="phase">
-                <div class="phase-marker">03</div>
-                <h3>Absorption</h3>
-                <p>The fractional remainder after hop 15 is absorbed into protocol pools. No energy is lost. No energy is infinite. The field conserves naturally.</p>
+                <div class="phase-marker">3</div>
+                <h3>Get Paid as It Grows</h3>
+                <p>When your 5 share with their 5, and those share with their 5 — you get paid on every join. The network ripples money back to you automatically.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ ENERGY DECAY VISUALIZATION ═══ -->
-<section class="section section-dark">
-    <div class="container">
-        <h2>Energy Decay Curve</h2>
-        <p class="section-subtitle">weight(hop) = 1/(2^hop) — strongest at source, fading with distance.</p>
-        <div class="decay-visual">
-            <div class="decay-bar-container">
-                <div class="decay-hop" style="--width: 100%"><span class="hop-label">Hop 1</span><span class="hop-value">50.000%</span></div>
-                <div class="decay-hop" style="--width: 50%"><span class="hop-label">Hop 2</span><span class="hop-value">25.000%</span></div>
-                <div class="decay-hop" style="--width: 25%"><span class="hop-label">Hop 3</span><span class="hop-value">12.500%</span></div>
-                <div class="decay-hop" style="--width: 12.5%"><span class="hop-label">Hop 4</span><span class="hop-value">6.250%</span></div>
-                <div class="decay-hop" style="--width: 6.25%"><span class="hop-label">Hop 5</span><span class="hop-value">3.125%</span></div>
-                <div class="decay-hop decay-fade" style="--width: 3.125%"><span class="hop-label">Hop 6–15</span><span class="hop-value">→ 0.003%</span></div>
+<!-- ═══ GOLD BACKING ═══ -->
+<section class="section">
+    <div class="container" style="max-width:800px;text-align:center;">
+        <h2>🥇 Backed by Real Gold</h2>
+        <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
+            This isn't just numbers on a screen. 7% of every dollar goes to physical precious metals
+            from APMEX — one of the largest dealers in the world. Real gold bars. Real silver. Verified on-chain.
+        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;max-width:700px;margin:0 auto 2rem;">
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
+                <div style="font-size:2rem;">🥇</div>
+                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">Gold Bars</div>
+                <div style="font-size:.8rem;color:var(--text-muted);">1g to 1 Kilo</div>
             </div>
-            <p class="decay-note">After hop 15 → absorbed into protocol stability pools</p>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
+                <div style="font-size:2rem;">🪙</div>
+                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">Silver Rounds</div>
+                <div style="font-size:.8rem;color:var(--text-muted);">1oz to 10oz</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
+                <div style="font-size:2rem;">📜</div>
+                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">Certificates</div>
+                <div style="font-size:.8rem;color:var(--text-muted);">Redeem anytime</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
+                <div style="font-size:2rem;">⛓️</div>
+                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">On-Chain</div>
+                <div style="font-size:.8rem;color:var(--text-muted);">XRPL verified</div>
+            </div>
         </div>
+
+        <a href="/vault/gold" class="btn btn-ghost">Browse the Gold Vault →</a>
     </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
+<!-- ═══ ASK HELIOS CTA ═══ -->
+<section class="section section-dark" style="text-align:center;">
+    <div class="container" style="max-width:700px;">
+        <h2>Still Have Questions?</h2>
+        <p class="section-subtitle" style="max-width:500px;margin:0 auto 1.5rem;">
+            Talk to Helios AI. It knows everything about the protocol, how you earn,
+            the gold treasury, and the math behind it. Voice-powered. Ask anything.
+        </p>
+        <a href="/ask" class="btn btn-primary btn-lg">Talk to Helios AI →</a>
+    </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
 <section class="section section-cta">
     <div class="container">
-        <h2>Ready to enter the field?</h2>
-        <p class="cta-sub">$100. Atomic. Every dollar has a destination.</p>
+        <h2>$100 in. Get paid on everything that grows beneath you.</h2>
+        <p class="cta-sub">Not a promise. Math.</p>
         <div class="hero-actions">
-            <a href="/activate" class="btn btn-primary btn-lg">Activate — $100</a>
-            <a href="/treasury" class="btn btn-ghost btn-lg">View Treasury →</a>
-            <a href="/ask" class="btn btn-ghost btn-lg">Ask HELIOS first →</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Join Now — $100</a>
+            <a href="/earnings" class="btn btn-ghost btn-lg">See the Earnings →</a>
         </div>
     </div>
 </section>
@@ -213,7 +247,6 @@
     resize();
     window.addEventListener('resize', resize);
 
-    // Create nodes
     const nodes = [];
     const NODE_COUNT = 60;
     const MAX_DIST = 180;
@@ -231,8 +264,6 @@
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw bonds
         for (let i = 0; i < nodes.length; i++) {
             for (let j = i + 1; j < nodes.length; j++) {
                 const dx = nodes[i].x - nodes[j].x;
@@ -240,7 +271,7 @@
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < MAX_DIST) {
                     const alpha = (1 - dist / MAX_DIST) * 0.15;
-                    ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
+                    ctx.strokeStyle = 'rgba(245, 158, 11, ' + alpha + ')';
                     ctx.lineWidth = 0.5;
                     ctx.beginPath();
                     ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -249,24 +280,19 @@
                 }
             }
         }
-
-        // Draw nodes
         const time = Date.now() * 0.002;
         for (const n of nodes) {
             const pulse = Math.sin(time + n.pulse) * 0.5 + 0.5;
             const alpha = 0.2 + pulse * 0.3;
-            ctx.fillStyle = `rgba(245, 158, 11, ${alpha})`;
+            ctx.fillStyle = 'rgba(245, 158, 11, ' + alpha + ')';
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.r + pulse, 0, Math.PI * 2);
             ctx.fill();
-
-            // Move
             n.x += n.vx;
             n.y += n.vy;
             if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
             if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
         }
-
         requestAnimationFrame(draw);
     }
     draw();

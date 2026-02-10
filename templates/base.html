@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Helios — xxxiii.io{% endblock %}</title>
     <!-- HELIOS_BUILD_ID: {{ helios_build_id }} -->
-    <meta name="description" content="{% block og_description %}Helios — A private network protocol. Fixed supply. Bounded field. Protocol-enforced settlement.{% endblock %}">
+    <meta name="description" content="{% block og_description %}Helios — $100 in. Get paid every time your network grows. Backed by physical gold.{% endblock %}">
     <meta name="theme-color" content="#0a0a0a">
 
     <!-- Open Graph (Facebook, Telegram, WhatsApp, iMessage) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Helios — xxxiii.io">
-    <meta property="og:title" content="{% block og_title %}Helios — A Private Network Protocol{% endblock %}">
-    <meta property="og:description" content="$100 entry. Metal-backed treasury. Energy certificates. Conservation law enforced. Power of 5.">
+    <meta property="og:title" content="{% block og_title %}Helios — $100 In. Get Paid. Backed by Gold.{% endblock %}">
+    <meta property="og:description" content="$100 entry. Get paid every time your network grows. Physical gold backs every dollar. Power of 5.">
     <meta property="og:image" content="https://xxxiii.io/static/img/og-helios.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -20,8 +20,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Helios — A Private Network Protocol">
-    <meta name="twitter:description" content="$100 entry. Metal-backed treasury. Energy certificates. Conservation law enforced.">
+    <meta name="twitter:title" content="Helios — $100 In. Get Paid. Backed by Gold.">
+    <meta name="twitter:description" content="$100 entry. Get paid every time your network grows. Physical gold backs every dollar.">
     <meta name="twitter:image" content="https://xxxiii.io/static/img/og-helios.svg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,16 +42,10 @@
                 <span></span><span></span><span></span>
             </button>
             <div class="nav-links">
-                <a href="/dashboard">Dashboard</a>
-                <a href="/network">Field</a>
-                <a href="/treasury">Treasury</a>
-                <a href="/vault">Vault</a>
+                <a href="/earnings">How You Earn</a>
                 <a href="/vault/gold" class="nav-gold">Gold</a>
-                <a href="/earnings">Earnings</a>
-                <a href="/metrics">Metrics</a>
-                <a href="/status">Protocol</a>
                 <a href="/ask" class="nav-ask">Ask Helios</a>
-                <a href="/activate" class="nav-cta">Enter</a>
+                <a href="/activate" class="nav-cta">Join Now</a>
             </div>
         </div>
     </nav>
@@ -62,21 +56,11 @@
 
     <footer class="helios-footer">
         <div class="footer-container">
-            <div class="footer-trust">
-                <h4>Verify the Protocol</h4>
-                <a href="/api/token/info">Token Parameters</a>
-                <a href="/api/token/supply">Supply Integrity</a>
-                <a href="/api/token/verify">Protocol Verification</a>
-                <a href="/api/token/founder-lock">Founder Lock Status</a>
-                <a href="/api/rewards/protocol">Settlement Rules</a>
-                <a href="/api/treasury/reserves">Proof of Reserves</a>
-                <a href="/api/energy/conservation">Conservation Law</a>
-                <a href="/api/metrics/all">Protocol Metrics</a>
-            </div>
             <div class="footer-info">
                 <p class="footer-domain">xxxiii.io</p>
-                <p class="footer-small">Fixed supply. Bounded field. Protocol-enforced settlement.</p>
-                <p class="footer-small">Helios v{{ helios_version }} — A private network protocol. © {{ helios_year }}</p>
+                <p class="footer-small" style="margin-bottom:.5rem;"><a href="/earnings" style="color:var(--text-muted);">How You Earn</a> · <a href="/vault/gold" style="color:var(--text-muted);">Gold Vault</a> · <a href="/ask" style="color:var(--text-muted);">Ask Helios</a> · <a href="/treasury" style="color:var(--text-muted);">Treasury</a></p>
+                <p class="footer-small">$100 in. Gold-backed. Power of 5.</p>
+                <p class="footer-small">Helios v{{ helios_version }} © {{ helios_year }}</p>
             </div>
         </div>
     </footer>
