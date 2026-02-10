@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Helios — Your Network Code{% endblock %}
 {% block og_title %}Join Helios — Invitation from a Member{% endblock %}
-{% block og_description %}Scan this code to register on Helios. Gold-backed allocation protocol. One payment. No monthly fees.{% endblock %}
+{% block og_description %}Scan this code to join Helios. Gold-backed smart contract protocol. One payment. Fully autonomous.{% endblock %}
 {% block og_url %}/qr{% endblock %}
 
 {% block head %}
@@ -191,18 +191,18 @@
         </div>
 
         <div class="qr-scan-label">
-            <p>Scan to join under this member</p>
+            <p>Scan to connect through this member</p>
             <span class="join-url" id="qr-url">—</span>
         </div>
 
         <div class="qr-info-strip">
             <div class="qr-info-cell">
                 <span class="val">$100–$5K</span>
-                <span class="lbl">Tiers</span>
+                <span class="lbl">Contracts</span>
             </div>
             <div class="qr-info-cell">
-                <span class="val">15</span>
-                <span class="lbl">Levels</span>
+                <span class="val">∞</span>
+                <span class="lbl">Depth</span>
             </div>
             <div class="qr-info-cell">
                 <span class="val">Gold</span>
@@ -215,16 +215,14 @@
             <div class="chain-flow">
                 <div class="chain-node you" id="chain-you">YOU</div>
                 <div class="chain-arrow">→</div>
-                <div class="chain-node next">+5</div>
+                <div class="chain-node next">+1</div>
                 <div class="chain-arrow">→</div>
-                <div class="chain-node future">+25</div>
-                <div class="chain-arrow">→</div>
-                <div class="chain-node future">+125</div>
+                <div class="chain-node future">+N</div>
                 <div class="chain-arrow">→</div>
                 <div class="chain-node future" style="font-size:.5rem;">∞</div>
             </div>
             <p>When someone scans your code and joins, they receive <strong style="color:var(--gold);">their own code</strong> to share.
-            Their people get codes too. The chain continues across 15 levels — automatically.</p>
+            Their connections get codes too. The chain propagates through the smart contract mesh — automatically.</p>
         </div>
 
         <div class="qr-actions">
@@ -233,7 +231,7 @@
         </div>
 
         <div class="qr-badge-row">
-            <div class="qr-protocol-badge">No monthly fees · No autoship · No ranks · Gold backed · Formula governed</div>
+            <div class="qr-protocol-badge">One Payment · Gold Backed · Smart Contract Governed</div>
         </div>
     </div>
 </div>
@@ -600,7 +598,7 @@ function downloadQR() {
     // Badge
     ctx.fillStyle = '#555';
     ctx.font = '400 16px Inter, sans-serif';
-    ctx.fillText('NO MONTHLY FEES  ·  NO AUTOSHIP  ·  NO RANKS  ·  GOLD BACKED', exportSize / 2, qrY + qrSize + 100);
+    ctx.fillText('ONE PAYMENT  ·  GOLD BACKED  ·  SMART CONTRACT GOVERNED', exportSize / 2, qrY + qrSize + 100);
 
     // Download
     var link = document.createElement('a');

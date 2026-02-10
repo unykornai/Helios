@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Choose Your Tier — Helios Protocol{% endblock %}
-{% block og_title %}Membership Tiers — Helios Protocol{% endblock %}
-{% block og_description %}Five membership tiers from $100 to $5,000. Gold-backed certificates, 15-level allocations, BTC/ETH/stablecoin access. Choose your tier and start earning.{% endblock %}
+{% block title %}Activate Your Contract — Helios Protocol{% endblock %}
+{% block og_title %}Smart Contract Activation — Helios Protocol{% endblock %}
+{% block og_description %}Gold-backed certificates, smart contract allocation, BTC/ETH/stablecoin access. Choose your activation amount from $100 to $5,000.{% endblock %}
 {% block og_url %}/activate{% endblock %}
 
 {% block head %}
@@ -196,37 +196,28 @@
 <div class="activate-page">
     <!-- ═══ HERO ═══ -->
     <section class="act-hero">
-        <h1>CHOOSE YOUR TIER</h1>
+        <h1>ACTIVATE YOUR CONTRACT</h1>
         <p class="act-sub">
-            Five tiers. One protocol. Every dollar has a published destination.
-            Higher tiers mean bigger allocation pools, bigger direct introduction allocations,
-            and access to more features. Pick the tier that matches your goals.
+            One protocol. Every dollar has a published destination governed by smart contracts.
+            Choose your activation amount. The contract handles everything else.
         </p>
     </section>
 
-    <!-- ═══ PROTOCOL DISCLAIMER BADGE ═══ -->
-    <section class="act-section" style="padding-bottom:0;">
-        <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:var(--radius);padding:1rem 1.5rem;text-align:center;margin-bottom:2rem;">
-            <div style="font-family:'Inter',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);font-weight:700;">NO MONTHLY FEES &ensp;&middot;&ensp; NO AUTOSHIP &ensp;&middot;&ensp; NO RANKS &ensp;&middot;&ensp; ONE PAYMENT &ensp;&middot;&ensp; FORMULA-GOVERNED</div>
-        </div>
-    </section>
-
-    <!-- ═══ TIER CARDS ═══ -->
+    <!-- ═══ CONTRACT CARDS ═══ -->
     <section class="act-section">
         <div class="act-tiers">
-            <!-- Starter -->
+            <!-- $100 -->
             <div class="act-tier">
-                <div class="at-name">Starter</div>
+                <div class="at-name">$100</div>
                 <div class="at-price">$100</div>
-                <div class="at-mult">1&times; allocation</div>
+                <div class="at-mult">Base contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$45</span></li>
-                    <li>Direct Introduction <span class="stat-val">$22.50</span></li>
-                    <li>5 Directs <span class="stat-val">$112.50</span></li>
+                    <li>Direct Connection <span class="stat-val">$22.50</span></li>
                 </ul>
                 <ul class="at-features">
                     <li>Gold-backed certificate</li>
-                    <li>15-level allocations</li>
+                    <li>Smart contract allocation</li>
                     <li>BTC/ETH/stablecoin access</li>
                     <li>.helios identity</li>
                     <li>Certificate staking</li>
@@ -234,19 +225,18 @@
                 <a href="/join" class="at-cta">Activate &mdash; $100</a>
             </div>
 
-            <!-- Builder -->
+            <!-- $250 -->
             <div class="act-tier">
-                <div class="at-name">Builder</div>
+                <div class="at-name">$250</div>
                 <div class="at-price">$250</div>
-                <div class="at-mult">2.5&times; allocation</div>
+                <div class="at-mult">2.5× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$112.50</span></li>
-                    <li>Direct Introduction <span class="stat-val">$56.25</span></li>
-                    <li>5 Directs <span class="stat-val">$281.25</span></li>
+                    <li>Direct Connection <span class="stat-val">$56.25</span></li>
                 </ul>
                 <ul class="at-features">
                     <li>Larger gold certificate</li>
-                    <li>15-level allocations</li>
+                    <li>Smart contract allocation</li>
                     <li>Full crypto access</li>
                     <li>.helios identity</li>
                     <li>Higher staking bonus</li>
@@ -254,39 +244,37 @@
                 <a href="/join" class="at-cta">Activate &mdash; $250</a>
             </div>
 
-            <!-- Pro (Popular) -->
+            <!-- $500 -->
             <div class="act-tier popular">
-                <div class="at-name">Pro</div>
+                <div class="at-name">$500</div>
                 <div class="at-price">$500</div>
-                <div class="at-mult">5&times; allocation</div>
+                <div class="at-mult">5× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$225</span></li>
-                    <li>Direct Introduction <span class="stat-val">$112.50</span></li>
-                    <li>5 Directs <span class="stat-val">$562.50</span></li>
+                    <li>Direct Connection <span class="stat-val">$112.50</span></li>
                 </ul>
                 <ul class="at-features">
                     <li>Premium gold certificate</li>
-                    <li>15-level allocations</li>
+                    <li>Smart contract allocation</li>
                     <li>Crypto vault access</li>
                     <li>.helios identity</li>
-                    <li>Higher introduction bonus</li>
+                    <li>Higher connection bonus</li>
                 </ul>
                 <a href="/join" class="at-cta">Activate &mdash; $500</a>
             </div>
 
-            <!-- Leader -->
+            <!-- $1,000 -->
             <div class="act-tier">
-                <div class="at-name">Leader</div>
+                <div class="at-name">$1,000</div>
                 <div class="at-price">$1,000</div>
-                <div class="at-mult">10&times; allocation</div>
+                <div class="at-mult">10× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$450</span></li>
-                    <li>Direct Introduction <span class="stat-val">$225</span></li>
-                    <li>5 Directs <span class="stat-val">$1,125</span></li>
+                    <li>Direct Connection <span class="stat-val">$225</span></li>
                 </ul>
                 <ul class="at-features">
                     <li>High-value gold certificate</li>
-                    <li>15-level allocations</li>
+                    <li>Smart contract allocation</li>
                     <li>Priority crypto tools</li>
                     <li>.helios identity</li>
                     <li>Maximum staking bonus</li>
@@ -294,22 +282,21 @@
                 <a href="/join" class="at-cta">Activate &mdash; $1,000</a>
             </div>
 
-            <!-- Executive -->
+            <!-- $5,000 -->
             <div class="act-tier">
-                <div class="at-name">Executive</div>
+                <div class="at-name">$5,000</div>
                 <div class="at-price">$5,000</div>
-                <div class="at-mult">50&times; allocation</div>
+                <div class="at-mult">50× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$2,250</span></li>
-                    <li>Direct Introduction <span class="stat-val">$1,125</span></li>
-                    <li>5 Directs <span class="stat-val">$5,625</span></li>
+                    <li>Direct Connection <span class="stat-val">$1,125</span></li>
                 </ul>
                 <ul class="at-features">
                     <li>Large gold purchase</li>
-                    <li>15-level allocations</li>
+                    <li>Smart contract allocation</li>
                     <li>Private crypto pools</li>
                     <li>Exclusive NFT drops</li>
-                    <li>Highest staking tier</li>
+                    <li>Highest staking contract</li>
                 </ul>
                 <a href="/join" class="at-cta">Activate &mdash; $5,000</a>
             </div>
@@ -320,7 +307,7 @@
     <section class="act-section">
         <h2>Where Every Dollar Goes</h2>
         <p class="section-desc">
-            The same percentage split applies to every tier. No slush funds.
+            The same percentage split applies to every contract. No slush funds.
             No mystery fees. Every dollar has a declared, auditable destination.
         </p>
 
@@ -337,7 +324,7 @@
                     <div class="al-dot seg-pool"></div>
                     <div>
                         <strong>45% &mdash; Allocation Pool</strong>
-                        <p>Distributed across 15 levels of your network using the deterministic weighting formula.</p>
+                        <p>Distributed through the smart contract propagation engine using a deterministic weighting formula.</p>
                     </div>
                 </div>
                 <div class="al-item">
@@ -374,10 +361,10 @@
 
     <!-- ═══ WHAT YOU GET ═══ -->
     <section class="act-section">
-        <h2>What Every Member Receives</h2>
+        <h2>What Every Participant Receives</h2>
         <p class="section-desc">
-            Regardless of tier, every member gets the full protocol experience.
-            Higher tiers unlock larger allocations and premium features.
+            Regardless of amount, every participant gets the full protocol experience.
+            Higher contracts unlock larger allocations and premium features.
         </p>
 
         <div class="benefit-grid">
@@ -385,14 +372,14 @@
                 <div class="bi-marker">H</div>
                 <div class="bi-text">
                     <strong>yourname.helios</strong>
-                    <p>Permanent identity on the Helios network. Your membership anchor on XRPL.</p>
+                    <p>Permanent identity on the Helios protocol. Your contract anchor on XRPL.</p>
                 </div>
             </div>
             <div class="benefit-item">
-                <div class="bi-marker">15</div>
+                <div class="bi-marker">⚙</div>
                 <div class="bi-text">
-                    <strong>15-Level Allocations</strong>
-                    <p>Earn from activity across 15 levels of your network. Deterministic. Automatic. No manual intervention.</p>
+                    <strong>Smart Contract Allocation</strong>
+                    <p>Earn from activity across your connection mesh. Deterministic. Automatic. No manual intervention.</p>
                 </div>
             </div>
             <div class="benefit-item">
@@ -450,8 +437,8 @@
         </div>
 
         <p class="act-note">
-            All tiers are one-time memberships. No monthly fees. No autoship. No recurring charges.
-            Choose your tier, activate, and let the 15-level math do the rest.
+            All contracts are one-time activations. No recurring charges.
+            Choose your amount, activate, and let the smart contracts do the rest.
         </p>
     </section>
 </div>

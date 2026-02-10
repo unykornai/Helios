@@ -291,7 +291,7 @@ if __name__ == "__main__":
     ║                                                  ║
     ║   ☀  HELIOS v3.0.0 — Allocation Protocol         ║
     ║                                                  ║
-    ║   15 levels.  Gold-backed certificates.          ║
+    ║   Smart contracts.  Gold-backed certificates.     ║
     ║   XRPL + Stellar.  Deterministic math.           ║
     ║                                                  ║
     ║   Guide:       http://localhost:{HeliosConfig.PORT}/guide         ║

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Helios — Your Personal Guide{% endblock %}
 {% block og_title %}Helios — AI Guide & Member Intake{% endblock %}
-{% block og_description %}Meet Helios — your personal guide to the 15-level allocation protocol. Voice-powered. Patient. Thorough. Ready to walk you through everything and get you started.{% endblock %}
+{% block og_description %}Meet Helios — your personal guide to the smart contract allocation protocol. Voice-powered. Patient. Thorough. Ready to walk you through everything and get you started.{% endblock %}
 {% block og_url %}/guide{% endblock %}
 
 {% block head %}
@@ -352,9 +352,9 @@
                     <div class="guide-topic-icon">☀</div>
                     <div><div class="guide-topic-text">What is Helios?</div><div class="guide-topic-sub">The basics, plain and simple</div></div>
                 </div>
-                <div class="guide-topic" onclick="guideAsk('How does the 15-level allocation work? Walk me through where my membership fee actually goes across the 5 tiers.')">
+                <div class="guide-topic" onclick="guideAsk('How does the smart contract allocation work? Walk me through where my activation fee actually goes.')">
                     <div class="guide-topic-icon">$</div>
-                    <div><div class="guide-topic-text">Where does my money go?</div><div class="guide-topic-sub">Every dollar, every tier, accounted for</div></div>
+                    <div><div class="guide-topic-text">Where does my money go?</div><div class="guide-topic-sub">Every dollar, every contract, accounted for</div></div>
                 </div>
                 <div class="guide-topic" onclick="guideAsk('What are gold-backed certificates? How do they work and what makes them valuable?')">
                     <div class="guide-topic-icon">🏅</div>
@@ -406,7 +406,7 @@
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(2)">
                     <div class="guide-topic-icon">2</div>
-                    <div><div class="guide-topic-text">The Depth Chart</div><div class="guide-topic-sub">Position 1, 2, 3 — real earnings</div></div>
+                    <div><div class="guide-topic-text">Smart Contract Propagation</div><div class="guide-topic-sub">How allocations flow through the mesh</div></div>
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(3)">
                     <div class="guide-topic-icon">3</div>
@@ -418,7 +418,7 @@
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(5)">
                     <div class="guide-topic-icon">5</div>
-                    <div><div class="guide-topic-text">Choose Your Tier</div><div class="guide-topic-sub">$100 to $5,000 — pick and go</div></div>
+                    <div><div class="guide-topic-text">Select Your Contract</div><div class="guide-topic-sub">$100 to $5,000 — activate and go</div></div>
                 </div>
             </div>
         </div>
@@ -454,7 +454,7 @@
             <a href="/certificates" class="guide-link">Certificates</a>
             <a href="/treasury" class="guide-link">Treasury</a>
             <a href="/ask" class="guide-link">Technical Advisory</a>
-            <a href="/activate" class="guide-link">Apply for Membership</a>
+            <a href="/activate" class="guide-link">Activate Your Contract</a>
         </div>
     </div>
 </section>
@@ -503,33 +503,32 @@ function setMode(mode) {
 // ═══ Intake Progress ══════════════════════════════════════════════
 var intakeQuestions = [
     "Let me break down the three allocation channels. Real simple.\n\n" +
-    "First \u2014 direct introduction allocation. Every member you personally introduce generates an " +
-    "immediate allocation. At the $100 tier, that's $22.50 per member. At $1,000, that's $225. " +
-    "At $5,000, that's $1,125. Per member. Introduce 5 and you've already received your first allocation.\n\n" +
-    "Second \u2014 the 15-level engine. Every membership sends 45% into a pool that distributes to " +
-    "you every time someone joins anywhere in your 15 levels. Your 5 introduce 5, those 25 " +
-    "introduce 5, and it keeps going. Small per member, substantial when the network grows.\n\n" +
+    "First \u2014 direct connection allocation. Every member you personally connect generates an " +
+    "immediate allocation. At the $100 contract, that's $22.50 per member. At $1,000 contract, that's $225. " +
+    "At $5,000 contract, that's $1,125. Per member. Connect a few members and you've already received your first allocation.\n\n" +
+    "Second \u2014 the smart contract engine. Every membership sends 45% into a pool that distributes to " +
+    "you every time someone joins anywhere in your connection mesh. Your connections connect more, " +
+    "and the mesh grows organically. Small per member, substantial when the network grows.\n\n" +
     "Third \u2014 gold, NFTs, and crypto. Part of every membership buys physical gold. " +
     "You can convert your certificates into BTC, ETH, XRP, stablecoins, or actual metal. " +
     "Your allocations are backed by real assets, not points.\n\n" +
-    "No ranks. No monthly fees. No autoship. No product to buy. Just math and members.\n\n" +
-    "Want me to show you the depth chart \u2014 how allocations flow from top to bottom?",
+    "One payment. No recurring fees. Just math and smart contracts.\n\n" +
+    "Want me to show you how allocations propagate \u2014 how they flow through the connection mesh?",
 
-    "Here's the depth chart. Think of it like a chain.\n\n" +
-    "Position 1 sits at the top. Position 2 is under them. Position 3 is under Position 2 " +
-    "and did the actual work \u2014 introduced the members.\n\n" +
-    "Position 3 introduces 5 members. Those 5 introduce 5 (that's 25). Those 25 introduce 5 " +
-    "(125). Then 625, then 3,125, then 15,625, and so on up to 50,000 members.\n\n" +
-    "With a 50,000-member network on $100 base tier:\n\n" +
-    "Position 3 (did the work): $28,730/month \u2014 $344,766/year\n" +
-    "Position 2 (above Position 3): $14,502/month \u2014 $174,034/year\n" +
-    "Position 1 (top of structure): $7,326/month \u2014 $87,924/year\n\n" +
-    "Position 3 receives the most because they're closest to the action. " +
-    "But everyone above them receives allocations too. And with staking bonuses and higher tiers, " +
-    "Position 3 can cross $1 million a year.\n\n" +
+    "Here's how smart contract propagation works. Think of it like signal flowing through a mesh.\n\n" +
+    "When someone activates a contract, the smart contract distributes allocations outward " +
+    "through the connection graph. Each hop reduces the allocation by a decay factor \u2014 " +
+    "Depth 1 gets 50%, Depth 2 gets 25%, Depth 3 gets 12.5%, and so on.\n\n" +
+    "The person who made the direct connection receives the largest allocation. " +
+    "Members further up the chain receive progressively smaller amounts \u2014 but they receive " +
+    "from every activation in their mesh, not just direct connections.\n\n" +
+    "With a growing mesh on the $100 contract:\n\n" +
+    "Direct connectors earn the most per member.\n" +
+    "Upstream members earn less per member but from more activations.\n" +
+    "The formula is deterministic \u2014 W_h = W_1 \u00b7 r^(h-1). No discretion. Pure math.\n\n" +
     "Want me to walk you through the gold and crypto side?",
 
-    "Every membership buys physical gold. 50,000 members means $750,000 in gold purchased. " +
+    "Every membership buys physical gold. As the protocol grows, gold purchases scale proportionally. " +
     "That's real metal in a vault, not numbers on a screen.\n\n" +
     "You receive gold-backed NFTs \u2014 digital certificates that represent actual gold weight. " +
     "You can redeem them for physical gold, physical silver, or convert to stablecoins.\n\n" +
@@ -541,7 +540,7 @@ var intakeQuestions = [
     "180 days = +20% bonus\n" +
     "365 days = +30% bonus\n\n" +
     "Lock your certificates, earn bonus allocations on top of everything else. " +
-    "That 30% staking bonus on $344,766 turns into $448,195.\n\n" +
+    "Staking bonuses compound on top of your base allocations.\n\n" +
     "Any questions before we talk about getting you started?",
 
     "This is your space. Ask me anything you want to know. " +
@@ -551,15 +550,15 @@ var intakeQuestions = [
     "What's on your mind?",
 
     "If you're ready, here's the move.\n\n" +
-    "Pick your tier: $100, $250, $500, $1,000, or $5,000. " +
-    "Higher tier means bigger allocation pool, bigger direct introduction allocations, " +
+    "Select your contract: $100, $250, $500, $1,000, or $5,000. " +
+    "Higher contract means bigger allocation pool, bigger direct connection allocations, " +
     "and more gold and crypto access.\n\n" +
-    "One payment. No monthly fees. No autoship. No re-qualifying.\n\n" +
+    "One payment. No recurring fees. No re-qualifying.\n\n" +
     "You get your .helios identity, your first certificate allocation, " +
     "and full access to the protocol \u2014 including crypto tools and the AI guide.\n\n" +
-    "Introduce 5 members. Help your 5 connect their 5. " +
-    "Let the 15-level formula do the rest.\n\n" +
-    "<a href='/activate' style='color:var(--gold);font-weight:600;'>\u2192 Choose Your Tier</a> &nbsp; " +
+    "Share with your connections. " +
+    "Let the smart contracts do the rest.\n\n" +
+    "<a href='/activate' style='color:var(--gold);font-weight:600;'>\u2192 Select Your Contract</a> &nbsp; " +
     "<a href='/opportunity' style='color:var(--gold);font-weight:600;'>\u2192 See the Full Breakdown</a>"
 ];
 

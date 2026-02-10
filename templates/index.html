@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Helios — 15-Level Allocation Protocol{% endblock %}
-{% block og_title %}Helios — 15-Level Rules-Based Allocation Protocol{% endblock %}
-{% block og_description %}A membership-based allocation protocol. Fiat converts to stablecoins, stablecoins acquire physical gold, members receive digital gold certificates distributed across 15 levels.{% endblock %}
+{% block title %}Helios — Smart Contract Allocation Protocol{% endblock %}
+{% block og_title %}Helios — Gold-Backed Smart Contract Protocol{% endblock %}
+{% block og_description %}A smart-contract-governed allocation protocol. Fiat converts to stablecoins, stablecoins acquire physical gold, members receive digital gold certificates distributed through autonomous contracts.{% endblock %}
 {% block og_url %}/{% endblock %}
 
 {% block content %}
@@ -58,27 +58,19 @@
 
         <h1 class="hero-title">HELIOS</h1>
         <p class="hero-tagline">
-            Five membership tiers from $100 to $5,000. Each dollar converts to stablecoins,
-            acquires physical gold, and distributes gold-backed certificates across 15 levels
-            using a deterministic 5-wide weighting model on XRPL&thinsp;/&thinsp;Stellar.
+            One activation. Your dollars convert to stablecoins, acquire physical gold,
+            and generate gold-backed certificates—all governed by immutable smart contracts
+            on XRPL / Stellar. No human discretion. Just autonomous code.
         </p>
-        <p class="hero-rule">5 TIERS &middot; GOLD-BACKED &middot; CRYPTO ACCESS &middot; ON-CHAIN VERIFIED</p>
+        <p class="hero-rule">SMART CONTRACTS &middot; GOLD-BACKED &middot; CRYPTO ACCESS &middot; ON-CHAIN VERIFIED</p>
 
         <div class="hero-actions">
-            <a href="/activate" class="btn btn-primary btn-lg">Choose Your Tier</a>
-            <a href="/earnings" class="btn btn-ghost btn-lg">View Allocation Model</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Activate Your Contract</a>
+            <a href="/earnings" class="btn btn-ghost btn-lg">View Smart Contracts</a>
         </div>
     </div>
     <canvas id="neural-bg" class="hero-neural-bg"></canvas>
 </section>
-
-<!-- ═══ PROTOCOL DISCLAIMER BADGE ═══ -->
-<div style="max-width:960px;margin:0 auto;padding:0 2rem;">
-    <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:var(--radius);padding:1rem 1.5rem;text-align:center;margin:2rem 0;">
-        <div style="font-family:'Inter',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);font-weight:700;margin-bottom:.4rem;">NO MONTHLY FEES &ensp;&middot;&ensp; NO AUTOSHIP &ensp;&middot;&ensp; NO RANKS &ensp;&middot;&ensp; NO PRODUCT PURCHASES &ensp;&middot;&ensp; NO QUALIFICATIONS</div>
-        <p style="font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.5;">Helios is not an MLM. There are no ranks, no monthly purchases, no autoship, no product requirements, and no discretionary payouts. All allocations follow a published, rules-based formula.</p>
-    </div>
-</div>
 
 <!-- ═══ THE HELIOS FLOWLINE ═══ -->
 <section class="section section-dark">
@@ -86,7 +78,7 @@
         <h2 style="text-align:center;">The Helios Flowline</h2>
         <p class="section-subtitle" style="max-width:680px;margin:0 auto 2.5rem;">
             Follow the Flowline. Watch value move through the protocol in real time —
-            from membership activation to gold-backed certificates distributed across 15 levels.
+            from contract activation to gold-backed certificates distributed through smart contracts.
         </p>
 
         <!-- Flowline Animation Container -->
@@ -146,8 +138,8 @@
             <div class="flowline-labels">
                 <div class="fl-label" data-step="0">
                     <div class="fl-label-icon">⚡</div>
-                    <h4>Membership Activation</h4>
-                    <p>Choose your tier — $100 to $5,000. One payment activates your position in the network.</p>
+                    <h4>Contract Activation</h4>
+                    <p>Choose your amount — $100 to $5,000. One payment activates your smart contract on-chain.</p>
                 </div>
                 <div class="fl-label" data-step="1">
                     <div class="fl-label-icon">💱</div>
@@ -166,8 +158,8 @@
                 </div>
                 <div class="fl-label" data-step="4">
                     <div class="fl-label-icon">🔺</div>
-                    <h4>15-Level Allocation</h4>
-                    <p>Certificates distribute across 15 levels. Fixed formula. No discretion. Pure math.</p>
+                    <h4>Smart Contract Distribution</h4>
+                    <p>Certificates distribute through autonomous contracts. Fixed formula. No discretion. Pure code.</p>
                 </div>
             </div>
         </div>
@@ -215,62 +207,62 @@
 <!-- ═══ THE MATH MODEL ═══ -->
 <section class="section">
     <div class="container" style="max-width:960px;">
-        <h2 style="text-align:center;">Deterministic Allocation Formula</h2>
+        <h2 style="text-align:center;">Smart Contract Propagation Function</h2>
         <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
-            All allocations are governed by a single, published mathematical formula.
-            No interpretation. No adjustment. The math is the protocol.
+            All distributions are governed by an immutable function deployed on-chain.
+            No interpretation. No adjustment. The contract is the protocol.
         </p>
 
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;text-align:center;margin-bottom:2rem;">
             <div class="math-formula">
-                W<sub>L</sub>&ensp;=&ensp;W<sub>1</sub>&ensp;&middot;&ensp;r<sup>(L&minus;1)</sup>
+                W<sub>h</sub>&ensp;=&ensp;W<sub>1</sub>&ensp;&middot;&ensp;r<sup>(h&minus;1)</sup>
             </div>
             <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
                 <div style="text-align:center;">
                     <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Inter',sans-serif;">W<sub>1</sub></div>
                     <div style="font-size:1.3rem;font-weight:700;color:var(--gold);">50%</div>
-                    <div style="font-size:.78rem;color:var(--text-muted);">Direct allocation</div>
+                    <div style="font-size:.78rem;color:var(--text-muted);">Direct connection</div>
                 </div>
                 <div style="text-align:center;">
                     <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Inter',sans-serif;">r</div>
                     <div style="font-size:1.3rem;font-weight:700;color:var(--gold);">0.5</div>
-                    <div style="font-size:.78rem;color:var(--text-muted);">Decay factor</div>
+                    <div style="font-size:.78rem;color:var(--text-muted);">Decay constant</div>
                 </div>
                 <div style="text-align:center;">
-                    <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Inter',sans-serif;">L</div>
-                    <div style="font-size:1.3rem;font-weight:700;color:var(--gold);">1–15</div>
-                    <div style="font-size:.78rem;color:var(--text-muted);">Level depth</div>
+                    <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Inter',sans-serif;">h</div>
+                    <div style="font-size:1.3rem;font-weight:700;color:var(--gold);">Hop</div>
+                    <div style="font-size:.78rem;color:var(--text-muted);">Connection distance</div>
                 </div>
             </div>
 
             <div style="margin-top:2rem;border-top:1px solid var(--border);padding-top:1.5rem;">
                 <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;max-width:500px;margin:0 auto;">
                     <div style="text-align:center;">
-                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L1</div>
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">Hop 1</div>
                         <div style="font-size:1.1rem;font-weight:700;color:var(--gold);">50%</div>
                     </div>
                     <div style="text-align:center;">
-                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L2</div>
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">Hop 2</div>
                         <div style="font-size:1.1rem;font-weight:700;color:var(--text);">25%</div>
                     </div>
                     <div style="text-align:center;">
-                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L3</div>
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">Hop 3</div>
                         <div style="font-size:1.1rem;font-weight:700;color:var(--text);">12.5%</div>
                     </div>
                     <div style="text-align:center;">
-                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L4</div>
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">Hop 4</div>
                         <div style="font-size:1.1rem;font-weight:700;color:var(--text);">6.25%</div>
                     </div>
                     <div style="text-align:center;">
-                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L15</div>
-                        <div style="font-size:1.1rem;font-weight:700;color:var(--text-muted);">0.003%</div>
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">Hop n</div>
+                        <div style="font-size:1.1rem;font-weight:700;color:var(--text-muted);">~0%</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <p style="text-align:center;">
-            <a href="/earnings" class="btn btn-ghost">View Complete 15-Level Allocation Table</a>
+            <a href="/earnings" class="btn btn-ghost">View Complete Smart Contract Model</a>
         </p>
     </div>
 </section>
@@ -327,7 +319,7 @@
             <div class="principle-card" style="text-align:center;border-top:2px solid var(--green);">
                 <h3 style="color:var(--green);font-size:1.15rem;margin-bottom:.5rem;">Bonus Certificates</h3>
                 <p style="font-weight:600;margin-bottom:.5rem;font-size:.9rem;">Activity-Based Allocation</p>
-                <p>Issued at enrollment (Joining Bonus), upon direct introduction activation (Introduction Bonus),
+                <p>Issued at enrollment (Joining Bonus), upon direct connection activation (Connection Bonus),
                 and based on participation metrics (Activity Bonus). Fixed rules, no discretion.</p>
             </div>
             <div class="principle-card" style="text-align:center;border-top:2px solid var(--blue);">
@@ -347,34 +339,52 @@
 <!-- ═══ MEMBERSHIP STRUCTURE ═══ -->
 <section class="section section-dark">
     <div class="container" style="max-width:960px;">
-        <h2 style="text-align:center;">5-Wide, 15-Level Contribution Network</h2>
+        <h2 style="text-align:center;">Neuromorphic Protocol Mesh</h2>
         <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
-            Each member may introduce up to 5 direct participants. Allocations cascade through
-            15 levels of depth. This is how banks, cooperatives, and private membership programs
-            describe the same deterministic structure.
+            Every participant is a node. Every connection is a synapse. Smart contracts
+            propagate value through the mesh autonomously — no hierarchy, no positions, just code.
         </p>
+
+        <!-- 3D Neuromorphic Canvas -->
+        <div style="position:relative;width:100%;max-width:800px;margin:0 auto 2rem;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);">
+            <canvas id="neuro-mesh" style="width:100%;height:420px;display:block;background:var(--bg);"></canvas>
+            <div style="position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:1.5rem;">
+                <div style="display:flex;align-items:center;gap:.4rem;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);"></div>
+                    <span style="font-family:'Inter',sans-serif;font-size:.65rem;color:var(--text-muted);">Active Node</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:.4rem;">
+                    <div style="width:16px;height:2px;background:rgba(201,168,76,.4);border-radius:1px;"></div>
+                    <span style="font-family:'Inter',sans-serif;font-size:.65rem;color:var(--text-muted);">Synapse</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:.4rem;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:#e8d694;box-shadow:0 0 6px #e8d694;"></div>
+                    <span style="font-family:'Inter',sans-serif;font-size:.65rem;color:var(--text-muted);">Signal</span>
+                </div>
+            </div>
+        </div>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:800px;margin:0 auto 2rem;">
             <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
-                <div style="font-size:2.2rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">5</div>
-                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Membership tiers</div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">XRPL</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Settlement chain</div>
             </div>
             <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
-                <div style="font-size:2.2rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">15</div>
-                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Allocation levels deep</div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">Stellar</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Stablecoin layer</div>
             </div>
             <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
-                <div style="font-size:1.6rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">$100–$5K</div>
-                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Tier range</div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">Gold</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Physical backing</div>
             </div>
             <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
                 <div style="font-size:1.5rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">BTC/ETH</div>
-                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Crypto access included</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Crypto access</div>
             </div>
         </div>
 
         <div style="text-align:center;">
-            <a href="/earnings" class="btn btn-primary">View Full Allocation Model</a>
+            <a href="/earnings" class="btn btn-primary">View Full Smart Contract Model</a>
             <a href="/treasury" class="btn btn-ghost" style="margin-left:.5rem;">Treasury &amp; Reserves</a>
         </div>
     </div>
@@ -385,13 +395,13 @@
     <div class="container" style="max-width:800px;text-align:center;">
         <h2>.helios Member Identity</h2>
         <p class="section-subtitle" style="max-width:560px;margin:0 auto 1.5rem;">
-            A decentralized namespace for member identity, certificate ownership,
-            and introduction network. Not a gamified handle — a membership identity layer
+            A decentralized namespace for identity, certificate ownership,
+            and protocol connectivity. Not a gamified handle — a smart-contract identity layer
             anchored on XRPL.
         </p>
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:inline-block;">
             <span style="font-family:'Inter',monospace;font-size:1.3rem;color:var(--gold);font-weight:600;">member.helios</span>
-            <span style="display:block;font-size:.78rem;color:var(--text-muted);margin-top:.3rem;">Identity &middot; Certificates &middot; Introduction Network &middot; Settlement History</span>
+            <span style="display:block;font-size:.78rem;color:var(--text-muted);margin-top:.3rem;">Identity &middot; Certificates &middot; Connections &middot; Settlement History</span>
         </div>
     </div>
 </section>
@@ -411,13 +421,13 @@
 <!-- ═══ FINAL CTA ═══ -->
 <section class="section section-cta">
     <div class="container">
-        <h2>Five tiers. Gold-backed certificates. Crypto access.<br>15 levels of deterministic allocation.</h2>
+        <h2>Gold-backed certificates. Crypto access.<br>Smart contract — governed allocation.</h2>
         <p class="cta-sub" style="font-size:.95rem;max-width:540px;margin:.5rem auto 1.5rem;">
             No hype. No discretion. No hidden fees.<br>
-            Choose your tier and let the math do the rest.
+            Activate your contract and let the code do the rest.
         </p>
         <div class="hero-actions">
-            <a href="/activate" class="btn btn-primary btn-lg">Choose Your Tier</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Activate Your Contract</a>
             <a href="/certificates" class="btn btn-ghost btn-lg">View Certificate Types</a>
         </div>
     </div>
@@ -594,6 +604,165 @@
         requestAnimationFrame(draw);
     }
     draw();
+})();
+
+// ═══ NEUROMORPHIC 3D MESH — Smart Contract Visualization ═══
+(function(){
+    var c = document.getElementById('neuro-mesh');
+    if(!c) return;
+    var ctx = c.getContext('2d');
+    var W, H, cx, cy;
+
+    function resize(){
+        var r = c.getBoundingClientRect();
+        c.width  = W = r.width * (window.devicePixelRatio > 1 ? 2 : 1);
+        c.height = H = 420 * (window.devicePixelRatio > 1 ? 2 : 1);
+        cx = W/2; cy = H/2;
+        if(window.devicePixelRatio > 1){ ctx.scale(2,2); }
+    }
+    resize();
+
+    // Generate nodes in a sphere
+    var N = 70, nodes = [], edges = [], signals = [];
+    var rotY = 0, rotX = 0.3, mouseX = 0, mouseInfluence = 0;
+
+    for(var i=0; i<N; i++){
+        // Fibonacci sphere distribution
+        var phi = Math.acos(1 - 2*(i+0.5)/N);
+        var theta = Math.PI * (1 + Math.sqrt(5)) * i;
+        var rad = 130 + Math.random()*30;
+        nodes.push({
+            x: rad * Math.sin(phi) * Math.cos(theta),
+            y: rad * Math.sin(phi) * Math.sin(theta) * 0.65,
+            z: rad * Math.cos(phi),
+            baseR: 2 + Math.random()*2.5,
+            pulse: Math.random() * Math.PI * 2,
+            active: Math.random() < 0.3
+        });
+    }
+
+    // Build edges (connect nearby nodes)
+    for(var i=0; i<N; i++){
+        for(var j=i+1; j<N; j++){
+            var dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, dz=nodes[i].z-nodes[j].z;
+            var d = Math.sqrt(dx*dx+dy*dy+dz*dz);
+            if(d < 120) edges.push({a:i, b:j, d:d});
+        }
+    }
+
+    // Signal particles traveling along edges
+    function spawnSignal(){
+        if(signals.length > 12) return;
+        var e = edges[Math.floor(Math.random()*edges.length)];
+        signals.push({ edge:e, t:0, speed:0.008+Math.random()*0.012, dir: Math.random()>0.5?1:-1 });
+    }
+    setInterval(spawnSignal, 400);
+
+    // Mouse interaction
+    c.addEventListener('mousemove', function(ev){
+        var rect = c.getBoundingClientRect();
+        mouseX = ((ev.clientX - rect.left) / rect.width - 0.5) * 2;
+        mouseInfluence = 0.3;
+    });
+    c.addEventListener('mouseleave', function(){ mouseInfluence = 0; });
+
+    // 3D projection
+    function project(x, y, z){
+        // Rotate Y
+        var cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+        var x1 = x*cosY - z*sinY, z1 = x*sinY + z*cosY;
+        // Rotate X
+        var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+        var y1 = y*cosX - z1*sinX, z2 = y*sinX + z1*cosX;
+        // Perspective
+        var fov = 500, scale = fov / (fov + z2 + 200);
+        return { sx: cx/((window.devicePixelRatio>1)?2:1) + x1*scale, sy: cy/((window.devicePixelRatio>1)?2:1) + y1*scale, s:scale, z:z2 };
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        var t = Date.now() * 0.001;
+
+        // Auto-rotate + mouse influence
+        rotY += 0.003 + mouseInfluence * mouseX * 0.01;
+        mouseInfluence *= 0.95;
+
+        // Project all nodes
+        var projected = nodes.map(function(n){ return project(n.x, n.y, n.z); });
+
+        // Draw edges (synapses)
+        for(var i=0; i<edges.length; i++){
+            var e = edges[i];
+            var pa = projected[e.a], pb = projected[e.b];
+            var avgZ = (pa.z + pb.z) / 2;
+            var alpha = Math.max(0, Math.min(0.2, (200-avgZ)/800 * 0.25));
+            ctx.strokeStyle = 'rgba(201,168,76,' + alpha + ')';
+            ctx.lineWidth = 0.6;
+            ctx.beginPath();
+            ctx.moveTo(pa.sx, pa.sy);
+            ctx.lineTo(pb.sx, pb.sy);
+            ctx.stroke();
+        }
+
+        // Draw signals
+        for(var i=signals.length-1; i>=0; i--){
+            var s = signals[i];
+            s.t += s.speed;
+            if(s.t > 1){ signals.splice(i,1); continue; }
+            var na = nodes[s.edge.a], nb = nodes[s.edge.b];
+            var tt = s.dir > 0 ? s.t : 1-s.t;
+            var sx = na.x + (nb.x-na.x)*tt;
+            var sy = na.y + (nb.y-na.y)*tt;
+            var sz = na.z + (nb.z-na.z)*tt;
+            var sp = project(sx, sy, sz);
+            var sAlpha = Math.sin(s.t * Math.PI) * 0.9;
+            ctx.fillStyle = 'rgba(232,214,148,' + sAlpha + ')';
+            ctx.shadowColor = '#e8d694';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(sp.sx, sp.sy, 2.5*sp.s, 0, Math.PI*2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        // Draw nodes sorted by depth
+        var indices = [];
+        for(var i=0; i<N; i++) indices.push(i);
+        indices.sort(function(a,b){ return projected[a].z - projected[b].z; });
+
+        for(var k=0; k<indices.length; k++){
+            var i = indices[k];
+            var n = nodes[i], p = projected[i];
+            var pulse = Math.sin(t*1.5 + n.pulse) * 0.5 + 0.5;
+            var r = n.baseR * p.s;
+            var zAlpha = Math.max(0.15, Math.min(0.85, (200-p.z)/400));
+
+            if(n.active){
+                // Glow
+                ctx.shadowColor = '#c9a84c';
+                ctx.shadowBlur = 12 * p.s;
+                ctx.fillStyle = 'rgba(201,168,76,' + (zAlpha * (0.6+pulse*0.4)) + ')';
+                ctx.beginPath();
+                ctx.arc(p.sx, p.sy, r*(1+pulse*0.3), 0, Math.PI*2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            } else {
+                ctx.fillStyle = 'rgba(201,168,76,' + (zAlpha*0.35) + ')';
+                ctx.beginPath();
+                ctx.arc(p.sx, p.sy, r, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+
+        requestAnimationFrame(draw);
+    }
+
+    // Start when visible
+    var started = false;
+    var obs = new IntersectionObserver(function(ents){
+        if(ents[0].isIntersecting && !started){ started=true; draw(); }
+    }, {threshold:0.2});
+    obs.observe(c);
 })();
 </script>
 {% endblock %}

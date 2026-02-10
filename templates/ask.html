@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Member Advisory — Helios Protocol{% endblock %}
 {% block og_title %}Member Advisory — Helios Protocol{% endblock %}
-{% block og_description %}AI-powered advisory for the Helios protocol. Understand settlement mechanics, reserve composition, allocation formulas, and membership structure.{% endblock %}
+{% block og_description %}AI-powered advisory for the Helios protocol. Understand settlement mechanics, reserve composition, allocation formulas, and smart contract structure.{% endblock %}
 {% block og_url %}/ask{% endblock %}
 
 {% block head %}
@@ -274,21 +274,21 @@
 
         <!-- ═══ INQUIRY TOPICS ═══ -->
         <div class="guide-section">
-            <div class="guide-title">15-Level Allocation Model</div>
+            <div class="guide-title">Smart Contract Allocation</div>
             <div class="topic-grid">
-                <div class="topic-card" onclick="askQuestion('How does the 15-level allocation model work in Helios?')">
-                    <div class="topic-marker">15</div>
-                    <div><div class="topic-text">Allocation Model</div><div class="topic-sub">5-wide, 15-level structure</div></div>
+                <div class="topic-card" onclick="askQuestion('How does the smart contract allocation engine work in Helios?')">
+                    <div class="topic-marker">⚙</div>
+                    <div><div class="topic-text">Allocation Engine</div><div class="topic-sub">Propagation across the connection mesh</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('Walk me through the $100 membership fee allocation — where does every dollar go?')">
+                <div class="topic-card" onclick="askQuestion('Walk me through the $100 activation fee allocation — where does every dollar go?')">
                     <div class="topic-marker">$</div>
                     <div><div class="topic-text">Fee Allocation</div><div class="topic-sub">Complete dollar breakdown</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('Explain the formula W_L = W_1 times r to the power of L minus 1. What is the allocation at each level?')">
+                <div class="topic-card" onclick="askQuestion('Explain the formula W_h = W_1 times r to the power of h minus 1. What is the allocation at each depth?')">
                     <div class="topic-marker">W</div>
-                    <div><div class="topic-text">Weighting Formula</div><div class="topic-sub">W<sub>L</sub> = W<sub>1</sub> · r<sup>(L−1)</sup></div></div>
+                    <div><div class="topic-text">Weighting Formula</div><div class="topic-sub">W<sub>h</sub> = W<sub>1</sub> · r<sup>(h−1)</sup></div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('What bonuses are available? How do the joining, introduction, staking, and activity bonuses work?')">
+                <div class="topic-card" onclick="askQuestion('What bonuses are available? How do the connection, staking, and activity bonuses work?')">
                     <div class="topic-marker">B</div>
                     <div><div class="topic-text">Bonuses &amp; Staking</div><div class="topic-sub">Certificate lock rewards</div></div>
                 </div>
@@ -346,9 +346,9 @@
                     <div class="msg-avatar">H</div>
                     <div class="msg-content">
                         <p>Welcome to the Helios Member Advisory.<br><br>
-                        I can provide detailed information on the 15-level allocation model,
+                        I can provide detailed information on the smart contract allocation engine,
                         gold-backed certificates, Web3 infrastructure (XRPL &amp; Stellar),
-                        staking mechanics, and the membership process.<br><br>
+                        staking mechanics, and the activation process.<br><br>
                         <strong>Select a topic above</strong>, or type your question below. Voice advisory is available.</p>
                     </div>
                 </div>
@@ -356,7 +356,7 @@
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask about settlements, reserves, allocation, membership..."
+            <input type="text" id="chat-input" placeholder="Ask about settlements, reserves, allocation, contracts..."
                    class="input-large" autocomplete="off">
             <button id="chat-send" class="btn btn-primary">Submit</button>
         </div>
@@ -368,7 +368,7 @@
             <a href="/treasury" class="page-link">Treasury &amp; Infrastructure</a>
             <a href="/vault/gold" class="page-link">Reserve Assets</a>
             <a href="/metrics" class="page-link">Protocol Metrics</a>
-            <a href="/activate" class="page-link">Apply for Membership</a>
+            <a href="/activate" class="page-link">Activate Your Contract</a>
         </div>
     </div>
 </section>
@@ -572,7 +572,7 @@ chatInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') askQ
         setTimeout(function() {
             var intro = "Welcome to the Helios Member Advisory. " +
                 "I can provide detailed information on settlement mechanics, " +
-                "reserve composition, allocation formulas, and membership structure. " +
+                "reserve composition, allocation formulas, and smart contract structure. " +
                 "Select any topic, or ask me your question directly.";
             speakText(null, intro);
         }, 1500);

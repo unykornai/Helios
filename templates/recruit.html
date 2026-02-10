@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}How It Works — Helios Protocol{% endblock %}
 {% block og_title %}How Allocations Work — Helios Protocol{% endblock %}
-{% block og_description %}3 allocation channels. 5 tiers. 15 levels deep. Gold-backed certificates, crypto access, and real numbers you can verify.{% endblock %}
+{% block og_description %}Smart contract allocation protocol. Gold-backed certificates. Deterministic code-governed distribution.{% endblock %}
 {% block og_url %}/opportunity{% endblock %}
 
 {% block head %}
@@ -61,7 +61,7 @@
 .pitch-card strong { display: block; margin-bottom: .15rem; font-size: .95rem; }
 .pitch-card p { margin: 0; font-size: .82rem; color: var(--text-muted); line-height: 1.5; }
 
-/* ─── Depth Chart ─────────────────────────────────────────────── */
+/* ─── Propagation Model ───────────────────────────────────────── */
 .depth-chart {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem;
@@ -269,13 +269,6 @@
         </p>
     </section>
 
-    <!-- ═══ PROTOCOL DISCLAIMER BADGE ═══ -->
-    <section class="deck-section" style="padding-bottom:1rem;">
-        <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:var(--radius);padding:1rem 1.5rem;text-align:center;">
-            <div style="font-family:'Inter',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);font-weight:700;margin-bottom:.4rem;">NO MONTHLY FEES &ensp;&middot;&ensp; NO AUTOSHIP &ensp;&middot;&ensp; NO RANKS &ensp;&middot;&ensp; NO PRODUCT PURCHASES &ensp;&middot;&ensp; NO QUALIFICATIONS</div>
-            <p style="font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.5;">Helios is not an MLM. There are no ranks, no monthly purchases, no autoship, no product requirements, and no discretionary payouts. All allocations follow a published, rules-based formula.</p>
-        </div>
-    </section>
 
     <!-- ═══ 6-STEP QUICK PITCH ═══ -->
     <section class="deck-section">
@@ -284,23 +277,23 @@
         <div class="pitch-grid">
             <div class="pitch-card">
                 <div class="pitch-num">1</div>
-                <div><strong>You join at a tier</strong>
-                <p>$100, $250, $500, $1,000, or $5,000. One time. No monthly fees.</p></div>
+                <div><strong>You select a contract</strong>
+                <p>$100, $250, $500, $1,000, or $5,000. One-time allocation. Code-governed.</p></div>
             </div>
             <div class="pitch-card">
                 <div class="pitch-num">2</div>
-                <div><strong>You introduce 5 members</strong>
-                <p>Each one triggers a direct introduction allocation. Settled to you immediately.</p></div>
+                <div><strong>You connect members</strong>
+                <p>Each one triggers a direct connection allocation. Settled to you immediately.</p></div>
             </div>
             <div class="pitch-card">
                 <div class="pitch-num">3</div>
-                <div><strong>Your 5 introduce 5</strong>
-                <p>Now you've got 25 members on your second level. They introduce 5 each. It keeps going.</p></div>
+                <div><strong>Your connections connect others</strong>
+                <p>The mesh grows organically. Each connection propagates through the smart contract.</p></div>
             </div>
             <div class="pitch-card">
                 <div class="pitch-num">4</div>
-                <div><strong>Allocations flow 15 levels deep</strong>
-                <p>Every time someone joins anywhere in your 15 levels, the formula allocates to you automatically.</p></div>
+                <div><strong>Allocations flow through propagation depth</strong>
+                <p>Every time someone joins anywhere in your signal path, the smart contract allocates to you automatically.</p></div>
             </div>
             <div class="pitch-card">
                 <div class="pitch-num">5</div>
@@ -317,43 +310,20 @@
 
     <hr class="deck-divider">
 
-    <!-- ═══ DEPTH CHART ═══ -->
+    <!-- ═══ SIGNAL PATH ═══ -->
     <section class="deck-section">
         <div class="deck-label">THE STRUCTURE</div>
-        <h2>How the money <span>flows down</span></h2>
+        <h2>How allocations <span>propagate</span></h2>
         <p class="sec-lead">
-            Think of it like a chain. The person at the top gets paid from everything
-            below them. The person closest to the action makes the most. Everyone in
-            between earns based on distance. Simple.
+            Think of it like a mesh. When someone joins through your signal path,
+            the smart contract computes allocations at each propagation depth automatically.
+            Closer connections receive larger allocations. The formula is published and deterministic.
         </p>
-
-        <div class="depth-chart">
-            <div class="dc-tree">
-<span class="dc-bar">&#9484;&#9472;</span> <span class="dc-pos">POSITION 1</span> &mdash; The person at the top. Gets paid from everyone below.<br>
-<span class="dc-bar">&#9474;&ensp; &#9492;&#9472;</span> <span class="dc-pos">POSITION 2</span> &mdash; Under Position 1. Gets paid from everything under them.<br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> <span class="dc-pos">POSITION 3</span> &mdash; Did the work. Introduced the members. Receives the most.<br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 1 &mdash; <span class="dc-count">5 people</span> &ensp; (Position 3's directs)<br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 2 &mdash; <span class="dc-count">25 people</span><br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 3 &mdash; <span class="dc-count">125 people</span><br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 4 &mdash; <span class="dc-count">625 people</span><br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 5 &mdash; <span class="dc-count">3,125 people</span><br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 6 &mdash; <span class="dc-count">15,625 people</span><br>
-<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 7+ &mdash; <span class="dc-count">30,095+ people</span><br>
-<span class="dc-bar">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ...</span> through Level 15
-            </div>
-            <div class="dc-note">
-                <strong>Key point:</strong> Position 3 did the work and earns the most.
-                Position 2 earns from everything under them — without introducing anyone.
-                Position 1 earns from the entire network. The further up you are,
-                the more levels of activity pay you — but the per-member allocation is smaller
-                because of distance. That's the formula. Fair and predictable.
-            </div>
-        </div>
     </section>
 
     <hr class="deck-divider">
 
-    <!-- ═══ 3 WAYS YOU MAKE MONEY ═══ -->
+    <!-- ═══ 3 ALLOCATION CHANNELS ═══ -->
     <section class="deck-section">
         <div class="deck-label">THE MONEY</div>
         <h2>Three <span>allocation channels</span></h2>
@@ -366,41 +336,41 @@
             <!-- Way 1: Direct Cash -->
             <div class="way-card">
                 <div class="way-tag">Way 1</div>
-                <h3>Direct Introduction Allocation</h3>
-                <p>Every member you personally introduce generates an immediate allocation.
-                   No waiting period. No qualifying.</p>
+                <h3>Direct Connection Allocation</h3>
+                <p>Every member you personally connect generates an immediate allocation.
+                   Settled on-chain. Deterministic.</p>
                 <table>
-                    <tr><th>Tier</th><th style="text-align:right">You Get</th></tr>
-                    <tr><td>$100 Starter</td><td>$22.50</td></tr>
-                    <tr><td>$250 Builder</td><td>$56.25</td></tr>
-                    <tr><td>$500 Pro</td><td>$112.50</td></tr>
-                    <tr><td>$1,000 Leader</td><td>$225.00</td></tr>
-                    <tr><td>$5,000 Executive</td><td>$1,125.00</td></tr>
+                    <tr><th>Contract</th><th style="text-align:right">You Get</th></tr>
+                    <tr><td>$100</td><td>$22.50</td></tr>
+                    <tr><td>$250</td><td>$56.25</td></tr>
+                    <tr><td>$500</td><td>$112.50</td></tr>
+                    <tr><td>$1,000</td><td>$225.00</td></tr>
+                    <tr><td>$5,000</td><td>$1,125.00</td></tr>
                 </table>
                 <p style="margin-top:.8rem;font-size:.78rem;">
-                    <strong>Introduce 5 members at $100 = $112.50 allocation.</strong><br>
-                    Introduce 5 at $1,000 = $1,125 allocation.
+                    <strong>Connect 5 members at $100 = $112.50 allocation.</strong><br>
+                    Connect 5 at $1,000 = $1,125 allocation.
                 </p>
             </div>
 
-            <!-- Way 2: 15-Level Engine -->
+            <!-- Way 2: Smart Contract Propagation Engine -->
             <div class="way-card">
                 <div class="way-tag">Way 2</div>
-                <h3>The 15-Level Engine</h3>
-                <p>Every membership sends 45% into a 15-level pool. You receive
-                   an allocation every time someone joins anywhere in your 15 levels.</p>
+                <h3>Smart Contract Propagation Engine</h3>
+                <p>Every membership sends 45% into a propagation pool. You receive
+                   an allocation every time someone joins anywhere in your signal path.</p>
                 <table>
-                    <tr><th>Level</th><th style="text-align:right">Per $100 Member</th></tr>
-                    <tr><td>Level 1 (your directs)</td><td>$22.50</td></tr>
-                    <tr><td>Level 2</td><td>$11.25</td></tr>
-                    <tr><td>Level 3</td><td>$5.63</td></tr>
-                    <tr><td>Level 4</td><td>$2.81</td></tr>
-                    <tr><td>Level 5</td><td>$1.41</td></tr>
-                    <tr><td>Level 6</td><td>$0.70</td></tr>
-                    <tr><td>Level 7</td><td>$0.35</td></tr>
+                    <tr><th>Depth</th><th style="text-align:right">Per $100 Member</th></tr>
+                    <tr><td>Depth 1 (your directs)</td><td>$22.50</td></tr>
+                    <tr><td>Depth 2</td><td>$11.25</td></tr>
+                    <tr><td>Depth 3</td><td>$5.63</td></tr>
+                    <tr><td>Depth 4</td><td>$2.81</td></tr>
+                    <tr><td>Depth 5</td><td>$1.41</td></tr>
+                    <tr><td>Depth 6</td><td>$0.70</td></tr>
+                    <tr><td>Depth 7</td><td>$0.35</td></tr>
                 </table>
                 <p style="margin-top:.8rem;font-size:.78rem;">
-                    Small per member &mdash; <strong>substantial when the network grows.</strong>
+                    Small per member &mdash; <strong>substantial as the mesh scales.</strong>
                 </p>
             </div>
 
@@ -429,177 +399,75 @@
 
     <hr class="deck-divider">
 
-    <!-- ═══ THE TIERS ═══ -->
+    <!-- ═══ THE CONTRACTS ═══ -->
     <section class="deck-section">
-        <div class="deck-label">THE TIERS</div>
-        <h2>Pick the tier that <span>matches your goals</span></h2>
+        <div class="deck-label">THE CONTRACTS</div>
+        <h2>Select the contract that <span>matches your goals</span></h2>
         <p class="sec-lead">
-            Higher tier = bigger allocation pool = bigger allocations on every level.
+            Higher contract = bigger allocation pool = bigger allocations at every depth.
             Same math. Bigger numbers.
         </p>
 
         <div class="tier-mini-grid">
             <div class="tier-mini">
-                <div class="tm-name">Starter</div>
+                <div class="tm-name">&nbsp;</div>
                 <div class="tm-price">$100</div>
-                <div class="tm-mult">1&times;</div>
-                <div class="tm-direct">$22.50 / introduction</div>
+                <div class="tm-mult">1&times; signal weight</div>
+                <div class="tm-direct">$22.50 / connection</div>
             </div>
             <div class="tier-mini">
-                <div class="tm-name">Builder</div>
+                <div class="tm-name">&nbsp;</div>
                 <div class="tm-price">$250</div>
-                <div class="tm-mult">2.5&times;</div>
-                <div class="tm-direct">$56.25 / introduction</div>
+                <div class="tm-mult">2.5&times; signal weight</div>
+                <div class="tm-direct">$56.25 / connection</div>
             </div>
             <div class="tier-mini">
-                <div class="tm-name">Pro</div>
+                <div class="tm-name">&nbsp;</div>
                 <div class="tm-price">$500</div>
-                <div class="tm-mult">5&times;</div>
-                <div class="tm-direct">$112.50 / introduction</div>
+                <div class="tm-mult">5&times; signal weight</div>
+                <div class="tm-direct">$112.50 / connection</div>
             </div>
             <div class="tier-mini">
-                <div class="tm-name">Leader</div>
+                <div class="tm-name">&nbsp;</div>
                 <div class="tm-price">$1,000</div>
-                <div class="tm-mult">10&times;</div>
-                <div class="tm-direct">$225 / introduction</div>
+                <div class="tm-mult">10&times; signal weight</div>
+                <div class="tm-direct">$225 / connection</div>
             </div>
             <div class="tier-mini">
-                <div class="tm-name">Executive</div>
+                <div class="tm-name">&nbsp;</div>
                 <div class="tm-price">$5,000</div>
-                <div class="tm-mult">50&times;</div>
-                <div class="tm-direct">$1,125 / introduction</div>
+                <div class="tm-mult">50&times; signal weight</div>
+                <div class="tm-direct">$1,125 / connection</div>
             </div>
         </div>
     </section>
 
     <hr class="deck-divider">
 
-    <!-- ═══ 50K SCENARIO — POSITION EARNINGS ═══ -->
+    <!-- ═══ SMART CONTRACT PROTOCOL ═══ -->
     <section class="deck-section">
-        <div class="deck-label">THE REAL NUMBERS</div>
-        <h2>50,000-person network. <span>What each position earns.</span></h2>
+        <div class="deck-label">THE PROTOCOL</div>
+        <h2>Deterministic. <span>Code-governed. Verifiable.</span></h2>
         <p class="sec-lead">
-            This is $100 base tier only. No bonuses. No staking. No tier multipliers.
-            Just the raw formula on a 50,000-person network with 5-wide growth.
+            Every allocation is computed by a published smart contract formula.
+            No discretionary payouts. No human gatekeepers. The code runs the same
+            for everyone, every time.
         </p>
 
-        <div class="pos-grid">
-            <!-- Position 3 -->
-            <div class="pos-card highlight">
-                <div class="pos-label">CLOSEST TO THE ACTION</div>
-                <div class="pos-title">Position 3</div>
-                <div class="pos-desc">Did the work. Introduced the members. Sits right above the entire network.</div>
-                <table>
-                    <tr><th>Their Level</th><th>People</th><th style="text-align:right">Earned</th></tr>
-                    <tr><td>Level 1</td><td>5</td><td>$112.50</td></tr>
-                    <tr><td>Level 2</td><td>25</td><td>$281.25</td></tr>
-                    <tr><td>Level 3</td><td>125</td><td>$703.75</td></tr>
-                    <tr><td>Level 4</td><td>625</td><td>$1,756.25</td></tr>
-                    <tr><td>Level 5</td><td>3,125</td><td>$4,406.25</td></tr>
-                    <tr><td>Level 6</td><td>15,625</td><td>$10,937.50</td></tr>
-                    <tr><td>Level 7</td><td>30,095</td><td>$10,533.25</td></tr>
-                </table>
-                <div class="pos-total">
-                    <span>Monthly</span>
-                    <span class="pos-amt">$28,730</span>
-                </div>
-                <div class="pos-yearly">Yearly: <strong style="color:var(--gold);">$344,766</strong></div>
+        <div class="ways-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="way-card">
+                <h3>How the contract works</h3>
+                <p>When a new member selects a contract, the allocation formula executes immediately.
+                   Funds are distributed through the signal path based on propagation depth and signal weight.
+                   Every transaction is logged and verifiable.</p>
             </div>
-
-            <!-- Position 2 -->
-            <div class="pos-card">
-                <div class="pos-label">ONE LEVEL ABOVE</div>
-                <div class="pos-title">Position 2</div>
-                <div class="pos-desc">Didn't introduce anyone from the network below. Sits above Position 3. Still gets paid.</div>
-                <table>
-                    <tr><th>Their Level</th><th>People</th><th style="text-align:right">Earned</th></tr>
-                    <tr><td>Level 2</td><td>5</td><td>$56.25</td></tr>
-                    <tr><td>Level 3</td><td>25</td><td>$140.75</td></tr>
-                    <tr><td>Level 4</td><td>125</td><td>$351.25</td></tr>
-                    <tr><td>Level 5</td><td>625</td><td>$881.25</td></tr>
-                    <tr><td>Level 6</td><td>3,125</td><td>$2,187.50</td></tr>
-                    <tr><td>Level 7</td><td>15,625</td><td>$5,468.75</td></tr>
-                    <tr><td>Level 8</td><td>30,095</td><td>$5,417.10</td></tr>
-                </table>
-                <div class="pos-total">
-                    <span>Monthly</span>
-                    <span class="pos-amt">$14,502</span>
-                </div>
-                <div class="pos-yearly">Yearly: <strong style="color:var(--gold);">$174,034</strong></div>
-            </div>
-
-            <!-- Position 1 -->
-            <div class="pos-card">
-                <div class="pos-label">TOP OF THE STRUCTURE</div>
-                <div class="pos-title">Position 1</div>
-                <div class="pos-desc">Didn't introduce anyone either. Sits at the very top. Gets paid from the entire network below.</div>
-                <table>
-                    <tr><th>Their Level</th><th>People</th><th style="text-align:right">Earned</th></tr>
-                    <tr><td>Level 3</td><td>5</td><td>$28.15</td></tr>
-                    <tr><td>Level 4</td><td>25</td><td>$70.25</td></tr>
-                    <tr><td>Level 5</td><td>125</td><td>$176.25</td></tr>
-                    <tr><td>Level 6</td><td>625</td><td>$437.50</td></tr>
-                    <tr><td>Level 7</td><td>3,125</td><td>$1,093.75</td></tr>
-                    <tr><td>Level 8</td><td>15,625</td><td>$2,812.50</td></tr>
-                    <tr><td>Level 9</td><td>30,095</td><td>$2,708.55</td></tr>
-                </table>
-                <div class="pos-total">
-                    <span>Monthly</span>
-                    <span class="pos-amt">$7,326</span>
-                </div>
-                <div class="pos-yearly">Yearly: <strong style="color:var(--gold);">$87,924</strong></div>
+            <div class="way-card">
+                <h3>What makes it different</h3>
+                <p>Traditional systems use discretionary bonuses and opaque rules.
+                   Helios uses a deterministic formula &mdash; same inputs always produce the same outputs.
+                   Your allocation is computed by code, not decided by committee.</p>
             </div>
         </div>
-    </section>
-
-    <!-- ═══ SUMMARY TABLE ═══ -->
-    <section class="deck-section">
-        <div class="deck-label">SIDE BY SIDE</div>
-        <h2>Same network. <span>Three different paychecks.</span></h2>
-
-        <div class="summary-table-wrap">
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Monthly</th>
-                        <th>Yearly</th>
-                        <th>With 30% Staking</th>
-                        <th>With Mixed Tiers</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Position 3 <span style="font-size:.72rem;color:var(--text-muted);">(did the work)</span></td>
-                        <td class="gold-val">$28,730</td>
-                        <td class="gold-val">$344,766</td>
-                        <td class="gold-val">$448,195</td>
-                        <td class="gold-val">$1M+</td>
-                    </tr>
-                    <tr>
-                        <td>Position 2 <span style="font-size:.72rem;color:var(--text-muted);">(above Position 3)</span></td>
-                        <td class="gold-val">$14,502</td>
-                        <td class="gold-val">$174,034</td>
-                        <td class="gold-val">$226,244</td>
-                        <td class="gold-val">$500k+</td>
-                    </tr>
-                    <tr>
-                        <td>Position 1 <span style="font-size:.72rem;color:var(--text-muted);">(top of structure)</span></td>
-                        <td class="gold-val">$7,326</td>
-                        <td class="gold-val">$87,924</td>
-                        <td class="gold-val">$114,301</td>
-                        <td class="gold-val">$250k+</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p class="sec-lead" style="font-size:.82rem;">
-            <strong>With staking:</strong> Lock your certificates for 365 days and earn a 30% bonus
-            on top of your base earnings. <strong>With mixed tiers:</strong> When even 10% of your
-            network chooses higher tiers ($250, $500, $1,000, $5,000), the multipliers stack.
-            That's how Position 3 crosses $1M/year.
-        </p>
     </section>
 
     <hr class="deck-divider">
@@ -646,35 +514,12 @@
 
     <hr class="deck-divider">
 
-    <!-- ═══ NO-BS LIST ═══ -->
-    <section class="deck-section">
-        <div class="deck-label">WHAT THIS IS NOT</div>
-        <h2>No tricks. <span>No fine print.</span></h2>
-
-        <div class="nobs-grid">
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No ranks</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No monthly fees</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No autoship</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No product to buy</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No qualifying volume</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No breakage</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No hidden rules</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No losing your network</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No losing your allocations</div>
-            <div class="nobs-item"><span class="nobs-x">&cross;</span> No "re-qualifying"</div>
-        </div>
-
-        <p class="sec-lead" style="text-align:center;max-width:500px;margin:0 auto;">
-            Just <strong>math</strong>, <strong>people</strong>, and <strong>real assets</strong>.
-            That's the entire system.
-        </p>
-    </section>
 
     <!-- ═══ FINAL CTA ═══ -->
     <section class="deck-cta">
         <h2>Ready?</h2>
-        <p>Pick your tier. Introduce 5 members. Let the 15-level formula do the rest.</p>
-        <a href="/activate" class="btn btn-primary btn-lg">Choose Your Tier</a>
+        <p>Select your contract. Connect members. Let the smart contract propagation do the rest.</p>
+        <a href="/activate" class="btn btn-primary btn-lg">Select Your Contract</a>
         <a href="/earnings" class="btn btn-ghost btn-lg">See the Full Math</a>
         <a href="/guide" class="btn btn-ghost btn-lg">Talk to Helios AI</a>
     </section>

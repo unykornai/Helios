@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Allocation Model — Helios Protocol{% endblock %}
-{% block og_title %}15-Level Allocation Model — Helios Protocol{% endblock %}
-{% block og_description %}5 membership tiers. 15 levels of deterministic allocation. Monthly and yearly earnings projections. Gold-backed certificates. BTC, ETH, and stablecoin access.{% endblock %}
+{% block og_title %}Allocation Model — Helios Protocol{% endblock %}
+{% block og_description %}Deterministic allocation protocol. Monthly and yearly earnings projections. Gold-backed certificates. BTC, ETH, and stablecoin access.{% endblock %}
 {% block og_url %}/earnings{% endblock %}
 
 {% block head %}
 <style>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ALLOCATION MODEL — 5 Tiers × 15 Levels × Monthly/Yearly
+   ALLOCATION MODEL — Smart Contract Propagation
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .alloc-page { position: relative; z-index: 1; }
@@ -392,29 +392,21 @@
     <section class="alloc-hero">
         <h1>ALLOCATION MODEL</h1>
         <p class="hero-sub">
-            Five membership tiers. Fifteen levels of deterministic allocation.
-            Every distribution follows a published formula. Choose your tier,
-            introduce 5 members, and let the allocation formula do the heavy lifting.
+            Smart contract allocation protocol with deterministic distribution.
+            Every distribution follows a published formula. Choose your contract,
+            connect members, and let the allocation formula do the heavy lifting.
         </p>
         <p style="color:var(--gold);font-weight:600;font-size:.8rem;letter-spacing:.12em;opacity:.7;font-family:'Inter',sans-serif;">
-            W<sub>L</sub> = W<sub>1</sub> &middot; r<sup>(L&minus;1)</sup> &ensp;&middot;&ensp; 5 TIERS &ensp;&middot;&ensp; 15 LEVELS &ensp;&middot;&ensp; 5-WIDE
+            W<sub>L</sub> = W<sub>1</sub> &middot; r<sup>(L&minus;1)</sup> &ensp;&middot;&ensp; SMART CONTRACT PROPAGATION MODEL
         </p>
     </section>
-
-    <!-- ═══ PROTOCOL DISCLAIMER BADGE ═══ -->
-    <div style="max-width:1060px;margin:0 auto -2rem;padding:0 2rem;">
-        <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:var(--radius);padding:1rem 1.5rem;text-align:center;">
-            <div style="font-family:'Inter',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);font-weight:700;margin-bottom:.4rem;">NO MONTHLY FEES &ensp;&middot;&ensp; NO AUTOSHIP &ensp;&middot;&ensp; NO RANKS &ensp;&middot;&ensp; NO PRODUCT PURCHASES &ensp;&middot;&ensp; NO QUALIFICATIONS</div>
-            <p style="font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.5;">Helios is not an MLM. There are no ranks, no monthly purchases, no autoship, no product requirements, and no discretionary payouts. All allocations follow a published, rules-based formula.</p>
-        </div>
-    </div>
 
     <!-- ═══ HOW IT WORKS (SIMPLE) ═══ -->
     <section class="alloc-section">
         <h2>How Allocations Work &mdash; 5 Simple Steps</h2>
         <p class="section-desc">
-            No ranks. No autoship. No monthly fees. No inventory. No hidden rules.
-            You introduce 5 members. They introduce 5. The formula distributes across 15 levels.
+            Transparent protocol. No hidden rules.
+            You connect members. They connect more. The formula distributes across your contract depth.
             Your earnings settle in gold-backed certificates, stablecoins, or crypto.
         </p>
 
@@ -426,13 +418,13 @@
             </div>
             <div class="how-step">
                 <div class="how-step-num">2</div>
-                <h4>Introduce 5 Members</h4>
-                <p>Each member you introduce directly triggers an immediate allocation. That is your initial return.</p>
+                <h4>Connect Members</h4>
+                <p>Each member you connect directly triggers an immediate allocation. That is your initial return.</p>
             </div>
             <div class="how-step">
                 <div class="how-step-num">3</div>
-                <h4>They Introduce 5</h4>
-                <p>5 becomes 25, becomes 125, becomes 625. Every new member anywhere in your 15 levels generates an allocation.</p>
+                <h4>They Connect More</h4>
+                <p>Your network grows organically. Every new member anywhere in your contract depth generates an allocation.</p>
             </div>
             <div class="how-step">
                 <div class="how-step-num">4</div>
@@ -449,22 +441,22 @@
 
     <!-- ═══ 5 MEMBERSHIP TIERS ═══ -->
     <section class="alloc-section">
-        <h2>Five Membership Tiers</h2>
+        <h2>Contract Tiers</h2>
         <p class="section-desc">
-            Choose the tier that matches your goals. Every tier uses the same 15-level formula.
-            Higher tiers simply have larger allocation pools, which means bigger allocations at every level.
+            Choose the contract that matches your goals. Every tier uses the same allocation formula.
+            Higher tiers simply have larger allocation pools, which means bigger allocations at every depth.
         </p>
 
         <div class="tier-cards">
             <div class="tier-card">
-                <div class="tc-name">Starter</div>
+                <div class="tc-name">Tier 1</div>
                 <div class="tc-price">$100</div>
                 <div class="tc-mult">1&times; allocation</div>
                 <div class="tc-pool">
                     <div class="tc-pool-label">Allocation Pool</div>
                     <div class="tc-pool-val">$45</div>
                 </div>
-                <div class="tc-direct">Direct introduction: <strong>$22.50</strong></div>
+                <div class="tc-direct">Direct connection: <strong>$22.50</strong></div>
                 <ul class="tc-features">
                     <li>Gold certificate</li>
                     <li>Staking access</li>
@@ -473,14 +465,14 @@
                 </ul>
             </div>
             <div class="tier-card">
-                <div class="tc-name">Builder</div>
+                <div class="tc-name">Tier 2</div>
                 <div class="tc-price">$250</div>
                 <div class="tc-mult">2.5&times; allocation</div>
                 <div class="tc-pool">
                     <div class="tc-pool-label">Allocation Pool</div>
                     <div class="tc-pool-val">$112.50</div>
                 </div>
-                <div class="tc-direct">Direct introduction: <strong>$56.25</strong></div>
+                <div class="tc-direct">Direct connection: <strong>$56.25</strong></div>
                 <ul class="tc-features">
                     <li>Larger gold certificate</li>
                     <li>Higher staking bonus</li>
@@ -489,30 +481,30 @@
                 </ul>
             </div>
             <div class="tier-card featured">
-                <div class="tc-name">Pro</div>
+                <div class="tc-name">Tier 3</div>
                 <div class="tc-price">$500</div>
                 <div class="tc-mult">5&times; allocation</div>
                 <div class="tc-pool">
                     <div class="tc-pool-label">Allocation Pool</div>
                     <div class="tc-pool-val">$225</div>
                 </div>
-                <div class="tc-direct">Direct introduction: <strong>$112.50</strong></div>
+                <div class="tc-direct">Direct connection: <strong>$112.50</strong></div>
                 <ul class="tc-features">
                     <li>Premium gold certificate</li>
-                    <li>Higher introduction bonus</li>
+                    <li>Higher connection bonus</li>
                     <li>Crypto vault access</li>
                     <li>.helios identity</li>
                 </ul>
             </div>
             <div class="tier-card">
-                <div class="tc-name">Leader</div>
+                <div class="tc-name">Tier 4</div>
                 <div class="tc-price">$1,000</div>
                 <div class="tc-mult">10&times; allocation</div>
                 <div class="tc-pool">
                     <div class="tc-pool-label">Allocation Pool</div>
                     <div class="tc-pool-val">$450</div>
                 </div>
-                <div class="tc-direct">Direct introduction: <strong>$225</strong></div>
+                <div class="tc-direct">Direct connection: <strong>$225</strong></div>
                 <ul class="tc-features">
                     <li>High-value gold cert</li>
                     <li>Maximum staking bonus</li>
@@ -521,14 +513,14 @@
                 </ul>
             </div>
             <div class="tier-card">
-                <div class="tc-name">Executive</div>
+                <div class="tc-name">Tier 5</div>
                 <div class="tc-price">$5,000</div>
                 <div class="tc-mult">50&times; allocation</div>
                 <div class="tc-pool">
                     <div class="tc-pool-label">Allocation Pool</div>
                     <div class="tc-pool-val">$2,250</div>
                 </div>
-                <div class="tc-direct">Direct introduction: <strong>$1,125</strong></div>
+                <div class="tc-direct">Direct connection: <strong>$1,125</strong></div>
                 <ul class="tc-features">
                     <li>Large gold purchase</li>
                     <li>Highest staking tier</li>
@@ -541,11 +533,11 @@
 
     <!-- ═══ THE FORMULA ═══ -->
     <section class="alloc-section">
-        <h2>Level Weighting Formula</h2>
+        <h2>Depth Weighting Formula</h2>
         <p class="section-desc">
-            All allocations across 15 levels are determined by a single formula.
-            The direct allocation (Level 1) receives the highest weight.
-            Each successive level decays by a fixed ratio.
+            All allocations across every depth are determined by a single formula.
+            The direct allocation (Depth 1) receives the highest weight.
+            Each successive depth decays by a fixed ratio.
         </p>
 
         <div class="formula-block">
@@ -556,7 +548,7 @@
                 <div class="formula-var">
                     <div class="formula-var-name">L</div>
                     <div class="formula-var-val">1 &ndash; 15</div>
-                    <div class="formula-var-desc">Level number</div>
+                    <div class="formula-var-desc">Depth number</div>
                 </div>
                 <div class="formula-var">
                     <div class="formula-var-name">W<sub>1</sub></div>
@@ -576,8 +568,8 @@
             </div>
 
             <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.85rem;color:var(--text-muted);">
-                Level 1 = 50%. Level 2 = 25%. Level 3 = 12.5%.
-                Each level receives exactly half of the previous level's weight.
+                Depth 1 = 50%. Depth 2 = 25%. Depth 3 = 12.5%.
+                Each depth receives exactly half of the previous depth's weight.
                 Higher tiers multiply the allocation pool &mdash; the formula stays the same.
             </div>
         </div>
@@ -593,19 +585,19 @@
 
         <div class="streams-grid" style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));">
             <div class="stream-card">
-                <div class="stream-title">Direct Introduction Allocation</div>
+                <div class="stream-title">Direct Connection Allocation</div>
                 <div class="stream-amount">$22.50 &ndash; $1,125</div>
                 <div class="stream-desc">
-                    Every member you introduce generates an immediate allocation. Amount depends on their tier.
+                    Every member you connect generates an immediate allocation. Amount depends on their tier.
                     One-time, per-member, protocol-enforced. This is your direct allocation.
                 </div>
                 <span class="stream-tag tag-instant">Instant Cash</span>
             </div>
             <div class="stream-card">
-                <div class="stream-title">15-Level Network Allocation</div>
+                <div class="stream-title">Smart Contract Network Allocation</div>
                 <div class="stream-amount">W<sub>L</sub> = W<sub>1</sub> &middot; r<sup>(L&minus;1)</sup></div>
                 <div class="stream-desc">
-                    Every time someone joins anywhere within 15 levels of you,
+                    Every time someone joins anywhere within your contract depth,
                     you receive a weighted allocation. You do not need to know them.
                     This is your scaling money.
                 </div>
@@ -634,35 +626,35 @@
         </div>
     </section>
 
-    <!-- ═══ TIER SELECTOR + 15-LEVEL NETWORK GROWTH TABLE ═══ -->
+    <!-- ═══ CONTRACT SELECTOR + SMART CONTRACT PROPAGATION TABLE ═══ -->
     <section class="alloc-section">
-        <h2>15-Level Network Growth &amp; Earnings</h2>
+        <h2>Smart Contract Propagation Table</h2>
         <p class="section-desc">
-            Select a tier to see the full 15-level breakdown. This table shows
-            how many members can exist at each level, the allocation weight,
+            Select a tier to see the full propagation breakdown. This table shows
+            how many members can exist at each depth, the allocation weight,
             per-member payout, and what happens when every position is active.
         </p>
 
         <div class="tier-selector">
             <button class="tier-btn active" onclick="setTier(100)" data-tier="100">
                 <span class="tb-amount">$100</span>
-                <span class="tb-label">Starter</span>
+                <span class="tb-label">Tier 1</span>
             </button>
             <button class="tier-btn" onclick="setTier(250)" data-tier="250">
                 <span class="tb-amount">$250</span>
-                <span class="tb-label">Builder</span>
+                <span class="tb-label">Tier 2</span>
             </button>
             <button class="tier-btn" onclick="setTier(500)" data-tier="500">
                 <span class="tb-amount">$500</span>
-                <span class="tb-label">Pro</span>
+                <span class="tb-label">Tier 3</span>
             </button>
             <button class="tier-btn" onclick="setTier(1000)" data-tier="1000">
                 <span class="tb-amount">$1,000</span>
-                <span class="tb-label">Leader</span>
+                <span class="tb-label">Tier 4</span>
             </button>
             <button class="tier-btn" onclick="setTier(5000)" data-tier="5000">
                 <span class="tb-amount">$5,000</span>
-                <span class="tb-label">Executive</span>
+                <span class="tb-label">Tier 5</span>
             </button>
         </div>
 
@@ -670,7 +662,7 @@
             <table class="earnings-table">
                 <thead>
                     <tr>
-                        <th style="text-align:left;">Level</th>
+                        <th style="text-align:left;">Depth</th>
                         <th style="text-align:left;">Relationship</th>
                         <th>Max Members</th>
                         <th>Weight</th>
@@ -700,7 +692,7 @@
             <div class="stream-card" style="text-align:center;">
                 <div style="font-size:1.6rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">45%</div>
                 <div style="font-size:.82rem;color:var(--text-muted);margin-top:.3rem;">Allocation Pool</div>
-                <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;">Distributed across 15 levels</div>
+                <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;">Distributed across all depths</div>
             </div>
             <div class="stream-card" style="text-align:center;">
                 <div style="font-size:1.6rem;font-weight:700;color:var(--green);font-family:'Inter',sans-serif;">20%</div>
@@ -742,8 +734,8 @@
             </div>
             <div class="bonus-card">
                 <div class="bonus-icon">R</div>
-                <div class="bonus-name">Introduction Bonus</div>
-                <div class="bonus-desc">Issued when a directly introduced member activates.
+                <div class="bonus-name">Connection Bonus</div>
+                <div class="bonus-desc">Issued when a directly connected member activates.
                 Based on the deterministic formula &mdash; not discretionary.</div>
             </div>
             <div class="bonus-card">
@@ -838,21 +830,21 @@
     <section class="alloc-section">
         <div class="calc-section">
             <h3>Earnings Projection Calculator</h3>
-            <p class="calc-subtitle">Model your potential allocations based on your tier, introductions, and network growth.</p>
+            <p class="calc-subtitle">Model your potential allocations based on your tier, connections, and network growth.</p>
 
             <div class="calc-grid">
                 <div class="calc-input-group">
                     <label>Your Membership Tier</label>
                     <select id="calcTier" onchange="recalculate()">
-                        <option value="100">$100 &mdash; Starter (1&times;)</option>
-                        <option value="250">$250 &mdash; Builder (2.5&times;)</option>
-                        <option value="500" selected>$500 &mdash; Pro (5&times;)</option>
-                        <option value="1000">$1,000 &mdash; Leader (10&times;)</option>
-                        <option value="5000">$5,000 &mdash; Executive (50&times;)</option>
+                        <option value="100">$100 (1&times;)</option>
+                        <option value="250">$250 (2.5&times;)</option>
+                        <option value="500" selected>$500 (5&times;)</option>
+                        <option value="1000">$1,000 (10&times;)</option>
+                        <option value="5000">$5,000 (50&times;)</option>
                     </select>
                 </div>
                 <div class="calc-input-group">
-                    <label>Your Direct Introductions (max 5)</label>
+                    <label>Your Direct Connections</label>
                     <input type="range" id="calcBonds" min="1" max="5" value="5" oninput="recalculate()">
                     <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-muted);font-family:'Inter',sans-serif;">
                         <span>1</span><span id="bondDisplay">5</span><span>5</span>
@@ -865,21 +857,21 @@
                 <div class="calc-input-group">
                     <label>Average Network Tier</label>
                     <select id="calcNetTier" onchange="recalculate()">
-                        <option value="100" selected>$100 &mdash; Starter</option>
-                        <option value="250">$250 &mdash; Builder</option>
-                        <option value="500">$500 &mdash; Pro</option>
-                        <option value="1000">$1,000 &mdash; Leader</option>
-                        <option value="5000">$5,000 &mdash; Executive</option>
+                        <option value="100" selected>$100</option>
+                        <option value="250">$250</option>
+                        <option value="500">$500</option>
+                        <option value="1000">$1,000</option>
+                        <option value="5000">$5,000</option>
                     </select>
                 </div>
                 <div class="calc-input-group">
-                    <label>Average Level Distance</label>
+                    <label>Average Depth Distance</label>
                     <select id="calcAvgLevel" onchange="recalculate()">
-                        <option value="1">Level 1 &mdash; Direct (50%)</option>
-                        <option value="2" selected>Level 2 &mdash; Second-degree (25%)</option>
-                        <option value="3">Level 3 &mdash; Third-degree (12.5%)</option>
-                        <option value="4">Level 4 &mdash; Fourth-degree (6.25%)</option>
-                        <option value="5">Level 5 &mdash; Fifth-degree (3.125%)</option>
+                        <option value="1">Depth 1 &mdash; Direct (50%)</option>
+                        <option value="2" selected>Depth 2 &mdash; Second-degree (25%)</option>
+                        <option value="3">Depth 3 &mdash; Third-degree (12.5%)</option>
+                        <option value="4">Depth 4 &mdash; Fourth-degree (6.25%)</option>
+                        <option value="5">Depth 5 &mdash; Fifth-degree (3.125%)</option>
                     </select>
                 </div>
                 <div class="calc-input-group">
@@ -897,10 +889,10 @@
                 <div class="calc-result-card">
                     <div class="calc-result-label">Network Allocation</div>
                     <div class="calc-result-value" id="resultTiered">$0</div>
-                    <div class="calc-result-sub">from 15-level distribution</div>
+                    <div class="calc-result-sub">from smart contract distribution</div>
                 </div>
                 <div class="calc-result-card">
-                    <div class="calc-result-label">Direct Introduction Allocation</div>
+                    <div class="calc-result-label">Direct Connection Allocation</div>
                     <div class="calc-result-value" id="resultDirect">$0</div>
                     <div class="calc-result-sub" id="resultDirectSub">per direct member</div>
                 </div>
@@ -920,8 +912,8 @@
 
     <!-- ═══ CTA ═══ -->
     <section class="alloc-cta">
-        <h2>5 Tiers. 15 Levels. Gold-Backed. Crypto-Accessible.</h2>
-        <p>Choose your tier. Introduce 5 members. Let the math work.
+        <h2>Gold-Backed. Smart Contract Governed.</h2>
+        <p>Choose your contract. Activate your position. Let the code work.
         Every allocation is verifiable on-chain.</p>
         <a href="/activate" class="btn btn-primary" style="margin-right:.5rem;">Choose Your Tier</a>
         <a href="/certificates" class="btn btn-ghost">View Certificate Types</a>
@@ -935,7 +927,7 @@
         Actual allocations depend on network activity within your contribution structure.
         These projections do not constitute guarantees of income, investment returns, or financial performance.
         Helios operates as a private membership protocol with formula-governed allocation.
-        Past mathematical models are not indicative of future results. All membership tiers
+        Past mathematical models are not indicative of future results. All contracts
         are subject to terms of service and membership agreement.
     </div>
 </div>
@@ -945,17 +937,17 @@
 <script>
 // ═══ TIER CONFIG ═══════════════════════════════════════════════
 var TIERS = {
-    100:  { name: 'Starter',   pool: 45,     direct: 22.50,   mult: '1\u00d7' },
-    250:  { name: 'Builder',   pool: 112.50, direct: 56.25,   mult: '2.5\u00d7' },
-    500:  { name: 'Pro',       pool: 225,    direct: 112.50,  mult: '5\u00d7' },
-    1000: { name: 'Leader',    pool: 450,    direct: 225,     mult: '10\u00d7' },
-    5000: { name: 'Executive', pool: 2250,   direct: 1125,    mult: '50\u00d7' }
+    100:  { name: 'Tier 1',  pool: 45,     direct: 22.50,   mult: '1\u00d7' },
+    250:  { name: 'Tier 2',  pool: 112.50, direct: 56.25,   mult: '2.5\u00d7' },
+    500:  { name: 'Tier 3',  pool: 225,    direct: 112.50,  mult: '5\u00d7' },
+    1000: { name: 'Tier 4',  pool: 450,    direct: 225,     mult: '10\u00d7' },
+    5000: { name: 'Tier 5',  pool: 2250,   direct: 1125,    mult: '50\u00d7' }
 };
 
 var W1 = 0.50;
 var R  = 0.50;
 var LABELS = [
-    'Direct introduction',
+    'Direct connection',
     'Second-degree',
     'Third-degree',
     'Fourth-degree',
@@ -984,7 +976,7 @@ function setTier(tier) {
     buildEarningsTable();
 }
 
-// ═══ 15-LEVEL EARNINGS TABLE ════════════════════════════════
+// ═══ SMART CONTRACT PROPAGATION TABLE ════════════════════════
 function buildEarningsTable() {
     var t = TIERS[activeTier];
     var pool = t.pool;
@@ -1010,7 +1002,7 @@ function buildEarningsTable() {
         var pCls = L === 1 ? ' class="tier-primary"' : '';
 
         rows += '<tr' + cls + '>' +
-            '<td' + pCls + '>Level ' + L + '</td>' +
+            '<td' + pCls + '>Depth ' + L + '</td>' +
             '<td' + pCls + '>' + LABELS[L - 1] + '</td>' +
             '<td>' + fmtInt(maxMembers) + '</td>' +
             '<td>' + fmtPct(pct) + '</td>' +
@@ -1023,7 +1015,7 @@ function buildEarningsTable() {
     tbody.innerHTML = rows;
 
     tfoot.innerHTML = '<tr>' +
-        '<td colspan="2">TOTAL (all 15 levels, all positions filled)</td>' +
+        '<td colspan="2">TOTAL (all depths, all positions filled)</td>' +
         '<td>' + fmtInt(totalPositions()) + '</td>' +
         '<td></td><td></td>' +
         '<td>$' + fmtMoney(totalMonthly) + '</td>' +
@@ -1038,14 +1030,14 @@ function buildEarningsTable() {
             '<div class="sc-sub">' + t.name + ' (' + t.mult + ')</div>' +
         '</div>' +
         '<div class="summary-card">' +
-            '<div class="sc-label">Direct Introduction Allocation</div>' +
+            '<div class="sc-label">Direct Connection Allocation</div>' +
             '<div class="sc-value">$' + fmtMoney(t.direct) + '</div>' +
-            '<div class="sc-sub">per member you introduce</div>' +
+            '<div class="sc-sub">per member you connect</div>' +
         '</div>' +
         '<div class="summary-card">' +
-            '<div class="sc-label">5 Introductions = Instant Allocation</div>' +
+            '<div class="sc-label">5 Connections = Instant Allocation</div>' +
             '<div class="sc-value">$' + fmtMoney(t.direct * 5) + '</div>' +
-            '<div class="sc-sub">introduce 5, allocation received</div>' +
+            '<div class="sc-sub">connect 5, allocation received</div>' +
         '</div>' +
         '<div class="summary-card gold-border">' +
             '<div class="sc-label">Monthly (L1\u2013L5 filled)</div>' +
