@@ -116,6 +116,7 @@ class HeliosConfig:
     # Male voice. Calm, grounded, authoritative. Never salesy.
     ELEVENLABS_API_KEY = os.getenv("HELIOS_ELEVENLABS_API_KEY", "")
     ELEVENLABS_VOICE_ID = os.getenv("HELIOS_ELEVENLABS_VOICE_ID", "29vD33N1CtxCmqQRPOHJ")  # Drew (male, authoritative)
+    ELEVENLABS_GUIDE_VOICE_ID = os.getenv("HELIOS_GUIDE_VOICE_ID", "2EiwWnXFnvU5JabPnv8n")  # Clyde (older male, deep, warm, wise)
     ELEVENLABS_MODEL = "eleven_monolingual_v1"
     ELEVENLABS_STABILITY = 0.65             # Calm, grounded delivery
     ELEVENLABS_SIMILARITY = 0.80            # Strong voice consistency

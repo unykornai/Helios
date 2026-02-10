@@ -44,6 +44,7 @@ def freeze():
         ("/field", "field/index.html"),
         ("/network", "network/index.html"),
         ("/ask", "ask/index.html"),
+        ("/guide", "guide/index.html"),
         ("/protocol", "protocol/index.html"),
         ("/status", "status/index.html"),
         ("/treasury", "treasury/index.html"),

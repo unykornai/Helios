@@ -421,12 +421,13 @@ def speak_text():
 
     data = request.get_json()
     text = data.get("text", "").strip()
+    voice_id = data.get("voice_id")  # Optional override
 
     if not text:
         return api_response(error="No text provided", status=400)
 
     voice = HeliosVoice()
-    result = voice.speak(text)
+    result = voice.speak(text, voice_id=voice_id)
     return api_response(result)
 
 

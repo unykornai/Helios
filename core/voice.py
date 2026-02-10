@@ -35,11 +35,17 @@ class HeliosVoice:
 
     # ─── Main TTS ──────────────────────────────────────────────────────
 
-    def speak(self, text: str, use_cache: bool = True) -> dict:
+    def speak(self, text: str, use_cache: bool = True, voice_id: str = None) -> dict:
         """
         Convert text to speech audio.
         Returns base64-encoded MP3 audio data.
+        Optional voice_id overrides the default voice.
         """
+        # Allow per-request voice override
+        if voice_id:
+            self._override_voice = voice_id
+        else:
+            self._override_voice = None
         if not self.available:
             return {
                 "audio": None,
@@ -169,7 +175,8 @@ class HeliosVoice:
         """Call the ElevenLabs TTS API and return raw audio bytes."""
         import requests
 
-        url = f"https://api.elevenlabs.io/v1/text-to-speech/{self.voice_id}"
+        active_voice = getattr(self, '_override_voice', None) or self.voice_id
+        url = f"https://api.elevenlabs.io/v1/text-to-speech/{active_voice}"
 
         headers = {
             "xi-api-key": self.api_key,
@@ -220,7 +227,8 @@ class HeliosVoice:
 
     def _cache_key(self, text: str) -> str:
         """Generate a cache key from text + voice settings."""
-        content = f"{text}:{self.voice_id}:{self.model}"
+        active_voice = getattr(self, '_override_voice', None) or self.voice_id
+        content = f"{text}:{active_voice}:{self.model}"
         return hashlib.md5(content.encode()).hexdigest()
 
     def _get_cached(self, key: str) -> str:

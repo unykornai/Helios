@@ -192,6 +192,10 @@ def create_app():
     def ask():
         return render_template("ask.html")
 
+    @app.route("/guide")
+    def guide():
+        return render_template("guide.html")
+
     @app.route("/protocol")
     def protocol():
         return render_template("status.html")
@@ -266,16 +270,16 @@ if __name__ == "__main__":
     print(f"""
     ╔══════════════════════════════════════════════════╗
     ║                                                  ║
-    ║   ☀  HELIOS v3.0.0 — Energy Exchange Protocol    ║
+    ║   ☀  HELIOS v3.0.0 — Allocation Protocol         ║
     ║                                                  ║
-    ║   Power of 5.  Conservation law enforced.        ║
-    ║   Treasury spine.  Certificates.  Metrics.       ║
+    ║   15 levels.  Gold-backed certificates.          ║
+    ║   XRPL + Stellar.  Deterministic math.           ║
     ║                                                  ║
-    ║   Field:       http://localhost:{HeliosConfig.PORT}/field         ║
+    ║   Guide:       http://localhost:{HeliosConfig.PORT}/guide         ║
     ║   Treasury:    http://localhost:{HeliosConfig.PORT}/treasury      ║
     ║   Gold Vault:  http://localhost:{HeliosConfig.PORT}/vault/gold    ║
     ║   Metrics:     http://localhost:{HeliosConfig.PORT}/metrics       ║
-    ║   Ask Helios:  http://localhost:{HeliosConfig.PORT}/ask           ║
+    ║   Advisory:    http://localhost:{HeliosConfig.PORT}/ask           ║
     ║   Domain:      {HeliosConfig.DOMAIN}                      ║
     ║                                                  ║
     ╚══════════════════════════════════════════════════╝
