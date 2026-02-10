@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Helios — Private Membership Protocol{% endblock %}
-{% block og_title %}Helios — Private Membership Protocol{% endblock %}
-{% block og_description %}A private membership protocol with deterministic settlement, distance-weighted allocation, and asset-backed reserves.{% endblock %}
+{% block title %}Helios — 15-Level Allocation Protocol{% endblock %}
+{% block og_title %}Helios — 15-Level Rules-Based Allocation Protocol{% endblock %}
+{% block og_description %}A membership-based allocation protocol. Fiat converts to stablecoins, stablecoins acquire physical gold, members receive digital gold certificates distributed across 15 levels.{% endblock %}
 {% block og_url %}/{% endblock %}
 
 {% block content %}
@@ -50,163 +50,258 @@
 
         <h1 class="hero-title">HELIOS</h1>
         <p class="hero-tagline">
-            A private membership protocol governed by deterministic settlement.<br>
-            <span style="color:var(--gold);">$100 membership. Asset-backed reserves. Transparent allocation.</span>
+            A 15-level, rules-based allocation protocol that converts member contributions
+            into physical gold, issues digital gold certificates on XRPL&thinsp;/&thinsp;Stellar,
+            and distributes value using a deterministic 5-wide weighting model.
         </p>
-        <p class="hero-rule">DETERMINISTIC &middot; DISTANCE-WEIGHTED &middot; ASSET-BACKED</p>
+        <p class="hero-rule">DETERMINISTIC &middot; GOLD-BACKED &middot; ON-CHAIN VERIFIED</p>
 
         <div class="hero-actions">
             <a href="/activate" class="btn btn-primary btn-lg">Apply for Membership</a>
-            <a href="/ask" class="btn btn-ghost btn-lg">Speak with an Advisor</a>
+            <a href="/earnings" class="btn btn-ghost btn-lg">View Allocation Model</a>
         </div>
     </div>
     <canvas id="neural-bg" class="hero-neural-bg"></canvas>
 </section>
 
-<!-- ═══ PROTOCOL OVERVIEW ═══ -->
+<!-- ═══ HOW MONEY FLOWS — 5 STEPS ═══ -->
 <section class="section section-dark">
-    <div class="container">
-        <h2 style="text-align:center;">How the Protocol Operates</h2>
-        <p class="section-subtitle" style="text-align:center;max-width:660px;margin:0 auto 2rem;">
-            Helios employs a deterministic settlement model. Every membership generates a fixed allocation
-            distributed through distance-weighted tiers. No discretionary payouts. No manual intervention.
+    <div class="container" style="max-width:960px;">
+        <h2 style="text-align:center;">How Capital Flows Through the Protocol</h2>
+        <p class="section-subtitle" style="max-width:680px;margin:0 auto 2.5rem;">
+            Every dollar follows a published, deterministic path. Fiat enters, stablecoins settle,
+            gold is acquired, certificates are issued, and value is allocated across 15 levels.
+            No discretionary intervention. No manual payouts.
         </p>
 
-        <div class="principle-grid" style="max-width:960px; margin:0 auto;">
-            <div class="principle-card" style="text-align:center;">
-                <h3 style="color:var(--gold);font-size:1.3rem;margin:.5rem 0 .5rem;">Direct Referral Settlement</h3>
-                <p style="font-weight:600;margin-bottom:.5rem;font-size:.95rem;">$22.50 per qualified referral</p>
-                <p>When a new member is activated through your unique referral identifier, a settlement of $22.50
-                is allocated to you immediately. This is a fixed, protocol-enforced distribution.</p>
-            </div>
-            <div class="principle-card" style="text-align:center;">
-                <h3 style="color:var(--gold);font-size:1.3rem;margin:.5rem 0 .5rem;">Distance-Weighted Allocation</h3>
-                <p style="font-weight:600;margin-bottom:.5rem;font-size:.95rem;">15 tiers of settlement depth</p>
-                <p>Allocations extend through 15 connection tiers, weighted by distance from your position.
-                Tier 1 receives the highest weighting; each subsequent tier decays by a factor of two.</p>
-            </div>
-            <div class="principle-card" style="text-align:center;">
-                <h3 style="color:var(--gold);font-size:1.3rem;margin:.5rem 0 .5rem;">Asset-Backed Reserve</h3>
-                <p style="font-weight:600;margin-bottom:.5rem;font-size:.95rem;">Physical precious metals from APMEX</p>
-                <p>A portion of every membership is allocated to the acquisition of physical gold and silver
-                through APMEX. Certificates are redeemable against verified metal holdings.</p>
+        <div class="phase-grid" style="grid-template-columns:1fr;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;">
+                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
+                    <div class="phase-marker" style="flex-shrink:0;margin:0;">1</div>
+                    <div>
+                        <h3 style="margin-bottom:.3rem;">Member Joins</h3>
+                        <p>A $100 membership fee is submitted. Every dollar is allocated according to
+                        published percentages — no discretionary funds exist.</p>
+                    </div>
+                </div>
+                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
+                    <div class="phase-marker" style="flex-shrink:0;margin:0;">2</div>
+                    <div>
+                        <h3 style="margin-bottom:.3rem;">Fiat → Stablecoin</h3>
+                        <p>Incoming fiat is converted to USDC/USDT on XRPL or Stellar.
+                        Stablecoins provide transparent, auditable settlement rails.</p>
+                    </div>
+                </div>
+                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
+                    <div class="phase-marker" style="flex-shrink:0;margin:0;">3</div>
+                    <div>
+                        <h3 style="margin-bottom:.3rem;">Stablecoin → Physical Gold</h3>
+                        <p>Stablecoins are used to purchase physical gold by weight through APMEX,
+                        one of the world's largest accredited precious metals dealers.</p>
+                    </div>
+                </div>
+                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
+                    <div class="phase-marker" style="flex-shrink:0;margin:0;">4</div>
+                    <div>
+                        <h3 style="margin-bottom:.3rem;">Gold → Digital Certificates</h3>
+                        <p>Gold is tokenized into Gold Certificates (NFTs), Bonus Certificates, and
+                        Staking Certificates. Each represents a verifiable weight of physical gold.</p>
+                    </div>
+                </div>
+                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
+                    <div class="phase-marker" style="flex-shrink:0;margin:0;">5</div>
+                    <div>
+                        <h3 style="margin-bottom:.3rem;">Allocation Across 15 Levels</h3>
+                        <p>The deterministic weighting model distributes gold-backed value
+                        across up to 15 levels of the contribution network. Fixed math. No discretion.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ SETTLEMENT PROJECTIONS ═══ -->
+<!-- ═══ THE MATH MODEL ═══ -->
 <section class="section">
     <div class="container" style="max-width:960px;">
-        <h2 style="text-align:center;">Deterministic Settlement Projections</h2>
-        <p class="section-subtitle" style="text-align:center;max-width:620px;margin:0 auto 2rem;">
-            These figures are derived from the protocol's allocation formula: weight(tier) = 1/(2<sup>tier</sup>),
-            applied to the $45 settlement pool per $100 membership.
+        <h2 style="text-align:center;">Deterministic Allocation Formula</h2>
+        <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
+            All allocations are governed by a single, published mathematical formula.
+            No interpretation. No adjustment. The math is the protocol.
         </p>
 
-        <div class="principle-grid" style="margin-top:2rem;">
-            <div class="principle-card" style="text-align:center;border-color:rgba(201,168,76,0.15);">
-                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Conservative &mdash; 5 Direct Referrals</p>
-                <p style="font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;">$742</p>
-                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">projected monthly settlement</p>
-                <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
-                    <div>Direct referral settlements: $112.50</div>
-                    <div>Tiered network allocation: $630</div>
-                    <div>Certificate reserve accrual active</div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;text-align:center;margin-bottom:2rem;">
+            <div class="math-formula">
+                W<sub>L</sub>&ensp;=&ensp;W<sub>1</sub>&ensp;&middot;&ensp;r<sup>(L&minus;1)</sup>
+            </div>
+            <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
+                <div style="text-align:center;">
+                    <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Inter',sans-serif;">W<sub>1</sub></div>
+                    <div style="font-size:1.3rem;font-weight:700;color:var(--gold);">50%</div>
+                    <div style="font-size:.78rem;color:var(--text-muted);">Direct allocation</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Inter',sans-serif;">r</div>
+                    <div style="font-size:1.3rem;font-weight:700;color:var(--gold);">0.5</div>
+                    <div style="font-size:.78rem;color:var(--text-muted);">Decay factor</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Inter',sans-serif;">L</div>
+                    <div style="font-size:1.3rem;font-weight:700;color:var(--gold);">1–15</div>
+                    <div style="font-size:.78rem;color:var(--text-muted);">Level depth</div>
                 </div>
             </div>
-            <div class="principle-card" style="text-align:center;border-color:rgba(201,168,76,0.25);">
-                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Moderate &mdash; Active Network Growth</p>
-                <p style="font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;">$3,375</p>
-                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">projected monthly settlement</p>
-                <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
-                    <div>5 direct + 25 second-tier members</div>
-                    <div>Tiered network allocation: $2,700+</div>
-                    <div>Certificate portfolio building</div>
+
+            <div style="margin-top:2rem;border-top:1px solid var(--border);padding-top:1.5rem;">
+                <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;max-width:500px;margin:0 auto;">
+                    <div style="text-align:center;">
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L1</div>
+                        <div style="font-size:1.1rem;font-weight:700;color:var(--gold);">50%</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L2</div>
+                        <div style="font-size:1.1rem;font-weight:700;color:var(--text);">25%</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L3</div>
+                        <div style="font-size:1.1rem;font-weight:700;color:var(--text);">12.5%</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L4</div>
+                        <div style="font-size:1.1rem;font-weight:700;color:var(--text);">6.25%</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:.65rem;color:var(--text-muted);font-family:'Inter',sans-serif;">L15</div>
+                        <div style="font-size:1.1rem;font-weight:700;color:var(--text-muted);">0.003%</div>
+                    </div>
                 </div>
             </div>
-            <div class="principle-card" style="text-align:center;border-color:rgba(201,168,76,0.35);">
-                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Established &mdash; Sustained Membership Growth</p>
-                <p style="font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;">$8,100</p>
-                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">projected monthly settlement</p>
-                <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
-                    <div>Full referral capacity utilized</div>
-                    <div>Deep multi-tier settlement active</div>
-                    <div>Significant reserve position</div>
-                </div>
+        </div>
+
+        <p style="text-align:center;">
+            <a href="/earnings" class="btn btn-ghost">View Complete 15-Level Allocation Table</a>
+        </p>
+    </div>
+</section>
+
+<!-- ═══ WEB3 INFRASTRUCTURE ═══ -->
+<section class="section section-dark">
+    <div class="container" style="max-width:960px;">
+        <h2 style="text-align:center;">Web3 Settlement Infrastructure</h2>
+        <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
+            Helios settles on two complementary blockchains, chosen for speed, compliance,
+            and institutional-grade settlement guarantees.
+        </p>
+
+        <div class="principle-grid" style="grid-template-columns:1fr 1fr;max-width:800px;margin:0 auto;">
+            <div class="principle-card">
+                <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.75rem;">XRPL</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;border-bottom:1px solid var(--border);">3–5 second settlement finality</li>
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;border-bottom:1px solid var(--border);">Near-zero transaction fees</li>
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;border-bottom:1px solid var(--border);">Native NFT support for certificates</li>
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;">Trustline-based asset issuance</li>
+                </ul>
+            </div>
+            <div class="principle-card">
+                <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.75rem;">Stellar</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;border-bottom:1px solid var(--border);">Stablecoin liquidity (USDC native)</li>
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;border-bottom:1px solid var(--border);">Regulated USD on/off ramps</li>
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;border-bottom:1px solid var(--border);">Anchor integration for fiat conversion</li>
+                    <li style="color:var(--text-muted);font-size:.92rem;padding:.35rem 0;">Institutional compliance framework</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ DIGITAL CERTIFICATES ═══ -->
+<section class="section">
+    <div class="container" style="max-width:960px;">
+        <h2 style="text-align:center;">Gold-Backed Digital Certificates</h2>
+        <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
+            All value within the protocol is represented by digital certificates — each backed by
+            a verifiable weight of physical gold, issued as NFTs on XRPL.
+        </p>
+
+        <div class="principle-grid">
+            <div class="principle-card" style="text-align:center;border-top:2px solid var(--gold);">
+                <h3 style="color:var(--gold);font-size:1.15rem;margin-bottom:.5rem;">Gold Certificates</h3>
+                <p style="font-weight:600;margin-bottom:.5rem;font-size:.9rem;">Primary Value Instrument</p>
+                <p>Represent allocated gold weight. Redeemable for physical metal from APMEX
+                or convertible to stablecoin. Each certificate carries a SHA-256 proof of custody
+                anchored on XRPL.</p>
+            </div>
+            <div class="principle-card" style="text-align:center;border-top:2px solid var(--green);">
+                <h3 style="color:var(--green);font-size:1.15rem;margin-bottom:.5rem;">Bonus Certificates</h3>
+                <p style="font-weight:600;margin-bottom:.5rem;font-size:.9rem;">Activity-Based Allocation</p>
+                <p>Issued at enrollment (Joining Bonus), upon direct referral activation (Referral Bonus),
+                and based on participation metrics (Activity Bonus). Fixed rules, no discretion.</p>
+            </div>
+            <div class="principle-card" style="text-align:center;border-top:2px solid var(--blue);">
+                <h3 style="color:var(--blue);font-size:1.15rem;margin-bottom:.5rem;">Staking Certificates</h3>
+                <p style="font-weight:600;margin-bottom:.5rem;font-size:.9rem;">Lock Duration Rewards</p>
+                <p>Members may lock certificates for a defined period to receive additional allocation bonuses.
+                Longer lock durations yield higher bonus multipliers. All terms are protocol-enforced.</p>
             </div>
         </div>
 
         <p style="text-align:center;margin-top:1.5rem;">
-            <a href="/earnings" class="btn btn-ghost">View Complete Settlement Structure</a>
+            <a href="/certificates" class="btn btn-ghost">Certificate Details &amp; Redemption</a>
         </p>
     </div>
 </section>
 
-<!-- ═══ MEMBERSHIP PROCESS ═══ -->
+<!-- ═══ MEMBERSHIP STRUCTURE ═══ -->
 <section class="section section-dark">
     <div class="container" style="max-width:960px;">
-        <h2 style="text-align:center;">Membership Process</h2>
-        <p class="section-subtitle" style="text-align:center;max-width:560px;margin:0 auto 2rem;">
-            Three steps to activate your position in the protocol.
+        <h2 style="text-align:center;">5-Wide, 15-Level Contribution Network</h2>
+        <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
+            Each member may introduce up to 5 direct participants. Allocations cascade through
+            15 levels of depth. This is how banks, cooperatives, and private membership programs
+            describe the same deterministic structure.
         </p>
 
-        <div class="phase-grid">
-            <div class="phase">
-                <div class="phase-marker">1</div>
-                <h3>Establish Membership</h3>
-                <p>A single $100 membership fee is allocated deterministically: $45 to the settlement pool,
-                $22.50 to your referring member, $15 to the precious metals reserve, $10 to liquidity,
-                and $10 to protocol infrastructure. Every dollar is accounted for.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:800px;margin:0 auto 2rem;">
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
+                <div style="font-size:2.2rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">5</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Direct referral positions</div>
             </div>
-            <div class="phase">
-                <div class="phase-marker">2</div>
-                <h3>Refer Qualified Members</h3>
-                <p>Each member is allocated five referral positions. When a referred individual completes
-                their membership, $22.50 is settled to you immediately. Five referrals yield $112.50
-                in direct settlement.</p>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
+                <div style="font-size:2.2rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">15</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Allocation levels deep</div>
             </div>
-            <div class="phase">
-                <div class="phase-marker">3</div>
-                <h3>Receive Tiered Settlements</h3>
-                <p>As your referred members refer others, settlement continues through 15 tiers of depth.
-                Allocation is weighted by distance — tier 1 at 50%, tier 2 at 25%, and so on.
-                Settlements are protocol-enforced and automatic.</p>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
+                <div style="font-size:2.2rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">$100</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Single membership fee</div>
             </div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;">
+                <div style="font-size:2.2rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">0%</div>
+                <div style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Discretionary funds</div>
+            </div>
+        </div>
+
+        <div style="text-align:center;">
+            <a href="/earnings" class="btn btn-primary">View Full Allocation Model</a>
+            <a href="/treasury" class="btn btn-ghost" style="margin-left:.5rem;">Treasury &amp; Reserves</a>
         </div>
     </div>
 </section>
 
-<!-- ═══ RESERVE ASSETS ═══ -->
+<!-- ═══ .HELIOS NAMESPACE ═══ -->
 <section class="section">
     <div class="container" style="max-width:800px;text-align:center;">
-        <h2>Asset-Backed Reserves</h2>
-        <p class="section-subtitle" style="max-width:620px;margin:0 auto 2rem;">
-            A defined portion of every membership is allocated to the acquisition of physical precious metals
-            through APMEX, one of the world's largest accredited dealers. All holdings are verified on-chain
-            via XRPL with SHA-256 proof of custody.
+        <h2>.helios Member Identity</h2>
+        <p class="section-subtitle" style="max-width:560px;margin:0 auto 1.5rem;">
+            A decentralized namespace for member identity, certificate ownership,
+            and referral structure. Not a gamified handle — a membership identity layer
+            anchored on XRPL.
         </p>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;max-width:700px;margin:0 auto 2rem;">
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
-                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">Gold Bars</div>
-                <div style="font-size:.85rem;color:var(--text-muted);">1g to 1 Kilogram</div>
-            </div>
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
-                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">Silver Rounds</div>
-                <div style="font-size:.85rem;color:var(--text-muted);">1oz to 10oz</div>
-            </div>
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
-                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">Redeemable Certificates</div>
-                <div style="font-size:.85rem;color:var(--text-muted);">Convertible to metal</div>
-            </div>
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
-                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">On-Chain Verification</div>
-                <div style="font-size:.85rem;color:var(--text-muted);">XRPL anchored</div>
-            </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:inline-block;">
+            <span style="font-family:'Inter',monospace;font-size:1.3rem;color:var(--gold);font-weight:600;">member.helios</span>
+            <span style="display:block;font-size:.78rem;color:var(--text-muted);margin-top:.3rem;">Identity &middot; Certificates &middot; Referral Graph &middot; Settlement History</span>
         </div>
-
-        <a href="/vault/gold" class="btn btn-ghost">View Reserve Holdings</a>
     </div>
 </section>
 
@@ -215,8 +310,8 @@
     <div class="container" style="max-width:700px;">
         <h2>Questions About the Protocol?</h2>
         <p class="section-subtitle" style="max-width:520px;margin:0 auto 1.5rem;">
-            Our AI-powered Member Advisory provides detailed information on settlement mechanics,
-            reserve composition, allocation formulas, and membership structure. Available via voice or text.
+            Our AI-powered Member Advisory provides detailed information on the allocation formula,
+            certificate mechanics, Web3 infrastructure, staking terms, and membership process.
         </p>
         <a href="/ask" class="btn btn-primary btn-lg">Speak with an Advisor</a>
     </div>
@@ -225,11 +320,14 @@
 <!-- ═══ FINAL CTA ═══ -->
 <section class="section section-cta">
     <div class="container">
-        <h2>A protocol defined by its mathematics, secured by its reserves.</h2>
-        <p class="cta-sub" style="font-size:.95rem;max-width:500px;margin:.5rem auto 1.5rem;">Deterministic settlement. No discretionary payouts. Fully verifiable.</p>
+        <h2>Fiat in. Gold-backed certificates out.<br>15 levels of deterministic allocation.</h2>
+        <p class="cta-sub" style="font-size:.95rem;max-width:540px;margin:.5rem auto 1.5rem;">
+            No hype. No discretion. No metaphors.<br>
+            A rules-based allocation protocol secured by physical gold.
+        </p>
         <div class="hero-actions">
             <a href="/activate" class="btn btn-primary btn-lg">Apply for Membership</a>
-            <a href="/earnings" class="btn btn-ghost btn-lg">Review Settlement Structure</a>
+            <a href="/certificates" class="btn btn-ghost btn-lg">View Certificate Types</a>
         </div>
     </div>
 </section>
@@ -239,23 +337,23 @@
 <script>
 // ═══ Subtle Network Background Animation ═══
 (function() {
-    const canvas = document.getElementById('neural-bg');
+    var canvas = document.getElementById('neural-bg');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
 
     function resize() {
-        const hero = canvas.parentElement;
+        var hero = canvas.parentElement;
         canvas.width = hero.clientWidth;
         canvas.height = hero.clientHeight;
     }
     resize();
     window.addEventListener('resize', resize);
 
-    const nodes = [];
-    const NODE_COUNT = 40;
-    const MAX_DIST = 200;
+    var nodes = [];
+    var NODE_COUNT = 40;
+    var MAX_DIST = 200;
 
-    for (let i = 0; i < NODE_COUNT; i++) {
+    for (var i = 0; i < NODE_COUNT; i++) {
         nodes.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
@@ -268,13 +366,13 @@
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const dx = nodes[i].x - nodes[j].x;
-                const dy = nodes[i].y - nodes[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+        for (var i = 0; i < nodes.length; i++) {
+            for (var j = i + 1; j < nodes.length; j++) {
+                var dx = nodes[i].x - nodes[j].x;
+                var dy = nodes[i].y - nodes[j].y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < MAX_DIST) {
-                    const alpha = (1 - dist / MAX_DIST) * 0.08;
+                    var alpha = (1 - dist / MAX_DIST) * 0.08;
                     ctx.strokeStyle = 'rgba(201, 168, 76, ' + alpha + ')';
                     ctx.lineWidth = 0.4;
                     ctx.beginPath();
@@ -284,11 +382,12 @@
                 }
             }
         }
-        const time = Date.now() * 0.001;
-        for (const n of nodes) {
-            const pulse = Math.sin(time + n.pulse) * 0.5 + 0.5;
-            const alpha = 0.1 + pulse * 0.15;
-            ctx.fillStyle = 'rgba(201, 168, 76, ' + alpha + ')';
+        var time = Date.now() * 0.001;
+        for (var k = 0; k < nodes.length; k++) {
+            var n = nodes[k];
+            var pulse = Math.sin(time + n.pulse) * 0.5 + 0.5;
+            var a = 0.1 + pulse * 0.15;
+            ctx.fillStyle = 'rgba(201, 168, 76, ' + a + ')';
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.r + pulse * 0.3, 0, Math.PI * 2);
             ctx.fill();

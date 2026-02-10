@@ -221,6 +221,10 @@ def create_app():
     def earnings():
         return render_template("earnings.html")
 
+    @app.route("/certificates")
+    def certificates():
+        return render_template("certificates.html")
+
     @app.route("/metrics")
     def metrics():
         return render_template("metrics.html")

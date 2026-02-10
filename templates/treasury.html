@@ -1,54 +1,143 @@
 {% extends "base.html" %}
-{% block title %}Treasury — Proof of Reserves — Helios{% endblock %}
+{% block title %}Treasury &amp; Infrastructure — Helios Protocol{% endblock %}
+{% block og_title %}Treasury &amp; Web3 Infrastructure — Helios Protocol{% endblock %}
+{% block og_description %}How capital flows through the Helios protocol. Fiat to stablecoin to physical gold. XRPL and Stellar settlement infrastructure. Proof of reserves.{% endblock %}
+{% block og_url %}/treasury{% endblock %}
 
 {% block content %}
 <section class="section treasury-section">
     <div class="container">
         <div class="treasury-header">
-            <h1>☀ Proof of Reserves</h1>
-            <p class="section-subtitle">Real metal. Auditable on-chain. Every receipt verifiable.</p>
-            <p class="treasury-formula">MetalAllocation = NetSurplus × <span class="formula-highlight">m</span> &nbsp; <span class="formula-note">(m = 0.05–0.12, current: 0.07)</span></p>
+            <h1 style="font-size:2.2rem;font-weight:600;color:var(--gold);letter-spacing:.1em;">TREASURY &amp; INFRASTRUCTURE</h1>
+            <p class="section-subtitle" style="max-width:680px;margin:0 auto 1rem;">
+                Every dollar follows a published, deterministic path through the protocol.
+                Fiat enters. Stablecoins settle. Gold is acquired. Certificates are issued.
+                All reserves are auditable on-chain.
+            </p>
+            <p style="color:var(--gold);font-weight:600;font-size:.8rem;letter-spacing:.12em;opacity:.7;font-family:'Inter',sans-serif;">
+                FIAT → STABLECOIN → GOLD → CERTIFICATES → ALLOCATION
+            </p>
         </div>
 
-        <!-- Summary Cards -->
-        <div class="treasury-summary" id="treasury-summary">
-            <div class="treasury-stat-card">
-                <div class="treasury-stat-icon">🥇</div>
-                <div class="treasury-stat-value" id="ts-total-oz">—</div>
-                <div class="treasury-stat-label">Total Ounces</div>
-            </div>
-            <div class="treasury-stat-card">
-                <div class="treasury-stat-icon">💰</div>
-                <div class="treasury-stat-value" id="ts-total-cost">—</div>
-                <div class="treasury-stat-label">Total Cost (USD)</div>
-            </div>
-            <div class="treasury-stat-card">
-                <div class="treasury-stat-icon">⛓</div>
-                <div class="treasury-stat-value" id="ts-anchored">—</div>
-                <div class="treasury-stat-label">On-Chain Anchored</div>
-            </div>
-            <div class="treasury-stat-card">
-                <div class="treasury-stat-icon">📜</div>
-                <div class="treasury-stat-value" id="ts-receipt-count">—</div>
-                <div class="treasury-stat-label">Vault Receipts</div>
+        <!-- ═══ 5-STEP MONEY FLOW ═══ -->
+        <div style="max-width:800px;margin:0 auto 4rem;">
+            <h2 style="text-align:center;margin-bottom:1.5rem;">How Capital Flows Through the Protocol</h2>
+
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+                <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                    <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">1</div>
+                    <div>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Member Joins — $100 Membership</h3>
+                        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
+                            A $100 membership fee is submitted via standard payment rails.
+                            Every dollar is allocated according to published percentages:
+                            $45 allocation pool, $20 liquidity, $15 metals reserve, $10 infrastructure, $10 buffer.
+                            No discretionary funds exist.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                    <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">2</div>
+                    <div>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Fiat → Stablecoin Conversion</h3>
+                        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
+                            Incoming fiat is converted to USDC/USDT via regulated anchors on Stellar
+                            or direct on-ramp partners. Stablecoins provide transparent, auditable
+                            settlement rails with near-instant finality. All conversions are logged on-chain.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                    <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">3</div>
+                    <div>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Stablecoin → Physical Gold Acquisition</h3>
+                        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
+                            The precious metals allocation ($15 per membership) is used to purchase
+                            physical gold by weight through APMEX, one of the world's largest
+                            accredited precious metals dealers. Invoice, serial numbers, and photos
+                            are captured for every purchase and bundled into IPFS evidence packages.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                    <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">4</div>
+                    <div>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Gold → Digital Certificate Issuance</h3>
+                        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
+                            Physical gold is tokenized into three certificate classes on XRPL:
+                            <strong>Gold Certificates</strong> (primary value instrument),
+                            <strong>Bonus Certificates</strong> (activity-based allocation), and
+                            <strong>Staking Certificates</strong> (lock duration rewards).
+                            Each certificate carries a SHA-256 proof chain to the physical asset.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                    <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">5</div>
+                    <div>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Allocation Across 15 Levels</h3>
+                        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
+                            The deterministic weighting model (W<sub>L</sub> = W<sub>1</sub> · r<sup>(L−1)</sup>)
+                            distributes gold-backed certificate value across up to 15 levels
+                            of the contribution network. Level 1 receives 50%, Level 2 receives 25%,
+                            and so on. Fixed math. No discretion. No manual intervention.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Metal Breakdown -->
-        <div class="treasury-breakdown" id="treasury-breakdown">
-            <h2>Holdings by Metal</h2>
-            <div class="metal-grid" id="metal-grid">
-                <p class="loading">Loading reserves data...</p>
+        <!-- ═══ PROOF OF RESERVES — Live Data ═══ -->
+        <div style="margin-bottom:4rem;">
+            <h2 style="text-align:center;margin-bottom:.5rem;">Proof of Reserves</h2>
+            <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
+                Real metal. Auditable on-chain. Every receipt verifiable via XRPL anchor transaction.
+            </p>
+
+            <!-- Summary Cards -->
+            <div class="treasury-summary" id="treasury-summary">
+                <div class="treasury-stat-card">
+                    <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">Au</div>
+                    <div class="treasury-stat-value" id="ts-total-oz">—</div>
+                    <div class="treasury-stat-label">Total Ounces</div>
+                </div>
+                <div class="treasury-stat-card">
+                    <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">$</div>
+                    <div class="treasury-stat-value" id="ts-total-cost">—</div>
+                    <div class="treasury-stat-label">Total Cost (USD)</div>
+                </div>
+                <div class="treasury-stat-card">
+                    <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">TX</div>
+                    <div class="treasury-stat-value" id="ts-anchored">—</div>
+                    <div class="treasury-stat-label">On-Chain Anchored</div>
+                </div>
+                <div class="treasury-stat-card">
+                    <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">NFT</div>
+                    <div class="treasury-stat-value" id="ts-receipt-count">—</div>
+                    <div class="treasury-stat-label">Vault Receipts</div>
+                </div>
+            </div>
+
+            <!-- Metal Breakdown -->
+            <div class="treasury-breakdown" id="treasury-breakdown">
+                <h2>Holdings by Metal</h2>
+                <div class="metal-grid" id="metal-grid">
+                    <p class="loading">Loading reserves data...</p>
+                </div>
             </div>
         </div>
 
-        <!-- Policy Info -->
+        <!-- ═══ TREASURY POLICY ═══ -->
         <div class="treasury-policy">
             <h2>Treasury Policy</h2>
             <div class="policy-grid">
                 <div class="policy-item">
                     <span class="policy-label">Dealer</span>
-                    <span class="policy-value">APMEX</span>
+                    <span class="policy-value">APMEX (accredited)</span>
                 </div>
                 <div class="policy-item">
                     <span class="policy-label">Metal Coefficient (m)</span>
@@ -59,24 +148,101 @@
                     <span class="policy-value">90 days (quarterly)</span>
                 </div>
                 <div class="policy-item">
-                    <span class="policy-label">Policy Version</span>
-                    <span class="policy-value">1.0</span>
+                    <span class="policy-label">Primary Blockchain</span>
+                    <span class="policy-value">XRPL (NFTs + Trustlines)</span>
+                </div>
+                <div class="policy-item">
+                    <span class="policy-label">Settlement Blockchain</span>
+                    <span class="policy-value">Stellar (USDC + Anchors)</span>
                 </div>
                 <div class="policy-item">
                     <span class="policy-label">On-Chain Anchor</span>
-                    <span class="policy-value">XRPL (0-drop Payment + Memo CID/SHA256)</span>
+                    <span class="policy-value">XRPL 0-drop Payment + Memo CID/SHA256</span>
                 </div>
                 <div class="policy-item">
                     <span class="policy-label">Evidence Storage</span>
-                    <span class="policy-value">IPFS evidence bundles (invoice + photos + serials)</span>
+                    <span class="policy-value">IPFS bundles (invoice + photos + serials)</span>
+                </div>
+                <div class="policy-item">
+                    <span class="policy-label">Certificate Issuance</span>
+                    <span class="policy-value">XRPL Native NFT (XLS-20)</span>
                 </div>
             </div>
         </div>
 
-        <!-- Vault Receipts Table -->
+        <!-- ═══ WEB3 INFRASTRUCTURE ═══ -->
+        <div style="margin-top:4rem;margin-bottom:4rem;">
+            <h2 style="text-align:center;margin-bottom:.5rem;">Web3 Settlement Infrastructure</h2>
+            <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
+                Two complementary blockchains. Chosen for speed, compliance,
+                and institutional-grade settlement guarantees.
+            </p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:800px;margin:0 auto;">
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;">
+                    <h3 style="color:var(--gold);font-size:1.15rem;margin-bottom:.75rem;">XRPL — Certificate Layer</h3>
+                    <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;margin-bottom:1rem;">
+                        Primary infrastructure for certificate issuance, ownership tracking,
+                        and proof-of-custody anchoring.
+                    </p>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">3–5 second settlement finality</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Near-zero transaction fees (~$0.0002)</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Native NFT support (XLS-20)</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Trustline-based asset issuance</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;">SHA-256 evidence anchoring via Memos</li>
+                    </ul>
+                </div>
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;">
+                    <h3 style="color:var(--gold);font-size:1.15rem;margin-bottom:.75rem;">Stellar — Settlement Layer</h3>
+                    <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;margin-bottom:1rem;">
+                        Primary infrastructure for stablecoin settlement, fiat conversion,
+                        and regulated money movement.
+                    </p>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Native USDC support (Circle partnership)</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Regulated anchor integrations</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Fiat on/off ramps via anchor network</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Institutional compliance framework</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;">Cross-chain bridge to XRPL certificates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ .HELIOS NAMESPACE ═══ -->
+        <div style="max-width:700px;margin:0 auto 4rem;text-align:center;">
+            <h2>.helios Decentralized Namespace</h2>
+            <p class="section-subtitle" style="max-width:560px;margin:0 auto 1.5rem;">
+                A decentralized namespace for member identity, certificate ownership,
+                and referral structure. Anchored on XRPL.
+            </p>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:inline-block;">
+                <span style="font-family:'Inter',monospace;font-size:1.3rem;color:var(--gold);font-weight:600;">member.helios</span>
+                <span style="display:block;font-size:.78rem;color:var(--text-muted);margin-top:.3rem;">
+                    Identity &middot; Certificate Portfolio &middot; Referral Graph &middot; Allocation History
+                </span>
+            </div>
+            <div style="margin-top:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;max-width:500px;margin-left:auto;margin-right:auto;">
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.75rem;font-size:.82rem;color:var(--text-muted);">
+                    <div style="font-weight:600;color:var(--text);margin-bottom:.2rem;">Identity</div>
+                    Unique .helios handle
+                </div>
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.75rem;font-size:.82rem;color:var(--text-muted);">
+                    <div style="font-weight:600;color:var(--text);margin-bottom:.2rem;">Certificates</div>
+                    Portfolio of NFTs
+                </div>
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.75rem;font-size:.82rem;color:var(--text-muted);">
+                    <div style="font-weight:600;color:var(--text);margin-bottom:.2rem;">Graph</div>
+                    Referral structure
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ VAULT RECEIPTS TABLE ═══ -->
         <div class="treasury-receipts">
             <h2>Vault Receipts (MVR-NFTs)</h2>
-            <p class="section-subtitle">Each row = one physical metal purchase, anchored immutably.</p>
+            <p class="section-subtitle">Each row represents a physical metal purchase, anchored immutably on XRPL.</p>
             <div class="receipt-table-wrap">
                 <table class="receipt-table" id="receipt-table">
                     <thead>
@@ -101,8 +267,9 @@
 
         <!-- Verify Links -->
         <div class="treasury-verify">
-            <a href="/api/treasury/reserves" target="_blank" class="btn btn-secondary">Raw Reserves JSON →</a>
-            <a href="/api/metrics/rrr" target="_blank" class="btn btn-secondary">Reserve Ratio →</a>
+            <a href="/api/treasury/reserves" target="_blank" class="btn btn-secondary">Raw Reserves JSON</a>
+            <a href="/api/metrics/rrr" target="_blank" class="btn btn-secondary">Reserve Ratio</a>
+            <a href="/certificates" class="btn btn-ghost">Certificate Details</a>
         </div>
     </div>
 </section>
@@ -110,74 +277,72 @@
 
 {% block scripts %}
 <script>
-document.addEventListener('DOMContentLoaded', () => (async function() {
-    try {
-        const res = await fetch('/api/treasury/reserves');
-        const data = await res.json();
+document.addEventListener('DOMContentLoaded', function() {
+    (async function() {
+        try {
+            var res = await fetch('/api/treasury/reserves');
+            var data = await res.json();
 
-        // Summary
-        document.getElementById('ts-receipt-count').textContent = data.total_receipts || 0;
-        document.getElementById('ts-anchored').textContent = data.anchored_count || 0;
+            document.getElementById('ts-receipt-count').textContent = data.total_receipts || 0;
+            document.getElementById('ts-anchored').textContent = data.anchored_count || 0;
 
-        // Calculate totals from metal breakdown
-        const metals = data.by_metal || {};
-        let totalOz = 0, totalCost = 0;
-        const metalNames = Object.keys(metals);
+            var metals = data.by_metal || {};
+            var totalOz = 0, totalCost = 0;
+            var metalNames = Object.keys(metals);
 
-        metalNames.forEach(m => {
-            totalOz += metals[m].total_oz || 0;
-            totalCost += metals[m].total_cost_usd || 0;
-        });
+            metalNames.forEach(function(m) {
+                totalOz += metals[m].total_oz || 0;
+                totalCost += metals[m].total_cost_usd || 0;
+            });
 
-        document.getElementById('ts-total-oz').textContent = totalOz.toFixed(2);
-        document.getElementById('ts-total-cost').textContent = '$' + totalCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('ts-total-oz').textContent = totalOz.toFixed(2);
+            document.getElementById('ts-total-cost').textContent = '$' + totalCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
-        // Metal grid
-        const metalGrid = document.getElementById('metal-grid');
-        if (metalNames.length === 0) {
-            metalGrid.innerHTML = '<div class="empty-state"><p>No metal holdings yet. Treasury accumulates as the network grows.</p></div>';
-        } else {
-            metalGrid.innerHTML = metalNames.map(m => `
-                <div class="metal-card">
-                    <div class="metal-name">${m}</div>
-                    <div class="metal-oz">${(metals[m].total_oz || 0).toFixed(2)} oz</div>
-                    <div class="metal-cost">$${(metals[m].total_cost_usd || 0).toLocaleString('en-US', {minimumFractionDigits: 2})}</div>
-                    <div class="metal-count">${metals[m].receipt_count || 0} receipt(s)</div>
-                </div>
-            `).join('');
-        }
-    } catch(e) {
-        console.error('Treasury load error:', e);
-        document.getElementById('metal-grid').innerHTML = '<p class="error">Failed to load reserves data.</p>';
-    }
-
-    // Load receipt list
-    try {
-        const res = await fetch('/api/treasury/receipts');
-        const data = await res.json();
-        const tbody = document.getElementById('receipt-tbody');
-
-        if (!data.receipts || data.receipts.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="9" class="empty">No vault receipts issued yet.</td></tr>';
-            return;
+            var metalGrid = document.getElementById('metal-grid');
+            if (metalNames.length === 0) {
+                metalGrid.innerHTML = '<div class="empty-state"><p>No metal holdings yet. Treasury accumulates as the network grows.</p></div>';
+            } else {
+                metalGrid.innerHTML = metalNames.map(function(m) {
+                    return '<div class="metal-card">' +
+                        '<div class="metal-name">' + m + '</div>' +
+                        '<div class="metal-oz">' + (metals[m].total_oz || 0).toFixed(2) + ' oz</div>' +
+                        '<div class="metal-cost">$' + (metals[m].total_cost_usd || 0).toLocaleString('en-US', {minimumFractionDigits: 2}) + '</div>' +
+                        '<div class="metal-count">' + (metals[m].receipt_count || 0) + ' receipt(s)</div>' +
+                        '</div>';
+                }).join('');
+            }
+        } catch(e) {
+            console.error('Treasury load error:', e);
+            document.getElementById('metal-grid').innerHTML = '<p class="error">Failed to load reserves data.</p>';
         }
 
-        tbody.innerHTML = data.receipts.map(r => `
-            <tr>
-                <td><code>${r.mvr_id.substring(0, 12)}…</code></td>
-                <td>${r.metal}</td>
-                <td>${r.form || '—'}</td>
-                <td>${r.weight_oz} oz</td>
-                <td>${r.quantity}</td>
-                <td>${r.total_oz} oz</td>
-                <td>$${parseFloat(r.total_cost_usd).toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
-                <td><span class="custody-badge custody-${r.custody_status}">${r.custody_status}</span></td>
-                <td>${r.is_anchored ? '⛓ Yes' : '⏳ Pending'}</td>
-            </tr>
-        `).join('');
-    } catch(e) {
-        console.error('Receipts load error:', e);
-    }
-})());
+        try {
+            var res2 = await fetch('/api/treasury/receipts');
+            var data2 = await res2.json();
+            var tbody = document.getElementById('receipt-tbody');
+
+            if (!data2.receipts || data2.receipts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" class="empty">No vault receipts issued yet.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = data2.receipts.map(function(r) {
+                return '<tr>' +
+                    '<td><code>' + r.mvr_id.substring(0, 12) + '…</code></td>' +
+                    '<td>' + r.metal + '</td>' +
+                    '<td>' + (r.form || '—') + '</td>' +
+                    '<td>' + r.weight_oz + ' oz</td>' +
+                    '<td>' + r.quantity + '</td>' +
+                    '<td>' + r.total_oz + ' oz</td>' +
+                    '<td>$' + parseFloat(r.total_cost_usd).toLocaleString('en-US', {minimumFractionDigits: 2}) + '</td>' +
+                    '<td><span class="custody-badge custody-' + r.custody_status + '">' + r.custody_status + '</span></td>' +
+                    '<td>' + (r.is_anchored ? 'Verified' : 'Pending') + '</td>' +
+                    '</tr>';
+            }).join('');
+        } catch(e) {
+            console.error('Receipts load error:', e);
+        }
+    })();
+});
 </script>
 {% endblock %}
