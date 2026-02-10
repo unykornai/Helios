@@ -1,36 +1,54 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    HELIOS — Design System
-   Executive. Premium. Protocol-enforced.
-   Private members network — not a game, not crypto, not a startup.
+   Institutional. Deterministic. Asset-Backed.
+   Private membership protocol — settlement infrastructure.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 :root {
-    --bg:           #0f0f1a;
-    --bg-card:      #1a1a2e;
-    --bg-hover:     #242444;
-    --text:         #e8e8f0;
-    --text-muted:   #8888aa;
-    --gold:         #f59e0b;
-    --gold-dark:    #d97706;
-    --gold-light:   #fde68a;
-    --blue:         #3b82f6;
-    --purple:       #8b5cf6;
-    --green:        #10b981;
-    --red:          #ef4444;
-    --border:       #2a2a3e;
-    --radius:       12px;
-    --radius-sm:    8px;
+    --bg:           #0c0f14;
+    --bg-card:      #141820;
+    --bg-hover:     #1c2230;
+    --text:         #d8dbe2;
+    --text-muted:   #7d8590;
+    --gold:         #c9a84c;
+    --gold-dark:    #a68939;
+    --gold-light:   #dfc676;
+    --blue:         #4a7eb5;
+    --purple:       #7868a6;
+    --green:        #3d8b6e;
+    --red:          #b54a4a;
+    --border:       #242833;
+    --radius:       8px;
+    --radius-sm:    6px;
     --shadow:       0 4px 24px rgba(0,0,0,0.3);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'EB Garamond', 'Georgia', serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.7;
     min-height: 100vh;
+    font-size: 17px;
+    letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'EB Garamond', 'Georgia', serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.helios-nav, .helios-nav *, .btn, .btn *,
+.nav-cta, input, select, textarea,
+.calc-result-label, .stream-tag, .scenario-label,
+.stat-label, .hs-label, .vb-label, .ps-label,
+.cm-label, .footer-small, .footer-domain,
+.guide-title, .topic-sub, .avatar-label, .avatar-status,
+.step-indicator, .decay-table th {
+    font-family: 'Inter', -apple-system, sans-serif;
 }
 
 a { color: var(--gold); text-decoration: none; }
@@ -165,10 +183,10 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 }
 
 .helios-coin {
-    width: 160px; height: 160px;
+    width: 140px; height: 140px;
     margin: 0 auto;
-    filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.3));
-    animation: coin-float 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.2));
+    animation: coin-float 8s ease-in-out infinite;
 }
 
 @keyframes coin-float {
@@ -178,12 +196,12 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 
 .hero-title {
     position: relative; z-index: 1;
-    font-size: 4.5rem;
-    font-weight: 900;
-    letter-spacing: .2em;
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: .15em;
     color: var(--gold);
     margin-bottom: .5rem;
-    text-shadow: 0 0 40px rgba(245, 158, 11, 0.15);
+    text-shadow: none;
 }
 
 .hero-tagline {
@@ -216,7 +234,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     margin-top: 1rem;
 }
 
-.hero h1 { font-size: 4rem; color: var(--gold); margin-bottom: .5rem; position: relative; z-index: 1; }
+.hero h1 { font-size: 3rem; color: var(--gold); margin-bottom: .5rem; position: relative; z-index: 1; }
 .hero-sub { color: var(--text-muted); font-size: 1.15rem; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; position: relative; z-index: 1; }
 
 /* ─── Protocol Principles Grid ────────────────────────────────── */
@@ -236,15 +254,15 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     transition: border-color .3s, transform .3s;
 }
 .principle-card:hover {
-    border-color: rgba(245, 158, 11, 0.3);
-    transform: translateY(-2px);
+    border-color: rgba(201, 168, 76, 0.25);
+    transform: translateY(-1px);
 }
 
 .principle-icon {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     display: block;
     margin-bottom: 1rem;
-    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.2));
+    filter: none;
 }
 
 .principle-card h3 {
@@ -292,7 +310,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     border-radius: var(--radius);
     transition: border-color .3s;
 }
-.phase:hover { border-color: rgba(245, 158, 11, 0.3); }
+.phase:hover { border-color: rgba(201, 168, 76, 0.25); }
 
 .phase-marker {
     width: 56px; height: 56px;
@@ -302,7 +320,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     display: flex; align-items: center; justify-content: center;
     font-weight: 900; font-size: 1.3rem;
     margin: 0 auto 1.2rem;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+    box-shadow: none;
 }
 
 .phase h3 {
@@ -351,7 +369,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     border-radius: 4px;
     min-width: 4px;
     transition: width .5s ease;
-    box-shadow: 0 0 8px rgba(245, 158, 11, 0.15);
+    box-shadow: none;
 }
 
 .decay-hop span:last-child {

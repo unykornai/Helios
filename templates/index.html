@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Helios — $100 In. Get Paid. Backed by Gold.{% endblock %}
-{% block og_title %}Helios — $100 In. Get Paid. Backed by Gold.{% endblock %}
-{% block og_description %}$100 entry. Get paid every time your network grows. Physical gold backs every dollar. Power of 5.{% endblock %}
+{% block title %}Helios — Private Membership Protocol{% endblock %}
+{% block og_title %}Helios — Private Membership Protocol{% endblock %}
+{% block og_description %}A private membership protocol with deterministic settlement, distance-weighted allocation, and asset-backed reserves.{% endblock %}
 {% block og_url %}/{% endblock %}
 
 {% block content %}
@@ -12,220 +12,224 @@
             <svg class="helios-coin" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <radialGradient id="coinGrad" cx="50%" cy="45%" r="50%">
-                        <stop offset="0%" style="stop-color:#fde68a"/>
-                        <stop offset="40%" style="stop-color:#f59e0b"/>
-                        <stop offset="80%" style="stop-color:#d97706"/>
-                        <stop offset="100%" style="stop-color:#92400e"/>
+                        <stop offset="0%" style="stop-color:#dfc676"/>
+                        <stop offset="40%" style="stop-color:#c9a84c"/>
+                        <stop offset="80%" style="stop-color:#a68939"/>
+                        <stop offset="100%" style="stop-color:#7a6428"/>
                     </radialGradient>
                     <filter id="coinGlow">
-                        <feGaussianBlur stdDeviation="8" result="blur"/>
+                        <feGaussianBlur stdDeviation="4" result="blur"/>
                         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
                     <radialGradient id="innerGrad" cx="50%" cy="45%" r="45%">
-                        <stop offset="0%" style="stop-color:#fef3c7"/>
-                        <stop offset="60%" style="stop-color:#f59e0b"/>
-                        <stop offset="100%" style="stop-color:#b45309"/>
+                        <stop offset="0%" style="stop-color:#e8d694"/>
+                        <stop offset="60%" style="stop-color:#c9a84c"/>
+                        <stop offset="100%" style="stop-color:#8a7035"/>
                     </radialGradient>
                 </defs>
-                <circle cx="120" cy="120" r="115" fill="none" stroke="url(#coinGrad)" stroke-width="4" filter="url(#coinGlow)"/>
+                <circle cx="120" cy="120" r="115" fill="none" stroke="url(#coinGrad)" stroke-width="3" filter="url(#coinGlow)"/>
                 <circle cx="120" cy="120" r="108" fill="url(#coinGrad)" filter="url(#coinGlow)"/>
-                <circle cx="120" cy="120" r="95" fill="none" stroke="#92400e" stroke-width="1.5" opacity="0.5"/>
-                <circle cx="120" cy="120" r="88" fill="url(#innerGrad)" opacity="0.3"/>
-                <g class="coin-rays" opacity="0.7">
-                    <line x1="120" y1="50" x2="120" y2="20" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
-                    <line x1="186" y1="81" x2="206" y2="62" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
-                    <line x1="186" y1="159" x2="206" y2="178" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
-                    <line x1="120" y1="190" x2="120" y2="220" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
-                    <line x1="54" y1="81" x2="34" y2="62" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
-                </g>
-                <circle cx="120" cy="120" r="32" fill="none" stroke="#92400e" stroke-width="1.5" opacity="0.6"/>
-                <circle cx="120" cy="120" r="8" fill="#fde68a" opacity="0.9"/>
-                <g class="coin-neural" opacity="0.5">
-                    <circle cx="120" cy="80" r="4" fill="#fde68a"/>
-                    <circle cx="158" cy="103" r="4" fill="#fde68a"/>
-                    <circle cx="144" cy="148" r="4" fill="#fde68a"/>
-                    <circle cx="96" cy="148" r="4" fill="#fde68a"/>
-                    <circle cx="82" cy="103" r="4" fill="#fde68a"/>
-                    <line x1="120" y1="80" x2="158" y2="103" stroke="#fde68a" stroke-width="0.8"/>
-                    <line x1="158" y1="103" x2="144" y2="148" stroke="#fde68a" stroke-width="0.8"/>
-                    <line x1="144" y1="148" x2="96" y2="148" stroke="#fde68a" stroke-width="0.8"/>
-                    <line x1="96" y1="148" x2="82" y2="103" stroke="#fde68a" stroke-width="0.8"/>
-                    <line x1="82" y1="103" x2="120" y2="80" stroke="#fde68a" stroke-width="0.8"/>
+                <circle cx="120" cy="120" r="95" fill="none" stroke="#7a6428" stroke-width="1" opacity="0.4"/>
+                <circle cx="120" cy="120" r="88" fill="url(#innerGrad)" opacity="0.2"/>
+                <circle cx="120" cy="120" r="32" fill="none" stroke="#7a6428" stroke-width="1" opacity="0.4"/>
+                <circle cx="120" cy="120" r="8" fill="#dfc676" opacity="0.7"/>
+                <g opacity="0.35">
+                    <circle cx="120" cy="80" r="3.5" fill="#dfc676"/>
+                    <circle cx="158" cy="103" r="3.5" fill="#dfc676"/>
+                    <circle cx="144" cy="148" r="3.5" fill="#dfc676"/>
+                    <circle cx="96" cy="148" r="3.5" fill="#dfc676"/>
+                    <circle cx="82" cy="103" r="3.5" fill="#dfc676"/>
+                    <line x1="120" y1="80" x2="158" y2="103" stroke="#dfc676" stroke-width="0.6"/>
+                    <line x1="158" y1="103" x2="144" y2="148" stroke="#dfc676" stroke-width="0.6"/>
+                    <line x1="144" y1="148" x2="96" y2="148" stroke="#dfc676" stroke-width="0.6"/>
+                    <line x1="96" y1="148" x2="82" y2="103" stroke="#dfc676" stroke-width="0.6"/>
+                    <line x1="82" y1="103" x2="120" y2="80" stroke="#dfc676" stroke-width="0.6"/>
                 </g>
             </svg>
         </div>
 
         <h1 class="hero-title">HELIOS</h1>
         <p class="hero-tagline">
-            $100 in. Get paid every time your network grows.<br>
-            <span style="color:var(--gold);">Backed by physical gold. Not promises.</span>
+            A private membership protocol governed by deterministic settlement.<br>
+            <span style="color:var(--gold);">$100 membership. Asset-backed reserves. Transparent allocation.</span>
         </p>
-        <p class="hero-rule">Power of 5 &mdash; Bring 5. They bring 5. You get paid on all of it.</p>
+        <p class="hero-rule">DETERMINISTIC &middot; DISTANCE-WEIGHTED &middot; ASSET-BACKED</p>
 
         <div class="hero-actions">
-            <a href="/activate" class="btn btn-primary btn-lg">Join Now — $100</a>
-            <a href="/ask" class="btn btn-ghost btn-lg">Talk to Helios AI →</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Apply for Membership</a>
+            <a href="/ask" class="btn btn-ghost btn-lg">Speak with an Advisor</a>
         </div>
     </div>
     <canvas id="neural-bg" class="hero-neural-bg"></canvas>
 </section>
 
-<!-- ═══ HOW YOU MAKE MONEY — SIMPLE ═══ -->
+<!-- ═══ PROTOCOL OVERVIEW ═══ -->
 <section class="section section-dark">
     <div class="container">
-        <h2 style="text-align:center;">How You Make Money</h2>
-        <p class="section-subtitle" style="text-align:center;">Three ways. Real dollars. No catches.</p>
+        <h2 style="text-align:center;">How the Protocol Operates</h2>
+        <p class="section-subtitle" style="text-align:center;max-width:660px;margin:0 auto 2rem;">
+            Helios employs a deterministic settlement model. Every membership generates a fixed allocation
+            distributed through distance-weighted tiers. No discretionary payouts. No manual intervention.
+        </p>
 
         <div class="principle-grid" style="max-width:960px; margin:0 auto;">
             <div class="principle-card" style="text-align:center;">
-                <div class="principle-icon" style="font-size:2.5rem;">💵</div>
-                <h3 style="color:var(--gold);font-size:1.6rem;margin:.5rem 0 .3rem;">$22.50</h3>
-                <p style="font-weight:700;margin-bottom:.5rem;">Instant Cash</p>
-                <p>Someone joins through your link → you get $22.50 immediately. Every single time. No delays.</p>
+                <h3 style="color:var(--gold);font-size:1.3rem;margin:.5rem 0 .5rem;">Direct Referral Settlement</h3>
+                <p style="font-weight:600;margin-bottom:.5rem;font-size:.95rem;">$22.50 per qualified referral</p>
+                <p>When a new member is activated through your unique referral identifier, a settlement of $22.50
+                is allocated to you immediately. This is a fixed, protocol-enforced distribution.</p>
             </div>
             <div class="principle-card" style="text-align:center;">
-                <div class="principle-icon" style="font-size:2.5rem;">🌊</div>
-                <h3 style="color:var(--gold);font-size:1.6rem;margin:.5rem 0 .3rem;">15 Levels Deep</h3>
-                <p style="font-weight:700;margin-bottom:.5rem;">Network Ripple</p>
-                <p>When their people join, and their people join — you still get paid. Every signup ripples back to you up to 15 levels.</p>
+                <h3 style="color:var(--gold);font-size:1.3rem;margin:.5rem 0 .5rem;">Distance-Weighted Allocation</h3>
+                <p style="font-weight:600;margin-bottom:.5rem;font-size:.95rem;">15 tiers of settlement depth</p>
+                <p>Allocations extend through 15 connection tiers, weighted by distance from your position.
+                Tier 1 receives the highest weighting; each subsequent tier decays by a factor of two.</p>
             </div>
             <div class="principle-card" style="text-align:center;">
-                <div class="principle-icon" style="font-size:2.5rem;">🥇</div>
-                <h3 style="color:var(--gold);font-size:1.6rem;margin:.5rem 0 .3rem;">Real Gold</h3>
-                <p style="font-weight:700;margin-bottom:.5rem;">Gold-Backed Treasury</p>
-                <p>7% of every dollar goes to physical gold from APMEX. Your certificates appreciate as the treasury grows.</p>
+                <h3 style="color:var(--gold);font-size:1.3rem;margin:.5rem 0 .5rem;">Asset-Backed Reserve</h3>
+                <p style="font-weight:600;margin-bottom:.5rem;font-size:.95rem;">Physical precious metals from APMEX</p>
+                <p>A portion of every membership is allocated to the acquisition of physical gold and silver
+                through APMEX. Certificates are redeemable against verified metal holdings.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ THE MATH — POWER OF 5 ═══ -->
+<!-- ═══ SETTLEMENT PROJECTIONS ═══ -->
 <section class="section">
     <div class="container" style="max-width:960px;">
-        <h2 style="text-align:center;">The Math Is Simple</h2>
-        <p class="section-subtitle" style="text-align:center;">You bring 5. They each bring 5. Watch what happens.</p>
+        <h2 style="text-align:center;">Deterministic Settlement Projections</h2>
+        <p class="section-subtitle" style="text-align:center;max-width:620px;margin:0 auto 2rem;">
+            These figures are derived from the protocol's allocation formula: weight(tier) = 1/(2<sup>tier</sup>),
+            applied to the $45 settlement pool per $100 membership.
+        </p>
 
         <div class="principle-grid" style="margin-top:2rem;">
-            <div class="principle-card" style="text-align:center;border-color:rgba(245,158,11,0.15);">
-                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">You Bring 5 People</p>
-                <p style="font-size:2.8rem;font-weight:900;color:var(--gold);line-height:1;">$742</p>
-                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">per month</p>
+            <div class="principle-card" style="text-align:center;border-color:rgba(201,168,76,0.15);">
+                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Conservative &mdash; 5 Direct Referrals</p>
+                <p style="font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;">$742</p>
+                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">projected monthly settlement</p>
                 <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
-                    <div>→ 5 direct signups = $112.50</div>
-                    <div>→ Network propagation = $630</div>
-                    <div>→ + Gold certificate growth</div>
+                    <div>Direct referral settlements: $112.50</div>
+                    <div>Tiered network allocation: $630</div>
+                    <div>Certificate reserve accrual active</div>
                 </div>
             </div>
-            <div class="principle-card" style="text-align:center;border-color:rgba(245,158,11,0.25);">
-                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Power of 5 — They Each Bring 5</p>
-                <p style="font-size:2.8rem;font-weight:900;color:var(--gold);line-height:1;">$3,375</p>
-                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">per month</p>
+            <div class="principle-card" style="text-align:center;border-color:rgba(201,168,76,0.25);">
+                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Moderate &mdash; Active Network Growth</p>
+                <p style="font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;">$3,375</p>
+                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">projected monthly settlement</p>
                 <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
-                    <div>→ 5 direct + 25 second-level</div>
-                    <div>→ Network propagation = $2,700+</div>
-                    <div>→ + Gold certificate growth</div>
+                    <div>5 direct + 25 second-tier members</div>
+                    <div>Tiered network allocation: $2,700+</div>
+                    <div>Certificate portfolio building</div>
                 </div>
             </div>
-            <div class="principle-card" style="text-align:center;border-color:rgba(245,158,11,0.4);">
-                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Builder — Consistent Growth</p>
-                <p style="font-size:2.8rem;font-weight:900;color:var(--gold);line-height:1;">$8,100</p>
-                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">per month</p>
+            <div class="principle-card" style="text-align:center;border-color:rgba(201,168,76,0.35);">
+                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:700;margin-bottom:.5rem;">Established &mdash; Sustained Membership Growth</p>
+                <p style="font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;">$8,100</p>
+                <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">projected monthly settlement</p>
                 <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:.75rem;font-size:.82rem;color:var(--text-muted);text-align:left;">
-                    <div>→ 5 bonds × steady monthly growth</div>
-                    <div>→ Deep network propagation</div>
-                    <div>→ + Significant gold position</div>
+                    <div>Full referral capacity utilized</div>
+                    <div>Deep multi-tier settlement active</div>
+                    <div>Significant reserve position</div>
                 </div>
             </div>
         </div>
 
         <p style="text-align:center;margin-top:1.5rem;">
-            <a href="/earnings" class="btn btn-ghost">See Full Earnings Breakdown →</a>
+            <a href="/earnings" class="btn btn-ghost">View Complete Settlement Structure</a>
         </p>
     </div>
 </section>
 
-<!-- ═══ HOW IT WORKS — 3 STEPS ═══ -->
+<!-- ═══ MEMBERSHIP PROCESS ═══ -->
 <section class="section section-dark">
     <div class="container" style="max-width:960px;">
-        <h2 style="text-align:center;">How It Works</h2>
-        <p class="section-subtitle" style="text-align:center;">Three steps. That's it.</p>
+        <h2 style="text-align:center;">Membership Process</h2>
+        <p class="section-subtitle" style="text-align:center;max-width:560px;margin:0 auto 2rem;">
+            Three steps to activate your position in the protocol.
+        </p>
 
         <div class="phase-grid">
             <div class="phase">
                 <div class="phase-marker">1</div>
-                <h3>Join for $100</h3>
-                <p>Every dollar is tracked. $45 goes to the protocol. $22.50 goes to the person who invited you. $15 to gold. $10 to liquidity. $10 to compliance. No mystery fees.</p>
+                <h3>Establish Membership</h3>
+                <p>A single $100 membership fee is allocated deterministically: $45 to the settlement pool,
+                $22.50 to your referring member, $15 to the precious metals reserve, $10 to liquidity,
+                and $10 to protocol infrastructure. Every dollar is accounted for.</p>
             </div>
             <div class="phase">
                 <div class="phase-marker">2</div>
-                <h3>Share With 5 People</h3>
-                <p>You get 5 bond slots. Share your link. When they join, you get $22.50 instantly per person. That's $112.50 just from your direct 5.</p>
+                <h3>Refer Qualified Members</h3>
+                <p>Each member is allocated five referral positions. When a referred individual completes
+                their membership, $22.50 is settled to you immediately. Five referrals yield $112.50
+                in direct settlement.</p>
             </div>
             <div class="phase">
                 <div class="phase-marker">3</div>
-                <h3>Get Paid as It Grows</h3>
-                <p>When your 5 share with their 5, and those share with their 5 — you get paid on every join. The network ripples money back to you automatically.</p>
+                <h3>Receive Tiered Settlements</h3>
+                <p>As your referred members refer others, settlement continues through 15 tiers of depth.
+                Allocation is weighted by distance — tier 1 at 50%, tier 2 at 25%, and so on.
+                Settlements are protocol-enforced and automatic.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ GOLD BACKING ═══ -->
+<!-- ═══ RESERVE ASSETS ═══ -->
 <section class="section">
     <div class="container" style="max-width:800px;text-align:center;">
-        <h2>🥇 Backed by Real Gold</h2>
-        <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
-            This isn't just numbers on a screen. 7% of every dollar goes to physical precious metals
-            from APMEX — one of the largest dealers in the world. Real gold bars. Real silver. Verified on-chain.
+        <h2>Asset-Backed Reserves</h2>
+        <p class="section-subtitle" style="max-width:620px;margin:0 auto 2rem;">
+            A defined portion of every membership is allocated to the acquisition of physical precious metals
+            through APMEX, one of the world's largest accredited dealers. All holdings are verified on-chain
+            via XRPL with SHA-256 proof of custody.
         </p>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;max-width:700px;margin:0 auto 2rem;">
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
-                <div style="font-size:2rem;">🥇</div>
-                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">Gold Bars</div>
-                <div style="font-size:.8rem;color:var(--text-muted);">1g to 1 Kilo</div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
+                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">Gold Bars</div>
+                <div style="font-size:.85rem;color:var(--text-muted);">1g to 1 Kilogram</div>
             </div>
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
-                <div style="font-size:2rem;">🪙</div>
-                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">Silver Rounds</div>
-                <div style="font-size:.8rem;color:var(--text-muted);">1oz to 10oz</div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
+                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">Silver Rounds</div>
+                <div style="font-size:.85rem;color:var(--text-muted);">1oz to 10oz</div>
             </div>
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
-                <div style="font-size:2rem;">📜</div>
-                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">Certificates</div>
-                <div style="font-size:.8rem;color:var(--text-muted);">Redeem anytime</div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
+                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">Redeemable Certificates</div>
+                <div style="font-size:.85rem;color:var(--text-muted);">Convertible to metal</div>
             </div>
-            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;">
-                <div style="font-size:2rem;">⛓️</div>
-                <div style="font-size:1.2rem;font-weight:900;color:var(--gold);margin:.3rem 0;">On-Chain</div>
-                <div style="font-size:.8rem;color:var(--text-muted);">XRPL verified</div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;">
+                <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;">On-Chain Verification</div>
+                <div style="font-size:.85rem;color:var(--text-muted);">XRPL anchored</div>
             </div>
         </div>
 
-        <a href="/vault/gold" class="btn btn-ghost">Browse the Gold Vault →</a>
+        <a href="/vault/gold" class="btn btn-ghost">View Reserve Holdings</a>
     </div>
 </section>
 
-<!-- ═══ ASK HELIOS CTA ═══ -->
+<!-- ═══ MEMBER ADVISORY CTA ═══ -->
 <section class="section section-dark" style="text-align:center;">
     <div class="container" style="max-width:700px;">
-        <h2>Still Have Questions?</h2>
-        <p class="section-subtitle" style="max-width:500px;margin:0 auto 1.5rem;">
-            Talk to Helios AI. It knows everything about the protocol, how you earn,
-            the gold treasury, and the math behind it. Voice-powered. Ask anything.
+        <h2>Questions About the Protocol?</h2>
+        <p class="section-subtitle" style="max-width:520px;margin:0 auto 1.5rem;">
+            Our AI-powered Member Advisory provides detailed information on settlement mechanics,
+            reserve composition, allocation formulas, and membership structure. Available via voice or text.
         </p>
-        <a href="/ask" class="btn btn-primary btn-lg">Talk to Helios AI →</a>
+        <a href="/ask" class="btn btn-primary btn-lg">Speak with an Advisor</a>
     </div>
 </section>
 
 <!-- ═══ FINAL CTA ═══ -->
 <section class="section section-cta">
     <div class="container">
-        <h2>$100 in. Get paid on everything that grows beneath you.</h2>
-        <p class="cta-sub">Not a promise. Math.</p>
+        <h2>A protocol defined by its mathematics, secured by its reserves.</h2>
+        <p class="cta-sub" style="font-size:.95rem;max-width:500px;margin:.5rem auto 1.5rem;">Deterministic settlement. No discretionary payouts. Fully verifiable.</p>
         <div class="hero-actions">
-            <a href="/activate" class="btn btn-primary btn-lg">Join Now — $100</a>
-            <a href="/earnings" class="btn btn-ghost btn-lg">See the Earnings →</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Apply for Membership</a>
+            <a href="/earnings" class="btn btn-ghost btn-lg">Review Settlement Structure</a>
         </div>
     </div>
 </section>
@@ -233,7 +237,7 @@
 
 {% block scripts %}
 <script>
-// ═══ Neural Field Background Animation ═══
+// ═══ Subtle Network Background Animation ═══
 (function() {
     const canvas = document.getElementById('neural-bg');
     if (!canvas) return;
@@ -248,16 +252,16 @@
     window.addEventListener('resize', resize);
 
     const nodes = [];
-    const NODE_COUNT = 60;
-    const MAX_DIST = 180;
+    const NODE_COUNT = 40;
+    const MAX_DIST = 200;
 
     for (let i = 0; i < NODE_COUNT; i++) {
         nodes.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.3,
-            r: Math.random() * 2 + 1,
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: (Math.random() - 0.5) * 0.15,
+            r: Math.random() * 1.5 + 0.5,
             pulse: Math.random() * Math.PI * 2
         });
     }
@@ -270,9 +274,9 @@
                 const dy = nodes[i].y - nodes[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < MAX_DIST) {
-                    const alpha = (1 - dist / MAX_DIST) * 0.15;
-                    ctx.strokeStyle = 'rgba(245, 158, 11, ' + alpha + ')';
-                    ctx.lineWidth = 0.5;
+                    const alpha = (1 - dist / MAX_DIST) * 0.08;
+                    ctx.strokeStyle = 'rgba(201, 168, 76, ' + alpha + ')';
+                    ctx.lineWidth = 0.4;
                     ctx.beginPath();
                     ctx.moveTo(nodes[i].x, nodes[i].y);
                     ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -280,13 +284,13 @@
                 }
             }
         }
-        const time = Date.now() * 0.002;
+        const time = Date.now() * 0.001;
         for (const n of nodes) {
             const pulse = Math.sin(time + n.pulse) * 0.5 + 0.5;
-            const alpha = 0.2 + pulse * 0.3;
-            ctx.fillStyle = 'rgba(245, 158, 11, ' + alpha + ')';
+            const alpha = 0.1 + pulse * 0.15;
+            ctx.fillStyle = 'rgba(201, 168, 76, ' + alpha + ')';
             ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r + pulse, 0, Math.PI * 2);
+            ctx.arc(n.x, n.y, n.r + pulse * 0.3, 0, Math.PI * 2);
             ctx.fill();
             n.x += n.vx;
             n.y += n.vy;

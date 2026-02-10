@@ -1,37 +1,37 @@
 {% extends "base.html" %}
-{% block title %}Ask Helios — Your AI Guide{% endblock %}
-{% block og_title %}Ask Helios — AI Voice Guide{% endblock %}
-{% block og_description %}Talk to Helios. Ask anything about how the protocol works, how you earn, what backs the treasury. Voice-powered AI guide.{% endblock %}
+{% block title %}Member Advisory — Helios Protocol{% endblock %}
+{% block og_title %}Member Advisory — Helios Protocol{% endblock %}
+{% block og_description %}AI-powered advisory for the Helios protocol. Understand settlement mechanics, reserve composition, allocation formulas, and membership structure.{% endblock %}
 {% block og_url %}/ask{% endblock %}
 
 {% block head %}
 <style>
 /* ─── Avatar ──────────────────────────────────────────────────── */
 .avatar-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
-.helios-avatar { width: 160px; height: 160px; cursor: pointer; transition: transform .3s; }
-.helios-avatar:hover { transform: scale(1.03); }
-.avatar-rings { animation: avatar-idle 8s ease-in-out infinite; }
-.avatar-core { filter: drop-shadow(0 0 12px rgba(245,158,11,0.4)); }
+.helios-avatar { width: 140px; height: 140px; cursor: pointer; transition: transform .3s; }
+.helios-avatar:hover { transform: scale(1.02); }
+.avatar-rings { animation: avatar-idle 10s ease-in-out infinite; }
+.avatar-core { filter: drop-shadow(0 0 8px rgba(201,168,76,0.3)); }
 @keyframes avatar-idle {
-    0%,100% { opacity: .6; }
-    50% { opacity: 1; }
+    0%,100% { opacity: .5; }
+    50% { opacity: .9; }
 }
 @keyframes avatar-speak {
     0%,100% { r: 16; opacity: .7; }
-    25% { r: 20; opacity: 1; }
+    25% { r: 19; opacity: 1; }
     50% { r: 14; opacity: .6; }
-    75% { r: 22; opacity: .9; }
+    75% { r: 20; opacity: .9; }
 }
 @keyframes avatar-ring-pulse {
     0%,100% { stroke-width: 1.5; opacity: .3; }
-    50% { stroke-width: 3; opacity: .6; }
+    50% { stroke-width: 2.5; opacity: .5; }
 }
 .avatar-speaking .avatar-core-circle { animation: avatar-speak .6s ease-in-out infinite; }
 .avatar-speaking .avatar-rings circle { animation: avatar-ring-pulse 1.2s ease-in-out infinite; }
 .avatar-speaking .avatar-rays line { animation: ray-pulse .8s ease-in-out infinite alternate; }
 @keyframes ray-pulse {
     0% { stroke-opacity: .3; stroke-width: 1.5; }
-    100% { stroke-opacity: .9; stroke-width: 3; }
+    100% { stroke-opacity: .7; stroke-width: 2.5; }
 }
 .avatar-thinking .avatar-core-circle { animation: avatar-think 2s ease-in-out infinite; }
 @keyframes avatar-think {
@@ -39,50 +39,57 @@
     50% { r: 12; fill-opacity: .5; }
 }
 .avatar-label {
-    margin-top: .75rem; font-size: .85rem; color: var(--text-muted);
+    margin-top: .75rem; font-size: .8rem; color: var(--text-muted);
     text-transform: uppercase; letter-spacing: .15em; font-weight: 600;
-    transition: color .3s;
+    transition: color .3s; font-family: 'Inter', sans-serif;
 }
 .avatar-speaking + .avatar-label { color: var(--gold); }
 .avatar-status {
     font-size: .75rem; color: var(--text-muted); margin-top: .25rem;
-    min-height: 1.1rem;
+    min-height: 1.1rem; font-family: 'Inter', sans-serif;
 }
 
 /* ─── Topic Guide Cards ───────────────────────────────────────── */
 .guide-section { margin-bottom: 1.8rem; }
 .guide-title {
-    font-size: .75rem; text-transform: uppercase; letter-spacing: .12em;
-    color: var(--text-muted); font-weight: 700; margin-bottom: .65rem;
-    padding-left: .2rem;
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--text-muted); font-weight: 600; margin-bottom: .65rem;
+    padding-left: .2rem; font-family: 'Inter', sans-serif;
 }
 .topic-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: .55rem;
 }
 .topic-card {
     background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 10px; padding: .75rem 1rem;
+    border-radius: var(--radius); padding: .75rem 1rem;
     cursor: pointer; transition: all .25s;
     display: flex; align-items: center; gap: .6rem;
 }
 .topic-card:hover {
-    border-color: rgba(245,158,11,0.3);
-    background: rgba(245,158,11,0.04);
+    border-color: rgba(201,168,76,0.25);
+    background: rgba(201,168,76,0.03);
     transform: translateY(-1px);
 }
-.topic-icon { font-size: 1.3rem; flex-shrink: 0; }
+.topic-marker {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: .75rem; font-weight: 700;
+    color: var(--gold); font-family: 'Inter', sans-serif;
+}
 .topic-text {
-    font-size: .82rem; font-weight: 600; color: var(--text);
+    font-size: .85rem; font-weight: 600; color: var(--text);
     line-height: 1.3;
 }
-.topic-sub { font-size: .7rem; color: var(--text-muted); font-weight: 400; }
+.topic-sub { font-size: .72rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif; }
 
 /* ─── Voice Toggle ────────────────────────────────────────────── */
 .voice-toggle-bar {
     display: inline-flex; align-items: center;
     gap: .8rem; padding: .45rem 1rem; border-radius: 20px;
     background: var(--bg-card); border: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
 }
 .voice-toggle-wrap { display: flex; justify-content: center; margin-bottom: 1.5rem; }
 .voice-toggle-label { font-size: .78rem; color: var(--text-muted); font-weight: 600; }
@@ -118,29 +125,30 @@
 .msg-avatar {
     width: 32px; height: 32px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; flex-shrink: 0;
-    background: var(--bg);
+    font-size: .8rem; flex-shrink: 0;
+    background: var(--bg); font-weight: 600;
+    color: var(--gold); font-family: 'Inter', sans-serif;
 }
 .msg-content {
     max-width: 80%; padding: .75rem 1rem;
-    border-radius: 10px;
-    font-size: .9rem; line-height: 1.5;
+    border-radius: var(--radius);
+    font-size: .92rem; line-height: 1.6;
 }
 .chat-message.assistant .msg-content {
-    background: rgba(245,158,11,0.06);
-    border: 1px solid rgba(245,158,11,0.12);
+    background: rgba(201,168,76,0.04);
+    border: 1px solid rgba(201,168,76,0.1);
     color: var(--text);
 }
 .chat-message.user .msg-content {
-    background: rgba(59,130,246,0.1);
-    border: 1px solid rgba(59,130,246,0.15);
+    background: rgba(74,126,181,0.08);
+    border: 1px solid rgba(74,126,181,0.12);
     color: var(--text);
 }
 .msg-content p { margin: 0; }
 .voice-btn {
     background: none; border: none; cursor: pointer;
-    font-size: 1.1rem; margin-top: .4rem; padding: .2rem;
-    opacity: .6; transition: opacity .2s;
+    font-size: 1rem; margin-top: .4rem; padding: .2rem;
+    opacity: .5; transition: opacity .2s;
 }
 .voice-btn:hover { opacity: 1; }
 .voice-btn.playing { opacity: 1; color: var(--gold); }
@@ -157,7 +165,7 @@
 }
 .follow-btn:hover {
     border-color: var(--gold); color: var(--gold);
-    background: rgba(245,158,11,0.06);
+    background: rgba(201,168,76,0.04);
 }
 .chat-input-area {
     display: flex; gap: .5rem;
@@ -165,12 +173,12 @@
 .chat-input-area input {
     flex: 1; padding: .7rem 1rem;
     background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 10px; color: var(--text);
-    font-size: .95rem; font-family: 'Inter', sans-serif;
+    border-radius: var(--radius); color: var(--text);
+    font-size: .95rem; font-family: 'EB Garamond', serif;
 }
 .chat-input-area input:focus {
     outline: none; border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+    box-shadow: 0 0 0 2px rgba(201,168,76,0.1);
 }
 .chat-input-area .btn { white-space: nowrap; }
 
@@ -186,6 +194,7 @@
     font-size: .75rem; font-weight: 600;
     border: 1px solid var(--border); color: var(--text-muted);
     text-decoration: none; transition: all .2s;
+    font-family: 'Inter', sans-serif;
 }
 .page-link:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -194,7 +203,7 @@
 }
 @media (max-width: 480px) {
     .topic-grid { grid-template-columns: 1fr; }
-    .helios-avatar { width: 130px; height: 130px; }
+    .helios-avatar { width: 110px; height: 110px; }
 }
 </style>
 {% endblock %}
@@ -202,130 +211,130 @@
 {% block content %}
 <section class="section ask-section">
     <div class="container container-sm">
-        <!-- ═══ HELIOS AVATAR ═══ -->
+        <!-- ═══ ADVISORY AVATAR ═══ -->
         <div class="avatar-container">
             <svg class="helios-avatar" id="helios-avatar" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <radialGradient id="avatarGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:0.9"/>
-                        <stop offset="40%" style="stop-color:#f59e0b;stop-opacity:0.7"/>
-                        <stop offset="100%" style="stop-color:#92400e;stop-opacity:0"/>
+                        <stop offset="0%" style="stop-color:#e8d694;stop-opacity:0.7"/>
+                        <stop offset="40%" style="stop-color:#c9a84c;stop-opacity:0.5"/>
+                        <stop offset="100%" style="stop-color:#7a6428;stop-opacity:0"/>
                     </radialGradient>
                     <radialGradient id="avatarCore" cx="50%" cy="45%" r="40%">
-                        <stop offset="0%" style="stop-color:#fef3c7"/>
-                        <stop offset="60%" style="stop-color:#f59e0b"/>
-                        <stop offset="100%" style="stop-color:#d97706"/>
+                        <stop offset="0%" style="stop-color:#e8d694"/>
+                        <stop offset="60%" style="stop-color:#c9a84c"/>
+                        <stop offset="100%" style="stop-color:#a68939"/>
                     </radialGradient>
                     <filter id="avatarBlur">
-                        <feGaussianBlur stdDeviation="6" result="blur"/>
+                        <feGaussianBlur stdDeviation="4" result="blur"/>
                         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
                 </defs>
-                <circle cx="80" cy="80" r="70" fill="url(#avatarGlow)" opacity=".4"/>
+                <circle cx="80" cy="80" r="70" fill="url(#avatarGlow)" opacity=".3"/>
                 <g class="avatar-rings">
-                    <circle cx="80" cy="80" r="55" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity=".3"/>
-                    <circle cx="80" cy="80" r="42" fill="none" stroke="#fde68a" stroke-width="1" opacity=".2"/>
-                    <circle cx="80" cy="80" r="65" fill="none" stroke="#d97706" stroke-width=".8" opacity=".15" stroke-dasharray="8 6"/>
+                    <circle cx="80" cy="80" r="55" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".25"/>
+                    <circle cx="80" cy="80" r="42" fill="none" stroke="#dfc676" stroke-width=".8" opacity=".15"/>
+                    <circle cx="80" cy="80" r="65" fill="none" stroke="#a68939" stroke-width=".6" opacity=".1" stroke-dasharray="8 6"/>
                 </g>
-                <g class="avatar-rays" opacity=".5">
-                    <line x1="80" y1="25" x2="80" y2="8" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="132" y1="49" x2="146" y2="37" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="132" y1="111" x2="146" y2="123" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="80" y1="135" x2="80" y2="152" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="28" y1="49" x2="14" y2="37" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
+                <g class="avatar-rays" opacity=".35">
+                    <line x1="80" y1="25" x2="80" y2="10" stroke="#dfc676" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="130" y1="50" x2="142" y2="40" stroke="#dfc676" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="130" y1="110" x2="142" y2="120" stroke="#dfc676" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="80" y1="135" x2="80" y2="150" stroke="#dfc676" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="30" y1="50" x2="18" y2="40" stroke="#dfc676" stroke-width="1.5" stroke-linecap="round"/>
                 </g>
                 <g class="avatar-core" filter="url(#avatarBlur)">
                     <circle class="avatar-core-circle" cx="80" cy="80" r="16" fill="url(#avatarCore)"/>
                 </g>
-                <g opacity=".4">
-                    <circle cx="80" cy="52" r="3" fill="#fde68a"/>
-                    <circle cx="107" cy="68" r="3" fill="#fde68a"/>
-                    <circle cx="97" cy="100" r="3" fill="#fde68a"/>
-                    <circle cx="63" cy="100" r="3" fill="#fde68a"/>
-                    <circle cx="53" cy="68" r="3" fill="#fde68a"/>
-                    <line x1="80" y1="52" x2="107" y2="68" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
-                    <line x1="107" y1="68" x2="97" y2="100" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
-                    <line x1="97" y1="100" x2="63" y2="100" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
-                    <line x1="63" y1="100" x2="53" y2="68" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
-                    <line x1="53" y1="68" x2="80" y2="52" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
+                <g opacity=".3">
+                    <circle cx="80" cy="52" r="2.5" fill="#dfc676"/>
+                    <circle cx="107" cy="68" r="2.5" fill="#dfc676"/>
+                    <circle cx="97" cy="100" r="2.5" fill="#dfc676"/>
+                    <circle cx="63" cy="100" r="2.5" fill="#dfc676"/>
+                    <circle cx="53" cy="68" r="2.5" fill="#dfc676"/>
+                    <line x1="80" y1="52" x2="107" y2="68" stroke="#dfc676" stroke-width=".5" opacity=".4"/>
+                    <line x1="107" y1="68" x2="97" y2="100" stroke="#dfc676" stroke-width=".5" opacity=".4"/>
+                    <line x1="97" y1="100" x2="63" y2="100" stroke="#dfc676" stroke-width=".5" opacity=".4"/>
+                    <line x1="63" y1="100" x2="53" y2="68" stroke="#dfc676" stroke-width=".5" opacity=".4"/>
+                    <line x1="53" y1="68" x2="80" y2="52" stroke="#dfc676" stroke-width=".5" opacity=".4"/>
                 </g>
             </svg>
-            <div class="avatar-label" id="avatar-label">HELIOS</div>
-            <div class="avatar-status" id="avatar-status">Tap to speak &middot; Voice powered by ElevenLabs</div>
+            <div class="avatar-label" id="avatar-label">MEMBER ADVISORY</div>
+            <div class="avatar-status" id="avatar-status">Voice-powered advisory &middot; Tap to listen</div>
         </div>
 
         <!-- ═══ VOICE TOGGLE ═══ -->
         <div class="voice-toggle-wrap">
             <div class="voice-toggle-bar">
-                <span class="voice-toggle-label">🔇 Text</span>
+                <span class="voice-toggle-label">Text</span>
                 <div class="voice-toggle active" id="voiceToggle" onclick="toggleVoice()"></div>
-                <span class="voice-toggle-label">🔊 Voice</span>
+                <span class="voice-toggle-label">Voice</span>
             </div>
         </div>
 
-        <!-- ═══ WALKTHROUGH TOPICS ═══ -->
+        <!-- ═══ INQUIRY TOPICS ═══ -->
         <div class="guide-section">
-            <div class="guide-title">💰 How You Make Money</div>
+            <div class="guide-title">Settlement &amp; Allocation</div>
             <div class="topic-grid">
-                <div class="topic-card" onclick="askQuestion('How do I make money in Helios?')">
-                    <div class="topic-icon">💵</div>
-                    <div><div class="topic-text">How Do I Earn?</div><div class="topic-sub">The 3 income streams</div></div>
+                <div class="topic-card" onclick="askQuestion('How does the settlement model work in Helios?')">
+                    <div class="topic-marker">S</div>
+                    <div><div class="topic-text">Settlement Model</div><div class="topic-sub">Three allocation channels</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('Walk me through the $100 entry — where does every dollar go?')">
-                    <div class="topic-icon">💰</div>
-                    <div><div class="topic-text">Where Does $100 Go?</div><div class="topic-sub">Atomic dollar split</div></div>
+                <div class="topic-card" onclick="askQuestion('Walk me through the $100 membership fee allocation — where does every dollar go?')">
+                    <div class="topic-marker">A</div>
+                    <div><div class="topic-text">Fee Allocation</div><div class="topic-sub">Complete dollar breakdown</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('What is my realistic earning potential with 5 bonds?')">
-                    <div class="topic-icon">📊</div>
-                    <div><div class="topic-text">Earning Potential</div><div class="topic-sub">Real numbers, real math</div></div>
+                <div class="topic-card" onclick="askQuestion('What is my projected settlement with 5 active referral positions?')">
+                    <div class="topic-marker">P</div>
+                    <div><div class="topic-text">Settlement Projections</div><div class="topic-sub">Deterministic modeling</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('How does energy propagation work? How much do I get at each hop?')">
-                    <div class="topic-icon">🌊</div>
-                    <div><div class="topic-text">Propagation Math</div><div class="topic-sub">1/(2^hop) explained</div></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="guide-section">
-            <div class="guide-title">🥇 Gold &amp; Treasury</div>
-            <div class="topic-grid">
-                <div class="topic-card" onclick="askQuestion('What backs the treasury? Is the gold real?')">
-                    <div class="topic-icon">🥇</div>
-                    <div><div class="topic-text">Is the Gold Real?</div><div class="topic-sub">APMEX + XRPL proof</div></div>
-                </div>
-                <div class="topic-card" onclick="askQuestion('How do I redeem my certificates for physical gold?')">
-                    <div class="topic-icon">🔋</div>
-                    <div><div class="topic-text">Redeem for Gold</div><div class="topic-sub">Certificate → metal</div></div>
-                </div>
-                <div class="topic-card" onclick="askQuestion('What is the RRR covenant and how does it protect me?')">
-                    <div class="topic-icon">🛡️</div>
-                    <div><div class="topic-text">RRR Covenant</div><div class="topic-sub">Automated safety net</div></div>
-                </div>
-                <div class="topic-card" onclick="askQuestion('What precious metals can I get from the vault?')">
-                    <div class="topic-icon">🏦</div>
-                    <div><div class="topic-text">Gold Vault Products</div><div class="topic-sub">APMEX bars &amp; rounds</div></div>
+                <div class="topic-card" onclick="askQuestion('How does distance-weighted allocation work? What is the settlement at each tier?')">
+                    <div class="topic-marker">T</div>
+                    <div><div class="topic-text">Tier Weighting Formula</div><div class="topic-sub">1/(2^tier) explained</div></div>
                 </div>
             </div>
         </div>
 
         <div class="guide-section">
-            <div class="guide-title">⬡ How the Protocol Works</div>
+            <div class="guide-title">Reserve Assets &amp; Treasury</div>
             <div class="topic-grid">
-                <div class="topic-card" onclick="askQuestion('What is Helios and how is it different from traditional networks?')">
-                    <div class="topic-icon">☀️</div>
-                    <div><div class="topic-text">What is Helios?</div><div class="topic-sub">The protocol explained</div></div>
+                <div class="topic-card" onclick="askQuestion('What backs the treasury reserves? How is physical metal verified?')">
+                    <div class="topic-marker">R</div>
+                    <div><div class="topic-text">Reserve Composition</div><div class="topic-sub">APMEX metals &amp; XRPL proof</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('What is the Power of 5?')">
-                    <div class="topic-icon">⬡</div>
-                    <div><div class="topic-text">Power of 5</div><div class="topic-sub">Pentagonal geometry</div></div>
+                <div class="topic-card" onclick="askQuestion('How do I redeem my certificates for physical gold or silver?')">
+                    <div class="topic-marker">C</div>
+                    <div><div class="topic-text">Certificate Redemption</div><div class="topic-sub">Converting to physical metal</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('What protections exist so this cannot be a rug pull?')">
-                    <div class="topic-icon">🔒</div>
-                    <div><div class="topic-text">Anti-Rug Proof</div><div class="topic-sub">Fixed supply, no mint</div></div>
+                <div class="topic-card" onclick="askQuestion('What is the RRR covenant and how does it protect members?')">
+                    <div class="topic-marker">G</div>
+                    <div><div class="topic-text">Governance Covenant</div><div class="topic-sub">Member protection mechanisms</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('How does the conservation law work? Can I verify it?')">
-                    <div class="topic-icon">⚖️</div>
-                    <div><div class="topic-text">Conservation Law</div><div class="topic-sub">∑in = ∑out, verify it</div></div>
+                <div class="topic-card" onclick="askQuestion('What precious metals are available through the reserve vault?')">
+                    <div class="topic-marker">V</div>
+                    <div><div class="topic-text">Vault Holdings</div><div class="topic-sub">Available metals catalog</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-title">Protocol Architecture</div>
+            <div class="topic-grid">
+                <div class="topic-card" onclick="askQuestion('What is Helios and how does it differ from traditional membership models?')">
+                    <div class="topic-marker">H</div>
+                    <div><div class="topic-text">Protocol Overview</div><div class="topic-sub">Architecture and principles</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What is the five-position referral structure and why is it limited to five?')">
+                    <div class="topic-marker">5</div>
+                    <div><div class="topic-text">Referral Structure</div><div class="topic-sub">Five-position architecture</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What structural safeguards prevent protocol misuse or fund misappropriation?')">
+                    <div class="topic-marker">I</div>
+                    <div><div class="topic-text">Integrity Safeguards</div><div class="topic-sub">Structural protections</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('How does the conservation law work and how can I independently verify it?')">
+                    <div class="topic-marker">L</div>
+                    <div><div class="topic-text">Conservation Law</div><div class="topic-sub">Verifiable accounting</div></div>
                 </div>
             </div>
         </div>
@@ -334,30 +343,31 @@
         <div id="chat-container" class="chat-container">
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-message assistant">
-                    <div class="msg-avatar">&#9728;&#65039;</div>
+                    <div class="msg-avatar">H</div>
                     <div class="msg-content">
-                        <p>I'm Helios. The protocol speaks through me.<br><br>
-                        I can walk you through everything &mdash; how you earn, where the $100 goes, what backs the gold treasury, and how the Power of 5 works.<br><br>
-                        <strong>Tap any topic above</strong>, or ask me anything below. Voice is on &mdash; I'll speak every answer.</p>
+                        <p>Welcome to the Helios Member Advisory.<br><br>
+                        I can provide detailed information on the settlement structure, reserve composition,
+                        allocation formulas, and membership process.<br><br>
+                        <strong>Select a topic above</strong>, or type your question below. Voice advisory is available.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask anything — earnings, gold, how the protocol works..."
+            <input type="text" id="chat-input" placeholder="Ask about settlements, reserves, allocation, membership..."
                    class="input-large" autocomplete="off">
-            <button id="chat-send" class="btn btn-primary">Ask</button>
+            <button id="chat-send" class="btn btn-primary">Submit</button>
         </div>
 
         <!-- ═══ PAGE LINKS ═══ -->
         <div class="page-links">
-            <a href="/earnings" class="page-link">💰 How You Earn</a>
-            <a href="/vault/gold" class="page-link">🥇 Gold Vault</a>
-            <a href="/treasury" class="page-link">🏦 Treasury</a>
-            <a href="/field" class="page-link">🌐 Your Field</a>
-            <a href="/metrics" class="page-link">📊 Metrics</a>
-            <a href="/activate" class="page-link">⚡ Enter Helios</a>
+            <a href="/earnings" class="page-link">Settlement Structure</a>
+            <a href="/vault/gold" class="page-link">Reserve Assets</a>
+            <a href="/treasury" class="page-link">Treasury</a>
+            <a href="/field" class="page-link">Network Map</a>
+            <a href="/metrics" class="page-link">Protocol Metrics</a>
+            <a href="/activate" class="page-link">Apply for Membership</a>
         </div>
     </div>
 </section>
@@ -365,26 +375,26 @@
 
 {% block scripts %}
 <script>
-const memberId = localStorage.getItem('helios_id') || null;
-const chatMessages = document.getElementById('chat-messages');
-const chatInput = document.getElementById('chat-input');
-const chatSend = document.getElementById('chat-send');
-const avatar = document.getElementById('helios-avatar');
-const avatarLabel = document.getElementById('avatar-label');
-const avatarStatus = document.getElementById('avatar-status');
+var memberId = localStorage.getItem('helios_id') || null;
+var chatMessages = document.getElementById('chat-messages');
+var chatInput = document.getElementById('chat-input');
+var chatSend = document.getElementById('chat-send');
+var avatar = document.getElementById('helios-avatar');
+var avatarLabel = document.getElementById('avatar-label');
+var avatarStatus = document.getElementById('avatar-status');
 
-let currentAudio = null;
-let lastAnswer = null;
-let voiceEnabled = true;
+var currentAudio = null;
+var lastAnswer = null;
+var voiceEnabled = true;
 
 // ═══ Voice Toggle ═════════════════════════════════════════════
 function toggleVoice() {
-    const toggle = document.getElementById('voiceToggle');
+    var toggle = document.getElementById('voiceToggle');
     voiceEnabled = !voiceEnabled;
     toggle.classList.toggle('active', voiceEnabled);
     avatarStatus.textContent = voiceEnabled
-        ? 'Voice on \u2014 I\u2019ll speak every answer'
-        : 'Voice off \u2014 text only';
+        ? 'Voice advisory active'
+        : 'Text-only mode';
 }
 
 // ═══ Avatar State Machine ═════════════════════════════════════
@@ -394,18 +404,18 @@ function setAvatarState(state) {
         avatar.classList.add('avatar-speaking');
         avatarLabel.textContent = 'SPEAKING';
         avatarLabel.style.color = 'var(--gold)';
-        avatarStatus.textContent = 'Tap avatar to stop';
+        avatarStatus.textContent = 'Tap to pause';
     } else if (state === 'thinking') {
         avatar.classList.add('avatar-thinking');
-        avatarLabel.textContent = 'THINKING';
+        avatarLabel.textContent = 'PROCESSING';
         avatarLabel.style.color = 'var(--text-muted)';
         avatarStatus.textContent = '';
     } else {
-        avatarLabel.textContent = 'HELIOS';
+        avatarLabel.textContent = 'MEMBER ADVISORY';
         avatarLabel.style.color = '';
         avatarStatus.textContent = voiceEnabled
-            ? (lastAnswer ? 'Tap to hear again' : 'Voice on \u2014 I\u2019ll speak every answer')
-            : 'Voice off \u2014 text only';
+            ? (lastAnswer ? 'Tap to hear again' : 'Voice advisory active')
+            : 'Text-only mode';
     }
 }
 
@@ -424,16 +434,16 @@ avatar.addEventListener('click', function() {
 
 // ═══ Chat Functions ═══════════════════════════════════════════
 function addMessage(role, text, showVoice) {
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     div.className = 'chat-message ' + role;
 
-    let voiceHtml = '';
+    var voiceHtml = '';
     if (role === 'assistant' && showVoice && voiceEnabled) {
         voiceHtml = '<button class="voice-btn" title="Listen">&#128266;</button>';
     }
 
     div.innerHTML =
-        '<div class="msg-avatar">' + (role === 'assistant' ? '&#9728;&#65039;' : '&#128100;') + '</div>' +
+        '<div class="msg-avatar">' + (role === 'assistant' ? 'H' : 'M') + '</div>' +
         '<div class="msg-content">' +
             '<p>' + text.replace(/\n/g, '<br>') + '</p>' +
             voiceHtml +
@@ -441,7 +451,7 @@ function addMessage(role, text, showVoice) {
 
     if (role === 'assistant' && showVoice) {
         lastAnswer = text;
-        const voiceBtn = div.querySelector('.voice-btn');
+        var voiceBtn = div.querySelector('.voice-btn');
         if (voiceBtn) {
             voiceBtn.addEventListener('click', function() { speakText(this, text); });
         }
@@ -509,7 +519,7 @@ async function askQuestion(question) {
 
     var typing = document.createElement('div');
     typing.className = 'chat-message assistant typing';
-    typing.innerHTML = '<div class="msg-avatar">&#9728;&#65039;</div><div class="msg-content"><p>Processing...</p></div>';
+    typing.innerHTML = '<div class="msg-avatar">H</div><div class="msg-content"><p>Processing inquiry...</p></div>';
     chatMessages.appendChild(typing);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -541,7 +551,7 @@ async function askQuestion(question) {
                 speakText(null, res.data.answer);
             }
         } else {
-            addMessage('assistant', 'Something went wrong. Please try again.');
+            addMessage('assistant', 'Unable to process your inquiry at this time. Please try again.');
         }
     } catch(err) {
         typing.remove();
@@ -559,10 +569,10 @@ chatInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') askQ
     if (!greeted && voiceEnabled) {
         sessionStorage.setItem('helios_greeted', '1');
         setTimeout(function() {
-            var intro = "Welcome to Helios. I'm your guide to the protocol. " +
-                "I can walk you through how you earn, where the gold comes from, " +
-                "and exactly how the Power of 5 works. " +
-                "Tap any topic, or ask me anything.";
+            var intro = "Welcome to the Helios Member Advisory. " +
+                "I can provide detailed information on settlement mechanics, " +
+                "reserve composition, allocation formulas, and membership structure. " +
+                "Select any topic, or ask me your question directly.";
             speakText(null, intro);
         }, 1500);
     }

@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Helios — xxxiii.io{% endblock %}</title>
+    <title>{% block title %}Helios — Private Membership Protocol{% endblock %}</title>
     <!-- HELIOS_BUILD_ID: {{ helios_build_id }} -->
-    <meta name="description" content="{% block og_description %}Helios — $100 in. Get paid every time your network grows. Backed by physical gold.{% endblock %}">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="{% block og_description %}Helios — A private membership protocol with deterministic settlement and asset-backed reserves.{% endblock %}">
+    <meta name="theme-color" content="#0c0f14">
 
     <!-- Open Graph (Facebook, Telegram, WhatsApp, iMessage) -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Helios — xxxiii.io">
-    <meta property="og:title" content="{% block og_title %}Helios — $100 In. Get Paid. Backed by Gold.{% endblock %}">
-    <meta property="og:description" content="$100 entry. Get paid every time your network grows. Physical gold backs every dollar. Power of 5.">
+    <meta property="og:site_name" content="Helios Protocol — xxxiii.io">
+    <meta property="og:title" content="{% block og_title %}Helios — Private Membership Protocol{% endblock %}">
+    <meta property="og:description" content="Deterministic settlement. Distance-weighted allocation. Asset-backed reserves. Private membership.">
     <meta property="og:image" content="https://xxxiii.io/static/img/og-helios.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -20,13 +20,13 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Helios — $100 In. Get Paid. Backed by Gold.">
-    <meta name="twitter:description" content="$100 entry. Get paid every time your network grows. Physical gold backs every dollar.">
+    <meta name="twitter:title" content="Helios — Private Membership Protocol">
+    <meta name="twitter:description" content="Deterministic settlement. Distance-weighted allocation. Asset-backed reserves.">
     <meta name="twitter:image" content="https://xxxiii.io/static/img/og-helios.svg">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23c9a84c' stroke-width='6'/><circle cx='50' cy='50' r='8' fill='%23c9a84c'/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/helios.css') }}">
     <script src="{{ url_for('static', filename='js/static-fallback.js') }}"></script>
     {% block head %}{% endblock %}
@@ -35,17 +35,16 @@
     <nav class="helios-nav">
         <div class="nav-container">
             <a href="/" class="nav-logo">
-                <span class="logo-coin">☀</span>
                 <span class="logo-text">HELIOS</span>
             </a>
             <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')">
                 <span></span><span></span><span></span>
             </button>
             <div class="nav-links">
-                <a href="/earnings">How You Earn</a>
-                <a href="/vault/gold" class="nav-gold">Gold</a>
-                <a href="/ask" class="nav-ask">Ask Helios</a>
-                <a href="/activate" class="nav-cta">Join Now</a>
+                <a href="/earnings">Settlement Structure</a>
+                <a href="/vault/gold" class="nav-gold">Reserve Assets</a>
+                <a href="/ask" class="nav-ask">Member Advisory</a>
+                <a href="/activate" class="nav-cta">Apply for Membership</a>
             </div>
         </div>
     </nav>
@@ -58,9 +57,9 @@
         <div class="footer-container">
             <div class="footer-info">
                 <p class="footer-domain">xxxiii.io</p>
-                <p class="footer-small" style="margin-bottom:.5rem;"><a href="/earnings" style="color:var(--text-muted);">How You Earn</a> · <a href="/vault/gold" style="color:var(--text-muted);">Gold Vault</a> · <a href="/ask" style="color:var(--text-muted);">Ask Helios</a> · <a href="/treasury" style="color:var(--text-muted);">Treasury</a></p>
-                <p class="footer-small">$100 in. Gold-backed. Power of 5.</p>
-                <p class="footer-small">Helios v{{ helios_version }} © {{ helios_year }}</p>
+                <p class="footer-small" style="margin-bottom:.5rem;"><a href="/earnings" style="color:var(--text-muted);">Settlement Structure</a> &middot; <a href="/vault/gold" style="color:var(--text-muted);">Reserve Assets</a> &middot; <a href="/ask" style="color:var(--text-muted);">Member Advisory</a> &middot; <a href="/treasury" style="color:var(--text-muted);">Treasury</a></p>
+                <p class="footer-small">Private membership protocol. Deterministic settlement. Asset-backed reserves.</p>
+                <p class="footer-small">Helios v{{ helios_version }} &copy; {{ helios_year }}</p>
             </div>
         </div>
     </footer>
