@@ -176,6 +176,11 @@ def create_app():
     def join(referrer=None):
         return render_template("join.html", referrer=referrer)
 
+    @app.route("/qr")
+    @app.route("/qr/<helios_id>")
+    def qr_page(helios_id=None):
+        return render_template("qr.html", helios_id=helios_id)
+
     @app.route("/dashboard")
     def dashboard():
         return render_template("dashboard.html")

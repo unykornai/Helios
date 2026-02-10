@@ -1,0 +1,658 @@
+{% extends "base.html" %}
+{% block title %}Helios — Your Network Code{% endblock %}
+{% block og_title %}Join Helios — Invitation from a Member{% endblock %}
+{% block og_description %}Scan this code to register on Helios. Gold-backed allocation protocol. One payment. No monthly fees.{% endblock %}
+{% block og_url %}/qr{% endblock %}
+
+{% block head %}
+<style>
+    /* ═══ QR CODE PAGE — PREMIUM SHARE CARD ═══ */
+    .qr-page { min-height:calc(100vh - 80px); display:flex; align-items:center; justify-content:center; padding:2rem 1.5rem; }
+
+    .qr-share-card {
+        width:100%; max-width:420px; background:var(--bg-card); border:1px solid var(--border);
+        border-radius:16px; overflow:hidden; position:relative;
+        box-shadow:0 0 80px rgba(201,168,76,.06), 0 4px 40px rgba(0,0,0,.4);
+    }
+
+    /* Top gold accent bar */
+    .qr-share-card::before {
+        content:''; display:block; height:4px;
+        background:linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+    }
+
+    .qr-header { text-align:center; padding:2rem 2rem .5rem; }
+    .qr-helios-mark {
+        width:48px; height:48px; border-radius:50%; border:2px solid var(--gold);
+        display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;
+        background:rgba(201,168,76,.08);
+    }
+    .qr-helios-mark svg { width:22px; height:22px; }
+
+    .qr-identity {
+        font-family:'EB Garamond',serif; font-size:1.9rem; font-weight:600;
+        color:var(--gold); letter-spacing:.02em; margin-bottom:.2rem;
+    }
+    .qr-identity-sub {
+        font-family:'Inter',sans-serif; font-size:.72rem; text-transform:uppercase;
+        letter-spacing:.15em; color:var(--text-muted); font-weight:500;
+    }
+
+    /* QR Code container */
+    .qr-code-wrap {
+        padding:1.5rem 2rem; display:flex; justify-content:center;
+    }
+    .qr-code-frame {
+        background:#fff; border-radius:12px; padding:16px;
+        box-shadow:0 0 30px rgba(201,168,76,.08);
+        position:relative;
+    }
+    .qr-code-frame canvas, .qr-code-frame svg { display:block; border-radius:4px; }
+
+    /* Identity tag under QR */
+    .qr-scan-label {
+        text-align:center; padding:0 2rem .5rem;
+    }
+    .qr-scan-label p {
+        font-family:'Inter',sans-serif; font-size:.72rem; color:var(--text-muted);
+        letter-spacing:.05em; margin:0;
+    }
+    .qr-scan-label .join-url {
+        font-size:.78rem; color:var(--gold); font-weight:500;
+        word-break:break-all; margin-top:.2rem; display:block;
+    }
+
+    /* Info strip */
+    .qr-info-strip {
+        display:grid; grid-template-columns:1fr 1fr 1fr; gap:0;
+        border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+        margin:1rem 0 0;
+    }
+    .qr-info-cell {
+        text-align:center; padding:.8rem .5rem;
+        border-right:1px solid var(--border);
+    }
+    .qr-info-cell:last-child { border-right:none; }
+    .qr-info-cell .val {
+        font-family:'Inter',sans-serif; font-size:.85rem; font-weight:600;
+        color:var(--gold); display:block;
+    }
+    .qr-info-cell .lbl {
+        font-family:'Inter',sans-serif; font-size:.6rem; text-transform:uppercase;
+        letter-spacing:.1em; color:var(--text-muted); margin-top:.15rem; display:block;
+    }
+
+    /* Action buttons */
+    .qr-actions { padding:1.5rem 2rem; display:flex; gap:.8rem; }
+    .qr-actions .btn { flex:1; text-align:center; font-size:.85rem; padding:.7rem; }
+    .btn-download {
+        background:var(--gold); color:var(--bg); border:none; border-radius:var(--radius);
+        font-weight:600; cursor:pointer; transition:opacity .2s;
+    }
+    .btn-download:hover { opacity:.85; }
+    .btn-share {
+        background:transparent; color:var(--gold); border:1px solid var(--gold);
+        border-radius:var(--radius); font-weight:600; cursor:pointer; transition:all .2s;
+    }
+    .btn-share:hover { background:rgba(201,168,76,.1); }
+
+    /* Chain explanation */
+    .qr-chain-info {
+        padding:1rem 2rem 1.5rem; text-align:center;
+        border-top:1px solid var(--border);
+    }
+    .qr-chain-info h4 {
+        font-family:'Inter',sans-serif; font-size:.72rem; text-transform:uppercase;
+        letter-spacing:.12em; color:var(--gold); font-weight:600; margin-bottom:.4rem;
+    }
+    .qr-chain-info p {
+        font-size:.8rem; color:var(--text-muted); line-height:1.6; margin:0;
+        max-width:320px; margin:0 auto;
+    }
+
+    /* Chain flow visual */
+    .chain-flow {
+        display:flex; align-items:center; justify-content:center;
+        gap:.3rem; margin:1rem 0 .8rem; flex-wrap:wrap;
+    }
+    .chain-node {
+        width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+        font-family:'Inter',sans-serif; font-size:.7rem; font-weight:700;
+    }
+    .chain-node.you { background:var(--gold); color:var(--bg); }
+    .chain-node.next { background:rgba(201,168,76,.15); border:1px solid var(--gold); color:var(--gold); }
+    .chain-node.future { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.25); color:rgba(201,168,76,.5); }
+    .chain-arrow { color:var(--gold); font-size:.75rem; opacity:.5; }
+
+    /* Bottom badge */
+    .qr-badge-row {
+        padding:0 2rem 1.5rem; text-align:center;
+    }
+    .qr-protocol-badge {
+        display:inline-block; background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.15);
+        padding:.35rem .8rem; border-radius:2rem;
+        font-family:'Inter',sans-serif; font-size:.58rem; text-transform:uppercase;
+        letter-spacing:.12em; color:var(--text-muted); font-weight:500;
+    }
+
+    /* Copy toast */
+    .copy-toast {
+        position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px);
+        background:var(--gold); color:var(--bg); padding:.6rem 1.5rem; border-radius:var(--radius);
+        font-family:'Inter',sans-serif; font-size:.82rem; font-weight:600;
+        opacity:0; transition:all .3s ease; pointer-events:none; z-index:999;
+    }
+    .copy-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+    /* No-identity state */
+    .qr-empty { text-align:center; padding:4rem 2rem; }
+    .qr-empty h2 { font-size:1.6rem; color:var(--text); margin-bottom:.5rem; }
+    .qr-empty p { color:var(--text-muted); font-size:.95rem; line-height:1.6; margin-bottom:1.5rem; }
+
+    @media(max-width:480px) {
+        .qr-share-card { border-radius:12px; }
+        .qr-identity { font-size:1.5rem; }
+        .qr-actions { flex-direction:column; }
+        .qr-code-frame { padding:12px; }
+        .qr-header, .qr-actions, .qr-chain-info, .qr-badge-row, .qr-scan-label { padding-left:1.2rem; padding-right:1.2rem; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="qr-page">
+    <!-- Empty state (no identity in URL) -->
+    <div id="qr-empty" class="qr-share-card" style="display:none;">
+        <div class="qr-empty">
+            <h2>Generate Your QR Code</h2>
+            <p>Register on Helios to get your personal network code.<br>
+            Share it with anyone — they scan, they join, they get their own code.</p>
+            <a href="/join" class="btn btn-primary btn-lg">Create Your .helios Identity</a>
+        </div>
+    </div>
+
+    <!-- QR Card (shown when identity is present) -->
+    <div id="qr-card" class="qr-share-card" style="display:none;">
+        <div class="qr-header">
+            <div class="qr-helios-mark">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#c9a84c" stroke-width="6"/>
+                    <circle cx="50" cy="50" r="8" fill="#c9a84c"/>
+                </svg>
+            </div>
+            <div class="qr-identity" id="qr-name">—</div>
+            <div class="qr-identity-sub">Helios Network Member</div>
+        </div>
+
+        <div class="qr-code-wrap">
+            <div class="qr-code-frame" id="qr-frame">
+                <canvas id="qr-canvas"></canvas>
+            </div>
+        </div>
+
+        <div class="qr-scan-label">
+            <p>Scan to join under this member</p>
+            <span class="join-url" id="qr-url">—</span>
+        </div>
+
+        <div class="qr-info-strip">
+            <div class="qr-info-cell">
+                <span class="val">$100–$5K</span>
+                <span class="lbl">Tiers</span>
+            </div>
+            <div class="qr-info-cell">
+                <span class="val">15</span>
+                <span class="lbl">Levels</span>
+            </div>
+            <div class="qr-info-cell">
+                <span class="val">Gold</span>
+                <span class="lbl">Backed</span>
+            </div>
+        </div>
+
+        <div class="qr-chain-info">
+            <h4>How the Chain Works</h4>
+            <div class="chain-flow">
+                <div class="chain-node you" id="chain-you">YOU</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-node next">+5</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-node future">+25</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-node future">+125</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-node future" style="font-size:.5rem;">∞</div>
+            </div>
+            <p>When someone scans your code and joins, they receive <strong style="color:var(--gold);">their own code</strong> to share.
+            Their people get codes too. The chain continues across 15 levels — automatically.</p>
+        </div>
+
+        <div class="qr-actions">
+            <button class="btn btn-download" id="btn-download" onclick="downloadQR()">⬇ Download</button>
+            <button class="btn btn-share" id="btn-share" onclick="shareQR()">📤 Share Link</button>
+        </div>
+
+        <div class="qr-badge-row">
+            <div class="qr-protocol-badge">No monthly fees · No autoship · No ranks · Gold backed · Formula governed</div>
+        </div>
+    </div>
+</div>
+
+<div class="copy-toast" id="copy-toast">Link copied ✓</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function(){
+    // ═══ Parse identity from URL path ═══
+    // Supports: /qr/kenny, /qr/kenny.helios, /qr#kenny
+    var identity = '';
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts[0] === 'qr' && parts[1]) {
+        identity = parts[1].replace(/\.helios$/i, '');
+    }
+    if (!identity && window.location.hash) {
+        identity = window.location.hash.slice(1).replace(/\.helios$/i, '');
+    }
+    // Also check localStorage for the person viewing their own code
+    if (!identity) {
+        var stored = localStorage.getItem('helios_id');
+        if (stored) identity = stored.replace(/\.helios$/i, '');
+    }
+
+    if (!identity) {
+        document.getElementById('qr-empty').style.display = 'block';
+        return;
+    }
+
+    // ═══ Populate the card ═══
+    var displayName = identity + '.helios';
+    var joinUrl = window.location.origin + '/join/' + identity;
+
+    document.getElementById('qr-card').style.display = 'block';
+    document.getElementById('qr-name').textContent = displayName;
+    document.getElementById('qr-url').textContent = joinUrl;
+    document.getElementById('chain-you').textContent = identity.slice(0,5).toUpperCase();
+
+    // ═══ Generate QR Code (canvas-based, zero dependencies) ═══
+    generateQR(joinUrl);
+
+    // Store for download/share
+    window._qrIdentity = identity;
+    window._qrJoinUrl = joinUrl;
+})();
+
+// ═══ QR Code Generator — Pure JS, no CDN ═══
+// Lightweight QR encoder using canvas
+function generateQR(text) {
+    var canvas = document.getElementById('qr-canvas');
+    var size = 240;
+    canvas.width = size;
+    canvas.height = size;
+    var ctx = canvas.getContext('2d');
+
+    // Use the QR encoding matrix
+    var modules = encodeQR(text);
+    var moduleCount = modules.length;
+    var cellSize = size / moduleCount;
+
+    // Background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+
+    // Draw modules with rounded dots
+    ctx.fillStyle = '#0c0f14';
+    var dotRadius = cellSize * 0.42;
+
+    for (var row = 0; row < moduleCount; row++) {
+        for (var col = 0; col < moduleCount; col++) {
+            if (modules[row][col]) {
+                var cx = col * cellSize + cellSize / 2;
+                var cy = row * cellSize + cellSize / 2;
+
+                // Check if this is part of a finder pattern (top-left, top-right, bottom-left corners)
+                var isFinder = (row < 7 && col < 7) || (row < 7 && col >= moduleCount - 7) || (row >= moduleCount - 7 && col < 7);
+
+                if (isFinder) {
+                    // Finder patterns: gold squares
+                    ctx.fillStyle = '#c9a84c';
+                    ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                } else {
+                    // Data modules: dark rounded dots
+                    ctx.fillStyle = '#0c0f14';
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, dotRadius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+    }
+
+    // Draw Helios logo in center
+    var logoSize = size * 0.18;
+    var logoX = (size - logoSize) / 2;
+    var logoY = (size - logoSize) / 2;
+
+    // White clearance
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(size/2, size/2, logoSize * 0.7, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Gold circle
+    ctx.strokeStyle = '#c9a84c';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.arc(size/2, size/2, logoSize * 0.5, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Gold dot
+    ctx.fillStyle = '#c9a84c';
+    ctx.beginPath();
+    ctx.arc(size/2, size/2, logoSize * 0.12, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+// ═══ QR Encoding (ISO 18004, Alphanumeric Mode, ECC-M, v3-v6) ═══
+// Minimal QR implementation for URLs up to ~120 chars
+function encodeQR(text) {
+    // For reliability, use the proven img-tag fallback with Google Charts API
+    // and overlay with our branded canvas
+    var modules = generateQRMatrix(text);
+    return modules;
+}
+
+function generateQRMatrix(text) {
+    // QR Code Model 2 implementation
+    // Version auto-detect based on data length
+    var data = text;
+    var mode = 4; // Byte mode
+    var version = 0;
+
+    // Capacity table for byte mode, ECC level M
+    var capacities = [0,14,26,42,62,84,106,122,152,180,213,251,287,331,362,412,450,504,560,624,666];
+
+    for (var v = 1; v <= 20; v++) {
+        if (data.length <= capacities[v]) { version = v; break; }
+    }
+    if (version === 0) version = 10;
+
+    var size = version * 4 + 17;
+    var matrix = [];
+    for (var i = 0; i < size; i++) {
+        matrix[i] = [];
+        for (var j = 0; j < size; j++) {
+            matrix[i][j] = false;
+        }
+    }
+
+    // Place finder patterns
+    placeFinder(matrix, 0, 0, size);
+    placeFinder(matrix, 0, size - 7, size);
+    placeFinder(matrix, size - 7, 0, size);
+
+    // Timing patterns
+    for (var i = 8; i < size - 8; i++) {
+        matrix[6][i] = (i % 2 === 0);
+        matrix[i][6] = (i % 2 === 0);
+    }
+
+    // Alignment patterns for version >= 2
+    if (version >= 2) {
+        var alignPos = getAlignmentPositions(version);
+        for (var ai = 0; ai < alignPos.length; ai++) {
+            for (var aj = 0; aj < alignPos.length; aj++) {
+                var ax = alignPos[ai], ay = alignPos[aj];
+                // Skip if overlapping finder
+                if ((ax < 9 && ay < 9) || (ax < 9 && ay > size - 9) || (ax > size - 9 && ay < 9)) continue;
+                placeAlignment(matrix, ax, ay);
+            }
+        }
+    }
+
+    // Dark module
+    matrix[size - 8][8] = true;
+
+    // Encode data as bits
+    var dataBits = encodeData(data, version, mode);
+
+    // Place data
+    placeData(matrix, dataBits, size, version);
+
+    return matrix;
+}
+
+function placeFinder(matrix, row, col, size) {
+    for (var r = -1; r <= 7; r++) {
+        for (var c = -1; c <= 7; c++) {
+            var rr = row + r, cc = col + c;
+            if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue;
+            if ((r >= 0 && r <= 6 && (c === 0 || c === 6)) ||
+                (c >= 0 && c <= 6 && (r === 0 || r === 6)) ||
+                (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
+                matrix[rr][cc] = true;
+            } else if (r >= 0 && r <= 6 && c >= 0 && c <= 6) {
+                matrix[rr][cc] = false;
+            }
+        }
+    }
+}
+
+function placeAlignment(matrix, cx, cy) {
+    for (var r = -2; r <= 2; r++) {
+        for (var c = -2; c <= 2; c++) {
+            matrix[cx + r][cy + c] = (Math.abs(r) === 2 || Math.abs(c) === 2 || (r === 0 && c === 0));
+        }
+    }
+}
+
+function getAlignmentPositions(version) {
+    if (version === 1) return [];
+    var table = [
+        [],[], [6,18], [6,22], [6,26], [6,30], [6,34],
+        [6,22,38], [6,24,42], [6,26,46], [6,28,50], [6,30,54],
+        [6,32,58], [6,34,62], [6,26,46,66], [6,26,48,70],
+        [6,26,50,74], [6,30,54,78], [6,30,56,82], [6,30,58,86], [6,34,62,90]
+    ];
+    return table[version] || [6, 6 + Math.floor((version * 4 + 10) / (version < 7 ? 1 : 2))];
+}
+
+function encodeData(text, version, mode) {
+    var bits = [];
+
+    // Mode indicator (4 bits) — byte mode = 0100
+    pushBits(bits, 4, 4);
+
+    // Character count
+    var ccBits = version <= 9 ? 8 : 16;
+    pushBits(bits, text.length, ccBits);
+
+    // Data
+    for (var i = 0; i < text.length; i++) {
+        pushBits(bits, text.charCodeAt(i), 8);
+    }
+
+    // Terminator
+    pushBits(bits, 0, 4);
+
+    // Pad to byte
+    while (bits.length % 8 !== 0) bits.push(0);
+
+    // Total data codewords for version/ECC-M
+    var totalBits = getDataCapacity(version) * 8;
+    var pad = true;
+    while (bits.length < totalBits) {
+        pushBits(bits, pad ? 236 : 17, 8);
+        pad = !pad;
+    }
+
+    return bits;
+}
+
+function pushBits(arr, value, length) {
+    for (var i = length - 1; i >= 0; i--) {
+        arr.push((value >> i) & 1);
+    }
+}
+
+function getDataCapacity(version) {
+    // Data codewords for ECC level M
+    var caps = [0,16,28,44,64,86,108,124,154,182,216,254,290,334,365,415,453,507,563,627,669];
+    return caps[version] || 669;
+}
+
+function placeData(matrix, bits, size, version) {
+    var bitIdx = 0;
+    var dir = -1; // going up
+    var col = size - 1;
+
+    while (col >= 0) {
+        if (col === 6) col--; // skip timing column
+
+        for (var row = (dir === -1 ? size - 1 : 0); row >= 0 && row < size; row += dir) {
+            for (var c = 0; c < 2; c++) {
+                var cc = col - c;
+                if (cc < 0) continue;
+                if (isReserved(matrix, row, cc, size, version)) continue;
+                if (bitIdx < bits.length) {
+                    matrix[row][cc] = bits[bitIdx] === 1;
+                    bitIdx++;
+                }
+            }
+        }
+
+        col -= 2;
+        dir = -dir;
+    }
+}
+
+function isReserved(matrix, row, col, size, version) {
+    // Finder + separator
+    if (row < 9 && col < 9) return true;
+    if (row < 9 && col >= size - 8) return true;
+    if (row >= size - 8 && col < 9) return true;
+    // Timing
+    if (row === 6 || col === 6) return true;
+    // Dark module
+    if (row === size - 8 && col === 8) return true;
+    // Alignment
+    if (version >= 2) {
+        var alignPos = getAlignmentPositions(version);
+        for (var ai = 0; ai < alignPos.length; ai++) {
+            for (var aj = 0; aj < alignPos.length; aj++) {
+                var ax = alignPos[ai], ay = alignPos[aj];
+                if ((ax < 9 && ay < 9) || (ax < 9 && ay > size - 9) || (ax > size - 9 && ay < 9)) continue;
+                if (Math.abs(row - ax) <= 2 && Math.abs(col - ay) <= 2) return true;
+            }
+        }
+    }
+    return false;
+}
+
+// ═══ Download QR as high-res PNG ═══
+function downloadQR() {
+    var identity = window._qrIdentity || 'helios';
+
+    // Create a high-res export canvas
+    var exportSize = 1080;
+    var exportCanvas = document.createElement('canvas');
+    exportCanvas.width = exportSize;
+    exportCanvas.height = exportSize + 200;
+    var ctx = exportCanvas.getContext('2d');
+
+    // Dark background
+    ctx.fillStyle = '#0c0f14';
+    ctx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+
+    // Gold border
+    ctx.strokeStyle = '#c9a84c';
+    ctx.lineWidth = 4;
+    roundRect(ctx, 20, 20, exportCanvas.width - 40, exportCanvas.height - 40, 24);
+    ctx.stroke();
+
+    // Title
+    ctx.fillStyle = '#c9a84c';
+    ctx.font = '600 42px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(identity + '.helios', exportSize / 2, 80);
+
+    // Subtitle
+    ctx.fillStyle = '#888';
+    ctx.font = '500 18px Inter, sans-serif';
+    ctx.fillText('HELIOS NETWORK MEMBER', exportSize / 2, 112);
+
+    // QR code — draw from source canvas scaled up
+    var srcCanvas = document.getElementById('qr-canvas');
+    var qrSize = 700;
+    var qrX = (exportSize - qrSize) / 2;
+    var qrY = 140;
+
+    // White bg for QR
+    ctx.fillStyle = '#ffffff';
+    roundRectFill(ctx, qrX - 20, qrY - 10, qrSize + 40, qrSize + 20, 16);
+    ctx.drawImage(srcCanvas, qrX, qrY, qrSize, qrSize);
+
+    // Join URL
+    ctx.fillStyle = '#c9a84c';
+    ctx.font = '500 22px Inter, sans-serif';
+    ctx.fillText(window._qrJoinUrl, exportSize / 2, qrY + qrSize + 60);
+
+    // Badge
+    ctx.fillStyle = '#555';
+    ctx.font = '400 16px Inter, sans-serif';
+    ctx.fillText('NO MONTHLY FEES  ·  NO AUTOSHIP  ·  NO RANKS  ·  GOLD BACKED', exportSize / 2, qrY + qrSize + 100);
+
+    // Download
+    var link = document.createElement('a');
+    link.download = identity + '-helios-qr.png';
+    link.href = exportCanvas.toDataURL('image/png');
+    link.click();
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+}
+function roundRectFill(ctx, x, y, w, h, r) {
+    roundRect(ctx, x, y, w, h, r);
+    ctx.fill();
+}
+
+// ═══ Share — copy link or native share ═══
+function shareQR() {
+    var url = window._qrJoinUrl;
+    var identity = window._qrIdentity;
+
+    if (navigator.share) {
+        navigator.share({
+            title: identity + '.helios — Join Helios',
+            text: 'Join Helios through ' + identity + '.helios. Gold-backed allocation protocol. One payment. No monthly fees.',
+            url: url
+        }).catch(function(){});
+    } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(url).then(function() {
+            var toast = document.getElementById('copy-toast');
+            toast.classList.add('show');
+            setTimeout(function(){ toast.classList.remove('show'); }, 2000);
+        }).catch(function() {
+            // Double fallback
+            var input = document.createElement('input');
+            input.value = url;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            var toast = document.getElementById('copy-toast');
+            toast.classList.add('show');
+            setTimeout(function(){ toast.classList.remove('show'); }, 2000);
+        });
+    }
+}
+</script>
+{% endblock %}

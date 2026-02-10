@@ -750,6 +750,23 @@ HELIOS_KNOWLEDGE = {
         "supply = higher price potential.\n\n"
         "The token doesn't need hype. The mechanics do the work."
     ),
+
+    "qr_code_sharing": (
+        "Every Helios member gets a personal QR code page — your .helios identity, "
+        "branded with Helios gold, downloadable as a high-res PNG.\n\n"
+        "HOW IT WORKS: Go to helios5.netlify.app/qr/yourname. That page shows "
+        "your branded QR code. When someone scans it, they land on your personal "
+        "registration link. They sign up under you.\n\n"
+        "THE CHAIN: After they register, they get their OWN QR code page at "
+        "/qr/theirname. They share that code. Their people register. Those people "
+        "get their own codes. The chain continues across all 15 levels.\n\n"
+        "Every connection is permanent. Your introducer is always your introducer. "
+        "The allocation formula runs on every join, automatically.\n\n"
+        "SHARING: Download the QR as a PNG — print it, text it, post it, put it "
+        "on a business card. Or tap Share to copy the link directly.\n\n"
+        "No app required. No login to share. Just a code and a URL. "
+        "The network builds itself one scan at a time."
+    ),
 }
 
 
@@ -798,6 +815,7 @@ TOPIC_MAP = {
     "genesis_pool": ["genesis", "genesis pool", "genesis tier", "first 10", "seed", "initial", "50000", "$50,000", "founding pool", "starting pool", "how it starts"],
     "bonus_structure": ["bonus", "bonuses", "loyalty", "milestone", "network growth bonus", "upgrade bonus", "tier upgrade bonus", "gold accumulation", "compound"],
     "token_value_drivers": ["value driver", "what drives value", "why go up", "price increase", "appreciation", "token value", "supply and demand", "scarcity", "deflationary pressure"],
+    "qr_code_sharing": ["qr", "qr code", "share code", "share link", "scan", "my code", "my qr", "network code", "how do i share", "share helios", "send my link", "business card", "invite link", "personal link", "registration link"],
 }
 
 
@@ -868,6 +886,7 @@ class AskHelios:
             {"question": "How do I convert to stablecoins?", "icon": "💱"},
             {"question": "What is the genesis pool?", "icon": "🌱"},
             {"question": "What about the liquidity pools?", "icon": "🌊"},
+            {"question": "How do I share my QR code?", "icon": "📱"},
         ]
 
     # ═══ Knowledge Base Search ═══════════════════════════════════

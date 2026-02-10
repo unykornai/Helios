@@ -56,3 +56,8 @@
   from = "/activate/*"
   to = "/activate/index.html"
   status = 200
+
+[[redirects]]
+  from = "/qr/*"
+  to = "/qr/index.html"
+  status = 200
