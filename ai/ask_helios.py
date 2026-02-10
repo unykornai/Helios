@@ -7,7 +7,7 @@ Explains money like a real person at a kitchen table.
 
 HELIOS PROTOCOL — Gold-Backed Allocation on Web3 Rails:
     5 membership tiers: $100 / $250 / $500 / $1,000 / $5,000
-    3 ways to earn: Direct Referral Cash, 15-Level Engine, Gold & Crypto
+    3 ways to earn: Direct Introduction Allocation, 15-Level Engine, Gold & Crypto
     Allocation formula: W_L = 0.50 × 0.5^(L-1) across 15 levels
     Treasury: Physical gold via APMEX, NFT certificates on XRPL + Stellar
     Depth chart: Position 1 → Position 2 → Position 3 → Network
@@ -48,52 +48,52 @@ HELIOS_KNOWLEDGE = {
     "five_tiers": (
         "There are 5 membership tiers. One payment. No monthly fees.\n\n"
         "Starter — $100. Multiplier: 1×. Allocation pool: $45. "
-        "Direct referral payout: $22.50 per person.\n\n"
+        "Direct introduction allocation: $22.50 per member.\n\n"
         "Builder — $250. Multiplier: 2.5×. Allocation pool: $112.50. "
-        "Direct referral payout: $56.25 per person.\n\n"
+        "Direct introduction allocation: $56.25 per member.\n\n"
         "Pro — $500. Multiplier: 5×. Allocation pool: $225. "
-        "Direct referral payout: $112.50 per person.\n\n"
+        "Direct introduction allocation: $112.50 per member.\n\n"
         "Leader — $1,000. Multiplier: 10×. Allocation pool: $450. "
-        "Direct referral payout: $225 per person.\n\n"
+        "Direct introduction allocation: $225 per member.\n\n"
         "Executive — $5,000. Multiplier: 50×. Allocation pool: $2,250. "
-        "Direct referral payout: $1,125 per person.\n\n"
-        "Higher tier = bigger pool = bigger payouts at every level. "
+        "Direct introduction allocation: $1,125 per member.\n\n"
+        "Higher tier = bigger pool = bigger allocations at every level. "
         "Same formula. Same structure. Just bigger numbers."
     ),
 
     "three_ways_to_earn": (
-        "There are exactly three ways you make money in Helios.\n\n"
-        "1. DIRECT REFERRAL CASH — every person you personally bring in "
-        "pays you immediately. That's 50% of your allocation pool. "
-        "At $100 tier, that's $22.50. At $5,000, that's $1,125. Per person.\n\n"
+        "There are exactly three allocation channels in Helios.\n\n"
+        "1. DIRECT INTRODUCTION ALLOCATION — every member you personally introduce "
+        "generates an immediate allocation. That's 50% of your allocation pool. "
+        "At $100 tier, that's $22.50. At $5,000, that's $1,125. Per member.\n\n"
         "2. THE 15-LEVEL ENGINE — 45% of every membership in your "
-        "network goes into a pool. That pool pays across 15 levels using "
+        "network goes into a pool. That pool distributes across 15 levels using "
         "a published formula. Level 1 gets 50%, Level 2 gets 25%, "
-        "Level 3 gets 12.5%, and so on. You earn from people you never "
-        "even met — because your people brought them in.\n\n"
+        "Level 3 gets 12.5%, and so on. You receive allocations from members you never "
+        "even met — because your network connected them.\n\n"
         "3. GOLD, NFTs, AND CRYPTO — part of every membership buys "
         "physical gold. You get gold-backed NFT certificates. You can "
         "convert to BTC, ETH, XRP, stablecoins, or hold physical metal. "
         "Plus staking bonuses from 5% to 30%.\n\n"
-        "No ranks. No quotas. No monthly. Just these three streams."
+        "No ranks. No quotas. No monthly. Just these three channels."
     ),
 
     # ─── Direct Referrals ─────────────────────────────────────────
 
     "direct_referral": (
-        "Direct referral is the simplest way you earn. You bring someone in, "
-        "you get paid. That day.\n\n"
-        "The payout is 50% of your allocation pool — which is 45% of the "
+        "The direct introduction allocation is the simplest channel. You introduce a member, "
+        "you receive an allocation. That day.\n\n"
+        "The allocation is 50% of your allocation pool — which is 45% of the "
         "membership fee. Here's what that looks like by tier:\n\n"
-        "Starter ($100) → $22.50 per referral\n"
-        "Builder ($250) → $56.25 per referral\n"
-        "Pro ($500) → $112.50 per referral\n"
-        "Leader ($1,000) → $225.00 per referral\n"
-        "Executive ($5,000) → $1,125.00 per referral\n\n"
-        "Bring in 5 people at the $100 tier and you've made $112.50. "
-        "Bring in 5 at the $5,000 tier and that's $5,625.\n\n"
-        "This is just Way #1. The 15-level engine and gold/crypto "
-        "are separate income on top of this."
+        "Starter ($100) → $22.50 per introduction\n"
+        "Builder ($250) → $56.25 per introduction\n"
+        "Pro ($500) → $112.50 per introduction\n"
+        "Leader ($1,000) → $225.00 per introduction\n"
+        "Executive ($5,000) → $1,125.00 per introduction\n\n"
+        "Introduce 5 members at the $100 tier and you've received $112.50. "
+        "Introduce 5 at the $5,000 tier and that's $5,625.\n\n"
+        "This is just Channel #1. The 15-level engine and gold/crypto "
+        "are separate allocation channels on top of this."
     ),
 
     # ─── 15-Level Engine ──────────────────────────────────────────
@@ -103,7 +103,7 @@ HELIOS_KNOWLEDGE = {
         "Every membership sends 45% into an allocation pool. That pool "
         "gets distributed across 15 levels using this formula:\n\n"
         "Weight at Level L = 0.50 × 0.5^(L-1)\n\n"
-        "Level 1: 50.0% of the pool — that's your direct referrals.\n"
+        "Level 1: 50.0% of the pool — that's your direct introductions.\n"
         "Level 2: 25.0%\n"
         "Level 3: 12.5%\n"
         "Level 4: 6.25%\n"
@@ -111,11 +111,11 @@ HELIOS_KNOWLEDGE = {
         "Level 6: 1.5625%\n"
         "Level 7: 0.781%\n"
         "...all the way down to Level 15.\n\n"
-        "The dollar amounts per person get smaller at deeper levels. "
-        "But the number of people gets exponentially larger. "
-        "5 people at Level 1. 25 at Level 2. 125 at Level 3. "
-        "By Level 7 you could have 78,125 people.\n\n"
-        "Small per person × massive volume = real money. That's the engine."
+        "The dollar amounts per member get smaller at deeper levels. "
+        "But the number of members gets exponentially larger. "
+        "5 members at Level 1. 25 at Level 2. 125 at Level 3. "
+        "By Level 7 you could have 78,125 members.\n\n"
+        "Small per member × substantial volume = real allocations. That's the engine."
     ),
 
     "allocation_formula": (
@@ -130,7 +130,7 @@ HELIOS_KNOWLEDGE = {
         "$500 tier → $225 pool\n"
         "$1,000 tier → $450 pool\n"
         "$5,000 tier → $2,250 pool\n\n"
-        "Each person's entry creates a new allocation event. "
+        "Each member's entry creates a new allocation event. "
         "The formula runs. Everyone in the 15-level chain gets their cut. "
         "Automatically. No human decision involved."
     ),
@@ -139,26 +139,26 @@ HELIOS_KNOWLEDGE = {
 
     "depth_chart": (
         "Think of the depth chart like a chain. Three positions.\n\n"
-        "POSITION 1 — sits at the top. They joined and brought people in. "
-        "Those people (Position 2) brought in more people (Position 3). "
+        "POSITION 1 — sits at the top. They joined and introduced members. "
+        "Those members (Position 2) introduced more members (Position 3). "
         "Position 1 earns from the whole tree below them, but they're "
-        "further from the action, so per-person amounts are smaller.\n\n"
-        "POSITION 2 — in the middle. They were brought in by Position 1 "
-        "and they brought in Position 3 and their people. "
+        "further from the action, so per-member amounts are smaller.\n\n"
+        "POSITION 2 — in the middle. They were introduced by Position 1 "
+        "and they introduced Position 3 and their members. "
         "Position 2 earns from everyone below them.\n\n"
         "POSITION 3 — closest to the action. They did the direct work, "
-        "brought in the people, and their people duplicated. "
-        "Position 3 makes the most money because they're closest "
+        "introduced the members, and their members duplicated. "
+        "Position 3 receives the most because they're closest "
         "to the newest activity.\n\n"
-        "Everybody gets paid. Position 3 just gets paid the most. "
+        "Everybody receives allocations. Position 3 just receives the most. "
         "The formula rewards the person doing the work."
     ),
 
     "fifty_k_scenario": (
-        "Here's a real scenario. 50,000-person network. Base $100 tier.\n\n"
+        "Here's a real scenario. 50,000-member network. Base $100 tier.\n\n"
         "POSITION 3 (did the work):\n"
         "Levels 1-7 of their network build from 5 → 25 → 125 → 625 → "
-        "3,125 → 15,625 → 31,250 people. Total allocation from the "
+        "3,125 → 15,625 → 31,250 members. Total allocation from the "
         "engine: $28,730 per month. That's $344,766 per year.\n\n"
         "POSITION 2 (above Position 3):\n"
         "Same structure, but they're one level further from the newest joins. "
@@ -298,8 +298,8 @@ HELIOS_KNOWLEDGE = {
     "how_to_join": (
         "Joining takes about two minutes.\n\n"
         "Step 1 — Pick your tier. $100, $250, $500, $1,000, or $5,000. "
-        "Higher tier means bigger allocation pool and bigger referral "
-        "payouts. All tiers get the same structure and access.\n\n"
+        "Higher tier means bigger allocation pool and bigger introduction "
+        "allocations. All tiers get the same structure and access.\n\n"
         "Step 2 — Pay once. One transaction. No recurring charges. "
         "Your fee splits automatically: 45% to the network engine, "
         "15% to gold treasury, 20% to liquidity, the rest to operations.\n\n"
@@ -307,8 +307,8 @@ HELIOS_KNOWLEDGE = {
         "or king.helios. That's yours permanently.\n\n"
         "Step 4 — Receive your first certificate allocation and full "
         "protocol access including crypto tools and the AI guide.\n\n"
-        "Step 5 — Start with 5 people. Help your 5 get their 5. "
-        "Let the 15-level math handle the rest.\n\n"
+        "Step 5 — Introduce 5 members. Help your 5 connect their 5. "
+        "Let the 15-level formula handle the rest.\n\n"
         "No application. No approval process. No waiting period."
     ),
 
@@ -318,8 +318,8 @@ HELIOS_KNOWLEDGE = {
         "That's your on-chain identity in the protocol.\n\n"
         "2. Gold-backed NFT certificates — real digital assets backed by "
         "physical gold in the treasury. Redeemable.\n\n"
-        "3. 15-level network access — every person who joins through your "
-        "network pays you across 15 levels automatically.\n\n"
+        "3. 15-level network access — every member who joins through your "
+        "network generates allocations across 15 levels automatically.\n\n"
         "4. Crypto tools — convert to BTC, ETH, XRP, XLM, USDC, USDT. "
         "Build your portfolio.\n\n"
         "5. Certificate staking — lock for 30 to 365 days, earn 5-30% "
@@ -383,11 +383,11 @@ HELIOS_KNOWLEDGE = {
     "risks": (
         "I'll be straight with you because that's how this works.\n\n"
         "Your earnings depend on building a network. If you join and don't "
-        "bring anyone in, you'll receive your certificates and gold allocation "
-        "from your own membership, but the 15-level engine needs people.\n\n"
+        "introduce anyone, you'll receive your certificates and gold allocation "
+        "from your own membership, but the 15-level engine needs members.\n\n"
         "The numbers I show — $28,730/month, $344,766/year — those are "
         "mathematical projections based on a 50,000-person network at $100 tier. "
-        "Real results depend on how many people you bring in, how well they "
+        "Real results depend on how many members you introduce, how well they "
         "duplicate, and what tiers they choose.\n\n"
         "Gold prices fluctuate. Crypto prices fluctuate. The protocol "
         "holds real assets, but asset values move.\n\n"
@@ -399,7 +399,7 @@ HELIOS_KNOWLEDGE = {
     "why_not_rug": (
         "The treasury holds physical gold with receipts on XRPL. "
         "Anyone can verify every ounce independently.\n\n"
-        "The allocation formula is published. No one decides payouts — "
+        "The allocation formula is published. No one decides allocations — "
         "the math does.\n\n"
         "There are no admin keys that let someone change the rules "
         "or drain the pools.\n\n"
@@ -435,7 +435,7 @@ HELIOS_KNOWLEDGE = {
         "- 5 tiers: $100 / $250 / $500 / $1,000 / $5,000\n"
         "- 45% of every fee enters the 15-level engine\n"
         "- Formula: W_L = 0.50 × 0.5^(L-1)\n"
-        "- 5 referrals per member. That's the width.\n"
+        "- 5 introductions per member. That's the width.\n"
         "- 15 levels deep. That's the depth.\n\n"
         "TREASURY:\n"
         "- 15% buys physical gold through APMEX\n"
@@ -470,7 +470,7 @@ HELIOS_KNOWLEDGE = {
     "earning_examples": (
         "Let me give you some real numbers. All based on the published formula.\n\n"
         "5 PEOPLE at $100 tier:\n"
-        "Direct referral: 5 × $22.50 = $112.50\n"
+        "Direct introduction: 5 × $22.50 = $112.50\n"
         "Level 1 engine: 5 × $22.50 = $112.50\n"
         "Total from just your 5: $225\n\n"
         "25 PEOPLE (your 5 each bring 5) at $100:\n"
@@ -488,8 +488,8 @@ HELIOS_KNOWLEDGE = {
 
     "mixed_tier_math": (
         "When people in your network pick higher tiers, your numbers multiply.\n\n"
-        "At $100 tier, your Level 1 payout per person is $22.50.\n"
-        "At $5,000 tier, that same position pays $1,125 per person.\n\n"
+        "At $100 tier, your Level 1 allocation per member is $22.50.\n"
+        "At $5,000 tier, that same position yields $1,125 per member.\n\n"
         "In a real network, people choose different tiers. Some pick $100. "
         "Some go $1,000. A few go $5,000.\n\n"
         "In the 50,000-person scenario with mixed tiers:\n\n"
@@ -605,7 +605,7 @@ HELIOS_KNOWLEDGE = {
         "SETTLEMENT POOL — 40% (40M tokens):\n"
         "Powers the 15-level allocation engine.\n\n"
         "NETWORK DISTRIBUTION — 35% (35M tokens):\n"
-        "Token offering, membership rewards, referral bonuses.\n\n"
+        "Token offering, membership rewards, introduction bonuses.\n\n"
         "DEVELOPMENT — 15% (15M tokens):\n"
         "4-year linear vesting. Engineering, partnerships.\n\n"
         "EMERGENCY RESERVE — 10% (10M tokens):\n"
@@ -639,7 +639,7 @@ TOPIC_MAP = {
     "what_is_helios": ["what is", "what's helios", "explain helios", "about helios", "tell me about", "how does helios", "what does helios do"],
     "five_tiers": ["tiers", "tier", "$100", "$250", "$500", "$1000", "$5000", "starter", "builder", "executive", "leader tier", "pro tier", "which tier", "pick a tier", "membership"],
     "three_ways_to_earn": ["three ways", "3 ways", "how do i earn", "how do i make money", "how you earn", "ways to earn", "income streams", "revenue streams"],
-    "direct_referral": ["direct referral", "referral pay", "refer someone", "bring someone", "per person", "per referral", "referral bonus"],
+    "direct_referral": ["direct referral", "direct introduction", "referral pay", "introduction allocation", "refer someone", "introduce someone", "bring someone", "per person", "per member", "per referral", "per introduction", "referral bonus", "introduction bonus"],
     "fifteen_level_engine": ["15 level", "fifteen level", "level engine", "allocation engine", "formula", "weight", "levels deep", "how many levels"],
     "allocation_formula": ["formula", "w_l", "0.50", "decay", "weighting", "math behind", "calculation", "how is it calculated"],
     "depth_chart": ["depth chart", "position 1", "position 2", "position 3", "who earns more", "chain", "above me", "below me", "structure", "tree"],
@@ -809,12 +809,12 @@ class AskHelios:
             "A gold-backed allocation protocol on Web3 rails (XRPL + Stellar). "
             "5 membership tiers: $100, $250, $500, $1,000, $5,000. "
             "One payment. No monthly fees. No autoship. No product.\n\n"
-            "3 WAYS TO EARN:\n"
-            "1. Direct Referral Cash — 50% of allocation pool per person you bring in\n"
+            "3 ALLOCATION CHANNELS:\n"
+            "1. Direct Introduction Allocation — 50% of allocation pool per member you introduce\n"
             "2. 15-Level Engine — 45% of every membership distributed across 15 levels, "
             "formula: W_L = 0.50 × 0.5^(L-1)\n"
             "3. Gold, NFTs & Crypto — physical gold, certificates, staking bonuses\n\n"
-            "TIER PAYOUTS (direct referral per person):\n"
+            "TIER ALLOCATIONS (direct introduction per member):\n"
             "$100 → $22.50 | $250 → $56.25 | $500 → $112.50 | "
             "$1,000 → $225 | $5,000 → $1,125\n\n"
             "DEPTH CHART:\n"
@@ -862,8 +862,8 @@ class AskHelios:
         if any(w in q for w in ["how much", "earn", "money", "make", "income", "paid"]):
             return (
                 "Your earnings depend on your tier and your network. "
-                "At the $100 tier, you earn $22.50 per direct referral. "
-                "The 15-level engine pays you from everyone in your network — "
+                "At the $100 tier, you receive $22.50 per direct introduction. "
+                "The 15-level engine distributes allocations from everyone in your network — "
                 "up to 15 levels deep. In a 50,000-person network at $100, "
                 "Position 3 earns $28,730/month. "
                 "Results depend on effort and network growth."
