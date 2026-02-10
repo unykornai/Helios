@@ -1,0 +1,374 @@
+{% extends "base.html" %}
+{% block title %}Join Helios{% if referrer %} — Invited by {{ referrer }}{% endif %}{% endblock %}
+{% block og_title %}Join Helios — Create Your Identity{% endblock %}
+{% block og_description %}30 seconds. $100 entry. Metal-backed treasury. Energy certificates. Join the field.{% endblock %}
+{% block og_url %}/join{% if referrer %}/{{ referrer }}{% endif %}{% endblock %}
+
+{% block content %}
+<section class="section join-section">
+    <div class="container container-sm">
+        <h1>&#9728;&#65039; Create Your Helios ID</h1>
+        <p class="section-subtitle">30 seconds. No crypto knowledge needed.</p>
+
+        <!-- Step 1: Choose Name -->
+        <div id="step-1" class="join-step active">
+            <div class="join-card">
+                <div class="step-indicator">Step 1 of 4</div>
+                <h2>Choose Your Name</h2>
+                <p>This is your permanent identity on Helios.</p>
+                <div class="input-group">
+                    <input type="text" id="name-input" placeholder="yourname"
+                           class="input-large" maxlength="24" autocomplete="off">
+                    <span class="input-suffix">.helios</span>
+                </div>
+                <p id="name-status" class="input-status"></p>
+                <div class="input-rules">
+                    <small>&bull; 3-24 characters &bull; Letters, numbers, hyphens, underscores &bull; Starts with a letter</small>
+                </div>
+                {% if referrer %}
+                <div class="referrer-badge">
+                    Connected by: <strong>{{ referrer }}</strong>
+                </div>
+                {% endif %}
+                <button id="btn-step1" class="btn btn-primary btn-lg btn-full" disabled>
+                    Continue &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 2: Phone Verification -->
+        <div id="step-2" class="join-step">
+            <div class="join-card">
+                <div class="step-indicator">Step 2 of 4</div>
+                <h2>&#128241; Verify Your Phone</h2>
+                <p>We'll text you a code. No spam, ever. This protects your account.</p>
+
+                <div id="phone-entry">
+                    <input type="tel" id="phone-input" placeholder="+1 (555) 123-4567"
+                           class="input-large" autocomplete="tel">
+                    <p id="phone-status" class="input-status"></p>
+                    <button id="btn-send-code" class="btn btn-primary btn-lg btn-full" style="margin-top:1rem">
+                        Send Verification Code
+                    </button>
+                    <button id="btn-skip-verify" class="btn btn-ghost btn-full" style="margin-top:.5rem">
+                        Skip for now
+                    </button>
+                </div>
+
+                <div id="code-entry" style="display:none">
+                    <p class="verify-sent-msg">Code sent to <span id="phone-masked"></span></p>
+                    <div class="code-input-grid">
+                        <input type="text" id="code-1" class="code-digit" maxlength="1" inputmode="numeric">
+                        <input type="text" id="code-2" class="code-digit" maxlength="1" inputmode="numeric">
+                        <input type="text" id="code-3" class="code-digit" maxlength="1" inputmode="numeric">
+                        <input type="text" id="code-4" class="code-digit" maxlength="1" inputmode="numeric">
+                        <input type="text" id="code-5" class="code-digit" maxlength="1" inputmode="numeric">
+                        <input type="text" id="code-6" class="code-digit" maxlength="1" inputmode="numeric">
+                    </div>
+                    <p id="code-status" class="input-status"></p>
+                    <button id="btn-verify-code" class="btn btn-primary btn-lg btn-full" style="margin-top:1rem" disabled>
+                        Verify &check;
+                    </button>
+                    <button id="btn-resend" class="btn btn-ghost btn-full" style="margin-top:.5rem">
+                        Resend Code
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Save Recovery Phrase -->
+        <div id="step-3" class="join-step">
+            <div class="join-card">
+                <div class="step-indicator">Step 3 of 4</div>
+                <h2>&#128274; Save Your Recovery Phrase</h2>
+                <p>Write these 12 words down. They're the <strong>only way</strong> to recover your account.</p>
+                <div id="recovery-phrase" class="recovery-grid"></div>
+                <div class="recovery-warning">
+                    <p>&#9888;&#65039; <strong>Important:</strong> Helios support will NEVER ask for this phrase. Anyone with these words controls your account.</p>
+                </div>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="phrase-saved">
+                    I've written down my recovery phrase
+                </label>
+                <button id="btn-step3" class="btn btn-primary btn-lg btn-full" disabled>
+                    I've Saved It &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 4: Done -->
+        <div id="step-4" class="join-step">
+            <div class="join-card join-card-success">
+                <div class="step-indicator">Welcome! &#127881;</div>
+                <h2>You're In.</h2>
+                <p id="welcome-name" class="welcome-id"></p>
+                <div id="verified-badge" style="display:none" class="verified-badge-banner">
+                    &#9989; Phone Verified
+                </div>
+                <div id="qr-container" class="qr-container"></div>
+                <p class="qr-label">Share this QR code to connect people</p>
+                <div class="welcome-actions">
+                    <a href="/dashboard" class="btn btn-primary btn-lg">Go to Dashboard</a>
+                    <a href="/ask" class="btn btn-secondary btn-lg">Ask Helios Anything</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const nameInput = document.getElementById('name-input');
+const nameStatus = document.getElementById('name-status');
+const btnStep1 = document.getElementById('btn-step1');
+const btnStep3 = document.getElementById('btn-step3');
+const phraseSaved = document.getElementById('phrase-saved');
+
+let registrationData = null;
+let verificationId = null;
+let phoneVerified = false;
+const referrer = "{{ referrer or '' }}" || (function() {
+    // Client-side referrer detection for static hosting (Netlify)
+    // URL: /enter/kenny or /join/kenny → referrer = "kenny"
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    if ((parts[0] === 'enter' || parts[0] === 'join' || parts[0] === 'activate') && parts[1]) {
+        // Show referrer badge dynamically
+        const badge = document.querySelector('.referrer-badge');
+        if (!badge) {
+            const card = document.querySelector('.join-card');
+            if (card) {
+                const div = document.createElement('div');
+                div.className = 'referrer-badge';
+                div.innerHTML = 'Connected by: <strong>' + parts[1] + '</strong>';
+                card.querySelector('.input-rules').insertAdjacentElement('afterend', div);
+            }
+        }
+        return parts[1];
+    }
+    return '';
+})();
+
+// ─── Step 1: Name validation ──────────────────────────────
+nameInput.addEventListener('input', function() {
+    const name = this.value.toLowerCase().trim();
+    this.value = name;
+
+    if (name.length < 3) {
+        nameStatus.textContent = name.length > 0 ? 'At least 3 characters needed' : '';
+        nameStatus.className = 'input-status';
+        btnStep1.disabled = true;
+        return;
+    }
+
+    if (!/^[a-z][a-z0-9_-]*$/.test(name)) {
+        nameStatus.textContent = 'Letters, numbers, hyphens, underscores only. Must start with a letter.';
+        nameStatus.className = 'input-status error';
+        btnStep1.disabled = true;
+        return;
+    }
+
+    fetch('/api/identity/verify/' + name + '.helios')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.data && data.data.exists) {
+                nameStatus.textContent = name + '.helios is taken. Try another!';
+                nameStatus.className = 'input-status error';
+                btnStep1.disabled = true;
+            } else {
+                nameStatus.textContent = name + '.helios is available \u2714';
+                nameStatus.className = 'input-status success';
+                btnStep1.disabled = false;
+            }
+        });
+});
+
+// Step 1 → Step 2 (create account then verify phone)
+btnStep1.addEventListener('click', function() {
+    const name = nameInput.value.trim();
+
+    fetch('/api/identity/create', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name: name, referrer: referrer || null})
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        if (!data.success) {
+            nameStatus.textContent = data.error;
+            nameStatus.className = 'input-status error';
+            return;
+        }
+
+        registrationData = data.data;
+
+        if (data.data._key) {
+            localStorage.setItem('helios_key', data.data._key);
+            localStorage.setItem('helios_id', data.data.helios_id);
+        }
+
+        document.getElementById('step-1').classList.remove('active');
+        document.getElementById('step-2').classList.add('active');
+    });
+});
+
+// ─── Step 2: Phone Verification ──────────────────────────────
+document.getElementById('btn-send-code').addEventListener('click', function() {
+    const phone = document.getElementById('phone-input').value.trim();
+    const phoneStatus = document.getElementById('phone-status');
+
+    if (!phone || phone.length < 10) {
+        phoneStatus.textContent = 'Please enter a valid phone number';
+        phoneStatus.className = 'input-status error';
+        return;
+    }
+
+    this.disabled = true;
+    this.textContent = 'Sending...';
+
+    fetch('/api/sms/verify/send', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            phone: phone,
+            helios_id: registrationData ? registrationData.helios_id : null
+        })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        const btn = document.getElementById('btn-send-code');
+        btn.disabled = false;
+        btn.textContent = 'Send Verification Code';
+
+        if (data.success && data.data.sent) {
+            verificationId = data.data.verification_id;
+            document.getElementById('phone-masked').textContent = data.data.phone_masked;
+            document.getElementById('phone-entry').style.display = 'none';
+            document.getElementById('code-entry').style.display = 'block';
+            document.getElementById('code-1').focus();
+        } else {
+            phoneStatus.textContent = (data.data && data.data.error) || data.error || 'Failed to send code';
+            phoneStatus.className = 'input-status error';
+        }
+    })
+    .catch(function() {
+        const btn = document.getElementById('btn-send-code');
+        btn.disabled = false;
+        btn.textContent = 'Send Verification Code';
+        document.getElementById('phone-status').textContent = 'Network error. Try again.';
+        document.getElementById('phone-status').className = 'input-status error';
+    });
+});
+
+// Auto-advance code digits
+document.querySelectorAll('.code-digit').forEach(function(input, idx) {
+    input.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        if (this.value && idx < 5) {
+            document.getElementById('code-' + (idx + 2)).focus();
+        }
+        // Enable verify when all 6 digits filled
+        const code = getCodeValue();
+        document.getElementById('btn-verify-code').disabled = code.length !== 6;
+    });
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace' && !this.value && idx > 0) {
+            document.getElementById('code-' + idx).focus();
+        }
+    });
+});
+
+function getCodeValue() {
+    let code = '';
+    for (let i = 1; i <= 6; i++) {
+        code += document.getElementById('code-' + i).value;
+    }
+    return code;
+}
+
+document.getElementById('btn-verify-code').addEventListener('click', function() {
+    const code = getCodeValue();
+    const codeStatus = document.getElementById('code-status');
+
+    if (code.length !== 6) return;
+
+    this.disabled = true;
+    this.textContent = 'Verifying...';
+
+    fetch('/api/sms/verify/confirm', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            verification_id: verificationId,
+            code: code
+        })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        const btn = document.getElementById('btn-verify-code');
+
+        if (data.success && data.data.verified) {
+            phoneVerified = true;
+            codeStatus.textContent = '\u2705 Phone verified!';
+            codeStatus.className = 'input-status success';
+            btn.textContent = 'Verified!';
+
+            setTimeout(function() { goToStep3(); }, 1000);
+        } else {
+            btn.disabled = false;
+            btn.textContent = 'Verify \u2714';
+            codeStatus.textContent = (data.data && data.data.error) || 'Wrong code';
+            codeStatus.className = 'input-status error';
+        }
+    });
+});
+
+document.getElementById('btn-resend').addEventListener('click', function() {
+    document.getElementById('code-entry').style.display = 'none';
+    document.getElementById('phone-entry').style.display = 'block';
+    for (let i = 1; i <= 6; i++) {
+        document.getElementById('code-' + i).value = '';
+    }
+});
+
+document.getElementById('btn-skip-verify').addEventListener('click', function() {
+    goToStep3();
+});
+
+function goToStep3() {
+    // Show recovery phrase
+    const grid = document.getElementById('recovery-phrase');
+    grid.innerHTML = '';
+    if (registrationData && registrationData.recovery_phrase) {
+        registrationData.recovery_phrase.forEach(function(word, i) {
+            grid.innerHTML += '<div class="phrase-word"><span class="word-num">' + (i+1) + '</span> ' + word + '</div>';
+        });
+    }
+
+    document.getElementById('step-2').classList.remove('active');
+    document.getElementById('step-3').classList.add('active');
+}
+
+// Step 3 checkbox
+phraseSaved.addEventListener('change', function() {
+    btnStep3.disabled = !this.checked;
+});
+
+// Step 3 → Step 4
+btnStep3.addEventListener('click', function() {
+    document.getElementById('welcome-name').textContent = registrationData.helios_id;
+
+    if (registrationData.qr_code) {
+        document.getElementById('qr-container').innerHTML =
+            '<img src="data:image/png;base64,' + registrationData.qr_code + '" alt="QR Code">';
+    }
+
+    if (phoneVerified) {
+        document.getElementById('verified-badge').style.display = 'block';
+    }
+
+    document.getElementById('step-3').classList.remove('active');
+    document.getElementById('step-4').classList.add('active');
+});
+</script>
+{% endblock %}

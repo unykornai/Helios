@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Infrastructure Status - Helios{% endblock %}
+
+{% block content %}
+<section class="section infra-section">
+    <div class="container">
+        <h1>&#9881;&#65039; Infrastructure Status</h1>
+        <p class="section-subtitle">Real-time system health. Everything is verifiable.</p>
+
+        <div id="status-grid" class="status-grid">
+            <div class="status-card">
+                <h3>Loading...</h3>
+                <p class="status-detail">Checking infrastructure status...</p>
+            </div>
+        </div>
+
+        <div id="services-section" style="margin-top:3rem">
+            <h2>Service Health</h2>
+            <div id="services-grid" class="status-grid" style="margin-top:1rem"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function loadStatus() {
+    const grid = document.getElementById('status-grid');
+    const servicesGrid = document.getElementById('services-grid');
+
+    // Infrastructure status
+    try {
+        const infra = await fetch('/api/infra/status').then(r => r.json());
+        const voice = await fetch('/api/voice/status').then(r => r.json());
+        const sms = await fetch('/api/sms/status').then(r => r.json());
+
+        grid.innerHTML = '';
+        servicesGrid.innerHTML = '';
+
+        // Cloudflare card
+        const cfStatus = infra.data && infra.data.status || 'unknown';
+        grid.innerHTML += buildCard('Cloudflare CDN', cfStatus === 'operational' ? 'active' : cfStatus === 'not_configured' ? 'off' : 'pending',
+            infra.data && infra.data.zone ? 'Zone: ' + infra.data.zone.name : (infra.data && infra.data.message || 'Not configured'));
+
+        // Voice card
+        const vStatus = voice.data && voice.data.status || 'unknown';
+        const vDetail = vStatus === 'active'
+            ? 'Tier: ' + (voice.data.tier || '-') + ' | Remaining: ' + (voice.data.remaining || '-') + ' chars'
+            : (voice.data && voice.data.message || 'Not configured');
+        grid.innerHTML += buildCard('Voice AI (ElevenLabs)', vStatus === 'active' ? 'active' : 'off', vDetail);
+
+        // SMS card
+        const sStatus = sms.data && sms.data.status || 'unknown';
+        const sDetail = sStatus === 'active'
+            ? 'From: ' + (sms.data.from_number || 'not set') + ' | Balance: ' + (sms.data.balance || '-') + ' ' + (sms.data.currency || '')
+            : (sms.data && sms.data.message || 'Not configured');
+        grid.innerHTML += buildCard('SMS (Telnyx)', sStatus === 'active' ? 'active' : 'off', sDetail);
+
+        // System card
+        const health = await fetch('/health').then(r => r.json());
+        grid.innerHTML += buildCard('Helios Core', health.status === 'ok' ? 'active' : 'error',
+            'Version: ' + health.version + ' | Status: ' + health.status);
+
+        // Service details
+        if (infra.data && infra.data.services) {
+            const svc = infra.data.services;
+            Object.keys(svc).forEach(function(key) {
+                const val = svc[key];
+                const dotClass = val === 'active' || val === 'full' ? 'active' : val === 'pending' ? 'pending' : 'off';
+                servicesGrid.innerHTML += buildCard(key.toUpperCase(), dotClass, 'Status: ' + val);
+            });
+        }
+
+    } catch (err) {
+        grid.innerHTML = '<div class="status-card"><h3>Error</h3><p class="status-detail">Could not load status: ' + err.message + '</p></div>';
+    }
+}
+
+function buildCard(title, dotClass, detail) {
+    return '<div class="status-card">' +
+        '<h3>' + title + '</h3>' +
+        '<div class="status-indicator"><span class="status-dot ' + dotClass + '"></span> ' +
+            (dotClass === 'active' ? 'Operational' : dotClass === 'pending' ? 'Pending' : dotClass === 'error' ? 'Error' : 'Inactive') +
+        '</div>' +
+        '<div class="status-detail"><span>' + detail + '</span></div>' +
+    '</div>';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadStatus();
+    setInterval(loadStatus, 60000);
+});
+</script>
+{% endblock %}

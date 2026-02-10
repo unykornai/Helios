@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Helios{% endblock %}
+
+{% block content %}
+<section class="section dashboard">
+    <div class="container">
+        <div class="dash-header">
+            <h1 id="dash-name">Loading...</h1>
+            <p class="dash-subtitle" id="dash-since"></p>
+        </div>
+
+        <div class="dash-grid">
+            <!-- Balance Card -->
+            <div class="dash-card dash-card-balance">
+                <h3>Balance</h3>
+                <div class="balance-amount" id="dash-balance">—</div>
+                <div class="balance-detail">
+                    <span>Earned: <b id="dash-earned">—</b></span>
+                    <span>Sent: <b id="dash-sent">—</b></span>
+                    <span>Received: <b id="dash-received">—</b></span>
+                </div>
+                <div class="balance-actions">
+                    <button class="btn btn-primary" onclick="openSend()">Send</button>
+                    <button class="btn btn-secondary" onclick="showQR()">Receive</button>
+                </div>
+            </div>
+
+            <!-- Network Card -->
+            <div class="dash-card">
+                <h3>Your Network</h3>
+                <div class="stat-row">
+                    <div class="stat">
+                        <div class="stat-value" id="dash-network-total">—</div>
+                        <div class="stat-label">Total Members</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="dash-direct">—</div>
+                        <div class="stat-label">Direct</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="dash-health">—</div>
+                        <div class="stat-label">Health</div>
+                    </div>
+                </div>
+                <a href="/network" class="btn btn-secondary btn-full">View Network →</a>
+            </div>
+
+            <!-- Activity Card -->
+            <div class="dash-card">
+                <h3>Activity Score</h3>
+                <div class="activity-ring">
+                    <svg viewBox="0 0 120 120" class="ring-svg">
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="#2a2a3e" stroke-width="8"/>
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="#f59e0b" stroke-width="8"
+                                stroke-dasharray="339.3" stroke-dashoffset="339.3" id="activity-ring"
+                                stroke-linecap="round" transform="rotate(-90, 60, 60)"/>
+                    </svg>
+                    <div class="ring-value" id="dash-activity">—</div>
+                </div>
+                <p class="activity-note">Stay above 10 to earn rewards</p>
+            </div>
+
+            <!-- Rewards Card -->
+            <div class="dash-card">
+                <h3>Total Earned</h3>
+                <div class="earned-total" id="dash-total-earned">—</div>
+                <div id="dash-earnings-breakdown"></div>
+                <a href="/api/rewards/pool" target="_blank" class="verify-link">Verify pool stats →</a>
+            </div>
+        </div>
+
+        <!-- Transaction History -->
+        <div class="dash-history">
+            <h2>Recent Activity</h2>
+            <div id="dash-history-list" class="history-list">
+                <p class="loading">Loading...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Send Modal -->
+<div id="send-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>Send HLS</h3>
+        <input type="text" id="send-to" placeholder="recipient.helios" class="input-large">
+        <input type="number" id="send-amount" placeholder="Amount" class="input-large" step="0.01">
+        <input type="text" id="send-note" placeholder="Note (optional)" class="input-large" maxlength="280">
+        <div class="modal-actions">
+            <button class="btn btn-primary" onclick="executeSend()">Send</button>
+            <button class="btn btn-secondary" onclick="closeSend()">Cancel</button>
+        </div>
+        <p id="send-status"></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const heliosId = localStorage.getItem('helios_id');
+// Defer redirect and first render until DOM is ready (static builds are less forgiving)
+document.addEventListener('DOMContentLoaded', () => {
+    if (!heliosId) {
+        window.location.href = '/join';
+        return;
+    }
+    loadDashboard();
+});
+
+async function loadDashboard() {
+    // Load balance
+    const bal = await fetch(`/api/wallet/balance/${heliosId}`).then(r=>r.json());
+    if (bal.success) {
+        document.getElementById('dash-balance').textContent = bal.data.display;
+        document.getElementById('dash-earned').textContent = `${bal.data.earned.toFixed(2)} HLS`;
+        document.getElementById('dash-sent').textContent = `${bal.data.sent.toFixed(2)} HLS`;
+        document.getElementById('dash-received').textContent = `${bal.data.received.toFixed(2)} HLS`;
+    }
+
+    // Load network stats
+    const net = await fetch(`/api/network/stats/${heliosId}`).then(r=>r.json());
+    if (net.success) {
+        document.getElementById('dash-network-total').textContent = net.data.total_network;
+        document.getElementById('dash-direct').textContent = net.data.direct_connections;
+        document.getElementById('dash-health').textContent = net.data.health.replace('_', ' ');
+        const score = net.data.your_activity;
+        document.getElementById('dash-activity').textContent = score;
+        const ring = document.getElementById('activity-ring');
+        const offset = 339.3 - (339.3 * score / 100);
+        ring.style.strokeDashoffset = offset;
+    }
+
+    // Load identity
+    const id = await fetch(`/api/identity/verify/${heliosId}`).then(r=>r.json());
+    if (id.success && id.data.exists) {
+        document.getElementById('dash-name').textContent = `☀️ ${id.data.display_name}`;
+        document.getElementById('dash-since').textContent = `Member since ${new Date(id.data.member_since).toLocaleDateString()}`;
+    }
+
+    // Load earnings
+    const earn = await fetch(`/api/rewards/total/${heliosId}`).then(r=>r.json());
+    if (earn.success) {
+        document.getElementById('dash-total-earned').textContent = `${earn.data.grand_total.toFixed(2)} ${earn.data.token}`;
+    }
+
+    // Load history
+    const hist = await fetch(`/api/wallet/history/${heliosId}?limit=20`).then(r=>r.json());
+    const list = document.getElementById('dash-history-list');
+    if (hist.success && hist.data.length > 0) {
+        list.innerHTML = hist.data.map(h => `
+            <div class="history-item history-${h.type}">
+                <div class="history-icon">${h.type === 'sent' ? '↑' : h.type === 'received' ? '↓' : '⭐'}</div>
+                <div class="history-detail">
+                    <p>${h.display}</p>
+                    <small>${new Date(h.date).toLocaleString()}</small>
+                </div>
+            </div>
+        `).join('');
+    } else {
+        list.innerHTML = '<p class="empty">No activity yet. Start connecting!</p>';
+    }
+}
+
+function openSend() { document.getElementById('send-modal').style.display = 'flex'; }
+function closeSend() { document.getElementById('send-modal').style.display = 'none'; }
+
+async function executeSend() {
+    const res = await fetch('/api/wallet/send', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            from_id: heliosId,
+            to_id: document.getElementById('send-to').value,
+            amount: parseFloat(document.getElementById('send-amount').value),
+            note: document.getElementById('send-note').value
+        })
+    }).then(r=>r.json());
+
+    const status = document.getElementById('send-status');
+    if (res.success) {
+        status.textContent = res.data.message;
+        status.className = 'success';
+        setTimeout(() => { closeSend(); loadDashboard(); }, 1500);
+    } else {
+        status.textContent = res.error;
+        status.className = 'error';
+    }
+}
+
+function showQR() {
+    fetch(`/api/wallet/receive-qr/${heliosId}`)
+        .then(r=>r.json())
+        .then(data => {
+            if (data.success) {
+                const modal = document.getElementById('send-modal');
+                modal.querySelector('.modal-content').innerHTML = `
+                    <h3>Receive HLS</h3>
+                    <img src="data:image/png;base64,${data.data.qr_code}" class="qr-img">
+                    <p>${data.data.message}</p>
+                    <button class="btn btn-secondary" onclick="closeSend(); loadDashboard();">Close</button>
+                `;
+                modal.style.display = 'flex';
+            }
+        });
+}
+
+</script>
+{% endblock %}

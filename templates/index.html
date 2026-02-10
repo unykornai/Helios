@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+{% block title %}Helios — A Private Network Protocol{% endblock %}
+{% block og_title %}Helios — A Private Network Protocol{% endblock %}
+{% block og_description %}Power of 5. Fixed supply. Metal-backed treasury. Energy certificates. Conservation law enforced. $100 entry.{% endblock %}
+{% block og_url %}/{% endblock %}
+
+{% block content %}
+<!-- ═══ HERO — HELIOS COIN ═══ -->
+<section class="hero">
+    <div class="hero-content">
+        <!-- Animated Helios Coin -->
+        <div class="coin-container">
+            <svg class="helios-coin" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="coinGrad" cx="50%" cy="45%" r="50%">
+                        <stop offset="0%" style="stop-color:#fde68a"/>
+                        <stop offset="40%" style="stop-color:#f59e0b"/>
+                        <stop offset="80%" style="stop-color:#d97706"/>
+                        <stop offset="100%" style="stop-color:#92400e"/>
+                    </radialGradient>
+                    <filter id="coinGlow">
+                        <feGaussianBlur stdDeviation="8" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <radialGradient id="innerGrad" cx="50%" cy="45%" r="45%">
+                        <stop offset="0%" style="stop-color:#fef3c7"/>
+                        <stop offset="60%" style="stop-color:#f59e0b"/>
+                        <stop offset="100%" style="stop-color:#b45309"/>
+                    </radialGradient>
+                </defs>
+                <!-- Outer ring -->
+                <circle cx="120" cy="120" r="115" fill="none" stroke="url(#coinGrad)" stroke-width="4" filter="url(#coinGlow)"/>
+                <!-- Coin body -->
+                <circle cx="120" cy="120" r="108" fill="url(#coinGrad)" filter="url(#coinGlow)"/>
+                <!-- Inner ring -->
+                <circle cx="120" cy="120" r="95" fill="none" stroke="#92400e" stroke-width="1.5" opacity="0.5"/>
+                <circle cx="120" cy="120" r="88" fill="url(#innerGrad)" opacity="0.3"/>
+                <!-- Sun rays — 5 primary (Power of 5) -->
+                <g class="coin-rays" opacity="0.7">
+                    <line x1="120" y1="50" x2="120" y2="20" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="186" y1="81" x2="206" y2="62" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="186" y1="159" x2="206" y2="178" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="120" y1="190" x2="120" y2="220" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="54" y1="81" x2="34" y2="62" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
+                </g>
+                <!-- Central sun symbol -->
+                <circle cx="120" cy="120" r="32" fill="none" stroke="#92400e" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="120" cy="120" r="8" fill="#fde68a" opacity="0.9"/>
+                <!-- Neural geometry (5 nodes around center) -->
+                <g class="coin-neural" opacity="0.5">
+                    <circle cx="120" cy="80" r="4" fill="#fde68a"/>
+                    <circle cx="158" cy="103" r="4" fill="#fde68a"/>
+                    <circle cx="144" cy="148" r="4" fill="#fde68a"/>
+                    <circle cx="96" cy="148" r="4" fill="#fde68a"/>
+                    <circle cx="82" cy="103" r="4" fill="#fde68a"/>
+                    <!-- Bond lines -->
+                    <line x1="120" y1="80" x2="158" y2="103" stroke="#fde68a" stroke-width="0.8"/>
+                    <line x1="158" y1="103" x2="144" y2="148" stroke="#fde68a" stroke-width="0.8"/>
+                    <line x1="144" y1="148" x2="96" y2="148" stroke="#fde68a" stroke-width="0.8"/>
+                    <line x1="96" y1="148" x2="82" y2="103" stroke="#fde68a" stroke-width="0.8"/>
+                    <line x1="82" y1="103" x2="120" y2="80" stroke="#fde68a" stroke-width="0.8"/>
+                </g>
+            </svg>
+        </div>
+
+        <h1 class="hero-title">HELIOS</h1>
+        <p class="hero-tagline">A private network protocol where human connections<br>inject energy and the system distributes it.<br><span style="color:var(--gold);font-size:.95rem;">$100 entry. Metal-backed treasury. Certificates. Conservation law enforced.</span></p>
+        <p class="hero-rule">Power of 5. Protocol enforced.</p>
+
+        <div class="hero-actions">
+            <a href="/activate" class="btn btn-primary btn-lg">Enter the Field — $100</a>
+            <a href="/ask" class="btn btn-ghost btn-lg">Ask HELIOS →</a>
+        </div>
+    </div>
+
+    <!-- Neural Field Background Animation -->
+    <canvas id="neural-bg" class="hero-neural-bg"></canvas>
+</section>
+
+<!-- ═══ PROTOCOL PRINCIPLES ═══ -->
+<section class="section section-dark">
+    <div class="container">
+        <h2>Protocol Architecture</h2>
+        <p class="section-subtitle">Fixed rules. No admin overrides. Verifiable by anyone.</p>
+        <div class="principle-grid">
+            <div class="principle-card">
+                <div class="principle-icon">⬡</div>
+                <h3>Bounded Field</h3>
+                <p>Every node holds a maximum of 5 bonds. No infinite chains. No unbounded growth. The field self-limits by design.</p>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">⚡</div>
+                <h3>Energy Propagation</h3>
+                <p>Energy radiates outward through bonds. weight(hop) = 1/(2^hop). Strongest at direct connections, fading naturally over distance.</p>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">🔒</div>
+                <h3>Fixed Supply</h3>
+                <p>100,000,000 HLS. No minting function. Founder tokens locked 3 years. The supply equation is closed.</p>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">🌊</div>
+                <h3>Natural Absorption</h3>
+                <p>After hop 15, fractional remainder absorbs into protocol pools — stability, liquidity, intelligence, compliance.</p>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">⟐</div>
+                <h3>No Hierarchy</h3>
+                <p>There is no above or below. Bonds are undirected. Peers connect to peers. Settlement follows physics, not position.</p>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">◉</div>
+                <h3>Verifiable</h3>
+                <p>Every settlement, every pool balance, every propagation event — publicly auditable. Don't trust. Verify.</p>
+            </div>
+        </div>
+
+        <!-- v3.0 — Energy Exchange additions -->
+        <div class="principle-grid" style="margin-top:1.5rem;">
+            <div class="principle-card">
+                <div class="principle-icon">🥇</div>
+                <h3>Metal-Backed Treasury</h3>
+                <p>Net surplus flows to physical metal purchases via APMEX. Vault Receipt NFTs anchored on XRPL. Quarterly proof-of-reserves.</p>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">🔋</div>
+                <h3>Energy Certificates</h3>
+                <p>Store energy in HC-NFT batteries. Redeem for gold or stablecoin anytime — no friction. Cancel returns energy with 2% burn.</p>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">⚖</div>
+                <h3>Conservation Law</h3>
+                <p>Total inflows = routed + stored + pooled + burned. Every unit of energy is accounted for. No leaks. No hidden pools.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ HOW THE FIELD WORKS ═══ -->
+<section class="section">
+    <div class="container">
+        <h2>How the Field Works</h2>
+        <p class="section-subtitle">Three phases. No complexity hidden.</p>
+        <div class="phase-grid">
+            <div class="phase">
+                <div class="phase-marker">01</div>
+                <h3>Acknowledgement</h3>
+                <p>When a new node joins, their initiator receives a one-time acknowledgement. Fixed amount. Immediate settlement. That's the only direct payment.</p>
+            </div>
+            <div class="phase">
+                <div class="phase-marker">02</div>
+                <h3>Propagation</h3>
+                <p>Energy radiates outward from the join event through every connected bond. Hop 1 receives the most. Each hop attenuates by half. Up to 15 hops deep.</p>
+            </div>
+            <div class="phase">
+                <div class="phase-marker">03</div>
+                <h3>Absorption</h3>
+                <p>The fractional remainder after hop 15 is absorbed into protocol pools. No energy is lost. No energy is infinite. The field conserves naturally.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ENERGY DECAY VISUALIZATION ═══ -->
+<section class="section section-dark">
+    <div class="container">
+        <h2>Energy Decay Curve</h2>
+        <p class="section-subtitle">weight(hop) = 1/(2^hop) — strongest at source, fading with distance.</p>
+        <div class="decay-visual">
+            <div class="decay-bar-container">
+                <div class="decay-hop" style="--width: 100%"><span class="hop-label">Hop 1</span><span class="hop-value">50.000%</span></div>
+                <div class="decay-hop" style="--width: 50%"><span class="hop-label">Hop 2</span><span class="hop-value">25.000%</span></div>
+                <div class="decay-hop" style="--width: 25%"><span class="hop-label">Hop 3</span><span class="hop-value">12.500%</span></div>
+                <div class="decay-hop" style="--width: 12.5%"><span class="hop-label">Hop 4</span><span class="hop-value">6.250%</span></div>
+                <div class="decay-hop" style="--width: 6.25%"><span class="hop-label">Hop 5</span><span class="hop-value">3.125%</span></div>
+                <div class="decay-hop decay-fade" style="--width: 3.125%"><span class="hop-label">Hop 6–15</span><span class="hop-value">→ 0.003%</span></div>
+            </div>
+            <p class="decay-note">After hop 15 → absorbed into protocol stability pools</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section section-cta">
+    <div class="container">
+        <h2>Ready to enter the field?</h2>
+        <p class="cta-sub">$100. Atomic. Every dollar has a destination.</p>
+        <div class="hero-actions">
+            <a href="/activate" class="btn btn-primary btn-lg">Activate — $100</a>
+            <a href="/treasury" class="btn btn-ghost btn-lg">View Treasury →</a>
+            <a href="/ask" class="btn btn-ghost btn-lg">Ask HELIOS first →</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ═══ Neural Field Background Animation ═══
+(function() {
+    const canvas = document.getElementById('neural-bg');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        const hero = canvas.parentElement;
+        canvas.width = hero.clientWidth;
+        canvas.height = hero.clientHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Create nodes
+    const nodes = [];
+    const NODE_COUNT = 60;
+    const MAX_DIST = 180;
+
+    for (let i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            r: Math.random() * 2 + 1,
+            pulse: Math.random() * Math.PI * 2
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw bonds
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < MAX_DIST) {
+                    const alpha = (1 - dist / MAX_DIST) * 0.15;
+                    ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw nodes
+        const time = Date.now() * 0.002;
+        for (const n of nodes) {
+            const pulse = Math.sin(time + n.pulse) * 0.5 + 0.5;
+            const alpha = 0.2 + pulse * 0.3;
+            ctx.fillStyle = `rgba(245, 158, 11, ${alpha})`;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r + pulse, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Move
+            n.x += n.vx;
+            n.y += n.vy;
+            if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+            if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+        }
+
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+</script>
+{% endblock %}

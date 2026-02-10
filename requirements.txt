@@ -1,0 +1,17 @@
+# Helios OS — Dependencies
+# ──────────────────────────────────────────────────────
+
+# Core
+flask>=3.0,<4.0
+sqlalchemy>=2.0,<3.0
+python-dotenv>=1.0,<2.0
+
+# Production server
+waitress>=3.0,<4.0
+
+# Utilities
+qrcode[pil]>=7.4,<8.0
+openai>=1.0,<2.0
+
+# Static export
+frozen-flask>=1.0,<2.0

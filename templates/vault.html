@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+{% block title %}Vault — Certificates &amp; Energy — Helios{% endblock %}
+
+{% block content %}
+<section class="section vault-section">
+    <div class="container">
+        <div class="vault-header">
+            <h1>🔐 Your Vault</h1>
+            <p class="section-subtitle">Certificates. Stored energy. Redemption options.</p>
+        </div>
+
+        <!-- Energy Balance -->
+        <div class="vault-balance-row">
+            <div class="vault-balance-card">
+                <div class="vb-label">Energy Balance</div>
+                <div class="vb-amount" id="vault-energy">— HE</div>
+                <div class="vb-sub">Helios Energy available</div>
+            </div>
+            <div class="vault-balance-card">
+                <div class="vb-label">Active Certificates</div>
+                <div class="vb-amount" id="vault-active-certs">—</div>
+                <div class="vb-sub">HC-NFTs (stored energy batteries)</div>
+            </div>
+            <div class="vault-balance-card">
+                <div class="vb-label">Total Stored</div>
+                <div class="vb-amount" id="vault-stored-he">— HE</div>
+                <div class="vb-sub">Energy locked in certificates</div>
+            </div>
+        </div>
+
+        <!-- Portfolio Summary -->
+        <div class="vault-portfolio" id="vault-portfolio">
+            <h2>Certificate Portfolio</h2>
+            <div class="portfolio-stats" id="portfolio-stats">
+                <p class="loading">Loading portfolio...</p>
+            </div>
+        </div>
+
+        <!-- Mint Certificate -->
+        <div class="vault-action-panel">
+            <h2>Mint Certificate</h2>
+            <p class="action-desc">Lock energy into an HC-NFT certificate. Minimum 10 HE. Redeemable for gold or stablecoin.</p>
+            <div class="mint-form">
+                <div class="mint-input-row">
+                    <input type="number" id="mint-amount" class="input-large" placeholder="Amount (HE)" min="10" step="0.01">
+                    <button class="btn btn-primary" onclick="mintCertificate()">Mint HC-NFT</button>
+                </div>
+                <p class="mint-note">Certificates can be redeemed (gold/stablecoin) or cancelled (2% friction).</p>
+                <p id="mint-status" class="action-status"></p>
+            </div>
+        </div>
+
+        <!-- Certificate List -->
+        <div class="vault-certificates">
+            <h2>Your Certificates</h2>
+            <div class="cert-list" id="cert-list">
+                <p class="loading">Loading certificates...</p>
+            </div>
+        </div>
+
+        <!-- Redemption Panel -->
+        <div class="vault-action-panel">
+            <h2>Redeem or Cancel</h2>
+            <div class="redeem-grid">
+                <div class="redeem-option">
+                    <h3>🥇 Redeem for Gold</h3>
+                    <p>Link certificate to a Metal Vault Receipt. Full value, no friction.</p>
+                    <input type="text" id="redeem-gold-cert" class="input-large" placeholder="Certificate ID">
+                    <input type="text" id="redeem-gold-mvr" class="input-large" placeholder="MVR ID (linked receipt)">
+                    <button class="btn btn-primary" onclick="redeemGold()">Redeem Gold</button>
+                    <p id="redeem-gold-status" class="action-status"></p>
+                </div>
+                <div class="redeem-option">
+                    <h3>💵 Redeem for Stablecoin</h3>
+                    <p>Convert certificate energy to stablecoin. Full value, no friction.</p>
+                    <input type="text" id="redeem-stable-cert" class="input-large" placeholder="Certificate ID">
+                    <button class="btn btn-primary" onclick="redeemStablecoin()">Redeem Stablecoin</button>
+                    <p id="redeem-stable-status" class="action-status"></p>
+                </div>
+                <div class="redeem-option redeem-cancel">
+                    <h3>✕ Cancel Certificate</h3>
+                    <p>Return energy to balance. 2% friction burned permanently.</p>
+                    <input type="text" id="cancel-cert" class="input-large" placeholder="Certificate ID">
+                    <button class="btn btn-secondary" onclick="cancelCert()">Cancel (2% friction)</button>
+                    <p id="cancel-status" class="action-status"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const heliosId = localStorage.getItem('helios_id');
+
+async function loadVault() {
+    if (!heliosId) {
+        document.getElementById('vault-energy').textContent = 'Not logged in';
+        return;
+    }
+
+    // Load energy balance
+    try {
+        const res = await fetch(`/api/energy/balance/${heliosId}`);
+        const data = await res.json();
+        document.getElementById('vault-energy').textContent = (data.energy_balance_he || 0).toFixed(2) + ' HE';
+    } catch(e) { console.error('Balance error:', e); }
+
+    // Load portfolio
+    try {
+        const res = await fetch(`/api/certificates/portfolio/${heliosId}`);
+        const data = await res.json();
+        const stats = document.getElementById('portfolio-stats');
+
+        stats.innerHTML = `
+            <div class="portfolio-grid">
+                <div class="portfolio-stat">
+                    <span class="ps-value">${data.active_count || 0}</span>
+                    <span class="ps-label">Active</span>
+                </div>
+                <div class="portfolio-stat">
+                    <span class="ps-value">${(data.active_energy_he || 0).toFixed(2)}</span>
+                    <span class="ps-label">Stored HE</span>
+                </div>
+                <div class="portfolio-stat">
+                    <span class="ps-value">$${(data.active_value_usd || 0).toFixed(2)}</span>
+                    <span class="ps-label">USD Value</span>
+                </div>
+                <div class="portfolio-stat">
+                    <span class="ps-value">${data.redeemed_count || 0}</span>
+                    <span class="ps-label">Redeemed</span>
+                </div>
+                <div class="portfolio-stat">
+                    <span class="ps-value">${data.cancelled_count || 0}</span>
+                    <span class="ps-label">Cancelled</span>
+                </div>
+                <div class="portfolio-stat">
+                    <span class="ps-value">${(data.total_friction_paid || 0).toFixed(2)}</span>
+                    <span class="ps-label">Friction Paid</span>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('vault-active-certs').textContent = data.active_count || 0;
+        document.getElementById('vault-stored-he').textContent = (data.active_energy_he || 0).toFixed(2) + ' HE';
+    } catch(e) { console.error('Portfolio error:', e); }
+
+    // Load certificate list
+    try {
+        const res = await fetch(`/api/certificates/list?holder_id=${heliosId}`);
+        const data = await res.json();
+        const list = document.getElementById('cert-list');
+
+        if (!data.certificates || data.certificates.length === 0) {
+            list.innerHTML = '<div class="empty-state"><p>No certificates yet. Mint your first HC-NFT above.</p></div>';
+            return;
+        }
+
+        list.innerHTML = data.certificates.map(c => `
+            <div class="cert-card cert-${c.state}">
+                <div class="cert-top">
+                    <span class="cert-state-badge cert-badge-${c.state}">${c.state.toUpperCase()}</span>
+                    <code class="cert-id">${c.certificate_id.substring(0, 12)}…</code>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-metric">
+                        <span class="cm-value">${parseFloat(c.energy_amount_he).toFixed(2)} HE</span>
+                        <span class="cm-label">Energy</span>
+                    </div>
+                    <div class="cert-metric">
+                        <span class="cm-value">$${parseFloat(c.energy_value_usd).toFixed(2)}</span>
+                        <span class="cm-label">USD Value</span>
+                    </div>
+                    <div class="cert-metric">
+                        <span class="cm-value">${parseFloat(c.mint_rate).toFixed(4)}</span>
+                        <span class="cm-label">Mint Rate</span>
+                    </div>
+                </div>
+                ${c.state === 'redeemed' ? `<div class="cert-redeem-info">Redeemed: ${c.redemption_type} — $${parseFloat(c.redemption_amount || 0).toFixed(2)}</div>` : ''}
+                ${c.state === 'cancelled' ? `<div class="cert-cancel-info">Friction paid: ${parseFloat(c.friction_paid || 0).toFixed(4)} HE</div>` : ''}
+            </div>
+        `).join('');
+    } catch(e) { console.error('Cert list error:', e); }
+}
+
+async function mintCertificate() {
+    const amount = parseFloat(document.getElementById('mint-amount').value);
+    if (!amount || amount < 10) { setStatus('mint-status', 'Minimum 10 HE required.', 'error'); return; }
+    try {
+        const res = await fetch('/api/certificates/mint', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ holder_id: heliosId, energy_amount_he: amount })
+        });
+        const data = await res.json();
+        if (data.error) { setStatus('mint-status', data.error, 'error'); }
+        else { setStatus('mint-status', `Certificate minted: ${data.certificate_id.substring(0, 12)}…`, 'success'); loadVault(); }
+    } catch(e) { setStatus('mint-status', 'Mint failed.', 'error'); }
+}
+
+async function redeemGold() {
+    const certId = document.getElementById('redeem-gold-cert').value.trim();
+    const mvrId = document.getElementById('redeem-gold-mvr').value.trim();
+    if (!certId || !mvrId) { setStatus('redeem-gold-status', 'Both Certificate ID and MVR ID required.', 'error'); return; }
+    try {
+        const res = await fetch('/api/certificates/redeem/gold', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ certificate_id: certId, mvr_id: mvrId })
+        });
+        const data = await res.json();
+        if (data.error) setStatus('redeem-gold-status', data.error, 'error');
+        else { setStatus('redeem-gold-status', `Redeemed for gold. Amount: $${data.redemption_amount}`, 'success'); loadVault(); }
+    } catch(e) { setStatus('redeem-gold-status', 'Redemption failed.', 'error'); }
+}
+
+async function redeemStablecoin() {
+    const certId = document.getElementById('redeem-stable-cert').value.trim();
+    if (!certId) { setStatus('redeem-stable-status', 'Certificate ID required.', 'error'); return; }
+    try {
+        const res = await fetch('/api/certificates/redeem/stablecoin', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ certificate_id: certId })
+        });
+        const data = await res.json();
+        if (data.error) setStatus('redeem-stable-status', data.error, 'error');
+        else { setStatus('redeem-stable-status', `Redeemed for stablecoin. Amount: $${data.redemption_amount}`, 'success'); loadVault(); }
+    } catch(e) { setStatus('redeem-stable-status', 'Redemption failed.', 'error'); }
+}
+
+async function cancelCert() {
+    const certId = document.getElementById('cancel-cert').value.trim();
+    if (!certId) { setStatus('cancel-status', 'Certificate ID required.', 'error'); return; }
+    if (!confirm('Cancel certificate? 2% friction will be burned permanently.')) return;
+    try {
+        const res = await fetch('/api/certificates/cancel', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ certificate_id: certId })
+        });
+        const data = await res.json();
+        if (data.error) setStatus('cancel-status', data.error, 'error');
+        else { setStatus('cancel-status', `Cancelled. ${data.friction_burned} HE burned as friction.`, 'success'); loadVault(); }
+    } catch(e) { setStatus('cancel-status', 'Cancel failed.', 'error'); }
+}
+
+function setStatus(id, msg, type) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = 'action-status ' + type;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadVault();
+});
+</script>
+{% endblock %}

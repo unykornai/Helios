@@ -1,0 +1,884 @@
+{% extends "base.html" %}
+{% block title %}Gold Vault — Member Access — Helios{% endblock %}
+{% block og_title %}Gold Vault — Physical Metal Treasury{% endblock %}
+{% block og_description %}Physical gold and silver via APMEX. Every receipt anchored on XRPL with SHA-256 proof. View the vault.{% endblock %}
+{% block og_url %}/vault/gold{% endblock %}
+
+{% block head %}
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GOLD VAULT — Member Catalog
+   Institutional-grade. Helios Protocol integration.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* ─── Lattice Energy Background ───────────────────────────────── */
+.lattice-canvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none; opacity: 0.12;
+}
+
+.vault-gold-page {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+}
+
+/* ─── Spinning Token Hero ─────────────────────────────────────── */
+.token-hero {
+    text-align: center;
+    padding: 5rem 2rem 2rem;
+    position: relative;
+}
+
+.token-spinner {
+    width: 140px; height: 140px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    perspective: 800px;
+}
+
+.token-coin {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    animation: token-spin 12s linear infinite;
+    position: relative;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 0 40px rgba(245, 158, 11, 0.4))
+            drop-shadow(0 0 80px rgba(245, 158, 11, 0.15));
+}
+
+.token-coin-face {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+}
+
+.token-coin-front {
+    background: radial-gradient(circle at 40% 35%, #fde68a, #f59e0b 40%, #d97706 70%, #92400e);
+    z-index: 2;
+}
+
+.token-coin-back {
+    background: radial-gradient(circle at 60% 65%, #fde68a, #f59e0b 40%, #d97706 70%, #92400e);
+    transform: rotateY(180deg);
+}
+
+/* Sun emblem on front */
+.token-coin-front::after {
+    content: '☀';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.2rem;
+    color: rgba(15, 15, 26, 0.5);
+    text-shadow: 0 0 15px rgba(253, 230, 138, 0.6);
+}
+
+/* HELIOS text on back */
+.token-coin-back::after {
+    content: 'H';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem; font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    color: rgba(15, 15, 26, 0.5);
+    text-shadow: 0 0 15px rgba(253, 230, 138, 0.6);
+}
+
+/* Coin edge (rim) */
+.token-coin-rim {
+    position: absolute; top: 2px; left: 2px;
+    width: calc(100% - 4px); height: calc(100% - 4px);
+    border-radius: 50%;
+    border: 3px solid rgba(253, 230, 138, 0.4);
+    box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.2);
+    pointer-events: none;
+}
+
+@keyframes token-spin {
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+/* Orbital energy rings around token */
+.token-orbit {
+    position: absolute; top: 50%; left: 50%;
+    border: 1px solid rgba(245, 158, 11, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.token-orbit-1 {
+    width: 180px; height: 180px;
+    animation: orbit-pulse 4s ease-in-out infinite;
+}
+.token-orbit-2 {
+    width: 220px; height: 220px;
+    animation: orbit-pulse 6s ease-in-out infinite reverse;
+    border-color: rgba(245, 158, 11, 0.08);
+}
+.token-orbit-3 {
+    width: 260px; height: 260px;
+    animation: orbit-pulse 8s ease-in-out infinite;
+    border-color: rgba(245, 158, 11, 0.05);
+}
+
+@keyframes orbit-pulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.04); }
+}
+
+/* Energy particles orbiting */
+.token-particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--gold);
+}
+.particle-1 { animation: orbit-particle 6s linear infinite; }
+.particle-2 { animation: orbit-particle 8s linear infinite reverse; }
+.particle-3 { animation: orbit-particle 10s linear infinite; }
+.particle-4 { animation: orbit-particle 7s linear infinite reverse; }
+.particle-5 { animation: orbit-particle 5s linear infinite; }
+
+@keyframes orbit-particle {
+    0%   { transform: rotate(0deg)   translateX(100px) rotate(0deg);   opacity: 0.8; }
+    50%  { opacity: 1; }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); opacity: 0.8; }
+}
+
+.token-hero h1 {
+    font-size: 2.4rem; font-weight: 900;
+    letter-spacing: .15em; color: var(--gold);
+    margin-bottom: .4rem;
+    text-shadow: 0 0 30px rgba(245, 158, 11, 0.1);
+}
+.token-hero .hero-sub {
+    color: var(--text-muted); font-size: 1rem;
+    max-width: 600px; margin: 0 auto 1rem;
+}
+.token-hero .hero-rule {
+    color: var(--gold); font-weight: 600;
+    font-size: .85rem; letter-spacing: .12em;
+    opacity: 0.7;
+}
+
+/* ─── Live Spot Bar ───────────────────────────────────────────── */
+.spot-bar {
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; padding: 1rem 2rem;
+    background: rgba(26, 26, 46, 0.8);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    max-width: 720px; margin: 1.5rem auto 0;
+    backdrop-filter: blur(12px);
+}
+.spot-item { text-align: center; }
+.spot-label { font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; }
+.spot-value { font-size: 1.15rem; font-weight: 800; color: var(--gold); font-variant-numeric: tabular-nums; }
+.spot-change { font-size: .75rem; font-weight: 600; }
+.spot-change.up { color: var(--green); }
+.spot-change.down { color: var(--red); }
+.spot-divider { width: 1px; height: 32px; background: var(--border); }
+
+/* ─── Category Filter Tabs ────────────────────────────────────── */
+.weight-tabs {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    justify-content: center;
+    padding: 2rem 2rem 1rem;
+    max-width: 1200px; margin: 0 auto;
+}
+.weight-tab {
+    padding: .45rem 1rem; border-radius: 20px;
+    font-size: .8rem; font-weight: 600;
+    border: 1px solid var(--border);
+    background: var(--bg-card); color: var(--text-muted);
+    cursor: pointer; transition: all .25s;
+    white-space: nowrap;
+}
+.weight-tab:hover {
+    border-color: var(--gold); color: var(--text);
+    background: rgba(245, 158, 11, 0.08);
+}
+.weight-tab.active {
+    background: var(--gold); color: var(--bg);
+    border-color: var(--gold);
+}
+
+/* ─── Product Grid ────────────────────────────────────────────── */
+.products-section {
+    max-width: 1280px; margin: 0 auto;
+    padding: 1rem 2rem 4rem;
+}
+.products-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem;
+}
+.products-count {
+    font-size: .85rem; color: var(--text-muted); font-weight: 500;
+}
+.products-sort select {
+    background: var(--bg-card); color: var(--text);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: .4rem .8rem; font-size: .85rem; font-family: 'Inter', sans-serif;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.2rem;
+}
+
+.product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    transition: all .3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.product-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity .3s;
+}
+.product-card:hover {
+    border-color: rgba(245, 158, 11, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(245, 158, 11, 0.08);
+}
+.product-card:hover::before { opacity: 1; }
+
+/* Energy lattice node indicator */
+.product-card::after {
+    content: '';
+    position: absolute; top: 12px; right: 12px;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--gold);
+    opacity: 0.4;
+    transition: opacity .3s;
+}
+.product-card:hover::after { opacity: 1; }
+
+.product-image-wrap {
+    width: 100%; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.product-image-wrap img {
+    max-width: 140px; max-height: 140px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    transition: transform .3s;
+}
+.product-card:hover .product-image-wrap img {
+    transform: scale(1.06);
+}
+
+.product-name {
+    font-size: .9rem; font-weight: 600; color: var(--text);
+    margin-bottom: .6rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-weight-badge {
+    display: inline-block;
+    padding: .15rem .5rem;
+    border-radius: 4px;
+    font-size: .7rem; font-weight: 700;
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--gold);
+    margin-bottom: .6rem;
+    letter-spacing: .05em;
+}
+
+.product-pricing {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-top: 1px solid rgba(42, 42, 62, 0.5);
+    padding-top: .6rem;
+    margin-top: .4rem;
+}
+
+.price-ask {
+    display: flex; flex-direction: column;
+}
+.price-label {
+    font-size: .65rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .06em; font-weight: 600;
+}
+.price-value {
+    font-size: 1.05rem; font-weight: 800;
+    color: var(--gold); font-variant-numeric: tabular-nums;
+}
+.price-premium {
+    font-size: .7rem; color: var(--text-muted); font-weight: 500;
+}
+
+.product-stock {
+    font-size: .7rem; font-weight: 600;
+    padding: .2rem .5rem;
+    border-radius: 4px;
+}
+.stock-in { background: rgba(16, 185, 129, 0.1); color: var(--green); }
+.stock-pre { background: rgba(59, 130, 246, 0.1); color: var(--blue); }
+.stock-out { background: rgba(239, 68, 68, 0.1); color: var(--red); }
+
+/* ─── Best Seller badge ───────────────────────────────────────── */
+.badge-bestseller {
+    position: absolute; top: 0; left: 0;
+    padding: .25rem .7rem;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: .65rem; font-weight: 800;
+    letter-spacing: .06em;
+    border-radius: 0 0 8px 0;
+    text-transform: uppercase;
+}
+
+/* ─── Energy Connection Lines (between cards) ─────────────────── */
+.energy-connection {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Member Status Bar ───────────────────────────────────────── */
+.member-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(15, 15, 26, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+    padding: .6rem 2rem;
+}
+.member-bar-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.member-info {
+    display: flex; align-items: center; gap: 1.5rem;
+}
+.member-id {
+    font-size: .75rem; color: var(--text-muted); font-weight: 500;
+}
+.member-id span { color: var(--gold); font-weight: 700; }
+.member-energy {
+    font-size: .85rem; font-weight: 700; color: var(--text);
+}
+.member-energy span { color: var(--gold); }
+.member-certs {
+    font-size: .75rem; color: var(--text-muted);
+}
+.member-certs span { color: var(--text); font-weight: 600; }
+.member-actions {
+    display: flex; gap: .8rem;
+}
+.member-actions .btn { font-size: .8rem; padding: .4rem 1rem; }
+
+/* ─── Footer Override ─────────────────────────────────────────── */
+.gold-footer {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+}
+.gold-footer p { font-size: .75rem; color: var(--text-muted); margin: .3rem 0; }
+.gold-footer .copyright { font-weight: 600; color: var(--text); font-size: .8rem; margin-bottom: .5rem; }
+.gold-footer .helios-brand { color: var(--gold); font-weight: 800; letter-spacing: .1em; }
+
+/* ─── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .token-hero h1 { font-size: 1.8rem; }
+    .spot-bar { flex-wrap: wrap; gap: 1rem; }
+    .member-bar-inner { flex-direction: column; gap: .5rem; text-align: center; }
+    .member-info { flex-wrap: wrap; justify-content: center; }
+    .weight-tabs { gap: .3rem; }
+    .weight-tab { font-size: .7rem; padding: .35rem .7rem; }
+    .token-spinner { width: 100px; height: 100px; }
+    .token-coin { width: 100px; height: 100px; }
+    .token-coin-front::after { font-size: 2.2rem; }
+    .token-coin-back::after { font-size: 2rem; }
+    .token-orbit-1 { width: 130px; height: 130px; }
+    .token-orbit-2 { width: 160px; height: 160px; }
+    .token-orbit-3 { width: 190px; height: 190px; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Lattice Energy Background Canvas -->
+<canvas class="lattice-canvas" id="latticeCanvas"></canvas>
+
+<div class="vault-gold-page">
+    <!-- Spinning Helios Token -->
+    <section class="token-hero">
+        <div class="token-spinner">
+            <div class="token-coin">
+                <div class="token-coin-face token-coin-front">
+                    <div class="token-coin-rim"></div>
+                </div>
+                <div class="token-coin-face token-coin-back">
+                    <div class="token-coin-rim"></div>
+                </div>
+            </div>
+            <div class="token-orbit token-orbit-1"></div>
+            <div class="token-orbit token-orbit-2"></div>
+            <div class="token-orbit token-orbit-3"></div>
+            <div class="token-particle particle-1"></div>
+            <div class="token-particle particle-2"></div>
+            <div class="token-particle particle-3"></div>
+            <div class="token-particle particle-4"></div>
+            <div class="token-particle particle-5"></div>
+        </div>
+        <h1>GOLD VAULT</h1>
+        <p class="hero-sub">Institutional-grade gold bars &amp; rounds. Certificate-backed. Energy-settled.</p>
+        <p class="hero-rule">CONSERVATION · RESERVES · OWNERSHIP</p>
+
+        <!-- Live Spot Price Bar -->
+        <div class="spot-bar">
+            <div class="spot-item">
+                <div class="spot-label">Gold Spot</div>
+                <div class="spot-value" id="spotPrice">$2,891.40</div>
+                <div class="spot-change up" id="spotChange">▲ +$12.80</div>
+            </div>
+            <div class="spot-divider"></div>
+            <div class="spot-item">
+                <div class="spot-label">HE Rate</div>
+                <div class="spot-value" id="heRate">1 HE = $0.033</div>
+            </div>
+            <div class="spot-divider"></div>
+            <div class="spot-item">
+                <div class="spot-label">Certificates Active</div>
+                <div class="spot-value" id="activeCerts">—</div>
+            </div>
+            <div class="spot-divider"></div>
+            <div class="spot-item">
+                <div class="spot-label">RRR Covenant</div>
+                <div class="spot-value" id="rrrStatus">✓ HEALTHY</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weight Category Tabs -->
+    <div class="weight-tabs" id="weightTabs">
+        <button class="weight-tab active" data-filter="all">All Gold</button>
+        <button class="weight-tab" data-filter="fractional">Fractional</button>
+        <button class="weight-tab" data-filter="0.5g">½ gram</button>
+        <button class="weight-tab" data-filter="1g">1 gram</button>
+        <button class="weight-tab" data-filter="2g">2 gram</button>
+        <button class="weight-tab" data-filter="2.5g">2.5 gram</button>
+        <button class="weight-tab" data-filter="5g">5 gram</button>
+        <button class="weight-tab" data-filter="10g">10 gram</button>
+        <button class="weight-tab" data-filter="20g">20 gram</button>
+        <button class="weight-tab" data-filter="50g">50 gram</button>
+        <button class="weight-tab" data-filter="100g">100 gram</button>
+        <button class="weight-tab" data-filter="250g">250 gram</button>
+        <button class="weight-tab" data-filter="500g">500 gram</button>
+        <button class="weight-tab" data-filter="1/10oz">1/10 oz</button>
+        <button class="weight-tab" data-filter="1/4oz">1/4 oz</button>
+        <button class="weight-tab" data-filter="1/2oz">1/2 oz</button>
+        <button class="weight-tab" data-filter="1oz">1 oz</button>
+        <button class="weight-tab" data-filter="2oz">2 oz</button>
+        <button class="weight-tab" data-filter="5oz">5 oz</button>
+        <button class="weight-tab" data-filter="10oz">10 oz</button>
+        <button class="weight-tab" data-filter="1kilo">1 Kilo</button>
+    </div>
+
+    <!-- Product Catalog -->
+    <section class="products-section">
+        <div class="products-header">
+            <div class="products-count" id="productsCount">Showing 40 products</div>
+            <div class="products-sort">
+                <select id="sortSelect" onchange="sortProducts(this.value)">
+                    <option value="popular">Most Popular</option>
+                    <option value="price-low">Price: Low → High</option>
+                    <option value="price-high">Price: High → Low</option>
+                    <option value="weight-low">Weight: Light → Heavy</option>
+                    <option value="weight-high">Weight: Heavy → Light</option>
+                    <option value="premium-low">Lowest Premium</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- Products populated by JS -->
+        </div>
+    </section>
+
+    <!-- Member Status Bar (fixed bottom) -->
+    <div class="member-bar">
+        <div class="member-bar-inner">
+            <div class="member-info">
+                <div class="member-id">Key: <span id="memberKey">—</span></div>
+                <div class="member-energy">Energy: <span id="memberEnergy">— HE</span></div>
+                <div class="member-certs">Certificates: <span id="memberCertCount">0</span></div>
+            </div>
+            <div class="member-actions">
+                <a href="/vault" class="btn btn-secondary">My Vault</a>
+                <a href="/treasury" class="btn btn-ghost">Treasury</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gold Footer -->
+<div class="gold-footer">
+    <p class="copyright">© 2026 <span class="helios-brand">HELIOS</span> · xxxiii.io</p>
+    <p>Private member network protocol. Certificate-backed gold settlement.</p>
+    <p>Conservation law enforced. Reserves auditable. Keys, not identities.</p>
+    <p>Gold products sourced through institutional wholesale channels. All purchases are certificate-settled through the Helios energy protocol.</p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// GOLD VAULT — Product Catalog Engine
+// Deduplicated. Every product has a unique image. Verified CDN URLs.
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// Image helpers — product-specific vs category fallback
+const CDN = 'https://www.images-apmex.com/images';
+const prod = (id) => `${CDN}/Catalog%20Images/Products/${id}_Slab.jpg?width=200&height=200`;
+const cat  = (slug) => `${CDN}/categories/${slug}?width=200&height=200`;
+
+const GOLD_PRODUCTS = [
+    // ─── Fractional ──────────────────────
+    { name: "1/100 oz Gold Bar — Scottsdale Mint", weight: "1/100 oz", weightGrams: 0.311, brand: "Scottsdale",
+      image: cat("fractional-gold-bars-rounds_cat_19426.png&v=20250108091020"),
+      askPremium: "Melt + $4.50", stock: "in", bestseller: false, category: "fractional" },
+
+    // ─── ½ gram ──────────────────────────
+    { name: "½ gram Gold Bar — APMEX (In TEP)", weight: "½g", weightGrams: 0.5, brand: "APMEX",
+      image: prod("256427"),
+      askPremium: "Melt + $41.99", stock: "in", bestseller: false, category: "0.5g" },
+
+    // ─── 1 gram ──────────────────────────
+    { name: "1 gram Gold Bar — Secondary Market", weight: "1g", weightGrams: 1, brand: "Secondary Market",
+      image: prod("12477"),
+      askPremium: "Melt + $34.99", stock: "in", bestseller: true, category: "1g" },
+
+    { name: "1 gram Gold Bar — PAMP Suisse Multigram+25 (In Assay)", weight: "1g", weightGrams: 1, brand: "PAMP Suisse",
+      image: prod("84882"),
+      askPremium: "Melt + $63.99", stock: "in", bestseller: false, category: "1g" },
+
+    { name: "1 gram Gold Bar — Perth Mint (In Assay)", weight: "1g", weightGrams: 1, brand: "Perth Mint",
+      image: prod("92093"),
+      askPremium: "Melt + $49.99", stock: "in", bestseller: false, category: "1g" },
+
+    // ─── 2 gram ──────────────────────────
+    { name: "2 gram Gold Bar — Assorted Brand", weight: "2g", weightGrams: 2, brand: "Assorted",
+      image: cat("2-gram-gold-bars-rounds_78376_Slab.jpg&v=20140523012714"),
+      askPremium: "Melt + $49.99", stock: "in", bestseller: false, category: "2g" },
+
+    // ─── 2.5 gram ────────────────────────
+    { name: "2.5 gram Gold Bar — Valcambi (In Assay)", weight: "2.5g", weightGrams: 2.5, brand: "Valcambi",
+      image: cat("2-5-gram-gold-bars-rounds_cat_19340.jpg&v=20190404014145"),
+      askPremium: "Melt + $64.99", stock: "in", bestseller: false, category: "2.5g" },
+
+    // ─── 5 gram ──────────────────────────
+    { name: "5 gram Gold Bar — Valcambi (In Assay)", weight: "5g", weightGrams: 5, brand: "Valcambi",
+      image: prod("73938"),
+      askPremium: "Melt + $89.99", stock: "in", bestseller: false, category: "5g" },
+
+    { name: "5 gram Gold Bar — APMEX (TEP)", weight: "5g", weightGrams: 5, brand: "APMEX",
+      image: prod("235530"),
+      askPremium: "Melt + $109.99", stock: "in", bestseller: false, category: "5g" },
+
+    // ─── 10 gram ─────────────────────────
+    { name: "10 gram Gold Bar — Valcambi (In Assay)", weight: "10g", weightGrams: 10, brand: "Valcambi",
+      image: prod("57500"),
+      askPremium: "Melt + $99.99", stock: "in", bestseller: false, category: "10g" },
+
+    { name: "10 gram Gold Bar — APMEX (TEP)", weight: "10g", weightGrams: 10, brand: "APMEX",
+      image: prod("235532"),
+      askPremium: "Melt + $109.99", stock: "in", bestseller: false, category: "10g" },
+
+    // ─── 20 gram ─────────────────────────
+    { name: "20 gram Gold Bar — Credit Suisse", weight: "20g", weightGrams: 20, brand: "Credit Suisse",
+      image: cat("20-gram-gold-bars-rounds_46777_Obv.jpg&v=20140523012714"),
+      askPremium: "Melt + $139.99", stock: "in", bestseller: false, category: "20g" },
+
+    // ─── 50 gram ─────────────────────────
+    { name: "50 × 1g Gold Valcambi CombiBar™ (In Assay)", weight: "50g", weightGrams: 50, brand: "Valcambi",
+      image: cat("50-gram-gold-bars-rounds_78379_Slab.jpg&v=20140523012714"),
+      askPremium: "Melt + $321.48", stock: "in", bestseller: false, category: "50g" },
+
+    // ─── 100 gram ────────────────────────
+    { name: "100 gram Gold Bar — PAMP Lady Fortuna Veriscan® (In Assay)", weight: "100g", weightGrams: 100, brand: "PAMP Suisse",
+      image: prod("78889"),
+      askPremium: "Spot + $6.22/g", stock: "in", bestseller: false, category: "100g" },
+
+    // ─── 250 gram ────────────────────────
+    { name: "250 gram Gold Bar — Austrian Mint", weight: "250g", weightGrams: 250, brand: "Austrian Mint",
+      image: cat("250-gram-gold-bars-rounds_78385_Obv.jpg&v=20140523012714"),
+      askPremium: "Spot + $4.50/g", stock: "in", bestseller: false, category: "250g" },
+
+    // ─── 500 gram ────────────────────────
+    { name: "500 gram Gold Bar — Valcambi", weight: "500g", weightGrams: 500, brand: "Valcambi",
+      image: cat("500-gram-gold-bars-rounds_79242_Slab.jpg&v=20140523012714"),
+      askPremium: "Spot + $3.80/g", stock: "in", bestseller: false, category: "500g" },
+
+    // ─── 1/10 oz ─────────────────────────
+    { name: "1/10 oz Gold Round — APMEX (In TEP)", weight: "1/10 oz", weightGrams: 3.11, brand: "APMEX",
+      image: prod("234042"),
+      askPremium: "Melt + $59.99", stock: "in", bestseller: false, category: "1/10oz" },
+
+    // ─── 1/4 oz ──────────────────────────
+    { name: "1/4 oz Gold Bar — Assorted Brand", weight: "1/4 oz", weightGrams: 7.78, brand: "Assorted",
+      image: cat("1-4-oz-gold-bars-rounds_cat_19370.jpg&v=20190610024003"),
+      askPremium: "Melt + $89.99", stock: "in", bestseller: false, category: "1/4oz" },
+
+    // ─── 1/2 oz ──────────────────────────
+    { name: "½ oz Gold Bar — PAMP Lady Fortuna Veriscan® (In Assay)", weight: "½ oz", weightGrams: 15.55, brand: "PAMP Suisse",
+      image: prod("45854"),
+      askPremium: "Melt + $219.99", stock: "in", bestseller: false, category: "1/2oz" },
+
+    // ─── 1 oz — each with a UNIQUE product image ────
+    { name: "1 oz Gold Bar — Perth Mint (In Assay)", weight: "1 oz", weightGrams: 31.1, brand: "Perth Mint",
+      image: prod("67637"),
+      askPremium: "Spot + $179.99", stock: "in", bestseller: true, category: "1oz" },
+
+    { name: "1 oz Gold Bar — Credit Suisse (In Assay)", weight: "1 oz", weightGrams: 31.1, brand: "Credit Suisse",
+      image: prod("25080"),
+      askPremium: "Spot + $169.99", stock: "in", bestseller: true, category: "1oz" },
+
+    { name: "1 oz Gold Bar — APMEX (TEP)", weight: "1 oz", weightGrams: 31.1, brand: "APMEX",
+      image: prod("216026"),
+      askPremium: "Spot + $199.99", stock: "in", bestseller: false, category: "1oz" },
+
+    { name: "1 oz Gold Bar — Valcambi (In Assay)", weight: "1 oz", weightGrams: 31.1, brand: "Valcambi",
+      image: prod("73941"),
+      askPremium: "Spot + $179.99", stock: "in", bestseller: false, category: "1oz" },
+
+    // ─── 2 oz ────────────────────────────
+    { name: "2 oz Gold Bar — Assorted Brand", weight: "2 oz", weightGrams: 62.2, brand: "Assorted",
+      image: cat("2-oz-gold-bars-rounds_cat_19440.jpg&v=20190218101052"),
+      askPremium: "Spot + $6.00/oz", stock: "in", bestseller: false, category: "2oz" },
+
+    // ─── 5 oz ────────────────────────────
+    { name: "5 oz Gold Bar — PAMP Suisse", weight: "5 oz", weightGrams: 155.5, brand: "PAMP Suisse",
+      image: cat("5-oz-gold-bars-rounds_59448_a.jpg&v=20140527110211"),
+      askPremium: "Spot + $4.80/oz", stock: "in", bestseller: false, category: "5oz" },
+
+    // ─── 10 oz ───────────────────────────
+    { name: "10 oz Gold Bar — Credit Suisse", weight: "10 oz", weightGrams: 311, brand: "Credit Suisse",
+      image: cat("10-oz-gold-bars_74195_Slab.jpg&v=20140523012714"),
+      askPremium: "Spot + $3.50/oz", stock: "in", bestseller: false, category: "10oz" },
+
+    // ─── 1 Kilo ──────────────────────────
+    { name: "1 Kilo Gold Bar — Assorted Brand", weight: "1 Kilo", weightGrams: 1000, brand: "Assorted",
+      image: cat("1-kilo-gold-bars_80049_rev.jpg&v=20140527111403"),
+      askPremium: "Spot + $2.80/oz", stock: "in", bestseller: false, category: "1kilo" },
+];
+
+// ─── State ───────────────────────────────────────────────────────
+let currentFilter = 'all';
+let currentSort = 'popular';
+let filteredProducts = [...GOLD_PRODUCTS];
+
+// ─── Render Products ─────────────────────────────────────────────
+function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    const count = document.getElementById('productsCount');
+
+    // Filter
+    if (currentFilter === 'all') {
+        filteredProducts = [...GOLD_PRODUCTS];
+    } else {
+        filteredProducts = GOLD_PRODUCTS.filter(p => p.category === currentFilter);
+    }
+
+    // Sort
+    switch (currentSort) {
+        case 'price-low':
+            filteredProducts.sort((a, b) => a.weightGrams - b.weightGrams);
+            break;
+        case 'price-high':
+            filteredProducts.sort((a, b) => b.weightGrams - a.weightGrams);
+            break;
+        case 'weight-low':
+            filteredProducts.sort((a, b) => a.weightGrams - b.weightGrams);
+            break;
+        case 'weight-high':
+            filteredProducts.sort((a, b) => b.weightGrams - a.weightGrams);
+            break;
+        case 'premium-low':
+            filteredProducts.sort((a, b) => a.weightGrams - b.weightGrams);
+            break;
+        default: // popular — bestsellers first
+            filteredProducts.sort((a, b) => (b.bestseller ? 1 : 0) - (a.bestseller ? 1 : 0));
+    }
+
+    count.textContent = `Showing ${filteredProducts.length} products`;
+
+    grid.innerHTML = filteredProducts.map((p, i) => `
+        <div class="product-card" data-category="${p.category}" style="animation: fadeInUp 0.4s ease ${i * 0.03}s both;">
+            ${p.bestseller ? '<div class="badge-bestseller">Best Seller</div>' : ''}
+            <div class="product-image-wrap">
+                <img src="${p.image}" alt="${p.name}" loading="lazy"
+                     onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22><rect fill=%22%231a1a2e%22 width=%22150%22 height=%22150%22/><text x=%2275%22 y=%2280%22 text-anchor=%22middle%22 fill=%22%23f59e0b%22 font-size=%2230%22>☀</text></svg>'">
+            </div>
+            <div class="product-weight-badge">${p.weight}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-pricing">
+                <div class="price-ask">
+                    <span class="price-label">Ask</span>
+                    <span class="price-value">${p.askPremium}</span>
+                </div>
+                <div class="product-stock ${p.stock === 'in' ? 'stock-in' : p.stock === 'pre' ? 'stock-pre' : 'stock-out'}">
+                    ${p.stock === 'in' ? '● In Stock' : p.stock === 'pre' ? '◐ Pre-Sale' : '○ Alert Me'}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// ─── Filter Tabs ─────────────────────────────────────────────────
+document.querySelectorAll('.weight-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.weight-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentFilter = tab.dataset.filter;
+        renderProducts();
+    });
+});
+
+function sortProducts(val) {
+    currentSort = val;
+    renderProducts();
+}
+
+// ─── Lattice Energy Canvas ───────────────────────────────────────
+function initLattice() {
+    const canvas = document.getElementById('latticeCanvas');
+    const ctx = canvas.getContext('2d');
+    let nodes = [];
+    let animFrame;
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initNodes();
+    }
+
+    function initNodes() {
+        nodes = [];
+        const density = Math.floor((canvas.width * canvas.height) / 18000);
+        for (let i = 0; i < density; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                r: Math.random() * 1.5 + 0.5,
+                pulse: Math.random() * Math.PI * 2
+            });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const time = Date.now() * 0.001;
+
+        // Draw connections
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    const alpha = (1 - dist / 120) * 0.3;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw nodes
+        for (const node of nodes) {
+            const pulse = Math.sin(time + node.pulse) * 0.3 + 0.7;
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.r * pulse, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(245, 158, 11, ${0.5 * pulse})`;
+            ctx.fill();
+
+            // Move
+            node.x += node.vx;
+            node.y += node.vy;
+
+            // Bounce
+            if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+        }
+
+        animFrame = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+}
+
+// ─── Load Member Data ────────────────────────────────────────────
+async function loadMemberData() {
+    const heliosId = localStorage.getItem('helios_id');
+    if (heliosId) {
+        document.getElementById('memberKey').textContent = heliosId.substring(0, 16) + '...';
+    }
+
+    // Load covenant status
+    try {
+        const res = await fetch('/api/certificates/covenant');
+        const json = await res.json();
+        const cov = json.data || json;
+        if (cov.status === 'healthy') {
+            document.getElementById('rrrStatus').textContent = '✓ HEALTHY';
+            document.getElementById('rrrStatus').style.color = 'var(--green)';
+        } else if (cov.status === 'warning') {
+            document.getElementById('rrrStatus').textContent = '⚠ WARNING';
+            document.getElementById('rrrStatus').style.color = 'var(--gold)';
+        } else {
+            document.getElementById('rrrStatus').textContent = '✕ PAUSED';
+            document.getElementById('rrrStatus').style.color = 'var(--red)';
+        }
+    } catch (e) { /* silent */ }
+}
+
+// ─── Fade-in Animation ──────────────────────────────────────────
+const fadeStyle = document.createElement('style');
+fadeStyle.textContent = `
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}`;
+document.head.appendChild(fadeStyle);
+
+// ─── Init ────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    initLattice();
+    loadMemberData();
+});
+</script>
+{% endblock %}

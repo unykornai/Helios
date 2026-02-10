@@ -1,0 +1,37 @@
+# ---- Runtime ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+*.egg
+
+# ---- Environment ----
+.env
+.venv/
+venv/
+env/
+
+# ---- Data ----
+data/*.db
+data/*.sqlite3
+data/voice_cache/
+
+# ---- Build Output ----
+build/
+
+# ---- IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Logs ----
+*.log

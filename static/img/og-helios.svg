@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <!-- Subtle grid -->
+  <g opacity="0.05">
+    <line x1="0" y1="0" x2="1200" y2="630" stroke="#f59e0b" stroke-width="1"/>
+    <line x1="1200" y1="0" x2="0" y2="630" stroke="#f59e0b" stroke-width="1"/>
+    <circle cx="600" cy="315" r="200" fill="none" stroke="#f59e0b" stroke-width="1"/>
+    <circle cx="600" cy="315" r="280" fill="none" stroke="#f59e0b" stroke-width="0.5"/>
+  </g>
+  <!-- Gold glow -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="600" cy="260" r="300" fill="url(#glow)"/>
+  <!-- Sun symbol -->
+  <circle cx="600" cy="240" r="60" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.8"/>
+  <circle cx="600" cy="240" r="12" fill="#f59e0b" opacity="0.9"/>
+  <!-- 5 rays (Power of 5) -->
+  <g stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" opacity="0.7">
+    <line x1="600" y1="170" x2="600" y2="145"/>
+    <line x1="667" y1="206" x2="686" y2="186"/>
+    <line x1="667" y1="274" x2="686" y2="294"/>
+    <line x1="600" y1="310" x2="600" y2="335"/>
+    <line x1="533" y1="206" x2="514" y2="186"/>
+  </g>
+  <!-- 5 neural nodes -->
+  <g fill="#f59e0b" opacity="0.5">
+    <circle cx="600" cy="175" r="5"/>
+    <circle cx="662" cy="200" r="5"/>
+    <circle cx="638" cy="268" r="5"/>
+    <circle cx="562" cy="268" r="5"/>
+    <circle cx="538" cy="200" r="5"/>
+    <!-- Bond lines -->
+    <line x1="600" y1="175" x2="662" y2="200" stroke="#f59e0b" stroke-width="1"/>
+    <line x1="662" y1="200" x2="638" y2="268" stroke="#f59e0b" stroke-width="1"/>
+    <line x1="638" y1="268" x2="562" y2="268" stroke="#f59e0b" stroke-width="1"/>
+    <line x1="562" y1="268" x2="538" y2="200" stroke="#f59e0b" stroke-width="1"/>
+    <line x1="538" y1="200" x2="600" y2="175" stroke="#f59e0b" stroke-width="1"/>
+  </g>
+  <!-- HELIOS text -->
+  <text x="600" y="410" text-anchor="middle" fill="#f5f5f5" font-family="Inter,system-ui,sans-serif" font-size="56" font-weight="800" letter-spacing="12">HELIOS</text>
+  <!-- Tagline -->
+  <text x="600" y="460" text-anchor="middle" fill="#a1a1aa" font-family="Inter,system-ui,sans-serif" font-size="20" font-weight="400">A private network protocol</text>
+  <!-- Bottom line -->
+  <text x="600" y="520" text-anchor="middle" fill="#f59e0b" font-family="Inter,system-ui,sans-serif" font-size="16" font-weight="600" letter-spacing="2">$100 ENTRY  ·  METAL-BACKED  ·  CONSERVATION LAW ENFORCED</text>
+  <!-- Domain -->
+  <text x="600" y="570" text-anchor="middle" fill="#71717a" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="500">xxxiii.io</text>
+  <!-- Gold bottom border -->
+  <rect x="0" y="625" width="1200" height="5" fill="#f59e0b" opacity="0.6"/>
+</svg>

@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %}Activate — Enter the Field — Helios{% endblock %}
+{% block og_title %}Enter the Field — $100 Atomic{% endblock %}
+{% block og_description %}Every dollar has a destination. 45% energy propagation. 20% liquidity. 15% metal-backed treasury. No hidden fees.{% endblock %}
+{% block og_url %}/activate{% endblock %}
+
+{% block content %}
+<section class="section activate-section">
+    <div class="container container-sm">
+        <div class="activate-header">
+            <div class="activate-coin">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="activate-coin-svg">
+                    <defs>
+                        <radialGradient id="actCoinGrad" cx="50%" cy="45%" r="50%">
+                            <stop offset="0%" style="stop-color:#fde68a"/>
+                            <stop offset="40%" style="stop-color:#f59e0b"/>
+                            <stop offset="80%" style="stop-color:#d97706"/>
+                            <stop offset="100%" style="stop-color:#92400e"/>
+                        </radialGradient>
+                    </defs>
+                    <circle cx="60" cy="60" r="56" fill="url(#actCoinGrad)" filter="url(#coinGlow)"/>
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#92400e" stroke-width="1" opacity="0.4"/>
+                    <text x="60" y="66" text-anchor="middle" fill="#fef3c7" font-size="22" font-weight="900" font-family="Inter, sans-serif">$100</text>
+                </svg>
+            </div>
+            <h1>One Price. Atomic.</h1>
+            <p class="activate-tagline">Every dollar has a destination. No slush funds. No mystery fees.</p>
+        </div>
+
+        <!-- Allocation Breakdown -->
+        <div class="allocation-visual">
+            <h2>Where Your $100 Goes</h2>
+            <div class="alloc-bar">
+                <div class="alloc-segment alloc-propagation" style="width:45%">45%</div>
+                <div class="alloc-segment alloc-liquidity" style="width:20%">20%</div>
+                <div class="alloc-segment alloc-treasury" style="width:15%">15%</div>
+                <div class="alloc-segment alloc-infra" style="width:10%">10%</div>
+                <div class="alloc-segment alloc-buffer" style="width:10%">10%</div>
+            </div>
+            <div class="alloc-legend">
+                <div class="alloc-legend-item">
+                    <span class="alloc-dot alloc-propagation"></span>
+                    <div>
+                        <strong>$45 — Energy Propagation</strong>
+                        <p>Flows through bonds to your peers. Strongest at direct connections, attenuating naturally with distance.</p>
+                    </div>
+                </div>
+                <div class="alloc-legend-item">
+                    <span class="alloc-dot alloc-liquidity"></span>
+                    <div>
+                        <strong>$20 — Liquidity Pool</strong>
+                        <p>Internal LP providing redemption depth. Ensures certificates can always be redeemed.</p>
+                    </div>
+                </div>
+                <div class="alloc-legend-item">
+                    <span class="alloc-dot alloc-treasury"></span>
+                    <div>
+                        <strong>$15 — Treasury</strong>
+                        <p>Surplus allocated to physical metal purchases (APMEX). Backs the protocol with real assets.</p>
+                    </div>
+                </div>
+                <div class="alloc-legend-item">
+                    <span class="alloc-dot alloc-infra"></span>
+                    <div>
+                        <strong>$10 — Infrastructure</strong>
+                        <p>Operations, hosting, compliance, and protocol maintenance.</p>
+                    </div>
+                </div>
+                <div class="alloc-legend-item">
+                    <span class="alloc-dot alloc-buffer"></span>
+                    <div>
+                        <strong>$10 — Protocol Buffer</strong>
+                        <p>Reserve for edge cases. Ensures the system never runs dry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What You Get -->
+        <div class="activate-benefits">
+            <h2>What You Get</h2>
+            <div class="benefit-list">
+                <div class="benefit-item">
+                    <span class="benefit-icon">◉</span>
+                    <div>
+                        <strong>yourname.helios</strong>
+                        <p>Permanent identity NFT on the Helios network. Your node in the field.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">⚡</span>
+                    <div>
+                        <strong>Energy Flow</strong>
+                        <p>Energy propagates through your bonds. Up to 5 connections, 15 hops deep.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔋</span>
+                    <div>
+                        <strong>Certificate Minting</strong>
+                        <p>Store energy in HC-NFT certificates. Redeem for gold or stablecoin anytime.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">☀</span>
+                    <div>
+                        <strong>Ask Helios</strong>
+                        <p>AI assistant with voice. Understands the full protocol. Always available.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📊</span>
+                    <div>
+                        <strong>Transparent Metrics</strong>
+                        <p>SR-level dashboards. Reserve ratio, flow efficiency, churn — all public.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referrer Info -->
+        {% if referrer %}
+        <div class="activate-referrer">
+            <p>Invited by: <strong>{{ referrer }}.helios</strong></p>
+        </div>
+        {% endif %}
+        <div id="dynamic-referrer" style="display:none" class="activate-referrer"></div>
+
+        <!-- CTA -->
+        <div class="activate-cta">
+            <a id="activate-cta-link" href="/join{% if referrer %}/{{ referrer }}{% endif %}" class="btn btn-primary btn-lg btn-full">Activate — $100</a>
+            <p class="activate-note">One price. One transaction. Atomic. If payment fails, nothing happens.</p>
+        </div>
+
+        <!-- Conservation Law -->
+        <div class="activate-conservation">
+            <h3>Conservation Law</h3>
+            <p class="conservation-formula">∑ inflows = routed + stored + pooled + burned</p>
+            <p class="conservation-note">Total energy entering the system always equals total energy distributed. No leaks. No hidden pools. Verifiable at <a href="/api/energy/conservation">/api/energy/conservation</a>.</p>
+        </div>
+    </div>
+</section>
+
+<script>
+// Client-side referrer detection for static hosting (Netlify)
+(function() {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts[0] === 'activate' && parts[1]) {
+        const ref = parts[1];
+        const dynRef = document.getElementById('dynamic-referrer');
+        if (dynRef && !document.querySelector('.activate-referrer p')) {
+            dynRef.innerHTML = '<p>Invited by: <strong>' + ref + '.helios</strong></p>';
+            dynRef.style.display = 'block';
+        }
+        const ctaLink = document.getElementById('activate-cta-link');
+        if (ctaLink && !ctaLink.href.includes('/' + ref)) {
+            ctaLink.href = '/join/' + ref;
+        }
+    }
+})();
+</script>
+</section>
+{% endblock %}

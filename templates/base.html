@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Helios — xxxiii.io{% endblock %}</title>
+    <!-- HELIOS_BUILD_ID: {{ helios_build_id }} -->
+    <meta name="description" content="{% block og_description %}Helios — A private network protocol. Fixed supply. Bounded field. Protocol-enforced settlement.{% endblock %}">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Open Graph (Facebook, Telegram, WhatsApp, iMessage) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Helios — xxxiii.io">
+    <meta property="og:title" content="{% block og_title %}Helios — A Private Network Protocol{% endblock %}">
+    <meta property="og:description" content="$100 entry. Metal-backed treasury. Energy certificates. Conservation law enforced. Power of 5.">
+    <meta property="og:image" content="https://xxxiii.io/static/img/og-helios.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://xxxiii.io{% block og_url %}{% endblock %}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Helios — A Private Network Protocol">
+    <meta name="twitter:description" content="$100 entry. Metal-backed treasury. Energy certificates. Conservation law enforced.">
+    <meta name="twitter:image" content="https://xxxiii.io/static/img/og-helios.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/helios.css') }}">
+    <script src="{{ url_for('static', filename='js/static-fallback.js') }}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="helios-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-coin">☀</span>
+                <span class="logo-text">HELIOS</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/network">Field</a>
+                <a href="/treasury">Treasury</a>
+                <a href="/vault">Vault</a>
+                <a href="/vault/gold" class="nav-gold">Gold</a>
+                <a href="/metrics">Metrics</a>
+                <a href="/status">Protocol</a>
+                <a href="/ask" class="nav-ask">Ask Helios</a>
+                <a href="/activate" class="nav-cta">Enter</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="helios-footer">
+        <div class="footer-container">
+            <div class="footer-trust">
+                <h4>Verify the Protocol</h4>
+                <a href="/api/token/info">Token Parameters</a>
+                <a href="/api/token/supply">Supply Integrity</a>
+                <a href="/api/token/verify">Protocol Verification</a>
+                <a href="/api/token/founder-lock">Founder Lock Status</a>
+                <a href="/api/rewards/protocol">Settlement Rules</a>
+                <a href="/api/treasury/reserves">Proof of Reserves</a>
+                <a href="/api/energy/conservation">Conservation Law</a>
+                <a href="/api/metrics/all">Protocol Metrics</a>
+            </div>
+            <div class="footer-info">
+                <p class="footer-domain">xxxiii.io</p>
+                <p class="footer-small">Fixed supply. Bounded field. Protocol-enforced settlement.</p>
+                <p class="footer-small">Helios v{{ helios_version }} — A private network protocol. © {{ helios_year }}</p>
+            </div>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block title %}Treasury — Proof of Reserves — Helios{% endblock %}
+
+{% block content %}
+<section class="section treasury-section">
+    <div class="container">
+        <div class="treasury-header">
+            <h1>☀ Proof of Reserves</h1>
+            <p class="section-subtitle">Real metal. Auditable on-chain. Every receipt verifiable.</p>
+            <p class="treasury-formula">MetalAllocation = NetSurplus × <span class="formula-highlight">m</span> &nbsp; <span class="formula-note">(m = 0.05–0.12, current: 0.07)</span></p>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="treasury-summary" id="treasury-summary">
+            <div class="treasury-stat-card">
+                <div class="treasury-stat-icon">🥇</div>
+                <div class="treasury-stat-value" id="ts-total-oz">—</div>
+                <div class="treasury-stat-label">Total Ounces</div>
+            </div>
+            <div class="treasury-stat-card">
+                <div class="treasury-stat-icon">💰</div>
+                <div class="treasury-stat-value" id="ts-total-cost">—</div>
+                <div class="treasury-stat-label">Total Cost (USD)</div>
+            </div>
+            <div class="treasury-stat-card">
+                <div class="treasury-stat-icon">⛓</div>
+                <div class="treasury-stat-value" id="ts-anchored">—</div>
+                <div class="treasury-stat-label">On-Chain Anchored</div>
+            </div>
+            <div class="treasury-stat-card">
+                <div class="treasury-stat-icon">📜</div>
+                <div class="treasury-stat-value" id="ts-receipt-count">—</div>
+                <div class="treasury-stat-label">Vault Receipts</div>
+            </div>
+        </div>
+
+        <!-- Metal Breakdown -->
+        <div class="treasury-breakdown" id="treasury-breakdown">
+            <h2>Holdings by Metal</h2>
+            <div class="metal-grid" id="metal-grid">
+                <p class="loading">Loading reserves data...</p>
+            </div>
+        </div>
+
+        <!-- Policy Info -->
+        <div class="treasury-policy">
+            <h2>Treasury Policy</h2>
+            <div class="policy-grid">
+                <div class="policy-item">
+                    <span class="policy-label">Dealer</span>
+                    <span class="policy-value">APMEX</span>
+                </div>
+                <div class="policy-item">
+                    <span class="policy-label">Metal Coefficient (m)</span>
+                    <span class="policy-value">0.07 (range: 0.05–0.12)</span>
+                </div>
+                <div class="policy-item">
+                    <span class="policy-label">Audit Interval</span>
+                    <span class="policy-value">90 days (quarterly)</span>
+                </div>
+                <div class="policy-item">
+                    <span class="policy-label">Policy Version</span>
+                    <span class="policy-value">1.0</span>
+                </div>
+                <div class="policy-item">
+                    <span class="policy-label">On-Chain Anchor</span>
+                    <span class="policy-value">XRPL (0-drop Payment + Memo CID/SHA256)</span>
+                </div>
+                <div class="policy-item">
+                    <span class="policy-label">Evidence Storage</span>
+                    <span class="policy-value">IPFS evidence bundles (invoice + photos + serials)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vault Receipts Table -->
+        <div class="treasury-receipts">
+            <h2>Vault Receipts (MVR-NFTs)</h2>
+            <p class="section-subtitle">Each row = one physical metal purchase, anchored immutably.</p>
+            <div class="receipt-table-wrap">
+                <table class="receipt-table" id="receipt-table">
+                    <thead>
+                        <tr>
+                            <th>MVR ID</th>
+                            <th>Metal</th>
+                            <th>Form</th>
+                            <th>Weight</th>
+                            <th>Qty</th>
+                            <th>Total oz</th>
+                            <th>Cost (USD)</th>
+                            <th>Custody</th>
+                            <th>Anchored</th>
+                        </tr>
+                    </thead>
+                    <tbody id="receipt-tbody">
+                        <tr><td colspan="9" class="loading">Loading receipts...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Verify Links -->
+        <div class="treasury-verify">
+            <a href="/api/treasury/reserves" target="_blank" class="btn btn-secondary">Raw Reserves JSON →</a>
+            <a href="/api/metrics/rrr" target="_blank" class="btn btn-secondary">Reserve Ratio →</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', () => (async function() {
+    try {
+        const res = await fetch('/api/treasury/reserves');
+        const data = await res.json();
+
+        // Summary
+        document.getElementById('ts-receipt-count').textContent = data.total_receipts || 0;
+        document.getElementById('ts-anchored').textContent = data.anchored_count || 0;
+
+        // Calculate totals from metal breakdown
+        const metals = data.by_metal || {};
+        let totalOz = 0, totalCost = 0;
+        const metalNames = Object.keys(metals);
+
+        metalNames.forEach(m => {
+            totalOz += metals[m].total_oz || 0;
+            totalCost += metals[m].total_cost_usd || 0;
+        });
+
+        document.getElementById('ts-total-oz').textContent = totalOz.toFixed(2);
+        document.getElementById('ts-total-cost').textContent = '$' + totalCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+        // Metal grid
+        const metalGrid = document.getElementById('metal-grid');
+        if (metalNames.length === 0) {
+            metalGrid.innerHTML = '<div class="empty-state"><p>No metal holdings yet. Treasury accumulates as the network grows.</p></div>';
+        } else {
+            metalGrid.innerHTML = metalNames.map(m => `
+                <div class="metal-card">
+                    <div class="metal-name">${m}</div>
+                    <div class="metal-oz">${(metals[m].total_oz || 0).toFixed(2)} oz</div>
+                    <div class="metal-cost">$${(metals[m].total_cost_usd || 0).toLocaleString('en-US', {minimumFractionDigits: 2})}</div>
+                    <div class="metal-count">${metals[m].receipt_count || 0} receipt(s)</div>
+                </div>
+            `).join('');
+        }
+    } catch(e) {
+        console.error('Treasury load error:', e);
+        document.getElementById('metal-grid').innerHTML = '<p class="error">Failed to load reserves data.</p>';
+    }
+
+    // Load receipt list
+    try {
+        const res = await fetch('/api/treasury/receipts');
+        const data = await res.json();
+        const tbody = document.getElementById('receipt-tbody');
+
+        if (!data.receipts || data.receipts.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="9" class="empty">No vault receipts issued yet.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = data.receipts.map(r => `
+            <tr>
+                <td><code>${r.mvr_id.substring(0, 12)}…</code></td>
+                <td>${r.metal}</td>
+                <td>${r.form || '—'}</td>
+                <td>${r.weight_oz} oz</td>
+                <td>${r.quantity}</td>
+                <td>${r.total_oz} oz</td>
+                <td>$${parseFloat(r.total_cost_usd).toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                <td><span class="custody-badge custody-${r.custody_status}">${r.custody_status}</span></td>
+                <td>${r.is_anchored ? '⛓ Yes' : '⏳ Pending'}</td>
+            </tr>
+        `).join('');
+    } catch(e) {
+        console.error('Receipts load error:', e);
+    }
+})());
+</script>
+{% endblock %}

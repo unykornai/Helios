@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Your Network — Helios{% endblock %}
+{% block head %}
+<script src="https://d3js.org/d3.v7.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1>Your Network</h1>
+        <div class="network-controls">
+            <select id="depth-select">
+                <option value="1">Depth 1</option>
+                <option value="2">Depth 2</option>
+                <option value="3" selected>Depth 3</option>
+                <option value="4">Depth 4</option>
+                <option value="5">Depth 5 (Max)</option>
+            </select>
+            <div class="network-stats-bar">
+                <span id="net-members">— members</span>
+                <span id="net-connections">— connections</span>
+            </div>
+        </div>
+        <div id="network-viz" class="network-viz"></div>
+        <div id="node-detail" class="node-detail" style="display:none;">
+            <h3 id="detail-name"></h3>
+            <p>State: <span id="detail-state"></span></p>
+            <p>Bonds: <span id="detail-bonds"></span></p>
+            <p>Hops: <span id="detail-hops"></span></p>
+            <p>Energy: <span id="detail-energy"></span></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/network-viz.js') }}"></script>
+<script>
+const heliosId = localStorage.getItem('helios_id');
+document.addEventListener('DOMContentLoaded', () => {
+    if (!heliosId) {
+        window.location.href = '/join';
+        return;
+    }
+
+    const depthSelect = document.getElementById('depth-select');
+    if (!depthSelect) return;
+    depthSelect.addEventListener('change', () => loadNetwork(depthSelect.value));
+
+    loadNetwork(depthSelect.value || 3);
+});
+
+async function loadNetwork(depth) {
+    const res = await fetch(`/api/network/graph/${heliosId}?depth=${depth}`).then(r=>r.json());
+    if (res.success) {
+        document.getElementById('net-members').textContent = `${res.data.total_members} members`;
+        document.getElementById('net-connections').textContent = `${res.data.total_connections} connections`;
+        renderField(res.data);
+    }
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+{% block title %}Metrics — Protocol Health — Helios{% endblock %}
+
+{% block content %}
+<section class="section metrics-section">
+    <div class="container">
+        <div class="metrics-header">
+            <h1>📊 Protocol Metrics</h1>
+            <p class="section-subtitle">SR-level health indicators. Real-time. Public. Verifiable.</p>
+        </div>
+
+        <!-- Primary Gauges -->
+        <div class="gauge-grid" id="gauge-grid">
+            <!-- Reserve Ratio -->
+            <div class="gauge-card" id="gauge-rrr">
+                <h3>Reserve Ratio (RRR)</h3>
+                <div class="gauge-ring-container">
+                    <svg viewBox="0 0 140 140" class="gauge-svg">
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="#2a2a3e" stroke-width="10"/>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke-width="10"
+                                stroke-dasharray="377" stroke-dashoffset="377" id="rrr-ring"
+                                stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
+                    </svg>
+                    <div class="gauge-center">
+                        <div class="gauge-value" id="rrr-value">—</div>
+                        <div class="gauge-unit">×</div>
+                    </div>
+                </div>
+                <div class="gauge-status" id="rrr-status">Loading...</div>
+                <div class="gauge-detail">LiquidTreasury / 30d Redeem Demand</div>
+                <div class="gauge-thresholds">
+                    <span class="threshold threshold-green">Healthy ≥ 3.0×</span>
+                    <span class="threshold threshold-yellow">Warning ≥ 1.5×</span>
+                    <span class="threshold threshold-red">Critical &lt; 1.0×</span>
+                </div>
+            </div>
+
+            <!-- Flow Efficiency -->
+            <div class="gauge-card" id="gauge-flow">
+                <h3>Flow Efficiency (η)</h3>
+                <div class="gauge-ring-container">
+                    <svg viewBox="0 0 140 140" class="gauge-svg">
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="#2a2a3e" stroke-width="10"/>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke-width="10"
+                                stroke-dasharray="377" stroke-dashoffset="377" id="flow-ring"
+                                stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
+                    </svg>
+                    <div class="gauge-center">
+                        <div class="gauge-value" id="flow-value">—</div>
+                        <div class="gauge-unit">%</div>
+                    </div>
+                </div>
+                <div class="gauge-status" id="flow-status">Loading...</div>
+                <div class="gauge-detail">(Routed + Stored + Pooled) / In</div>
+                <div class="gauge-thresholds">
+                    <span class="threshold threshold-green">Target ≥ 95%</span>
+                </div>
+            </div>
+
+            <!-- Churn Pressure -->
+            <div class="gauge-card" id="gauge-churn">
+                <h3>Churn Pressure</h3>
+                <div class="gauge-ring-container">
+                    <svg viewBox="0 0 140 140" class="gauge-svg">
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="#2a2a3e" stroke-width="10"/>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke-width="10"
+                                stroke-dasharray="377" stroke-dashoffset="377" id="churn-ring"
+                                stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
+                    </svg>
+                    <div class="gauge-center">
+                        <div class="gauge-value" id="churn-value">—</div>
+                        <div class="gauge-unit">%</div>
+                    </div>
+                </div>
+                <div class="gauge-status" id="churn-status">Loading...</div>
+                <div class="gauge-detail">CancelRequests / ActiveNodes</div>
+                <div class="gauge-thresholds">
+                    <span class="threshold threshold-green">Healthy &lt; 2%</span>
+                    <span class="threshold threshold-yellow">Warning &lt; 5%</span>
+                    <span class="threshold threshold-red">Critical ≥ 5%</span>
+                </div>
+            </div>
+
+            <!-- Energy Velocity -->
+            <div class="gauge-card" id="gauge-velocity">
+                <h3>Energy Velocity</h3>
+                <div class="gauge-ring-container">
+                    <svg viewBox="0 0 140 140" class="gauge-svg">
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="#2a2a3e" stroke-width="10"/>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke-width="10"
+                                stroke-dasharray="377" stroke-dashoffset="377" id="velocity-ring"
+                                stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
+                    </svg>
+                    <div class="gauge-center">
+                        <div class="gauge-value" id="velocity-value">—</div>
+                        <div class="gauge-unit">v</div>
+                    </div>
+                </div>
+                <div class="gauge-status" id="velocity-status">Loading...</div>
+                <div class="gauge-detail">Transfers 7d / Stored Energy</div>
+                <div class="gauge-thresholds">
+                    <span class="threshold threshold-green">Target ≥ 0.30</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network Health Summary -->
+        <div class="health-summary" id="health-summary">
+            <h2>Network Health</h2>
+            <div class="health-grid" id="health-grid">
+                <p class="loading">Loading network health...</p>
+            </div>
+        </div>
+
+        <!-- Conservation Check -->
+        <div class="conservation-check">
+            <h2>Conservation Law</h2>
+            <p class="section-subtitle">∑ inflows = routed + stored + pooled + burned</p>
+            <div class="conservation-result" id="conservation-result">
+                <p class="loading">Verifying...</p>
+            </div>
+        </div>
+
+        <!-- Verify Links -->
+        <div class="metrics-verify">
+            <a href="/api/metrics/all" target="_blank" class="btn btn-secondary">Full Metrics JSON →</a>
+            <a href="/api/energy/conservation" target="_blank" class="btn btn-secondary">Conservation Check →</a>
+            <a href="/api/metrics/health" target="_blank" class="btn btn-secondary">Network Health →</a>
+            <a href="/api/treasury/reserves" target="_blank" class="btn btn-secondary">Proof of Reserves →</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const CIRCUMFERENCE = 2 * Math.PI * 60; // 376.99
+
+function setGaugeRing(ringId, fraction, color) {
+    const ring = document.getElementById(ringId);
+    if (!ring) return;
+    const clamped = Math.max(0, Math.min(1, fraction));
+    ring.style.strokeDashoffset = CIRCUMFERENCE * (1 - clamped);
+    ring.style.stroke = color;
+    ring.style.transition = 'stroke-dashoffset 1s ease, stroke 0.5s ease';
+}
+
+function statusColor(status) {
+    if (status === 'healthy') return 'var(--green)';
+    if (status === 'warning') return 'var(--gold)';
+    return 'var(--red)';
+}
+
+function statusBadge(status) {
+    const color = status === 'healthy' ? 'green' : (status === 'warning' ? 'yellow' : 'red');
+    return `<span class="status-indicator"><span class="status-dot ${status === 'healthy' ? 'active' : (status === 'warning' ? 'pending' : 'error')}"></span>${status.toUpperCase()}</span>`;
+}
+
+document.addEventListener('DOMContentLoaded', () => (async function() {
+    try {
+        const res = await fetch('/api/metrics/all');
+        const data = await res.json();
+
+        // Reserve Ratio
+        const rrr = data.reserve_ratio || {};
+        const rrrVal = rrr.value || 0;
+        document.getElementById('rrr-value').textContent = rrrVal.toFixed(2);
+        document.getElementById('rrr-status').innerHTML = statusBadge(rrr.status || 'critical');
+        setGaugeRing('rrr-ring', Math.min(rrrVal / 5, 1), statusColor(rrr.status));
+
+        // Flow Efficiency
+        const flow = data.flow_efficiency || {};
+        const flowVal = (flow.value || 0) * 100;
+        document.getElementById('flow-value').textContent = flowVal.toFixed(1);
+        document.getElementById('flow-status').innerHTML = statusBadge(flow.status || 'healthy');
+        setGaugeRing('flow-ring', flow.value || 0, statusColor(flow.status));
+
+        // Churn Pressure
+        const churn = data.churn_pressure || {};
+        const churnVal = (churn.value || 0) * 100;
+        document.getElementById('churn-value').textContent = churnVal.toFixed(2);
+        document.getElementById('churn-status').innerHTML = statusBadge(churn.status || 'healthy');
+        // Invert for gauge: lower churn = fuller ring
+        setGaugeRing('churn-ring', 1 - Math.min(churnVal / 10, 1), statusColor(churn.status));
+
+        // Energy Velocity
+        const vel = data.energy_velocity || {};
+        const velVal = vel.value || 0;
+        document.getElementById('velocity-value').textContent = velVal.toFixed(2);
+        document.getElementById('velocity-status').innerHTML = statusBadge(vel.status || 'healthy');
+        setGaugeRing('velocity-ring', Math.min(velVal / 0.5, 1), statusColor(vel.status));
+
+    } catch(e) {
+        console.error('Metrics load error:', e);
+        document.getElementById('gauge-grid').innerHTML += '<p class="error">Failed to load metrics.</p>';
+    }
+
+    // Network Health
+    try {
+        const res = await fetch('/api/metrics/health');
+        const data = await res.json();
+        const grid = document.getElementById('health-grid');
+
+        grid.innerHTML = `
+            <div class="health-stat">
+                <div class="hs-value">${data.total_nodes || 0}</div>
+                <div class="hs-label">Total Nodes</div>
+            </div>
+            <div class="health-stat">
+                <div class="hs-value">${data.active_nodes || 0}</div>
+                <div class="hs-label">Active Nodes</div>
+            </div>
+            <div class="health-stat">
+                <div class="hs-value">${data.active_certificates || 0}</div>
+                <div class="hs-label">Active Certificates</div>
+            </div>
+            <div class="health-stat">
+                <div class="hs-value">${(data.total_energy_he || 0).toFixed(2)}</div>
+                <div class="hs-label">Total Energy (HE)</div>
+            </div>
+            <div class="health-stat">
+                <div class="hs-value">${(data.total_stored_he || 0).toFixed(2)}</div>
+                <div class="hs-label">Stored Energy (HE)</div>
+            </div>
+            <div class="health-stat">
+                <div class="hs-value">${data.total_vault_receipts || 0}</div>
+                <div class="hs-label">Vault Receipts</div>
+            </div>
+        `;
+    } catch(e) {
+        console.error('Health load error:', e);
+    }
+
+    // Conservation
+    try {
+        const res = await fetch('/api/energy/conservation');
+        const data = await res.json();
+        const el = document.getElementById('conservation-result');
+
+        const balanced = data.balanced;
+        el.innerHTML = `
+            <div class="conservation-card ${balanced ? 'conservation-pass' : 'conservation-fail'}">
+                <div class="conservation-icon">${balanced ? '✓' : '✗'}</div>
+                <div class="conservation-text">
+                    <strong>${balanced ? 'Conservation Law Verified' : 'Conservation Imbalance Detected'}</strong>
+                    <p>Total In: ${(data.total_in || 0).toFixed(4)} HE</p>
+                    <p>Routed: ${(data.total_routed || 0).toFixed(4)} | Stored: ${(data.total_stored || 0).toFixed(4)} | Pooled: ${(data.total_pooled || 0).toFixed(4)} | Burned: ${(data.total_burned || 0).toFixed(4)}</p>
+                    ${data.delta ? `<p>Delta: ${data.delta.toFixed(8)} HE</p>` : ''}
+                </div>
+            </div>
+        `;
+    } catch(e) {
+        console.error('Conservation check error:', e);
+    }
+})());
+</script>
+{% endblock %}

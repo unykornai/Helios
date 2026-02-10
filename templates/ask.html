@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+{% block title %}Ask Helios — The Voice{% endblock %}
+
+{% block head %}
+<style>
+/* ─── Avatar ──────────────────────────────────────────────────── */
+.avatar-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem; }
+.helios-avatar { width: 160px; height: 160px; cursor: pointer; transition: transform .3s; }
+.helios-avatar:hover { transform: scale(1.03); }
+.avatar-rings { animation: avatar-idle 8s ease-in-out infinite; }
+.avatar-core { filter: drop-shadow(0 0 12px rgba(245,158,11,0.4)); }
+@keyframes avatar-idle {
+    0%,100% { opacity: .6; }
+    50% { opacity: 1; }
+}
+@keyframes avatar-speak {
+    0%,100% { r: 16; opacity: .7; }
+    25% { r: 20; opacity: 1; }
+    50% { r: 14; opacity: .6; }
+    75% { r: 22; opacity: .9; }
+}
+@keyframes avatar-ring-pulse {
+    0%,100% { stroke-width: 1.5; opacity: .3; }
+    50% { stroke-width: 3; opacity: .6; }
+}
+.avatar-speaking .avatar-core-circle { animation: avatar-speak .6s ease-in-out infinite; }
+.avatar-speaking .avatar-rings circle { animation: avatar-ring-pulse 1.2s ease-in-out infinite; }
+.avatar-speaking .avatar-rays line { animation: ray-pulse .8s ease-in-out infinite alternate; }
+@keyframes ray-pulse {
+    0% { stroke-opacity: .3; stroke-width: 1.5; }
+    100% { stroke-opacity: .9; stroke-width: 3; }
+}
+.avatar-thinking .avatar-core-circle { animation: avatar-think 2s ease-in-out infinite; }
+@keyframes avatar-think {
+    0%,100% { r: 16; fill-opacity: .8; }
+    50% { r: 12; fill-opacity: .5; }
+}
+.avatar-label {
+    margin-top: .75rem; font-size: .85rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .15em; font-weight: 600;
+    transition: color .3s;
+}
+.avatar-speaking + .avatar-label { color: var(--gold); }
+.avatar-status {
+    font-size: .75rem; color: var(--text-muted); margin-top: .25rem;
+    min-height: 1.1rem;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section ask-section">
+    <div class="container container-sm">
+        <!-- ═══ HELIOS AVATAR ═══ -->
+        <div class="avatar-container">
+            <svg class="helios-avatar" id="helios-avatar" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="avatarGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:0.9"/>
+                        <stop offset="40%" style="stop-color:#f59e0b;stop-opacity:0.7"/>
+                        <stop offset="100%" style="stop-color:#92400e;stop-opacity:0"/>
+                    </radialGradient>
+                    <radialGradient id="avatarCore" cx="50%" cy="45%" r="40%">
+                        <stop offset="0%" style="stop-color:#fef3c7"/>
+                        <stop offset="60%" style="stop-color:#f59e0b"/>
+                        <stop offset="100%" style="stop-color:#d97706"/>
+                    </radialGradient>
+                    <filter id="avatarBlur">
+                        <feGaussianBlur stdDeviation="6" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+                <!-- Ambient glow -->
+                <circle cx="80" cy="80" r="70" fill="url(#avatarGlow)" opacity=".4"/>
+                <!-- Orbital rings -->
+                <g class="avatar-rings">
+                    <circle cx="80" cy="80" r="55" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity=".3"/>
+                    <circle cx="80" cy="80" r="42" fill="none" stroke="#fde68a" stroke-width="1" opacity=".2"/>
+                    <circle cx="80" cy="80" r="65" fill="none" stroke="#d97706" stroke-width=".8" opacity=".15" stroke-dasharray="8 6"/>
+                </g>
+                <!-- 5 rays (Power of 5) -->
+                <g class="avatar-rays" opacity=".5">
+                    <line x1="80" y1="25" x2="80" y2="8" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="132" y1="49" x2="146" y2="37" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="132" y1="111" x2="146" y2="123" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="80" y1="135" x2="80" y2="152" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="28" y1="49" x2="14" y2="37" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <!-- Core -->
+                <g class="avatar-core" filter="url(#avatarBlur)">
+                    <circle class="avatar-core-circle" cx="80" cy="80" r="16" fill="url(#avatarCore)"/>
+                </g>
+                <!-- Neural nodes (5) -->
+                <g opacity=".4">
+                    <circle cx="80" cy="52" r="3" fill="#fde68a"/>
+                    <circle cx="107" cy="68" r="3" fill="#fde68a"/>
+                    <circle cx="97" cy="100" r="3" fill="#fde68a"/>
+                    <circle cx="63" cy="100" r="3" fill="#fde68a"/>
+                    <circle cx="53" cy="68" r="3" fill="#fde68a"/>
+                    <line x1="80" y1="52" x2="107" y2="68" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
+                    <line x1="107" y1="68" x2="97" y2="100" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
+                    <line x1="97" y1="100" x2="63" y2="100" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
+                    <line x1="63" y1="100" x2="53" y2="68" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
+                    <line x1="53" y1="68" x2="80" y2="52" stroke="#fde68a" stroke-width=".6" opacity=".5"/>
+                </g>
+            </svg>
+            <div class="avatar-label" id="avatar-label">HELIOS</div>
+            <div class="avatar-status" id="avatar-status">Tap to speak &middot; Type below to ask</div>
+        </div>
+
+        <!-- ═══ QUICK ANSWERS ═══ -->
+        <div id="quick-answers" class="quick-grid"></div>
+
+        <!-- ═══ CHAT ═══ -->
+        <div id="chat-container" class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-message assistant">
+                    <div class="msg-avatar">&#9728;&#65039;</div>
+                    <div class="msg-content">
+                        <p>I'm Helios. The protocol speaks through me.<br><br>
+                        Ask me anything &mdash; how energy flows, what backs the treasury, whether this is real.<br>
+                        I'll explain it. You decide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask anything about the protocol..."
+                   class="input-large" autocomplete="off">
+            <button id="chat-send" class="btn btn-primary">Ask</button>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const memberId = localStorage.getItem('helios_id') || null;
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
+const avatar = document.getElementById('helios-avatar');
+const avatarLabel = document.getElementById('avatar-label');
+const avatarStatus = document.getElementById('avatar-status');
+
+let currentAudio = null;
+let lastAnswer = null;
+
+// ═══ Avatar State Machine ═════════════════════════════════════
+function setAvatarState(state) {
+    avatar.classList.remove('avatar-speaking', 'avatar-thinking');
+    if (state === 'speaking') {
+        avatar.classList.add('avatar-speaking');
+        avatarLabel.textContent = 'SPEAKING';
+        avatarLabel.style.color = 'var(--gold)';
+        avatarStatus.textContent = 'Tap avatar to stop';
+    } else if (state === 'thinking') {
+        avatar.classList.add('avatar-thinking');
+        avatarLabel.textContent = 'THINKING';
+        avatarLabel.style.color = 'var(--text-muted)';
+        avatarStatus.textContent = '';
+    } else {
+        avatarLabel.textContent = 'HELIOS';
+        avatarLabel.style.color = '';
+        avatarStatus.textContent = lastAnswer ? 'Tap to hear again' : 'Tap to speak \u00b7 Type below to ask';
+    }
+}
+
+// Tap avatar to replay last answer
+avatar.addEventListener('click', function() {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+        setAvatarState('idle');
+        return;
+    }
+    if (lastAnswer) {
+        speakText(null, lastAnswer);
+    }
+});
+
+// ═══ Quick Answers ════════════════════════════════════════════
+fetch('/api/chat/quick-answers')
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            const grid = document.getElementById('quick-answers');
+            grid.innerHTML = data.data.map(q =>
+                `<button class="quick-btn" onclick="askQuestion('${q.question.replace(/'/g, "\\'")}')">${q.icon} ${q.question}</button>`
+            ).join('');
+        }
+    });
+
+// ═══ Chat Functions ═══════════════════════════════════════════
+function addMessage(role, text, showVoice) {
+    const div = document.createElement('div');
+    div.className = 'chat-message ' + role;
+
+    let voiceHtml = '';
+    if (role === 'assistant' && showVoice) {
+        voiceHtml = '<button class="voice-btn" title="Listen">&#128266;</button>';
+    }
+
+    div.innerHTML =
+        '<div class="msg-avatar">' + (role === 'assistant' ? '&#9728;&#65039;' : '&#128100;') + '</div>' +
+        '<div class="msg-content">' +
+            '<p>' + text.replace(/\n/g, '<br>') + '</p>' +
+            voiceHtml +
+        '</div>';
+
+    if (role === 'assistant' && showVoice) {
+        lastAnswer = text;
+        const voiceBtn = div.querySelector('.voice-btn');
+        voiceBtn.addEventListener('click', function() { speakText(this, text); });
+    }
+
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+async function speakText(btn, text) {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+        document.querySelectorAll('.voice-btn.playing').forEach(b => {
+            b.classList.remove('playing');
+            b.innerHTML = '&#128266;';
+        });
+        setAvatarState('idle');
+        return;
+    }
+
+    if (btn) { btn.classList.add('playing'); btn.innerHTML = '&#8987;'; }
+    setAvatarState('speaking');
+
+    try {
+        const res = await fetch('/api/voice/speak', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({text: text})
+        }).then(r => r.json());
+
+        if (res.success && res.data.audio) {
+            const audioData = 'data:audio/mpeg;base64,' + res.data.audio;
+            currentAudio = new Audio(audioData);
+            if (btn) btn.innerHTML = '&#9208;&#65039;';
+
+            currentAudio.onended = function() {
+                if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128266;'; }
+                currentAudio = null;
+                setAvatarState('idle');
+            };
+            currentAudio.onerror = function() {
+                if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128266;'; }
+                currentAudio = null;
+                setAvatarState('idle');
+            };
+            currentAudio.play();
+        } else {
+            if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(() => btn.innerHTML = '&#128266;', 2000); }
+            setAvatarState('idle');
+        }
+    } catch (err) {
+        if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(() => btn.innerHTML = '&#128266;', 2000); }
+        setAvatarState('idle');
+    }
+}
+
+async function askQuestion(question) {
+    if (!question.trim()) return;
+
+    addMessage('user', question);
+    chatInput.value = '';
+    setAvatarState('thinking');
+
+    const typing = document.createElement('div');
+    typing.className = 'chat-message assistant typing';
+    typing.innerHTML = '<div class="msg-avatar">&#9728;&#65039;</div><div class="msg-content"><p>Processing...</p></div>';
+    chatMessages.appendChild(typing);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    try {
+        const res = await fetch('/api/chat/ask', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({question: question, member_id: memberId})
+        }).then(r => r.json());
+
+        typing.remove();
+        setAvatarState('idle');
+
+        if (res.success) {
+            addMessage('assistant', res.data.answer, true);
+
+            if (res.data.follow_up && res.data.follow_up.length > 0) {
+                const suggestions = document.createElement('div');
+                suggestions.className = 'follow-up';
+                suggestions.innerHTML = res.data.follow_up.map(q =>
+                    `<button class="follow-btn" onclick="askQuestion('${q.replace(/'/g, "\\'")}')">${q}</button>`
+                ).join('');
+                chatMessages.appendChild(suggestions);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Auto-speak the response
+            speakText(null, res.data.answer);
+        } else {
+            addMessage('assistant', 'Something went wrong. Please try again.');
+        }
+    } catch(err) {
+        typing.remove();
+        setAvatarState('idle');
+        addMessage('assistant', 'Connection error. Please try again.');
+    }
+}
+
+chatSend.addEventListener('click', () => askQuestion(chatInput.value));
+chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') askQuestion(chatInput.value); });
+</script>
+{% endblock %}
