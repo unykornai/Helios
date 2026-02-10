@@ -243,6 +243,10 @@ def create_app():
     def launch():
         return render_template("launch.html")
 
+    @app.route("/tokenomics")
+    def tokenomics():
+        return render_template("tokenomics.html")
+
     # ─── Health Check ─────────────────────────────────────────────
     @app.route("/health")
     @app.route("/api/health")

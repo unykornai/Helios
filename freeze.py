@@ -60,6 +60,7 @@ def freeze():
         ("/join", "join/index.html"),
         ("/launch", "launch/index.html"),
         ("/token-offering", "token-offering/index.html"),
+        ("/tokenomics", "tokenomics/index.html"),
         ("/health", "health/index.html"),
     ]
 

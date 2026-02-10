@@ -630,6 +630,126 @@ HELIOS_KNOWLEDGE = {
         "gold-backed certificates, and triggers allocations across the network.\n\n"
         "Visit the homepage to watch the Flowline in action."
     ),
+
+    # ─── Token Economics ──────────────────────────────────────────
+
+    "burn_mechanics": (
+        "HLS has a fixed supply of 100 million tokens. Burns permanently reduce "
+        "that supply. Nobody can reverse a burn. Nobody can mint more.\n\n"
+        "WHAT TRIGGERS A BURN:\n\n"
+        "Tier Upgrade — when you upgrade, the difference between old and new tier "
+        "token allocation is burned. Prevents double-dipping.\n\n"
+        "Certificate Redemption — when you redeem a gold certificate for physical "
+        "metal, the underlying token allocation is burned. Balances supply when "
+        "gold leaves the treasury.\n\n"
+        "Marketplace Fee — 20% of every internal marketplace transaction fee is burned. "
+        "Buy a gold certificate with HLS? Part of the fee disappears forever.\n\n"
+        "Conversion Fee — every HLS→stablecoin swap carries a 1% fee. 20% of that "
+        "fee is burned. Every swap reduces supply.\n\n"
+        "Early Staking Exit — if you break a staking lock, forfeited bonus tokens "
+        "are burned. 50-100% of accrued bonus, depending on timing.\n\n"
+        "Expired Identities — unclaimed .helios reserves are burned after 365 days.\n\n"
+        "Supply can only go down. Never up. The burn address is public on XRPL."
+    ),
+
+    "penalties": (
+        "Penalties protect long-term members from short-term exploiters. "
+        "Every forfeited token is burned — benefiting everyone who stays.\n\n"
+        "STAKING PENALTIES:\n"
+        "Break lock within 7 days → 100% of accrued bonus forfeited and burned.\n"
+        "Break lock after 7 days → 50% of accrued bonus forfeited and burned.\n\n"
+        "RAPID CONVERSION PENALTY:\n"
+        "Convert HLS→stablecoin within 48 hours of receiving tokens? "
+        "2.5% conversion surcharge instead of the standard 1%. "
+        "Discourages pump-and-dump behavior.\n\n"
+        "DORMANT ACCOUNT:\n"
+        "No activity for 730 days? Staking bonuses pause. "
+        "Reactivate anytime with any transaction. No tokens are lost.\n\n"
+        "IMPORTANT: No penalty for simply holding. Your tokens, your certificates, "
+        "your gold — they're yours. Penalties only apply to breaking commitments "
+        "you voluntarily made."
+    ),
+
+    "internal_marketplace": (
+        "The internal marketplace lets you spend HLS on real assets inside "
+        "the protocol. This creates real demand for the token.\n\n"
+        "WHAT YOU CAN BUY WITH HLS:\n\n"
+        "Gold certificates — purchase additional gold-backed NFT certificates. "
+        "Each one represents real gold in the treasury. Redeemable for physical metal.\n\n"
+        "Silver certificates — same structure as gold. Real metal, real receipts.\n\n"
+        ".helios identities — premium namespace identities like money.helios "
+        "or crown.helios. On-chain. Permanent.\n\n"
+        "Tier upgrades — use HLS to upgrade your membership tier instead of fiat. "
+        "Go from $100 to $5,000 using accumulated tokens.\n\n"
+        "Premium analytics — advanced network tools and projection calculators.\n\n"
+        "Every marketplace transaction carries a small fee. 20% of every fee "
+        "is burned. More usage = more burns = more scarcity."
+    ),
+
+    "stablecoin_exchange": (
+        "You can convert between HLS, certificates, and stablecoins on-chain. "
+        "No intermediary. Wallet-to-wallet. Powered by XRPL DEX and Stellar anchors.\n\n"
+        "CONVERSION ROUTES:\n\n"
+        "HLS → USDC/USDT — sell HLS for stablecoins at market rate. 1% fee. "
+        "20% of fee burned.\n\n"
+        "USDC/USDT → HLS — buy HLS with stablecoins. 0.5% fee. Creates buy pressure.\n\n"
+        "Certificates → Stablecoin — redeem gold certificates for USDC at current "
+        "gold spot rate. Real gold price, real settlement.\n\n"
+        "HLS → BTC/ETH/XRP — swap through XRPL DEX pathfinding. Multi-hop routing "
+        "finds the best rate automatically.\n\n"
+        "RAPID CONVERSION WARNING: If you convert HLS→stablecoin within 48 hours "
+        "of receiving tokens, there's a 2.5% surcharge instead of 1%. "
+        "This discourages short-term exploitation.\n\n"
+        "Settlement in seconds. No exchange account needed. Just your wallet."
+    ),
+
+    "genesis_pool": (
+        "The Genesis Pool is how Helios starts.\n\n"
+        "10 members activate at the $5,000 Executive tier. "
+        "10 × $5,000 = $50,000 Genesis Value.\n\n"
+        "That $50K splits: 45% ($22,500) allocation pool, 20% ($10,000) liquidity, "
+        "15% ($7,500) gold purchase, 10% ($5,000) infrastructure, "
+        "10% ($5,000) protocol buffer.\n\n"
+        "Genesis Token Supply: 50,000 HLS. 1 token = $1 backing. Clean start.\n\n"
+        "Then 10,000 members join at $100 each = $1,000,000 new value. "
+        "Total backing becomes $1,050,000. Total supply: 1,050,000 tokens. "
+        "Token price stays at $1.00 — but the backing is now massive.\n\n"
+        "The Genesis 10 earn $20K–$225K each from the allocation pool alone, "
+        "plus gold certificates, staking bonuses, and token allocations.\n\n"
+        "The math compounds. The promises don't."
+    ),
+
+    "bonus_structure": (
+        "Multiple bonus channels reward different behaviors. All bonuses are funded "
+        "from existing pools — never from new token creation.\n\n"
+        "FOUNDING BONUS: +20% tokens on Phase 1 purchases. Drops to +10% Phase 2. "
+        "Zero at public launch.\n\n"
+        "TIER UPGRADE BONUS: Upgrade tiers and receive 10% transition bonus on "
+        "the price difference. $100→$1,000 = $900 × 10% = $90 in HLS.\n\n"
+        "STAKING BONUS: 5-30% based on lock duration (30d/90d/180d/365d).\n\n"
+        "LOYALTY MILESTONES: 6 months active = +2%. 12 months = +5%. "
+        "24 months = +10%. These stack on top of staking.\n\n"
+        "NETWORK GROWTH: 100 members = 500 HLS. 500 members = 2,500 HLS. "
+        "1,000 members = 7,500 HLS. 5,000 members = 25,000 HLS.\n\n"
+        "GOLD ACCUMULATION: Every 10 oz of gold in treasury triggers 1% bonus "
+        "on your next certificate allocation.\n\n"
+        "All formula-governed. All published. No discretion."
+    ),
+
+    "token_value_drivers": (
+        "Token value isn't promised. It's engineered through mechanics.\n\n"
+        "SUPPLY REDUCTION: Burns from upgrades, redemptions, marketplace fees, "
+        "conversion fees, and staking penalties permanently reduce supply. "
+        "100M is the ceiling. Actual circulating supply decreases over time.\n\n"
+        "DEMAND CREATION: Marketplace purchases, tier upgrades, staking locks, "
+        "and stablecoin→HLS conversions create buy pressure. Real utility = real demand.\n\n"
+        "GOLD FLOOR: 15% of every membership buys physical gold. Certificates are "
+        "redeemable at gold spot rate. Hard asset floor that rises with gold prices.\n\n"
+        "CIRCULATING LOCK: Staked tokens, founder locks (3yr), emergency reserve (5yr), "
+        "and development vesting (4yr) remove tokens from circulation. Less available "
+        "supply = higher price potential.\n\n"
+        "The token doesn't need hype. The mechanics do the work."
+    ),
 }
 
 
@@ -671,6 +791,13 @@ TOPIC_MAP = {
     "liquidity_pools": ["liquidity", "liquidity pool", "lp", "trading", "dex", "exchange", "trade hls", "pool"],
     "hls_token_details": ["supply", "total supply", "100 million", "token pool", "settlement pool", "network distribution", "emergency reserve", "issuance", "token issuance", "how many tokens", "tokenomics"],
     "flowline": ["flowline", "flow line", "animation", "how it works visually", "the line", "electricity", "glowing line", "activation flow", "show me how it works"],
+    "burn_mechanics": ["burn", "burning", "deflationary", "reduce supply", "token burn", "burned", "burn mechanism", "supply reduction"],
+    "penalties": ["penalty", "penalties", "penalize", "forfeit", "forfeited", "early exit", "break lock", "punishment", "surcharge", "rapid conversion", "dormant"],
+    "internal_marketplace": ["marketplace", "buy with hls", "spend hls", "internal market", "buy gold with tokens", "buy certificates", "purchase with hls", "use tokens"],
+    "stablecoin_exchange": ["convert", "conversion", "swap", "exchange", "hls to usdc", "hls to usdt", "stablecoin exchange", "cash out", "sell tokens", "sell hls", "convert to dollars"],
+    "genesis_pool": ["genesis", "genesis pool", "genesis tier", "first 10", "seed", "initial", "50000", "$50,000", "founding pool", "starting pool", "how it starts"],
+    "bonus_structure": ["bonus", "bonuses", "loyalty", "milestone", "network growth bonus", "upgrade bonus", "tier upgrade bonus", "gold accumulation", "compound"],
+    "token_value_drivers": ["value driver", "what drives value", "why go up", "price increase", "appreciation", "token value", "supply and demand", "scarcity", "deflationary pressure"],
 }
 
 
@@ -735,6 +862,11 @@ class AskHelios:
             {"question": "How does the 15-level engine work?", "icon": "⚙️"},
             {"question": "What's the 50K scenario?", "icon": "💵"},
             {"question": "How does the gold backing work?", "icon": "🏆"},
+            {"question": "How do token burns work?", "icon": "🔥"},
+            {"question": "What are the penalties?", "icon": "⚠️"},
+            {"question": "How does the internal marketplace work?", "icon": "🏪"},
+            {"question": "How do I convert to stablecoins?", "icon": "💱"},
+            {"question": "What is the genesis pool?", "icon": "🌱"},
             {"question": "What about the liquidity pools?", "icon": "🌊"},
         ]
 
@@ -823,6 +955,15 @@ class AskHelios:
             "50K network at $100: Pos3=$28,730/mo, Pos2=$14,502/mo, Pos1=$7,326/mo\n\n"
             "STAKING BONUSES:\n"
             "30d=+5%, 90d=+12%, 180d=+20%, 365d=+30%\n\n"
+            "BURN MECHANICS:\n"
+            "Tier upgrades, certificate redemptions, marketplace fees (20% burned), "
+            "conversion fees (20% burned), early staking exits — all permanently reduce supply.\n\n"
+            "PENALTIES:\n"
+            "Early staking exit <7d = 100% bonus forfeited. >7d = 50% forfeited. "
+            "Rapid conversion (<48h) = 2.5% surcharge. All forfeitures are burned.\n\n"
+            "INTERNAL MARKETPLACE:\n"
+            "Buy gold/silver certificates, .helios identities, tier upgrades with HLS. "
+            "20% of all marketplace fees burned.\n\n"
             "ALLOCATION SPLIT:\n"
             "45% network engine, 20% liquidity, 15% gold treasury, "
             "10% infrastructure, 10% buffer\n\n"
@@ -905,7 +1046,17 @@ class AskHelios:
 
     def _suggest_follow_up(self, question: str) -> list:
         if any(w in question for w in ["offering", "presale", "token sale", "buy tokens", "founding window"]):
-            return ["Why should I register early?", "What are trustlines?"]
+            return ["Why should I register early?", "How do burns work?"]
+        elif any(w in question for w in ["burn", "deflationary", "supply reduction"]):
+            return ["What are the penalties?", "What drives token value?"]
+        elif any(w in question for w in ["penalty", "forfeit", "surcharge"]):
+            return ["How does staking work?", "How do burns work?"]
+        elif any(w in question for w in ["marketplace", "buy with hls", "spend"]):
+            return ["How does the stablecoin exchange work?", "How do burns work?"]
+        elif any(w in question for w in ["convert", "swap", "exchange", "cash out", "sell"]):
+            return ["What about the internal marketplace?", "What are the penalties?"]
+        elif any(w in question for w in ["genesis", "seed", "first 10", "founding pool"]):
+            return ["How does the token offering work?", "What drives token value?"]
         elif any(w in question for w in ["trustline", "wallet", "xumm", "lobstr"]):
             return ["How does the token offering work?", "What are the 5 tiers?"]
         elif any(w in question for w in ["early", "founding", "register early", "why now", "benefits"]):
