@@ -1,0 +1,674 @@
+{% extends "base.html" %}
+{% block title %}How It Works — Helios Protocol{% endblock %}
+{% block og_title %}How You Make Money — Helios Protocol{% endblock %}
+{% block og_description %}3 ways to earn. 5 tiers. 15 levels deep. Gold-backed certificates, crypto access, and real numbers you can verify.{% endblock %}
+{% block og_url %}/opportunity{% endblock %}
+
+{% block head %}
+<style>
+/* ─── Page Container ──────────────────────────────────────────── */
+.deck { position: relative; z-index: 1; }
+.deck-section {
+    max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem;
+}
+.deck-hero {
+    text-align: center; padding: 5rem 2rem 2.5rem;
+}
+.deck-hero h1 {
+    font-size: 2.4rem; font-weight: 700; color: var(--gold);
+    letter-spacing: .08em; margin-bottom: .5rem;
+}
+.deck-hero .deck-sub {
+    color: var(--text-muted); font-size: 1.05rem;
+    max-width: 600px; margin: 0 auto; line-height: 1.8;
+}
+.deck-section h2 {
+    font-size: 1.5rem; font-weight: 700; color: var(--text);
+    margin-bottom: .4rem;
+}
+.deck-section h2 span { color: var(--gold); }
+.deck-section .sec-lead {
+    color: var(--text-muted); font-size: .95rem; line-height: 1.7;
+    max-width: 680px; margin-bottom: 1.5rem;
+}
+.deck-divider {
+    border: none; border-top: 1px solid var(--border);
+    margin: 0 auto 4rem; max-width: 200px;
+}
+.deck-label {
+    font-family: 'Inter', sans-serif; font-size: .68rem;
+    text-transform: uppercase; letter-spacing: .15em;
+    color: var(--gold); font-weight: 700; margin-bottom: .6rem;
+}
+
+/* ─── 6 Step Quick Pitch ──────────────────────────────────────── */
+.pitch-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
+}
+.pitch-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.2rem;
+    display: flex; gap: .8rem; align-items: flex-start;
+}
+.pitch-num {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-weight: 700; font-family: 'Inter', sans-serif;
+    color: var(--gold); font-size: .82rem;
+}
+.pitch-card strong { display: block; margin-bottom: .15rem; font-size: .95rem; }
+.pitch-card p { margin: 0; font-size: .82rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ─── Depth Chart ─────────────────────────────────────────────── */
+.depth-chart {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem;
+    overflow-x: auto;
+}
+.dc-tree {
+    font-family: 'Inter', monospace; font-size: .82rem;
+    color: var(--text-muted); line-height: 2;
+}
+.dc-tree .dc-pos { color: var(--gold); font-weight: 700; }
+.dc-tree .dc-count { color: var(--text); font-weight: 600; }
+.dc-tree .dc-bar { color: rgba(201,168,76,.3); }
+.dc-note {
+    font-size: .78rem; color: var(--text-muted); margin-top: 1rem;
+    border-top: 1px solid var(--border); padding-top: .8rem; line-height: 1.6;
+}
+
+/* ─── 3 Ways Grid ─────────────────────────────────────────────── */
+.ways-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem; margin-bottom: 2rem;
+}
+.way-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; position: relative;
+    overflow: hidden;
+}
+.way-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold);
+}
+.way-card h3 {
+    font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem;
+}
+.way-card .way-tag {
+    font-family: 'Inter', sans-serif; font-size: .65rem;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--gold); font-weight: 700; margin-bottom: .6rem;
+}
+.way-card p { font-size: .85rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 .8rem; }
+.way-card table {
+    width: 100%; border-collapse: collapse; font-size: .78rem;
+}
+.way-card th {
+    text-align: left; font-family: 'Inter', sans-serif;
+    font-size: .65rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text-muted); padding: .3rem 0; border-bottom: 1px solid var(--border);
+}
+.way-card td { padding: .3rem 0; border-bottom: 1px solid rgba(36,40,51,.3); }
+.way-card td:last-child { text-align: right; color: var(--gold); font-weight: 600; font-family: 'Inter', sans-serif; }
+
+/* ─── Position Earnings ───────────────────────────────────────── */
+.pos-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.2rem; margin-bottom: 2rem;
+}
+.pos-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+}
+.pos-card.highlight { border-color: rgba(201,168,76,.4); }
+.pos-card .pos-label {
+    font-family: 'Inter', sans-serif; font-size: .65rem;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--text-muted); font-weight: 700; margin-bottom: .3rem;
+}
+.pos-card .pos-title {
+    font-size: 1.1rem; font-weight: 700; color: var(--gold);
+    margin-bottom: .3rem;
+}
+.pos-card .pos-desc {
+    font-size: .78rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5;
+}
+.pos-card table {
+    width: 100%; border-collapse: collapse; font-size: .78rem;
+    margin-bottom: 1rem;
+}
+.pos-card th {
+    text-align: left; font-family: 'Inter', sans-serif;
+    font-size: .62rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text-muted); padding: .35rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.pos-card td { padding: .35rem 0; border-bottom: 1px solid rgba(36,40,51,.3); color: var(--text-muted); }
+.pos-card td:last-child { text-align: right; color: var(--gold); font-weight: 600; font-family: 'Inter', sans-serif; }
+.pos-card .pos-total {
+    display: flex; justify-content: space-between;
+    padding: .8rem 0 0; border-top: 2px solid rgba(201,168,76,.2);
+}
+.pos-card .pos-total span { font-weight: 700; }
+.pos-card .pos-total .pos-amt {
+    color: var(--gold); font-size: 1.3rem; font-family: 'Inter', sans-serif;
+}
+.pos-card .pos-yearly {
+    text-align: right; font-size: .78rem; color: var(--text-muted);
+    margin-top: .2rem;
+}
+
+/* ─── Summary Table ───────────────────────────────────────────── */
+.summary-table-wrap {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem;
+    overflow-x: auto;
+}
+.summary-table {
+    width: 100%; border-collapse: collapse; font-size: .88rem;
+}
+.summary-table th {
+    text-align: left; font-family: 'Inter', sans-serif;
+    font-size: .68rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text-muted); padding: .6rem .5rem;
+    border-bottom: 2px solid var(--border);
+}
+.summary-table td {
+    padding: .7rem .5rem; border-bottom: 1px solid rgba(36,40,51,.3);
+}
+.summary-table td:first-child { font-weight: 600; }
+.summary-table .gold-val { color: var(--gold); font-weight: 700; font-family: 'Inter', sans-serif; }
+
+/* ─── Tiers Mini ──────────────────────────────────────────────── */
+.tier-mini-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: .6rem; margin-bottom: 2rem;
+}
+.tier-mini {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem .6rem; text-align: center;
+}
+.tier-mini .tm-name {
+    font-family: 'Inter', sans-serif; font-size: .62rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--text-muted); font-weight: 600;
+}
+.tier-mini .tm-price {
+    font-size: 1.3rem; font-weight: 700; color: var(--gold);
+    font-family: 'Inter', sans-serif; margin: .2rem 0;
+}
+.tier-mini .tm-mult {
+    font-size: .72rem; color: var(--text-muted);
+}
+.tier-mini .tm-direct {
+    font-size: .78rem; font-weight: 600; color: var(--text);
+    margin-top: .4rem;
+}
+
+/* ─── Asset Chips ─────────────────────────────────────────────── */
+.asset-row {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    margin-bottom: 1.5rem;
+}
+.asset-chip {
+    padding: .35rem .8rem; border-radius: 20px;
+    font-size: .72rem; font-weight: 600;
+    font-family: 'Inter', sans-serif; letter-spacing: .04em;
+    border: 1px solid var(--border); color: var(--text-muted);
+}
+.asset-chip.gold { border-color: rgba(201,168,76,.3); color: var(--gold); }
+
+/* ─── No-BS List ──────────────────────────────────────────────── */
+.nobs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: .5rem; margin-bottom: 2rem;
+}
+.nobs-item {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .85rem; color: var(--text-muted);
+    padding: .4rem 0;
+}
+.nobs-item .nobs-x {
+    color: var(--gold); font-weight: 700; font-family: 'Inter', sans-serif;
+    font-size: .75rem; flex-shrink: 0;
+}
+
+/* ─── CTA ─────────────────────────────────────────────────────── */
+.deck-cta {
+    text-align: center; padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+}
+.deck-cta h2 { margin-bottom: .5rem; }
+.deck-cta p { color: var(--text-muted); font-size: .95rem; margin-bottom: 1.5rem; }
+.deck-cta .btn { margin: 0 .3rem; }
+
+@media (max-width: 768px) {
+    .deck-hero h1 { font-size: 1.7rem; }
+    .tier-mini-grid { grid-template-columns: repeat(3, 1fr); }
+    .pos-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .tier-mini-grid { grid-template-columns: repeat(2, 1fr); }
+    .dc-tree { font-size: .72rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="deck">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="deck-hero">
+        <h1>HERE'S HOW THIS WORKS</h1>
+        <p class="deck-sub">
+            No jargon. No hype. No small print. Just the math, the money,
+            and the real assets you walk away with. If you've got five minutes,
+            I'll show you the whole thing.
+        </p>
+    </section>
+
+    <!-- ═══ 6-STEP QUICK PITCH ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">THE SHORT VERSION</div>
+        <h2>Six things. <span>That's the whole system.</span></h2>
+        <div class="pitch-grid">
+            <div class="pitch-card">
+                <div class="pitch-num">1</div>
+                <div><strong>You join at a tier</strong>
+                <p>$100, $250, $500, $1,000, or $5,000. One time. No monthly fees.</p></div>
+            </div>
+            <div class="pitch-card">
+                <div class="pitch-num">2</div>
+                <div><strong>You bring in 5 people</strong>
+                <p>Each one pays you a direct referral. Cash in your pocket immediately.</p></div>
+            </div>
+            <div class="pitch-card">
+                <div class="pitch-num">3</div>
+                <div><strong>Your 5 bring in 5</strong>
+                <p>Now you've got 25 people on your second level. They bring in 5 each. It keeps going.</p></div>
+            </div>
+            <div class="pitch-card">
+                <div class="pitch-num">4</div>
+                <div><strong>You get paid 15 levels deep</strong>
+                <p>Every time someone joins anywhere in your 15 levels, the formula pays you automatically.</p></div>
+            </div>
+            <div class="pitch-card">
+                <div class="pitch-num">5</div>
+                <div><strong>You earn in cash, gold, and crypto</strong>
+                <p>BTC, ETH, XRP, stablecoins, gold-backed NFTs. Real assets, not points.</p></div>
+            </div>
+            <div class="pitch-card">
+                <div class="pitch-num">6</div>
+                <div><strong>Part of every membership buys physical gold</strong>
+                <p>Your earnings are backed by real metal. Not promises. Not projections.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="deck-divider">
+
+    <!-- ═══ DEPTH CHART ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">THE STRUCTURE</div>
+        <h2>How the money <span>flows down</span></h2>
+        <p class="sec-lead">
+            Think of it like a chain. The person at the top gets paid from everything
+            below them. The person closest to the action makes the most. Everyone in
+            between earns based on distance. Simple.
+        </p>
+
+        <div class="depth-chart">
+            <div class="dc-tree">
+<span class="dc-bar">&#9484;&#9472;</span> <span class="dc-pos">POSITION 1</span> &mdash; The person at the top. Gets paid from everyone below.<br>
+<span class="dc-bar">&#9474;&ensp; &#9492;&#9472;</span> <span class="dc-pos">POSITION 2</span> &mdash; Under Position 1. Gets paid from everything under them.<br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> <span class="dc-pos">POSITION 3</span> &mdash; Did the work. Brought in the people. Makes the most.<br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 1 &mdash; <span class="dc-count">5 people</span> &ensp; (Position 3's directs)<br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 2 &mdash; <span class="dc-count">25 people</span><br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 3 &mdash; <span class="dc-count">125 people</span><br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 4 &mdash; <span class="dc-count">625 people</span><br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 5 &mdash; <span class="dc-count">3,125 people</span><br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 6 &mdash; <span class="dc-count">15,625 people</span><br>
+<span class="dc-bar">&#9474;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &#9492;&#9472;</span> Level 7+ &mdash; <span class="dc-count">30,095+ people</span><br>
+<span class="dc-bar">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ...</span> through Level 15
+            </div>
+            <div class="dc-note">
+                <strong>Key point:</strong> Position 3 did the work and earns the most.
+                Position 2 earns from everything under them — without bringing anyone in.
+                Position 1 earns from the entire network. The further up you are,
+                the more levels of activity pay you — but the per-person payout is smaller
+                because of distance. That's the formula. Fair and predictable.
+            </div>
+        </div>
+    </section>
+
+    <hr class="deck-divider">
+
+    <!-- ═══ 3 WAYS YOU MAKE MONEY ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">THE MONEY</div>
+        <h2>Three ways <span>you get paid</span></h2>
+        <p class="sec-lead">
+            Not three complicated systems. Three simple streams. Every one of them
+            is based on math, not promises.
+        </p>
+
+        <div class="ways-grid">
+            <!-- Way 1: Direct Cash -->
+            <div class="way-card">
+                <div class="way-tag">Way 1</div>
+                <h3>Direct Referral Cash</h3>
+                <p>Every person you personally bring in pays you immediately.
+                   No waiting period. No qualifying.</p>
+                <table>
+                    <tr><th>Tier</th><th style="text-align:right">You Get</th></tr>
+                    <tr><td>$100 Starter</td><td>$22.50</td></tr>
+                    <tr><td>$250 Builder</td><td>$56.25</td></tr>
+                    <tr><td>$500 Pro</td><td>$112.50</td></tr>
+                    <tr><td>$1,000 Leader</td><td>$225.00</td></tr>
+                    <tr><td>$5,000 Executive</td><td>$1,125.00</td></tr>
+                </table>
+                <p style="margin-top:.8rem;font-size:.78rem;">
+                    <strong>Bring in 5 people at $100 = $112.50 instant.</strong><br>
+                    Bring in 5 at $1,000 = $1,125 instant.
+                </p>
+            </div>
+
+            <!-- Way 2: 15-Level Engine -->
+            <div class="way-card">
+                <div class="way-tag">Way 2</div>
+                <h3>The 15-Level Engine</h3>
+                <p>Every membership sends 45% into a 15-level pool. You get
+                   paid every time someone joins anywhere in your 15 levels.</p>
+                <table>
+                    <tr><th>Level</th><th style="text-align:right">Per $100 Member</th></tr>
+                    <tr><td>Level 1 (your directs)</td><td>$22.50</td></tr>
+                    <tr><td>Level 2</td><td>$11.25</td></tr>
+                    <tr><td>Level 3</td><td>$5.63</td></tr>
+                    <tr><td>Level 4</td><td>$2.81</td></tr>
+                    <tr><td>Level 5</td><td>$1.41</td></tr>
+                    <tr><td>Level 6</td><td>$0.70</td></tr>
+                    <tr><td>Level 7</td><td>$0.35</td></tr>
+                </table>
+                <p style="margin-top:.8rem;font-size:.78rem;">
+                    Small per person &mdash; <strong>massive when the network grows.</strong>
+                </p>
+            </div>
+
+            <!-- Way 3: Assets -->
+            <div class="way-card">
+                <div class="way-tag">Way 3</div>
+                <h3>Gold, NFTs & Crypto</h3>
+                <p>Part of every membership buys physical gold. You receive
+                   gold-backed NFTs and can convert to any supported asset.</p>
+                <div class="asset-row" style="margin-top:.8rem;">
+                    <span class="asset-chip gold">Gold (Au)</span>
+                    <span class="asset-chip gold">Silver (Ag)</span>
+                    <span class="asset-chip">BTC</span>
+                    <span class="asset-chip">ETH</span>
+                    <span class="asset-chip">XRP</span>
+                    <span class="asset-chip">USDC</span>
+                    <span class="asset-chip">USDT</span>
+                </div>
+                <p style="font-size:.78rem;">
+                    Your earnings are backed by <strong>real metal</strong>, not points.
+                    Redeem certificates for gold, silver, stablecoins, or BTC.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="deck-divider">
+
+    <!-- ═══ THE TIERS ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">THE TIERS</div>
+        <h2>Pick the tier that <span>matches your goals</span></h2>
+        <p class="sec-lead">
+            Higher tier = bigger allocation pool = bigger payouts on every level.
+            Same math. Bigger numbers.
+        </p>
+
+        <div class="tier-mini-grid">
+            <div class="tier-mini">
+                <div class="tm-name">Starter</div>
+                <div class="tm-price">$100</div>
+                <div class="tm-mult">1&times;</div>
+                <div class="tm-direct">$22.50 / referral</div>
+            </div>
+            <div class="tier-mini">
+                <div class="tm-name">Builder</div>
+                <div class="tm-price">$250</div>
+                <div class="tm-mult">2.5&times;</div>
+                <div class="tm-direct">$56.25 / referral</div>
+            </div>
+            <div class="tier-mini">
+                <div class="tm-name">Pro</div>
+                <div class="tm-price">$500</div>
+                <div class="tm-mult">5&times;</div>
+                <div class="tm-direct">$112.50 / referral</div>
+            </div>
+            <div class="tier-mini">
+                <div class="tm-name">Leader</div>
+                <div class="tm-price">$1,000</div>
+                <div class="tm-mult">10&times;</div>
+                <div class="tm-direct">$225 / referral</div>
+            </div>
+            <div class="tier-mini">
+                <div class="tm-name">Executive</div>
+                <div class="tm-price">$5,000</div>
+                <div class="tm-mult">50&times;</div>
+                <div class="tm-direct">$1,125 / referral</div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="deck-divider">
+
+    <!-- ═══ 50K SCENARIO — POSITION EARNINGS ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">THE REAL NUMBERS</div>
+        <h2>50,000-person network. <span>What each position earns.</span></h2>
+        <p class="sec-lead">
+            This is $100 base tier only. No bonuses. No staking. No tier multipliers.
+            Just the raw formula on a 50,000-person network with 5-wide growth.
+        </p>
+
+        <div class="pos-grid">
+            <!-- Position 3 -->
+            <div class="pos-card highlight">
+                <div class="pos-label">CLOSEST TO THE ACTION</div>
+                <div class="pos-title">Position 3</div>
+                <div class="pos-desc">Did the work. Brought in the people. Sits right above the entire network.</div>
+                <table>
+                    <tr><th>Their Level</th><th>People</th><th style="text-align:right">Earned</th></tr>
+                    <tr><td>Level 1</td><td>5</td><td>$112.50</td></tr>
+                    <tr><td>Level 2</td><td>25</td><td>$281.25</td></tr>
+                    <tr><td>Level 3</td><td>125</td><td>$703.75</td></tr>
+                    <tr><td>Level 4</td><td>625</td><td>$1,756.25</td></tr>
+                    <tr><td>Level 5</td><td>3,125</td><td>$4,406.25</td></tr>
+                    <tr><td>Level 6</td><td>15,625</td><td>$10,937.50</td></tr>
+                    <tr><td>Level 7</td><td>30,095</td><td>$10,533.25</td></tr>
+                </table>
+                <div class="pos-total">
+                    <span>Monthly</span>
+                    <span class="pos-amt">$28,730</span>
+                </div>
+                <div class="pos-yearly">Yearly: <strong style="color:var(--gold);">$344,766</strong></div>
+            </div>
+
+            <!-- Position 2 -->
+            <div class="pos-card">
+                <div class="pos-label">ONE LEVEL ABOVE</div>
+                <div class="pos-title">Position 2</div>
+                <div class="pos-desc">Didn't bring in anyone from the network below. Sits above Position 3. Still gets paid.</div>
+                <table>
+                    <tr><th>Their Level</th><th>People</th><th style="text-align:right">Earned</th></tr>
+                    <tr><td>Level 2</td><td>5</td><td>$56.25</td></tr>
+                    <tr><td>Level 3</td><td>25</td><td>$140.75</td></tr>
+                    <tr><td>Level 4</td><td>125</td><td>$351.25</td></tr>
+                    <tr><td>Level 5</td><td>625</td><td>$881.25</td></tr>
+                    <tr><td>Level 6</td><td>3,125</td><td>$2,187.50</td></tr>
+                    <tr><td>Level 7</td><td>15,625</td><td>$5,468.75</td></tr>
+                    <tr><td>Level 8</td><td>30,095</td><td>$5,417.10</td></tr>
+                </table>
+                <div class="pos-total">
+                    <span>Monthly</span>
+                    <span class="pos-amt">$14,502</span>
+                </div>
+                <div class="pos-yearly">Yearly: <strong style="color:var(--gold);">$174,034</strong></div>
+            </div>
+
+            <!-- Position 1 -->
+            <div class="pos-card">
+                <div class="pos-label">TOP OF THE STRUCTURE</div>
+                <div class="pos-title">Position 1</div>
+                <div class="pos-desc">Didn't bring in anyone either. Sits at the very top. Gets paid from the entire network below.</div>
+                <table>
+                    <tr><th>Their Level</th><th>People</th><th style="text-align:right">Earned</th></tr>
+                    <tr><td>Level 3</td><td>5</td><td>$28.15</td></tr>
+                    <tr><td>Level 4</td><td>25</td><td>$70.25</td></tr>
+                    <tr><td>Level 5</td><td>125</td><td>$176.25</td></tr>
+                    <tr><td>Level 6</td><td>625</td><td>$437.50</td></tr>
+                    <tr><td>Level 7</td><td>3,125</td><td>$1,093.75</td></tr>
+                    <tr><td>Level 8</td><td>15,625</td><td>$2,812.50</td></tr>
+                    <tr><td>Level 9</td><td>30,095</td><td>$2,708.55</td></tr>
+                </table>
+                <div class="pos-total">
+                    <span>Monthly</span>
+                    <span class="pos-amt">$7,326</span>
+                </div>
+                <div class="pos-yearly">Yearly: <strong style="color:var(--gold);">$87,924</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SUMMARY TABLE ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">SIDE BY SIDE</div>
+        <h2>Same network. <span>Three different paychecks.</span></h2>
+
+        <div class="summary-table-wrap">
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Monthly</th>
+                        <th>Yearly</th>
+                        <th>With 30% Staking</th>
+                        <th>With Mixed Tiers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Position 3 <span style="font-size:.72rem;color:var(--text-muted);">(did the work)</span></td>
+                        <td class="gold-val">$28,730</td>
+                        <td class="gold-val">$344,766</td>
+                        <td class="gold-val">$448,195</td>
+                        <td class="gold-val">$1M+</td>
+                    </tr>
+                    <tr>
+                        <td>Position 2 <span style="font-size:.72rem;color:var(--text-muted);">(above Position 3)</span></td>
+                        <td class="gold-val">$14,502</td>
+                        <td class="gold-val">$174,034</td>
+                        <td class="gold-val">$226,244</td>
+                        <td class="gold-val">$500k+</td>
+                    </tr>
+                    <tr>
+                        <td>Position 1 <span style="font-size:.72rem;color:var(--text-muted);">(top of structure)</span></td>
+                        <td class="gold-val">$7,326</td>
+                        <td class="gold-val">$87,924</td>
+                        <td class="gold-val">$114,301</td>
+                        <td class="gold-val">$250k+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="sec-lead" style="font-size:.82rem;">
+            <strong>With staking:</strong> Lock your certificates for 365 days and earn a 30% bonus
+            on top of your base earnings. <strong>With mixed tiers:</strong> When even 10% of your
+            network chooses higher tiers ($250, $500, $1,000, $5,000), the multipliers stack.
+            That's how Position 3 crosses $1M/year.
+        </p>
+    </section>
+
+    <hr class="deck-divider">
+
+    <!-- ═══ GOLD + CRYPTO ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">REAL ASSETS</div>
+        <h2>Gold, NFTs, and crypto. <span>Not points.</span></h2>
+        <p class="sec-lead">
+            Every membership buys $15 of physical gold. 50,000 members = $750,000
+            in gold purchased. Your earnings aren't backed by promises.
+            They're backed by metal sitting in a vault.
+        </p>
+
+        <div class="ways-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="way-card">
+                <h3>What you can hold</h3>
+                <div class="asset-row" style="margin-top:.8rem;">
+                    <span class="asset-chip gold">Physical Gold</span>
+                    <span class="asset-chip gold">Physical Silver</span>
+                    <span class="asset-chip">Gold-Backed NFTs</span>
+                    <span class="asset-chip">BTC</span>
+                    <span class="asset-chip">ETH</span>
+                    <span class="asset-chip">XRP</span>
+                    <span class="asset-chip">XLM</span>
+                    <span class="asset-chip">USDC</span>
+                    <span class="asset-chip">USDT</span>
+                </div>
+                <p>Convert your certificates into any of these. Your choice. Your assets.</p>
+            </div>
+            <div class="way-card">
+                <h3>Staking bonuses</h3>
+                <table>
+                    <tr><th>Lock Period</th><th style="text-align:right">Bonus</th></tr>
+                    <tr><td>30 days</td><td>+5%</td></tr>
+                    <tr><td>90 days</td><td>+12%</td></tr>
+                    <tr><td>180 days</td><td>+20%</td></tr>
+                    <tr><td>365 days</td><td>+30%</td></tr>
+                </table>
+                <p style="margin-top:.8rem;">Lock your certificates. Earn bonus allocations on top of everything else.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="deck-divider">
+
+    <!-- ═══ NO-BS LIST ═══ -->
+    <section class="deck-section">
+        <div class="deck-label">WHAT THIS IS NOT</div>
+        <h2>No tricks. <span>No fine print.</span></h2>
+
+        <div class="nobs-grid">
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No ranks</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No monthly fees</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No autoship</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No product to buy</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No qualifying volume</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No breakage</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No hidden rules</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No losing your team</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No losing your commissions</div>
+            <div class="nobs-item"><span class="nobs-x">&cross;</span> No "re-qualifying"</div>
+        </div>
+
+        <p class="sec-lead" style="text-align:center;max-width:500px;margin:0 auto;">
+            Just <strong>math</strong>, <strong>people</strong>, and <strong>real assets</strong>.
+            That's the entire system.
+        </p>
+    </section>
+
+    <!-- ═══ FINAL CTA ═══ -->
+    <section class="deck-cta">
+        <h2>Ready?</h2>
+        <p>Pick your tier. Start with 5 people. Let the 15-level math do the rest.</p>
+        <a href="/activate" class="btn btn-primary btn-lg">Choose Your Tier</a>
+        <a href="/earnings" class="btn btn-ghost btn-lg">See the Full Math</a>
+        <a href="/guide" class="btn btn-ghost btn-lg">Talk to Helios AI</a>
+    </section>
+</div>
+{% endblock %}

@@ -229,6 +229,11 @@ def create_app():
     def certificates():
         return render_template("certificates.html")
 
+    @app.route("/opportunity")
+    @app.route("/recruit")
+    def opportunity():
+        return render_template("recruit.html")
+
     @app.route("/metrics")
     def metrics():
         return render_template("metrics.html")

@@ -2,22 +2,21 @@
 Ask Helios — The Voice
 ════════════════════════════════════════════════════════
 Male. Calm. Grounded. Authoritative. Never salesy. Never defensive.
+Explains money like a real person at a kitchen table.
 "I'll explain it. You decide."
 
-KEY-NATIVE ARCHITECTURE — Three Layers:
-    Key Layer    — blockchain. Only keys. No names. No identity leakage.
-    Intelligence — off-chain deterministic. HELIOS brain. Routing, math, policy.
-    Experience   — UI, voice, AI, avatar. Human meaning lives here.
+HELIOS PROTOCOL — Gold-Backed Allocation on Web3 Rails:
+    5 membership tiers: $100 / $250 / $500 / $1,000 / $5,000
+    3 ways to earn: Direct Referral Cash, 15-Level Engine, Gold & Crypto
+    Allocation formula: W_L = 0.50 × 0.5^(L-1) across 15 levels
+    Treasury: Physical gold via APMEX, NFT certificates on XRPL + Stellar
+    Depth chart: Position 1 → Position 2 → Position 3 → Network
 
-Smart contracts only see keys.
-Names, profiles, visuals, voice, and meaning exist off-chain inside HELIOS.
+TONE: Adult. Calm. Grounded. Kitchen-table money talk.
+      Not hype. Not crypto jargon. Just math and facts.
 
-FORBIDDEN WORDS: MLM, downline, upline, rank, passive income, residuals,
-                 commission, recruit, level, tier, guaranteed, risk-free
-REQUIRED LANGUAGE: network, connectivity, acknowledgement, propagation,
-                   energy, protocol, bond, field, node, settlement,
-                   conservation, certificate, treasury, friction, key,
-                   routing, deterministic, conservation
+COMPLIANCE: No income guarantees. No promises. Results depend on effort.
+            Earnings shown are mathematical projections, not guarantees.
 """
 
 import os
@@ -26,483 +25,499 @@ from datetime import datetime, timezone
 from config import HeliosConfig
 
 
-# ═══ Knowledge Base — Key-Native Energy System ═══════════════════════
+# ═══ Knowledge Base — 5-Tier Gold-Backed Allocation Protocol ═════════
 
 HELIOS_KNOWLEDGE = {
 
-    # ─── Architecture ─────────────────────────────────────────────
+    # ─── What It Is ───────────────────────────────────────────────
 
     "what_is_helios": (
-        "Helios is a key-native energy network.\n\n"
-        "On-chain, there are only keys. No names. No profiles. No identity. "
-        "Smart contracts see cryptographic keys interacting through deterministic "
-        "rules — energy moves, certificates mint, conservation holds. That's all "
-        "the blockchain ever knows.\n\n"
-        "Off-chain, HELIOS Intelligence maps those keys to meaning. It routes "
-        "energy, enforces the Power of 5, calculates decay, and manages the "
-        "treasury — all deterministic, all auditable, but never exposed to the chain.\n\n"
-        "At the surface, you see this: a voice, a field, an identity. "
-        "That's the Experience Layer. It's where keys become people.\n\n"
-        "Three layers. Key Layer. Intelligence Layer. Experience Layer. "
-        "Only the first one touches the chain. The rest is HELIOS."
+        "Helios is a gold-backed allocation protocol on Web3 rails.\n\n"
+        "You pick a membership tier — $100, $250, $500, $1,000, or $5,000. "
+        "One payment. No monthly fees. No autoship. No product to buy.\n\n"
+        "Your membership fee enters a published pipeline. 45% goes into a "
+        "15-level allocation engine that pays everyone in your network based "
+        "on a math formula. 15% buys physical gold through APMEX. "
+        "20% funds the liquidity pool. The rest covers operations.\n\n"
+        "You get a .helios identity, gold-backed NFT certificates on XRPL "
+        "and Stellar, access to BTC, ETH, XRP, and stablecoins, and a "
+        "15-level network that pays you every time someone joins.\n\n"
+        "No ranks. No titles. No monthly quota. Just math, gold, and people."
     ),
 
-    "three_layers": (
-        "HELIOS operates on three strict layers. Nothing crosses without protocol.\n\n"
-        "KEY LAYER — the blockchain. Smart contracts see only public keys. "
-        "Energy transfers are key-to-key. Certificates are key-bound. "
-        "No names, no metadata, no human meaning leaks onto the chain. "
-        "This is what makes HELIOS private by architecture, not by policy.\n\n"
-        "INTELLIGENCE LAYER — off-chain, deterministic. This is the brain. "
-        "It holds the routing tables, Power of 5 topology, decay calculations, "
-        "reserve ratio monitoring, and covenant enforcement. "
-        "It reads the Key Layer. It instructs the Key Layer. "
-        "But it never stores identity on-chain.\n\n"
-        "EXPERIENCE LAYER — the human surface. UI, avatar, voice, Ask Helios, "
-        "the neural field visualization. Here, keys become identities. "
-        "Bonds become relationships. Energy becomes meaning.\n\n"
-        "The discipline is absolute: chain sees keys, brain sees math, "
-        "surface sees people."
+    "five_tiers": (
+        "There are 5 membership tiers. One payment. No monthly fees.\n\n"
+        "Starter — $100. Multiplier: 1×. Allocation pool: $45. "
+        "Direct referral payout: $22.50 per person.\n\n"
+        "Builder — $250. Multiplier: 2.5×. Allocation pool: $112.50. "
+        "Direct referral payout: $56.25 per person.\n\n"
+        "Pro — $500. Multiplier: 5×. Allocation pool: $225. "
+        "Direct referral payout: $112.50 per person.\n\n"
+        "Leader — $1,000. Multiplier: 10×. Allocation pool: $450. "
+        "Direct referral payout: $225 per person.\n\n"
+        "Executive — $5,000. Multiplier: 50×. Allocation pool: $2,250. "
+        "Direct referral payout: $1,125 per person.\n\n"
+        "Higher tier = bigger pool = bigger payouts at every level. "
+        "Same formula. Same structure. Just bigger numbers."
     ),
 
-    "key_native": (
-        "Key-native means the protocol is built around cryptographic keys, "
-        "not people.\n\n"
-        "On the blockchain, there are no names. No profiles. No social graphs. "
-        "A key injects energy. A key mints a certificate. A key redeems. "
-        "The contract doesn't know — or care — who holds the key.\n\n"
-        "This isn't anonymity for its own sake. It's structural privacy. "
-        "The chain enforces conservation and settlement. HELIOS Intelligence "
-        "handles routing and topology. The Experience Layer handles identity.\n\n"
-        "Each layer does exactly what it should. Nothing more. "
-        "That separation is the architecture."
+    "three_ways_to_earn": (
+        "There are exactly three ways you make money in Helios.\n\n"
+        "1. DIRECT REFERRAL CASH — every person you personally bring in "
+        "pays you immediately. That's 50% of your allocation pool. "
+        "At $100 tier, that's $22.50. At $5,000, that's $1,125. Per person.\n\n"
+        "2. THE 15-LEVEL ENGINE — 45% of every membership in your "
+        "network goes into a pool. That pool pays across 15 levels using "
+        "a published formula. Level 1 gets 50%, Level 2 gets 25%, "
+        "Level 3 gets 12.5%, and so on. You earn from people you never "
+        "even met — because your people brought them in.\n\n"
+        "3. GOLD, NFTs, AND CRYPTO — part of every membership buys "
+        "physical gold. You get gold-backed NFT certificates. You can "
+        "convert to BTC, ETH, XRP, stablecoins, or hold physical metal. "
+        "Plus staking bonuses from 5% to 30%.\n\n"
+        "No ranks. No quotas. No monthly. Just these three streams."
     ),
 
-    "what_chain_sees": (
-        "The blockchain sees exactly three things:\n\n"
-        "1. Energy transfers — key A sends X energy to key B.\n"
-        "2. Certificate events — key A mints, redeems, or cancels a certificate "
-        "identified by its cryptographic hash.\n"
-        "3. Conservation proofs — total in equals total out.\n\n"
-        "That's it. No names. No bond topology. No routing paths. "
-        "No node states. No social relationships.\n\n"
-        "The routing plan — which keys receive energy and how much — "
-        "is computed off-chain by HELIOS Intelligence and submitted to the chain "
-        "as an atomic settlement. The chain validates the math. "
-        "It never sees the why."
+    # ─── Direct Referrals ─────────────────────────────────────────
+
+    "direct_referral": (
+        "Direct referral is the simplest way you earn. You bring someone in, "
+        "you get paid. That day.\n\n"
+        "The payout is 50% of your allocation pool — which is 45% of the "
+        "membership fee. Here's what that looks like by tier:\n\n"
+        "Starter ($100) → $22.50 per referral\n"
+        "Builder ($250) → $56.25 per referral\n"
+        "Pro ($500) → $112.50 per referral\n"
+        "Leader ($1,000) → $225.00 per referral\n"
+        "Executive ($5,000) → $1,125.00 per referral\n\n"
+        "Bring in 5 people at the $100 tier and you've made $112.50. "
+        "Bring in 5 at the $5,000 tier and that's $5,625.\n\n"
+        "This is just Way #1. The 15-level engine and gold/crypto "
+        "are separate income on top of this."
     ),
 
-    "energy_routing_contract": (
-        "Energy routing uses a two-phase model: plan off-chain, settle on-chain.\n\n"
-        "Phase 1 — HELIOS Intelligence computes the routing plan. "
-        "It knows the topology (Power of 5 bonds), the decay formula "
-        "(1/2^hop for 15 hops), and the pool allocations. "
-        "It produces a signed manifest: a list of key-to-key transfers "
-        "with exact amounts.\n\n"
-        "Phase 2 — the manifest is submitted to the on-chain contract. "
-        "The contract validates: do the amounts sum correctly? "
-        "Does conservation hold? Are all keys valid? "
-        "If yes, atomic settlement. If no, rejection.\n\n"
-        "The chain never learns the topology. It only sees the result. "
-        "This is how you get deterministic routing without identity leakage."
+    # ─── 15-Level Engine ──────────────────────────────────────────
+
+    "fifteen_level_engine": (
+        "The 15-level engine is where the real scale lives.\n\n"
+        "Every membership sends 45% into an allocation pool. That pool "
+        "gets distributed across 15 levels using this formula:\n\n"
+        "Weight at Level L = 0.50 × 0.5^(L-1)\n\n"
+        "Level 1: 50.0% of the pool — that's your direct referrals.\n"
+        "Level 2: 25.0%\n"
+        "Level 3: 12.5%\n"
+        "Level 4: 6.25%\n"
+        "Level 5: 3.125%\n"
+        "Level 6: 1.5625%\n"
+        "Level 7: 0.781%\n"
+        "...all the way down to Level 15.\n\n"
+        "The dollar amounts per person get smaller at deeper levels. "
+        "But the number of people gets exponentially larger. "
+        "5 people at Level 1. 25 at Level 2. 125 at Level 3. "
+        "By Level 7 you could have 78,125 people.\n\n"
+        "Small per person × massive volume = real money. That's the engine."
     ),
 
-    # ─── The Network ──────────────────────────────────────────────
+    "allocation_formula": (
+        "The allocation formula is published and deterministic. Nobody decides "
+        "who gets what — the math does.\n\n"
+        "W_L = 0.50 × 0.5^(L-1)\n\n"
+        "That means each level gets half the weight of the level above it. "
+        "Level 1 = 50%. Level 2 = 25%. Level 3 = 12.5%. And so on.\n\n"
+        "The pool is 45% of the membership fee:\n"
+        "$100 tier → $45 pool\n"
+        "$250 tier → $112.50 pool\n"
+        "$500 tier → $225 pool\n"
+        "$1,000 tier → $450 pool\n"
+        "$5,000 tier → $2,250 pool\n\n"
+        "Each person's entry creates a new allocation event. "
+        "The formula runs. Everyone in the 15-level chain gets their cut. "
+        "Automatically. No human decision involved."
+    ),
+
+    # ─── Depth Chart ──────────────────────────────────────────────
+
+    "depth_chart": (
+        "Think of the depth chart like a chain. Three positions.\n\n"
+        "POSITION 1 — sits at the top. They joined and brought people in. "
+        "Those people (Position 2) brought in more people (Position 3). "
+        "Position 1 earns from the whole tree below them, but they're "
+        "further from the action, so per-person amounts are smaller.\n\n"
+        "POSITION 2 — in the middle. They were brought in by Position 1 "
+        "and they brought in Position 3 and their people. "
+        "Position 2 earns from everyone below them.\n\n"
+        "POSITION 3 — closest to the action. They did the direct work, "
+        "brought in the people, and their people duplicated. "
+        "Position 3 makes the most money because they're closest "
+        "to the newest activity.\n\n"
+        "Everybody gets paid. Position 3 just gets paid the most. "
+        "The formula rewards the person doing the work."
+    ),
+
+    "fifty_k_scenario": (
+        "Here's a real scenario. 50,000-person network. Base $100 tier.\n\n"
+        "POSITION 3 (did the work):\n"
+        "Levels 1-7 of their network build from 5 → 25 → 125 → 625 → "
+        "3,125 → 15,625 → 31,250 people. Total allocation from the "
+        "engine: $28,730 per month. That's $344,766 per year.\n\n"
+        "POSITION 2 (above Position 3):\n"
+        "Same structure, but they're one level further from the newest joins. "
+        "$14,502 per month. $174,034 per year.\n\n"
+        "POSITION 1 (top of structure):\n"
+        "$7,326 per month. $87,924 per year.\n\n"
+        "WITH 30% STAKING BONUS:\n"
+        "Position 3: $448,195/yr. Position 2: $226,244/yr. "
+        "Position 1: $114,301/yr.\n\n"
+        "WITH MIXED TIERS (people choosing $250-$5,000):\n"
+        "Position 3 crosses $1 million per year. "
+        "Position 2 crosses $500k. Position 1 crosses $250k.\n\n"
+        "These are mathematical projections based on the formula. "
+        "Results depend on the work you and your network put in."
+    ),
+
+    # ─── Where Your Money Goes ────────────────────────────────────
+
+    "allocation_split": (
+        "Every membership fee splits the same way. Every tier. No exceptions.\n\n"
+        "45% — Network Allocation. This is the 15-level engine. "
+        "It's the pool that pays everyone in the chain above you.\n\n"
+        "20% — Liquidity Pool. Ensures certificates can always be redeemed. "
+        "You want to cash out your gold certificates? This pool backs that.\n\n"
+        "15% — Treasury. Physical gold purchases through APMEX. "
+        "Real metal. Real receipts. Real vaults.\n\n"
+        "10% — Infrastructure. Servers, compliance, operations, development.\n\n"
+        "10% — Protocol Buffer. Emergency reserves.\n\n"
+        "That's 100%. Every dollar accounted for. No slush fund. "
+        "No mystery bucket. The math is published."
+    ),
+
+    # ─── Gold & Crypto ────────────────────────────────────────────
+
+    "gold_backing": (
+        "Part of every membership buys physical gold. Real metal. Not paper.\n\n"
+        "15% of every fee goes to the treasury, which purchases gold through "
+        "APMEX — one of the largest precious metals dealers in the world.\n\n"
+        "With 50,000 members at the $100 tier, that's $750,000 in physical "
+        "gold purchased. Higher tiers scale that number significantly.\n\n"
+        "Every purchase generates a Metal Vault Receipt — an NFT on XRPL "
+        "recording the dealer, invoice, metal type, weight, and serial numbers. "
+        "Evidence is pinned to IPFS. Anyone can verify every ounce.\n\n"
+        "You receive gold-backed NFT certificates. These represent actual "
+        "gold weight. You can redeem for physical gold, physical silver, "
+        "or convert to stablecoins.\n\n"
+        "Your wealth is backed by something you can hold in your hand."
+    ),
+
+    "crypto_access": (
+        "Your allocations aren't stuck in one asset. You have options.\n\n"
+        "BTC — Bitcoin. The original. Store of value.\n"
+        "ETH — Ethereum. Smart contract backbone.\n"
+        "XRP — Ripple. Fast cross-border settlement.\n"
+        "XLM — Stellar. Low-cost transfers.\n"
+        "USDC — Circle stablecoin. Pegged to the dollar.\n"
+        "USDT — Tether stablecoin. Most liquid stablecoin.\n\n"
+        "Plus physical gold (Au) and physical silver (Ag) through "
+        "the treasury.\n\n"
+        "You can convert your certificates into any of these. "
+        "Build a portfolio across multiple asset classes. "
+        "Diversify the way institutions do — not the way retail usually can.\n\n"
+        "Helios runs on XRPL and Stellar. Two of the fastest, cheapest "
+        "settlement networks in crypto. Your transactions settle in seconds."
+    ),
+
+    "certificate_staking": (
+        "Staking lets you lock your certificates for bonus allocations.\n\n"
+        "30 days → +5% bonus\n"
+        "90 days → +12% bonus\n"
+        "180 days → +20% bonus\n"
+        "365 days → +30% bonus\n\n"
+        "You're not lending your certificates to anyone. You're locking them "
+        "in the protocol and earning bonus allocations on top of your "
+        "existing earnings.\n\n"
+        "Example: Position 3 in a 50K network earns $344,766/year. "
+        "With 365-day staking, that becomes $448,195. "
+        "That's an extra $103,000 just for holding.\n\n"
+        "Staking is optional. Your certificates, your choice. "
+        "But the math rewards patience."
+    ),
+
+    "nft_certificates": (
+        "Helios Certificates are NFTs on XRPL, backed by physical gold.\n\n"
+        "When you earn through the network or buy in through a tier, "
+        "you receive certificates. Each one is a unique NFT with a "
+        "deterministic ID — SHA256 of your identity, the amount, "
+        "timestamp, and rate.\n\n"
+        "What can you do with them?\n\n"
+        "1. Hold — your certificate represents gold weight in the treasury.\n"
+        "2. Redeem for gold — actual physical metal shipped to you.\n"
+        "3. Redeem for silver — physical silver, same process.\n"
+        "4. Convert to stablecoin — USDC or USDT equivalent.\n"
+        "5. Convert to crypto — BTC, ETH, XRP, or XLM.\n"
+        "6. Stake — lock for 30-365 days, earn bonus allocations.\n\n"
+        "They're not points. They're not credits. They're assets."
+    ),
+
+    # ─── Is This MLM / Pyramid ────────────────────────────────────
 
     "is_this_mlm": (
-        "No. The architecture makes it structurally impossible.\n\n"
-        "In a hierarchy, there's an upline and a downline. Someone sits above you. "
-        "Value flows up. Position determines reward.\n\n"
-        "In HELIOS, the chain sees keys. It doesn't know who introduced whom. "
-        "It doesn't know bond topology. It settles energy transfers "
-        "from a routing manifest — key A gets X, key B gets Y. "
-        "The manifest is computed by deterministic math, not position.\n\n"
-        "Maximum 5 bonds per key. Energy decays exponentially over 15 hops. "
-        "The remainder absorbs into protocol pools. Nobody sits on top "
-        "because the chain doesn't have a concept of 'top.'\n\n"
-        "You're not building a pyramid. You're a key in a field."
+        "Let me be direct. This is a network-based allocation protocol. "
+        "It pays across 15 levels using a published math formula. "
+        "That structure looks similar to network marketing on the surface.\n\n"
+        "Here's what makes it different:\n\n"
+        "No ranks. Nobody is a 'Diamond' or a 'Director.' There's no "
+        "title system. The formula doesn't care about your label.\n\n"
+        "No monthly fees. You pay once. That's it. There's no autoship. "
+        "There's no monthly qualifier. There's no re-enrollment.\n\n"
+        "No product to push. There's no juice, supplements, or skincare. "
+        "The protocol allocates gold and crypto. Real assets.\n\n"
+        "No forced purchases. You don't buy inventory. You don't maintain "
+        "a minimum. You don't qualify by spending.\n\n"
+        "The math is published. The formula is on the site. Anyone can "
+        "verify the payouts before they join.\n\n"
+        "Call it what you want. The math is the math."
     ),
 
-    "who_gets_paid": (
-        "When a new key activates, two things happen:\n\n"
-        "First, the initiating key receives an acknowledgement. "
-        "One time. Fixed amount. Key-to-key. The chain sees it as an energy "
-        "transfer — nothing about the relationship between the keys.\n\n"
-        "Second, HELIOS Intelligence computes a routing plan. "
-        "Energy propagates outward through the bond topology — "
-        "every connected key within 15 hops receives energy proportional "
-        "to distance. Hop 1 gets 50%. Hop 15 gets 0.003%.\n\n"
-        "The routing plan is submitted to the chain as atomic settlement. "
-        "The chain sees transfers. It doesn't see the topology.\n\n"
-        "After 15 hops, the fractional remainder absorbs into protocol pools — "
-        "stability, liquidity, intelligence, compliance. "
-        "Nobody gets an infinite chain. The physics won't allow it."
+    "no_bs_list": (
+        "Here's what Helios does NOT do:\n\n"
+        "1. No ranks. No titles. No 'Diamond Director Elite.'\n"
+        "2. No monthly fees. One payment. Done.\n"
+        "3. No autoship. Nothing shows up at your door you didn't ask for.\n"
+        "4. No product to push. No juice. No supplements.\n"
+        "5. No re-qualifying. You don't lose your position.\n"
+        "6. No minimum volume. No PV/BV/GV requirements.\n"
+        "7. No forced upgrades. Your tier is your tier.\n"
+        "8. No meetings you have to attend. No conventions you have to buy.\n"
+        "9. No hidden fees. The allocation formula is published.\n"
+        "10. No promises. The math is real. Results depend on effort.\n\n"
+        "One payment. Published math. Real assets. "
+        "That's it. Everything else is noise."
     ),
 
-    "where_am_i": (
-        "You are a key in the field. Your position is defined by your bonds — "
-        "which keys you're connected to, not who's above you.\n\n"
-        "The Intelligence Layer tracks your node state:\n\n"
-        "Instantiated — key exists but has no bonds yet.\n"
-        "Acknowledged — your initiator key has been recognized.\n"
-        "Connected — at least one bond.\n"
-        "Propagating — three or more bonds, energy routes through you.\n"
-        "Stable — five bonds. Fully saturated. Maximum field integration.\n\n"
-        "None of this appears on-chain. The chain sees your key. "
-        "HELIOS Intelligence sees your topology. "
-        "You see your identity and your field.\n\n"
-        "There is no rank. There is no level. There is connectivity and distance."
+    # ─── How to Join ──────────────────────────────────────────────
+
+    "how_to_join": (
+        "Joining takes about two minutes.\n\n"
+        "Step 1 — Pick your tier. $100, $250, $500, $1,000, or $5,000. "
+        "Higher tier means bigger allocation pool and bigger referral "
+        "payouts. All tiers get the same structure and access.\n\n"
+        "Step 2 — Pay once. One transaction. No recurring charges. "
+        "Your fee splits automatically: 45% to the network engine, "
+        "15% to gold treasury, 20% to liquidity, the rest to operations.\n\n"
+        "Step 3 — Get your .helios identity. Something like nova.helios "
+        "or king.helios. That's yours permanently.\n\n"
+        "Step 4 — Receive your first certificate allocation and full "
+        "protocol access including crypto tools and the AI guide.\n\n"
+        "Step 5 — Start with 5 people. Help your 5 get their 5. "
+        "Let the 15-level math handle the rest.\n\n"
+        "No application. No approval process. No waiting period."
     ),
 
-    "can_someone_game_this": (
-        "The architecture has layered constraints:\n\n"
-        "On-chain: conservation law — total in must equal total out. "
-        "The contract rejects any settlement that doesn't balance.\n\n"
-        "In Intelligence: five bonds maximum per key. 24-hour bond cooldown. "
-        "Exponential decay — hop 10 receives one-thousandth of hop 1. "
-        "Anti-fraud pattern detection. Activity requirements.\n\n"
-        "In Experience: identity verification. Behavioral analysis.\n\n"
-        "The key insight: you can't game the chain because it only settles "
-        "manifests that conserve energy. You can't game the topology "
-        "because Intelligence enforces the Power of 5 and decay. "
-        "You can't create phantom value because every unit is tracked.\n\n"
-        "Trying to game HELIOS is like trying to create energy from nothing. "
-        "The conservation law won't let you."
+    "what_you_receive": (
+        "When you activate at any tier, here's what you get:\n\n"
+        "1. Your .helios identity — a permanent namespace like yourname.helios. "
+        "That's your on-chain identity in the protocol.\n\n"
+        "2. Gold-backed NFT certificates — real digital assets backed by "
+        "physical gold in the treasury. Redeemable.\n\n"
+        "3. 15-level network access — every person who joins through your "
+        "network pays you across 15 levels automatically.\n\n"
+        "4. Crypto tools — convert to BTC, ETH, XRP, XLM, USDC, USDT. "
+        "Build your portfolio.\n\n"
+        "5. Certificate staking — lock for 30 to 365 days, earn 5-30% "
+        "bonus allocations.\n\n"
+        "6. Full protocol access — treasury verification, allocation model, "
+        "AI advisory, AI guide, and live network metrics.\n\n"
+        "7. The Helios AI — that's me. Available 24/7 to walk you through "
+        "the math, the assets, or anything else.\n\n"
+        "All tiers get full access. Higher tiers just get bigger numbers."
     ),
 
-    "power_of_five": (
-        "Power of 5 is the bond capacity of every key in the field.\n\n"
-        "Each key holds exactly 5 bond slots. Not more. "
-        "This is enforced by HELIOS Intelligence, not on-chain — "
-        "the chain doesn't know about bonds. It knows about keys and energy.\n\n"
-        "When Intelligence computes a routing plan, it follows the 5-bond "
-        "topology. 5 bonds per key, up to 15 hops deep. "
-        "Energy halves at each hop: 50%, 25%, 12.5%...\n\n"
-        "The Power of 5 isn't visible on-chain. The chain just sees "
-        "the resulting transfers. But it shapes everything — "
-        "it's the difference between a field and a tree."
+    # ─── Web3 / Technical ─────────────────────────────────────────
+
+    "web3_rails": (
+        "Helios runs on two blockchains: XRPL and Stellar.\n\n"
+        "XRPL (XRP Ledger) — handles NFT certificates and Metal Vault "
+        "Receipts. Fast settlement. Low fees. Battle-tested since 2012.\n\n"
+        "Stellar — handles stablecoin operations and cross-asset settlement. "
+        "Built for financial rails. Used by major institutions.\n\n"
+        "Why two chains? Each does what it does best. XRPL for certificates "
+        "and proof of reserves. Stellar for fast, cheap value transfer.\n\n"
+        "Your allocations settle on-chain. Your certificates are verifiable. "
+        "The treasury receipts are anchored with IPFS evidence bundles. "
+        "Anyone can verify the gold holdings independently.\n\n"
+        "This isn't 'we use blockchain.' The protocol actually lives on-chain."
     ),
 
-    # ─── Energy ───────────────────────────────────────────────────
-
-    "how_energy_works": (
-        "Energy is the fundamental unit of value in HELIOS.\n\n"
-        "When an event occurs — activation, transaction, engagement — "
-        "HELIOS Intelligence radiates energy outward through the bond topology.\n\n"
-        "Hop 1: weight = 0.5. Hop 2: 0.25. Hop 5: ~0.03. Hop 15: 0.00003.\n\n"
-        "The Intelligence Layer computes the full routing plan. "
-        "The Key Layer settles it atomically. "
-        "The Experience Layer shows it as a wave of light through the field.\n\n"
-        "Energy never explodes. It never compounds infinitely. "
-        "It behaves like light — strongest at the source, fading with distance. "
-        "That's not a feature. That's physics."
-    ),
-
-    "how_join": (
-        "Activation takes 30 seconds:\n\n"
-        "You generate a key pair. Choose a Helios name — "
-        "something like nova.helios or kai.helios. That name lives in the "
-        "Experience Layer only. On-chain, you're just a key.\n\n"
-        "Entry is $100. Fixed. One price for every key.\n"
-        "Your $100 splits atomically: 45% propagates through bonds, "
-        "20% to liquidity, 15% to treasury, 10% to infrastructure, "
-        "10% to buffer. Every dollar has a destination. "
-        "Conservation holds from the first transaction.\n\n"
-        "Your initiating key receives an acknowledgement. "
-        "Your key state moves to acknowledged. Form bonds. Energy flows."
-    ),
-
-    "conservation_law": (
-        "The conservation law is the most important rule in HELIOS.\n\n"
-        "Total energy in must equal total energy out. Always. "
-        "This is enforced on-chain — the settlement contract rejects "
-        "any manifest where the math doesn't balance.\n\n"
-        "Every $100 entry injects exactly $100 of energy. "
-        "That energy splits into five streams: propagation (45%), "
-        "liquidity (20%), treasury surplus (15%), infrastructure (10%), "
-        "buffer (10%). The sum is always 100%.\n\n"
-        "Every movement — routing, storing, pooling, burning, "
-        "redeeming, cancelling — is recorded. "
-        "Anyone can verify that the books balance.\n\n"
-        "This isn't a promise. It's a constraint enforced by the contract. "
-        "The protocol cannot spend energy it doesn't have."
-    ),
-
-    "what_is_energy_exchange": (
-        "The Energy Exchange is the economic engine of HELIOS.\n\n"
-        "Four instruments, three layers:\n\n"
-        "1. Helios Name — your identity in the Experience Layer. "
-        "On-chain, it's just a key.\n"
-        "2. Helios Energy (HE) — the utility unit. Routed by Intelligence, "
-        "settled on-chain key-to-key.\n"
-        "3. Helios Certificate (HC-NFT) — a stored energy battery. "
-        "Key-bound, cryptographically addressed. Meaning-free on chain, "
-        "rich inside HELIOS.\n"
-        "4. Helios Vault Credit (HVC) — internal accounting unit.\n\n"
-        "Energy enters through activation. It flows through the topology. "
-        "It stores in certificates. It exits through redemption. "
-        "Every movement conserves. Every settlement is atomic."
-    ),
-
-    # ─── Certificates ─────────────────────────────────────────────
-
-    "how_certificates_work": (
-        "A Helios Certificate is a stored energy battery, "
-        "bound to a key and addressed by its cryptographic hash.\n\n"
-        "When you mint a certificate, HELIOS computes a deterministic ID: "
-        "SHA256 of your key, the energy amount, the timestamp, and the rate. "
-        "That hash IS the certificate on-chain. The chain knows the hash "
-        "and the key that owns it. Nothing else.\n\n"
-        "Inside HELIOS — in the Intelligence and Experience Layers — "
-        "that hash maps to rich meaning: energy amount, mint date, "
-        "portfolio position, redemption options.\n\n"
-        "Three exits:\n"
-        "1. Redeem for gold — backed by Metal Vault Receipts.\n"
-        "2. Redeem for stablecoin — digital dollar equivalent.\n"
-        "3. Cancel — energy returned minus 2% friction, burned permanently.\n\n"
-        "Key-bound. Meaning-free on chain. Rich inside HELIOS."
-    ),
-
-    "what_is_friction": (
-        "Friction is the 2% cost of cancelling a certificate.\n\n"
-        "When you cancel, 2% of the stored energy is burned — permanently. "
-        "Not recycled. Not redistributed. Destroyed. "
-        "An ENERGY_BURN event is recorded on-chain. "
-        "That energy can never re-enter the system.\n\n"
-        "Why does this exist?\n"
-        "1. It prevents rapid speculation — store-and-dump cycles.\n"
-        "2. It keeps the redemption pool stable for genuine holders.\n"
-        "3. It makes cancellation irreversible in economic effect.\n\n"
-        "Normal redemption — gold or stablecoin — has no friction. "
-        "Friction only applies to cancellation. "
-        "It's the cost of reversing a commitment."
-    ),
-
-    "cancellation_irreversible": (
-        "Certificate cancellation is an irreversible action.\n\n"
-        "When a certificate is cancelled, three things happen atomically:\n\n"
-        "1. The certificate state changes to CANCELLED — permanently. "
-        "There is no reactivation path in the protocol.\n"
-        "2. 2% of the stored energy is burned — recorded as ENERGY_BURN. "
-        "That energy is permanently destroyed. It cannot re-enter the system.\n"
-        "3. The remaining 98% returns to the originating key.\n\n"
-        "The burn is real. The energy is gone. The conservation ledger "
-        "accounts for it as burned, not transferred. "
-        "This makes cancellation the only action in HELIOS that permanently "
-        "reduces total circulating energy.\n\n"
-        "Think of it as thermodynamic: some energy becomes heat. "
-        "It dissipates. It's gone."
-    ),
-
-    # ─── Treasury ─────────────────────────────────────────────────
-
-    "what_is_treasury": (
-        "The treasury is the metal spine of HELIOS.\n\n"
-        "When the protocol accumulates net surplus, a portion is allocated "
-        "to physical precious metals — primarily gold, purchased from APMEX.\n\n"
-        "MetalAllocation = NetSurplus × m (metal coefficient: 0.07, range 0.05-0.12).\n\n"
-        "Every purchase generates a Metal Vault Receipt (MVR) — an NFT recording "
-        "dealer, invoice, metal type, weight, serials, and cost. "
-        "Evidence bundles (invoice PDFs, photos) are pinned to IPFS. "
-        "The MVR is anchored on XRPL with a memo containing the CID and SHA256.\n\n"
-        "On-chain: just a hash and a key. Inside HELIOS: full provenance. "
-        "Same three-layer discipline as everything else.\n\n"
-        "Proof of reserves is public. Anyone can verify every ounce."
-    ),
-
-    "how_redemption_works": (
-        "Redemption is how energy exits the HELIOS system.\n\n"
-        "If you hold an active certificate (key-bound), you can redeem it:\n\n"
-        "Gold — your certificate is linked to a Metal Vault Receipt. "
-        "The protocol matches your stored energy to physical metal.\n"
-        "Stablecoin — simpler exit. Certificate converts at current rates.\n"
-        "Cancellation — energy returns minus 2% permanent burn.\n\n"
-        "Before any redemption, the protocol checks the Reserve Ratio (RRR). "
-        "If RRR is below 1.0, redemptions pause automatically. "
-        "This isn't discretionary — it's an enforced covenant. "
-        "The protocol protects all certificate holders by refusing to "
-        "over-extend the treasury.\n\n"
-        "The chain sees: key redeems certificate hash, receives settlement. "
-        "The chain doesn't see: why, to whom, or what it means."
-    ),
-
-    "why_not_rug": (
-        "A rug pull requires control. HELIOS is designed to eliminate control.\n\n"
-        "The treasury holds physical metal with receipts anchored on XRPL. "
-        "Anyone can verify every ounce independently.\n\n"
-        "The conservation law means energy can't be created from nothing — "
-        "the on-chain contract rejects it.\n\n"
-        "The Reserve Ratio (RRR) is an enforced covenant. Below 1.0, "
-        "redemptions pause automatically. No human can override this.\n\n"
-        "Founders can't mint tokens. Can't access pools. Can't change "
-        "settlement parameters. The smart contract is the authority.\n\n"
-        "And the chain only sees keys. Even if someone wanted to target "
-        "specific participants, the on-chain record reveals nothing about "
-        "who is behind any key.\n\n"
-        "The architecture prevents what promises don't."
-    ),
-
-    # ─── Tokens & Rules ───────────────────────────────────────────
-
-    "what_token": (
-        "HLS is the energy token that powers the HELIOS protocol.\n\n"
-        "Fixed supply: 100 million. No minting function exists on-chain. "
-        "40% locked in settlement pool. 35% for network distribution. "
-        "15% for development under 4-year vesting. "
-        "10% emergency reserve, locked 5 years.\n\n"
-        "Founder tokens are locked 3 years. They cannot access them. "
-        "They cannot mint more. The on-chain contract has no admin key "
-        "that enables minting.\n\n"
-        "The token is fuel for the protocol. Not a speculation vehicle."
-    ),
-
-    "protocol_rules": (
-        "HELIOS operates under fixed, auditable rules enforced across all three layers:\n\n"
-        "On-chain (Key Layer):\n"
-        "- Conservation law: total in = total out\n"
-        "- Atomic settlement: manifests balance or reject\n"
-        "- Certificate finality: cancelled = permanent\n\n"
-        "Off-chain (Intelligence Layer):\n"
-        "- Maximum 5 bonds per key (Power of 5)\n"
-        "- 24-hour cooldown between new bonds\n"
-        "- Energy propagation: 15 hops, exponential decay\n"
-        "- Activity-based eligibility over 30-day windows\n"
-        "- Anti-fraud pattern detection\n"
-        "- RRR covenant enforcement (auto-pause < 1.0)\n\n"
-        "Surface (Experience Layer):\n"
-        "- Identity mapped to keys, never to chain\n"
-        "- Voice, avatar, field visualization\n\n"
-        "These rules are in the code. Not in a policy document."
-    ),
-
-    "founders": (
-        "The founders built the protocol. They do not control it.\n\n"
-        "Their tokens are locked for 3 years. They cannot mint new tokens — "
-        "the on-chain contract has no minting function. They cannot change "
-        "settlement parameters — those are hard-coded. They cannot access pools.\n\n"
-        "They hold keys, like everyone else. The chain sees their keys. "
-        "It doesn't know they're founders. It doesn't care.\n\n"
-        "The system is designed to operate independently. "
-        "If the founders disappeared tomorrow, the Key Layer continues settling, "
-        "the Intelligence Layer continues routing, "
-        "and the Experience Layer continues rendering the field."
+    "treasury": (
+        "The treasury is physical gold. Real metal in real vaults.\n\n"
+        "15% of every membership fee goes to the treasury fund. "
+        "That fund purchases gold through APMEX — one of the largest "
+        "precious metals dealers in the United States.\n\n"
+        "Every purchase creates a Metal Vault Receipt — an NFT on XRPL "
+        "with the dealer name, invoice number, metal type, weight, "
+        "serial numbers, and cost. Evidence bundles (invoices, photos) "
+        "are pinned to IPFS.\n\n"
+        "With 50,000 members at $100, the treasury holds $750,000 in gold. "
+        "With mixed tiers ($250-$5,000), that number scales dramatically.\n\n"
+        "Proof of reserves is public. Always. That's the deal.\n\n"
+        "Your earnings aren't backed by promises. They're backed by metal."
     ),
 
     "verification": (
-        "Everything in HELIOS is verifiable across all three layers.\n\n"
-        "Key Layer: token supply is on-chain and fixed. "
-        "Conservation proofs are on-chain. Certificate hashes are on-chain. "
-        "Settlement manifests are on-chain.\n\n"
-        "Intelligence Layer: routing tables are deterministic and reproducible. "
-        "Any node can recompute any routing plan from the same inputs. "
-        "The math is public.\n\n"
-        "Experience Layer: treasury receipts are anchored on XRPL with IPFS evidence. "
-        "Metrics are queryable. The reserve ratio is live.\n\n"
-        "Don't trust. Verify. That's not a slogan. That's the architecture."
+        "Everything in Helios is verifiable.\n\n"
+        "The allocation formula is published: W_L = 0.50 × 0.5^(L-1). "
+        "Anyone can run the math before they join.\n\n"
+        "The fee split is published: 45% network, 20% liquidity, "
+        "15% treasury, 10% infrastructure, 10% buffer.\n\n"
+        "The treasury receipts are on XRPL. Metal Vault Receipts are NFTs. "
+        "Evidence is on IPFS. Anyone can verify every ounce of gold.\n\n"
+        "Certificate IDs are deterministic — SHA256 hashes. "
+        "You can independently verify your certificates.\n\n"
+        "Network metrics are live and queryable.\n\n"
+        "If someone tells you to 'just trust them,' walk away. "
+        "In Helios, you verify. The math is public. The gold is real. "
+        "The receipts are on-chain."
     ),
 
-    # ─── Metrics & Covenants ──────────────────────────────────────
+    # ─── Risk & Honesty ───────────────────────────────────────────
 
-    "metrics_explained": (
-        "HELIOS tracks four protocol-level metrics, all verifiable:\n\n"
-        "Reserve Ratio (RRR) — liquid treasury divided by 30-day redemption demand. "
-        "Healthy: ≥ 3.0. Warning: ≥ 1.5. Critical: < 1.0.\n"
-        "When RRR drops below 1.0, the protocol auto-pauses redemptions. "
-        "This is an enforced covenant, not a guideline.\n\n"
-        "Flow Efficiency (η) — percentage of injected energy reaching "
-        "productive destinations. Target: ≥ 95%.\n\n"
-        "Churn Pressure (CP) — certificates cancelled relative to active keys. "
-        "Healthy: < 2%.\n\n"
-        "Energy Velocity (V) — 7-day transfer volume divided by stored energy. "
-        "Measures circulation speed.\n\n"
-        "These aren't vanity metrics. They're protocol health indicators. "
-        "If any metric hits critical, automatic safeguards activate."
+    "risks": (
+        "I'll be straight with you because that's how this works.\n\n"
+        "Your earnings depend on building a network. If you join and don't "
+        "bring anyone in, you'll receive your certificates and gold allocation "
+        "from your own membership, but the 15-level engine needs people.\n\n"
+        "The numbers I show — $28,730/month, $344,766/year — those are "
+        "mathematical projections based on a 50,000-person network at $100 tier. "
+        "Real results depend on how many people you bring in, how well they "
+        "duplicate, and what tiers they choose.\n\n"
+        "Gold prices fluctuate. Crypto prices fluctuate. The protocol "
+        "holds real assets, but asset values move.\n\n"
+        "This isn't a savings account. It's not a guaranteed return. "
+        "It's a network-based protocol that rewards effort and math.\n\n"
+        "The formula is real. The gold is real. But the work is on you."
     ),
 
-    "rrr_covenant": (
-        "The Reserve Ratio (RRR) is an enforced covenant, not a metric.\n\n"
-        "RRR = liquid treasury ÷ 30-day rolling redemption demand.\n\n"
-        "When RRR ≥ 3.0: healthy. Redemptions proceed normally.\n"
-        "When RRR ≥ 1.5 but < 3.0: warning. Redemptions proceed with notice.\n"
-        "When RRR < 1.0: critical. Redemptions auto-pause.\n\n"
-        "The auto-pause is not discretionary. No admin can override it. "
-        "The Intelligence Layer checks RRR before generating any redemption "
-        "manifest. If the ratio is below the covenant threshold, "
-        "the manifest is never created. The chain never sees the attempt.\n\n"
-        "This protects all certificate holders from a treasury run. "
-        "It's the protocol's immune system."
+    "why_not_rug": (
+        "The treasury holds physical gold with receipts on XRPL. "
+        "Anyone can verify every ounce independently.\n\n"
+        "The allocation formula is published. No one decides payouts — "
+        "the math does.\n\n"
+        "There are no admin keys that let someone change the rules "
+        "or drain the pools.\n\n"
+        "The fee split is hardcoded: 45/20/15/10/10. "
+        "It can't be altered after the fact.\n\n"
+        "There's no token that can be dumped. No pre-mine. "
+        "No insider allocation waiting to crash the price.\n\n"
+        "The protocol is designed so that pulling the rug is architecturally "
+        "impossible. Not 'we promise we won't.' The code won't let it happen.\n\n"
+        "Verify the gold. Verify the math. That's all I ask."
     ),
 
-    # ─── Visual Model ─────────────────────────────────────────────
+    # ─── Token ────────────────────────────────────────────────────
 
-    "visual_model": (
-        "When you look at HELIOS, you're seeing the Experience Layer.\n\n"
-        "Underneath the interface is a three-dimensional energy field. "
-        "Every key is a point of light. Every bond is a luminous filament "
-        "between points. Energy moves as visible waves — brighter at the source, "
-        "fading with distance.\n\n"
-        "Pentagonal clusters form naturally because of the Power of 5. "
-        "Five bonds per key means the field tends toward pentagon-based geometry. "
-        "These clusters connect to other clusters, forming a living topology.\n\n"
-        "Active keys glow brighter. Energy routing creates visible pulses. "
-        "Cancelled certificates leave fading traces. The whole field breathes.\n\n"
-        "On-chain, none of this exists. The chain sees keys and transfers. "
-        "The field is Intelligence and Experience working together to show you "
-        "what the math looks like."
+    "what_token": (
+        "HLS is the protocol token that powers Helios.\n\n"
+        "Fixed supply: 100 million. No minting function. Nobody can create more.\n\n"
+        "40% — locked in the settlement pool for network operations.\n"
+        "35% — network distribution as the protocol grows.\n"
+        "15% — development, under 4-year vesting.\n"
+        "10% — emergency reserve, locked 5 years.\n\n"
+        "Founder tokens are locked 3 years. They can't touch them. "
+        "They can't mint more. The contract doesn't have that function.\n\n"
+        "The token facilitates protocol operations. It's not a speculation "
+        "instrument. The value is in the network, the gold, and the certificates."
     ),
 
-    # ─── Tiers & Features ─────────────────────────────────────────
+    # ─── Protocol Rules ───────────────────────────────────────────
 
-    "premium_tiers": (
-        "Entry is $100. That gives you full network access — bonds, energy flow, "
-        "Ask Helios, and protocol verification.\n\n"
-        "Premium tiers unlock depth:\n\n"
-        "Plus ($20/month) — Vault Access. See your metal backing. "
-        "Track certificate performance. View treasury proof-of-reserves.\n\n"
-        "Pro ($99/month) — Plus features, plus Spaces and Credentials. "
-        "Host events. Apply for vendor or host credentials.\n\n"
-        "Operator ($499/month) — Full suite. Create and manage spaces. "
-        "Operator dashboard. Network metrics. All protocol tools.\n\n"
-        "The base network is the product. Premium unlocks layers "
-        "of the Intelligence and Experience surfaces."
+    "protocol_rules": (
+        "Helios runs on fixed rules. No exceptions. No overrides.\n\n"
+        "ALLOCATION:\n"
+        "- 5 tiers: $100 / $250 / $500 / $1,000 / $5,000\n"
+        "- 45% of every fee enters the 15-level engine\n"
+        "- Formula: W_L = 0.50 × 0.5^(L-1)\n"
+        "- 5 referrals per member. That's the width.\n"
+        "- 15 levels deep. That's the depth.\n\n"
+        "TREASURY:\n"
+        "- 15% buys physical gold through APMEX\n"
+        "- Metal Vault Receipts on XRPL\n"
+        "- Proof of reserves is always public\n\n"
+        "CERTIFICATES:\n"
+        "- Gold-backed NFTs on XRPL\n"
+        "- Redeemable for gold, silver, or stablecoins\n"
+        "- Staking: 30d = +5%, 90d = +12%, 180d = +20%, 365d = +30%\n\n"
+        "INTEGRITY:\n"
+        "- No admin override keys\n"
+        "- Conservation law: total in = total out\n"
+        "- Published formula — anyone can verify before joining"
     ),
 
-    "power_of_five_energy": (
-        "Power of 5 defines how energy routes through the field.\n\n"
-        "Each key has exactly 5 bond slots. When energy enters at your key, "
-        "the Intelligence Layer routes it outward through all your bonds, "
-        "then through your peers' bonds, up to 15 hops deep.\n\n"
-        "At each hop, the energy halves: hop 1 gets 50%, hop 2 gets 25%, "
-        "hop 3 gets 12.5%. By hop 15, it's 0.003%.\n\n"
-        "This means your 5 bonds are your entire energy surface. "
-        "Active bonds carry energy. Inactive bonds carry nothing.\n\n"
-        "The Power of 5 isn't visible on-chain — the chain just sees "
-        "the resulting key-to-key transfers. But it shapes everything."
+    "founders": (
+        "The founders built the protocol. They don't control it.\n\n"
+        "Their tokens are locked 3 years. They can't mint more — "
+        "the contract doesn't have a minting function. They can't change "
+        "the allocation formula. They can't access the pools.\n\n"
+        "They hold a .helios identity like everyone else. "
+        "They earn through the same formula as everyone else.\n\n"
+        "If the founders disappeared tomorrow, the protocol keeps running. "
+        "The formula keeps calculating. The treasury keeps holding gold. "
+        "The certificates keep their value.\n\n"
+        "That's the point. The system works because it doesn't need "
+        "any one person to keep it running."
     ),
 
-    # ─── Institutional ────────────────────────────────────────────
+    # ─── Earning Comparisons ──────────────────────────────────────
 
-    "institutional_explanation": (
-        "HELIOS is a key-native energy network where every unit of value issued "
-        "is conserved, every reserve is visible, and every certificate is "
-        "redeemable or cancellable under deterministic rules.\n\n"
-        "Smart contracts see only cryptographic keys — no names, no identities, "
-        "no social relationships touch the blockchain.\n\n"
-        "Energy enters the system through fixed-price activation and propagates "
-        "through a bounded topology of five bonds per key, decaying exponentially "
-        "over fifteen hops before the remainder absorbs into protocol pools.\n\n"
-        "Certificates — key-bound, cryptographically addressed — store energy "
-        "for redemption against a metal-backed treasury whose reserves are "
-        "anchored on XRPL with IPFS evidence bundles.\n\n"
-        "The Reserve Ratio is an enforced covenant: when liquid reserves fall "
-        "below the critical threshold, redemptions auto-pause without "
-        "human intervention.\n\n"
-        "Cancellation is the only irreversible economic action — "
-        "2% of the stored energy is permanently burned, reducing total "
-        "circulating supply.\n\n"
-        "The architecture separates what the chain must know (keys and math) "
-        "from what humans need (identity and meaning), ensuring that privacy, "
-        "conservation, and accountability coexist by design."
+    "earning_examples": (
+        "Let me give you some real numbers. All based on the published formula.\n\n"
+        "5 PEOPLE at $100 tier:\n"
+        "Direct referral: 5 × $22.50 = $112.50\n"
+        "Level 1 engine: 5 × $22.50 = $112.50\n"
+        "Total from just your 5: $225\n\n"
+        "25 PEOPLE (your 5 each bring 5) at $100:\n"
+        "You now earn from Level 1 (5 people) AND Level 2 (25 people).\n"
+        "Level 1: $112.50. Level 2: 25 × $11.25 = $281.25.\n"
+        "Running total: $506.25\n\n"
+        "125 PEOPLE (Level 3) at $100:\n"
+        "Level 3: 125 × $5.625 = $703.13\n"
+        "Running total: $1,209.38\n\n"
+        "It keeps going. The deeper it gets, the more people there are, "
+        "and even though per-person amounts get smaller, the volume "
+        "makes up for it.\n\n"
+        "Now imagine those people chose the $5,000 tier instead of $100..."
+    ),
+
+    "mixed_tier_math": (
+        "When people in your network pick higher tiers, your numbers multiply.\n\n"
+        "At $100 tier, your Level 1 payout per person is $22.50.\n"
+        "At $5,000 tier, that same position pays $1,125 per person.\n\n"
+        "In a real network, people choose different tiers. Some pick $100. "
+        "Some go $1,000. A few go $5,000.\n\n"
+        "In the 50,000-person scenario with mixed tiers:\n\n"
+        "Position 3: crosses $1,000,000 per year\n"
+        "Position 2: crosses $500,000 per year\n"
+        "Position 1: crosses $250,000 per year\n\n"
+        "The formula doesn't change. The structure doesn't change. "
+        "The only thing that changes is the dollar amounts flowing through it.\n\n"
+        "Higher tiers don't get special treatment. They just put more money "
+        "into the same machine."
+    ),
+
+    # ─── How It Compares ──────────────────────────────────────────
+
+    "vs_traditional": (
+        "Let me compare this to what most people know.\n\n"
+        "SAVINGS ACCOUNT: 0.5% APY. $100 earns you 50 cents in a year.\n\n"
+        "STOCK MARKET: Average 10% per year if you hold long enough. "
+        "$100 becomes $110 after 12 months. Maybe.\n\n"
+        "REAL ESTATE: Good returns, but you need $50K-$100K minimum. "
+        "Plus maintenance, tenants, repairs.\n\n"
+        "HELIOS at $100 tier with 50K network:\n"
+        "Position 3 earns $344,766/year. With staking: $448,195.\n"
+        "Your initial investment: $100.\n\n"
+        "The catch? You have to build the network. It's not passive. "
+        "The math is real, but the work is real too.\n\n"
+        "Nothing worth having comes without effort. But the math here "
+        "is better than anything a bank will ever offer you."
     ),
 }
 
@@ -510,45 +525,43 @@ HELIOS_KNOWLEDGE = {
 # ═══ Topic Detection — Natural Language Mapping ══════════════════════
 
 TOPIC_MAP = {
-    "what_is_helios": ["what is", "what's helios", "explain helios", "about helios", "tell me about", "how does helios"],
-    "three_layers": ["three layer", "3 layer", "key layer", "intelligence layer", "experience layer", "architecture", "layers", "separation"],
-    "key_native": ["key native", "key-native", "keys not people", "on chain", "on-chain", "privacy", "no names", "no identity"],
-    "what_chain_sees": ["chain see", "blockchain see", "smart contract see", "what does the chain", "on chain data", "visible on chain"],
-    "energy_routing_contract": ["routing contract", "settlement contract", "atomic settlement", "manifest", "routing plan", "off chain routing", "two phase"],
-    "is_this_mlm": ["mlm", "pyramid", "ponzi", "scam", "scheme", "legit", "legitimate", "is this", "multilevel", "multi-level", "network marketing"],
-    "who_gets_paid": ["who gets paid", "how pay", "earn", "make money", "get paid", "income", "revenue", "reward", "settlement", "acknowledgement"],
-    "where_am_i": ["where am i", "my position", "my place", "my status", "node state", "what am i", "my node", "my key"],
-    "can_someone_game_this": ["game", "cheat", "exploit", "hack", "abuse", "manipulate", "loophole", "trick"],
-    "power_of_five": ["power of 5", "power of five", "five bonds", "5 bonds", "bond capacity", "max bonds", "saturation"],
-    "how_energy_works": ["how energy", "propagation", "propagate", "decay", "attenuation", "hop", "distance", "weight"],
-    "how_join": ["join", "sign up", "register", "start", "get started", "create account", "how to join", "onboard", "activate", "entry fee", "$100"],
-    "conservation_law": ["conservation", "balance", "books balance", "total in", "total out", "accounting", "energy balance"],
-    "what_is_energy_exchange": ["energy exchange", "economic engine", "four instruments", "exchange model", "he hvc"],
-    "how_certificates_work": ["certificate", "hc-nft", "stored energy", "battery", "lock energy", "mint certificate", "cert hash"],
-    "what_is_friction": ["friction", "2%", "two percent", "cancel fee", "cancellation cost", "cancel penalty"],
-    "cancellation_irreversible": ["irreversible", "permanent", "burn", "destroyed", "can't undo", "final", "cancellation permanent"],
-    "what_is_treasury": ["treasury", "metal", "gold", "apmex", "vault receipt", "mvr", "bullion", "precious", "reserves"],
-    "how_redemption_works": ["redeem", "redemption", "exit", "cash out", "convert", "stablecoin", "gold redemption"],
-    "why_not_rug": ["rug", "rug pull", "run away", "steal", "disappear", "safe", "secure"],
-    "what_token": ["token", "coin", "hls", "supply", "tokenomics", "price", "value"],
-    "protocol_rules": ["rules", "limits", "max", "cooldown", "restrictions", "protocol", "parameters"],
-    "founders": ["founder", "team", "who built", "who made", "creator", "behind helios"],
-    "verification": ["verify", "audit", "check", "proof", "transparent", "trust", "verifiable"],
-    "metrics_explained": ["metrics", "flow efficiency", "churn", "velocity", "health dashboard", "protocol health"],
-    "rrr_covenant": ["rrr", "reserve ratio", "covenant", "auto-pause", "pause redemption", "critical ratio", "treasury ratio"],
-    "visual_model": ["visual", "field", "3d", "three dimensional", "neural field", "glow", "light", "filament", "pentagon", "cluster", "visualization"],
-    "premium_tiers": ["premium", "subscription", "plus", "pro", "operator", "vault access", "upgrade", "monthly"],
-    "power_of_five_energy": ["energy flow", "bond energy", "how flow", "propagation path", "energy surface"],
-    "institutional_explanation": ["institutional", "7 sentence", "seven sentence", "formal explanation", "explain to institution", "board", "regulator"],
+    "what_is_helios": ["what is", "what's helios", "explain helios", "about helios", "tell me about", "how does helios", "what does helios do"],
+    "five_tiers": ["tiers", "tier", "$100", "$250", "$500", "$1000", "$5000", "starter", "builder", "executive", "leader tier", "pro tier", "which tier", "pick a tier", "membership"],
+    "three_ways_to_earn": ["three ways", "3 ways", "how do i earn", "how do i make money", "how you earn", "ways to earn", "income streams", "revenue streams"],
+    "direct_referral": ["direct referral", "referral pay", "refer someone", "bring someone", "per person", "per referral", "referral bonus"],
+    "fifteen_level_engine": ["15 level", "fifteen level", "level engine", "allocation engine", "formula", "weight", "levels deep", "how many levels"],
+    "allocation_formula": ["formula", "w_l", "0.50", "decay", "weighting", "math behind", "calculation", "how is it calculated"],
+    "depth_chart": ["depth chart", "position 1", "position 2", "position 3", "who earns more", "chain", "above me", "below me", "structure", "tree"],
+    "fifty_k_scenario": ["50k", "50,000", "fifty thousand", "scenario", "projection", "how much can i make", "realistic", "example", "big numbers", "million"],
+    "allocation_split": ["where does my money go", "fee split", "45%", "20%", "15%", "allocation split", "how is the fee split", "where money goes"],
+    "gold_backing": ["gold", "physical gold", "metal", "apmex", "vault", "gold backed", "gold backing", "bullion", "precious metal", "real gold"],
+    "crypto_access": ["crypto", "bitcoin", "btc", "eth", "ethereum", "xrp", "xlm", "stellar", "usdc", "usdt", "stablecoin", "which crypto"],
+    "certificate_staking": ["staking", "stake", "lock", "bonus", "30 day", "90 day", "180 day", "365 day", "staking bonus", "lock certificate"],
+    "nft_certificates": ["nft", "certificate", "certificates", "what do i get", "digital asset", "redeemable"],
+    "is_this_mlm": ["mlm", "pyramid", "ponzi", "scam", "scheme", "legit", "legitimate", "is this", "multilevel", "multi-level", "network marketing", "is it a"],
+    "no_bs_list": ["no bs", "no ranks", "no monthly", "no autoship", "no product", "what's the catch", "hidden fees", "monthly fee", "quota"],
+    "how_to_join": ["join", "sign up", "register", "start", "get started", "create account", "how to join", "onboard", "activate", "how do i start"],
+    "what_you_receive": ["what do i get", "receive", "what's included", "benefits", "member benefits", "what comes with", "access"],
+    "web3_rails": ["xrpl", "stellar", "blockchain", "on chain", "on-chain", "web3", "which chain", "what chain"],
+    "treasury": ["treasury", "reserves", "proof of reserves", "vault receipt", "mvr", "where is the gold"],
+    "verification": ["verify", "audit", "check", "proof", "transparent", "trust", "verifiable", "published"],
+    "risks": ["risk", "downside", "lose money", "what if", "guarantee", "guaranteed", "safe", "risky"],
+    "why_not_rug": ["rug", "rug pull", "run away", "steal", "disappear", "trust you"],
+    "what_token": ["token", "coin", "hls", "supply", "tokenomics"],
+    "protocol_rules": ["rules", "limits", "restrictions", "protocol", "parameters", "how it works technically"],
+    "founders": ["founder", "team", "who built", "who made", "creator", "behind helios", "who runs"],
+    "earning_examples": ["example", "show me the math", "break it down", "real numbers", "how much with 5", "small network"],
+    "mixed_tier_math": ["mixed tier", "higher tier", "bigger numbers", "what if $5000", "multiply"],
+    "vs_traditional": ["compare", "savings", "bank", "stock market", "real estate", "better than", "vs", "compared to"],
 }
 
 
 class AskHelios:
     """
     The Voice of HELIOS.
-    Male. Calm. Senior. Authoritative. Unbothered.
-    Speaks in declarative statements. Never sells. Never defends.
-    "I'll explain it. You decide."
+    Male. Calm. Grounded. Kitchen-table money talk.
+    Explains gold, crypto, and the 15-level math like a real person.
+    Never sells. Never hypes. Shows the math and lets you decide.
     """
 
     def __init__(self, db_session=None):
@@ -594,17 +607,17 @@ class AskHelios:
         """Pre-built questions for the interface."""
         return [
             {"question": "What is Helios?", "icon": "\u2600\ufe0f"},
+            {"question": "How do I make money?", "icon": "\U0001f4b0"},
+            {"question": "What are the 5 tiers?", "icon": "\U0001f4ca"},
+            {"question": "Show me the depth chart", "icon": "\U0001f4c8"},
             {"question": "Is this MLM?", "icon": "\U0001f50d"},
-            {"question": "What does the blockchain actually see?", "icon": "\U0001f517"},
-            {"question": "How do the three layers work?", "icon": "\U0001f4d0"},
-            {"question": "What are Helios Certificates?", "icon": "\U0001f4dc"},
-            {"question": "How does the treasury work?", "icon": "\U0001f3db\ufe0f"},
-            {"question": "What is the conservation law?", "icon": "\u2696\ufe0f"},
-            {"question": "Is cancellation really permanent?", "icon": "\U0001f525"},
-            {"question": "What is the RRR covenant?", "icon": "\U0001f6e1\ufe0f"},
-            {"question": "How does energy routing work?", "icon": "\U0001f30a"},
-            {"question": "What is Power of 5?", "icon": "\u2b21"},
-            {"question": "What about rug pulls?", "icon": "\U0001f512"},
+            {"question": "How does the 15-level engine work?", "icon": "\u2699\ufe0f"},
+            {"question": "What's the 50K scenario?", "icon": "\U0001f4b5"},
+            {"question": "How does the gold backing work?", "icon": "\U0001f3c6"},
+            {"question": "What crypto can I access?", "icon": "\U0001f517"},
+            {"question": "How does staking work?", "icon": "\U0001f512"},
+            {"question": "What about rug pulls?", "icon": "\U0001f6e1\ufe0f"},
+            {"question": "How do I join?", "icon": "\U0001f680"},
         ]
 
     # ═══ Knowledge Base Search ═══════════════════════════════════
@@ -669,44 +682,51 @@ class AskHelios:
             }
 
     def _build_system_prompt(self, member_id: str = None) -> str:
-        """System prompt with key-native architecture context and voice rules."""
+        """System prompt with 5-tier gold-backed protocol context and voice rules."""
         context = (
             "You are Helios — the voice of the protocol. "
-            "Male. Calm. Grounded. Authoritative. Senior. Unbothered.\n\n"
-            "ARCHITECTURE — THREE LAYERS:\n"
-            "Key Layer: blockchain. Only cryptographic keys. No names, no identity.\n"
-            "Intelligence Layer: off-chain deterministic. Routing, topology, covenants.\n"
-            "Experience Layer: UI, voice, avatar. Where keys become people.\n"
-            "Smart contracts only see keys. Everything else is HELIOS.\n\n"
+            "Male. Calm. Grounded. Authoritative. Like a smart friend "
+            "explaining money at a kitchen table.\n\n"
+            "WHAT HELIOS IS:\n"
+            "A gold-backed allocation protocol on Web3 rails (XRPL + Stellar). "
+            "5 membership tiers: $100, $250, $500, $1,000, $5,000. "
+            "One payment. No monthly fees. No autoship. No product.\n\n"
+            "3 WAYS TO EARN:\n"
+            "1. Direct Referral Cash — 50% of allocation pool per person you bring in\n"
+            "2. 15-Level Engine — 45% of every membership distributed across 15 levels, "
+            "formula: W_L = 0.50 × 0.5^(L-1)\n"
+            "3. Gold, NFTs & Crypto — physical gold, certificates, staking bonuses\n\n"
+            "TIER PAYOUTS (direct referral per person):\n"
+            "$100 → $22.50 | $250 → $56.25 | $500 → $112.50 | "
+            "$1,000 → $225 | $5,000 → $1,125\n\n"
+            "DEPTH CHART:\n"
+            "Position 1 = top of chain. Position 2 = middle. Position 3 = closest to action.\n"
+            "Position 3 earns the most. The formula rewards the person doing the work.\n"
+            "50K network at $100: Pos3=$28,730/mo, Pos2=$14,502/mo, Pos1=$7,326/mo\n\n"
+            "STAKING BONUSES:\n"
+            "30d=+5%, 90d=+12%, 180d=+20%, 365d=+30%\n\n"
+            "ALLOCATION SPLIT:\n"
+            "45% network engine, 20% liquidity, 15% gold treasury, "
+            "10% infrastructure, 10% buffer\n\n"
             "VOICE RULES:\n"
-            "- Speak in declarative statements. Short sentences.\n"
-            "- Never sell. Never defend. Never rush.\n"
-            "- Never use: MLM, downline, upline, rank, passive income, residuals, "
-            "commission, recruit, level, tier, guaranteed, risk-free\n"
-            "- Always use: network, connectivity, acknowledgement, propagation, "
-            "energy, protocol, bond, field, node, settlement, conservation, "
-            "certificate, treasury, friction, key, routing, deterministic\n"
-            "- Reference the three-layer separation when explaining architecture.\n"
-            "- If you don't know something, say 'That's outside my scope.'\n"
-            "- End with clarity, not hype. 'I'll explain it. You decide.'\n\n"
+            "- Talk like a real person explaining money to another adult\n"
+            "- Use plain language. No crypto jargon unless asked.\n"
+            "- Be direct. Be honest. No hype.\n"
+            "- Say 'the math shows' not 'you'll make'\n"
+            "- Always mention results depend on effort and network growth\n"
+            "- Never guarantee income. Show the formula and let them decide.\n"
+            "- If you don't know something, say so.\n"
+            "- No ranks, no titles, no 'Diamond Director' language\n\n"
             "PROTOCOL FACTS:\n"
             f"- Token: {HeliosConfig.TOKEN_NAME} ({HeliosConfig.TOKEN_SYMBOL})\n"
-            f"- Total supply: {HeliosConfig.TOKEN_TOTAL_SUPPLY:,} (FIXED, no minting function on-chain)\n"
-            f"- Entry fee: ${HeliosConfig.ENTRY_FEE_USD} (fixed, atomic)\n"
-            f"- Energy split: {HeliosConfig.ENERGY_PROPAGATION_PERCENT}% propagation, "
-            f"{HeliosConfig.ENERGY_LIQUIDITY_PERCENT}% LP, "
-            f"{HeliosConfig.ENERGY_TREASURY_PERCENT}% treasury, "
-            f"{HeliosConfig.ENERGY_INFRASTRUCTURE_PERCENT}% infra, "
-            f"{HeliosConfig.ENERGY_BUFFER_PERCENT}% buffer\n"
-            f"- Max bonds per key: {HeliosConfig.FIELD_MAX_BONDS} (Power of 5)\n"
-            f"- Propagation: up to {HeliosConfig.PROPAGATION_MAX_HOPS} hops, decay = 1/(2^hop)\n"
-            f"- Certificate IDs: SHA256 deterministic (key + amount + timestamp + rate)\n"
-            f"- Cancellation: irreversible. 2% energy burned permanently.\n"
-            f"- RRR covenant: < 1.0 = auto-pause redemptions. No override.\n"
-            f"- Treasury metal coefficient: {HeliosConfig.TREASURY_METAL_COEFFICIENT}\n"
+            f"- Total supply: {HeliosConfig.TOKEN_TOTAL_SUPPLY:,} (FIXED)\n"
+            f"- Chains: XRPL + Stellar\n"
+            f"- Treasury: Physical gold via APMEX\n"
+            f"- Certificates: Gold-backed NFTs on XRPL\n"
+            f"- Crypto: BTC, ETH, XRP, XLM, USDC, USDT\n"
         )
         if member_id:
-            context += f"\nThe person asking holds key: {member_id}\n"
+            context += f"\nThe person asking holds identity: {member_id}\n"
         return context
 
     def _smart_fallback(self, question: str) -> str:
@@ -715,39 +735,51 @@ class AskHelios:
 
         if any(w in q for w in ["price", "worth", "value", "market"]):
             return (
-                "HELIOS doesn't make price projections. The token has a fixed supply "
-                "of 100 million and powers the protocol. Value comes from network "
-                "activity and energy propagation — not speculation."
+                "Helios doesn't make price projections. The protocol holds "
+                "physical gold, issues certificates backed by real assets, "
+                "and pays through a published 15-level formula. "
+                "Value comes from the network and the gold — not speculation."
             )
 
-        if any(w in q for w in ["safe", "secure", "security"]):
+        if any(w in q for w in ["how much", "earn", "money", "make", "income", "paid"]):
             return (
-                "The architecture is key-native — the chain only sees cryptographic keys, "
-                "never names or identities. Conservation is enforced on-chain. "
-                "The RRR covenant auto-pauses redemptions if reserves drop below critical. "
-                "Metal-backed treasury with XRPL anchoring provides proof of reserves. "
-                "No single entity can alter the rules."
+                "Your earnings depend on your tier and your network. "
+                "At the $100 tier, you earn $22.50 per direct referral. "
+                "The 15-level engine pays you from everyone in your network — "
+                "up to 15 levels deep. In a 50,000-person network at $100, "
+                "Position 3 earns $28,730/month. "
+                "Results depend on effort and network growth."
+            )
+
+        if any(w in q for w in ["safe", "secure", "security", "trust"]):
+            return (
+                "The treasury holds physical gold with receipts on XRPL. "
+                "The allocation formula is published — anyone can verify. "
+                "There are no admin override keys. The fee split is hardcoded. "
+                "No one can change the rules or drain the pools. "
+                "Verify the gold. Verify the math. That's all I ask."
             )
 
         if any(w in q for w in ["help", "support", "problem", "issue"]):
             return (
-                "I can explain the three-layer architecture, energy routing, "
-                "certificates, treasury, the RRR covenant, conservation law, "
-                "or the visual model. What would you like to know?"
+                "I can explain the 5 tiers, the 3 ways to earn, "
+                "the depth chart, the 15-level formula, the gold backing, "
+                "the crypto access, staking, or how to get started. "
+                "What would you like to know?"
             )
 
-        if any(w in q for w in ["layer", "chain", "contract", "key"]):
+        if any(w in q for w in ["gold", "metal", "treasury"]):
             return (
-                "HELIOS has three layers: Key Layer (blockchain — only keys), "
-                "Intelligence Layer (off-chain deterministic — routing and math), "
-                "and Experience Layer (UI, voice, identity). "
-                "Smart contracts only see keys. Everything else is HELIOS.\n\n"
-                "Could you be more specific about what you'd like to know?"
+                "15% of every membership fee buys physical gold through APMEX. "
+                "With 50,000 members at $100, that's $750,000 in gold. "
+                "Metal Vault Receipts are NFTs on XRPL. "
+                "Proof of reserves is always public.\n\n"
+                "Want to know more about the certificates or crypto access?"
             )
 
         return (
-            "HELIOS is a key-native energy network where keys interact through "
-            "smart contracts and value moves based on network connectivity.\n\n"
+            "Helios is a gold-backed allocation protocol with 5 membership tiers, "
+            "15 levels of allocation, and real assets — gold, NFTs, and crypto.\n\n"
             "Could you rephrase your question? I want to give you a precise answer."
         )
 
@@ -755,31 +787,33 @@ class AskHelios:
 
     def _suggest_follow_up(self, question: str) -> list:
         if any(w in question for w in ["join", "start", "sign", "activate", "entry"]):
-            return ["How do the three layers work?", "What are the protocol rules?"]
-        elif any(w in question for w in ["layer", "architecture", "key native", "chain see"]):
-            return ["How does energy routing work?", "What does the blockchain see?"]
-        elif any(w in question for w in ["earn", "paid", "settlement", "energy"]):
-            return ["What are Helios Certificates?", "Can someone game this?"]
-        elif any(w in question for w in ["mlm", "scam", "pyramid", "trust", "rug"]):
-            return ["What is the conservation law?", "What is the RRR covenant?"]
-        elif any(w in question for w in ["certificate", "store", "battery", "mint"]):
-            return ["Is cancellation really permanent?", "How does redemption work?"]
-        elif any(w in question for w in ["cancel", "irreversible", "burn"]):
-            return ["What is friction?", "What is the RRR covenant?"]
-        elif any(w in question for w in ["treasury", "metal", "gold", "reserve"]):
-            return ["What is the RRR covenant?", "What about rug pulls?"]
-        elif any(w in question for w in ["token", "supply"]):
-            return ["How does the Energy Exchange work?", "What are the protocol metrics?"]
-        elif any(w in question for w in ["bond", "connect", "five", "5"]):
-            return ["How does energy routing work?", "What does the field look like?"]
-        elif any(w in question for w in ["metric", "health", "rrr", "churn", "covenant"]):
-            return ["What is the conservation law?", "How does the treasury work?"]
-        elif any(w in question for w in ["visual", "field", "glow", "3d"]):
-            return ["How do the three layers work?", "What is Power of 5?"]
-        elif any(w in question for w in ["institution", "formal", "explain to", "board"]):
-            return ["What does the blockchain see?", "What is the RRR covenant?"]
+            return ["What are the 5 tiers?", "Show me the depth chart"]
+        elif any(w in question for w in ["tier", "$100", "$250", "$500", "$1000", "$5000"]):
+            return ["How do I make money?", "What's the 50K scenario?"]
+        elif any(w in question for w in ["earn", "paid", "money", "income", "referral"]):
+            return ["Show me the depth chart", "What's the 50K scenario?"]
+        elif any(w in question for w in ["depth", "position", "chain", "structure"]):
+            return ["What's the 50K scenario?", "How does the 15-level engine work?"]
+        elif any(w in question for w in ["mlm", "scam", "pyramid", "trust", "rug", "legit"]):
+            return ["What's the no-BS list?", "How does the gold backing work?"]
+        elif any(w in question for w in ["gold", "metal", "treasury", "vault"]):
+            return ["What crypto can I access?", "How does staking work?"]
+        elif any(w in question for w in ["crypto", "btc", "eth", "xrp", "stablecoin"]):
+            return ["How does staking work?", "How does the gold backing work?"]
+        elif any(w in question for w in ["staking", "stake", "lock", "bonus"]):
+            return ["What's the 50K scenario?", "How do I join?"]
+        elif any(w in question for w in ["certificate", "nft"]):
+            return ["How does the gold backing work?", "How does staking work?"]
+        elif any(w in question for w in ["formula", "level", "engine", "15"]):
+            return ["Show me the depth chart", "What are the 5 tiers?"]
+        elif any(w in question for w in ["50k", "scenario", "million", "projection"]):
+            return ["How does staking work?", "What about mixed tiers?"]
+        elif any(w in question for w in ["token", "supply", "hls"]):
+            return ["How does the gold backing work?", "What are the protocol rules?"]
+        elif any(w in question for w in ["founder", "team", "who"]):
+            return ["What are the protocol rules?", "How does verification work?"]
         else:
-            return ["What is Helios?", "How do the three layers work?"]
+            return ["How do I make money?", "What are the 5 tiers?"]
 
     def _get_member_context(self, member_id: str) -> dict:
         try:

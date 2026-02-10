@@ -402,15 +402,15 @@
             <div class="guide-topic-grid">
                 <div class="guide-topic" onclick="startIntakeStep(1)">
                     <div class="guide-topic-icon">1</div>
-                    <div><div class="guide-topic-text">Understanding the Protocol</div><div class="guide-topic-sub">What you're joining and why</div></div>
+                    <div><div class="guide-topic-text">How the Money Works</div><div class="guide-topic-sub">3 ways you get paid</div></div>
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(2)">
                     <div class="guide-topic-icon">2</div>
-                    <div><div class="guide-topic-text">Choosing Your Tier</div><div class="guide-topic-sub">$100 to $5,000 — where the money goes</div></div>
+                    <div><div class="guide-topic-text">The Depth Chart</div><div class="guide-topic-sub">Position 1, 2, 3 — real earnings</div></div>
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(3)">
                     <div class="guide-topic-icon">3</div>
-                    <div><div class="guide-topic-text">What You Receive</div><div class="guide-topic-sub">Gold, crypto, identity, access</div></div>
+                    <div><div class="guide-topic-text">Gold, Crypto & Real Assets</div><div class="guide-topic-sub">What you actually hold</div></div>
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(4)">
                     <div class="guide-topic-icon">4</div>
@@ -418,7 +418,7 @@
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(5)">
                     <div class="guide-topic-icon">5</div>
-                    <div><div class="guide-topic-text">Ready to Activate</div><div class="guide-topic-sub">Take the next step</div></div>
+                    <div><div class="guide-topic-text">Choose Your Tier</div><div class="guide-topic-sub">$100 to $5,000 — pick and go</div></div>
                 </div>
             </div>
         </div>
@@ -502,54 +502,65 @@ function setMode(mode) {
 
 // ═══ Intake Progress ══════════════════════════════════════════════
 var intakeQuestions = [
-    "Let me walk you through what Helios actually is. It's a membership-based protocol " +
-    "\u2014 not a fund, not an investment platform. You pick one of 5 tiers: $100, $250, $500, " +
-    "$1,000, or $5,000. Your membership fee enters a deterministic pipeline. Fiat converts " +
-    "to stablecoin, stablecoin acquires physical gold through APMEX, and that gold backs " +
-    "digital certificates issued on XRPL and Stellar. Every step is verifiable.\n\n" +
-    "Higher tiers mean bigger allocation pools and bigger direct referral payouts. The " +
-    "protocol has 15 levels of allocation, each calculated by a published formula. " +
-    "No one decides who gets what — the math does. Does this make sense so far?",
+    "Let me break down the three ways you make money. Real simple.\n\n" +
+    "First \u2014 direct referral cash. Every person you personally bring in pays you " +
+    "immediately. At the $100 tier, that's $22.50 per person. At $1,000, that's $225. " +
+    "At $5,000, that's $1,125. Per person. Bring in 5 and you've already got money in your pocket.\n\n" +
+    "Second \u2014 the 15-level engine. Every membership sends 45% into a pool that pays " +
+    "you every time someone joins anywhere in your 15 levels. Your 5 bring in 5, those 25 " +
+    "bring in 5, and it keeps going. Small per person, massive when the network grows.\n\n" +
+    "Third \u2014 gold, NFTs, and crypto. Part of every membership buys physical gold. " +
+    "You can convert your certificates into BTC, ETH, XRP, stablecoins, or actual metal. " +
+    "Your earnings are backed by real assets, not points.\n\n" +
+    "No ranks. No monthly fees. No autoship. No product to buy. Just math and people.\n\n" +
+    "Want me to show you the depth chart \u2014 how money flows from top to bottom?",
 
-    "Now let me show you exactly where your money goes. The same percentage split applies " +
-    "to every tier \u2014 higher tiers just mean bigger dollar amounts.\n\n" +
-    "45% \u2014 goes into the 15-level allocation system. That's $45 at Starter, $112.50 at Builder, " +
-    "$225 at Pro, $450 at Leader, or $2,250 at Executive. Distributed across your " +
-    "network based on the weighting formula.\n\n" +
-    "20% \u2014 Liquidity Pool. Ensures certificates can always be redeemed.\n\n" +
-    "15% \u2014 Treasury. Physical gold purchases through APMEX.\n\n" +
-    "10% \u2014 Infrastructure. Operations, hosting, compliance.\n\n" +
-    "10% \u2014 Protocol Buffer. Edge-case reserves.\n\n" +
-    "Your Level 1 direct referral payout is 50% of your pool \u2014 so $22.50 at Starter " +
-    "all the way up to $1,125 at Executive. Per person. Want me to go deeper?",
+    "Here's the depth chart. Think of it like a chain.\n\n" +
+    "Position 1 sits at the top. Position 2 is under them. Position 3 is under Position 2 " +
+    "and did the actual work \u2014 brought in the people.\n\n" +
+    "Position 3 brings in 5 people. Those 5 bring in 5 (that's 25). Those 25 bring in 5 " +
+    "(125). Then 625, then 3,125, then 15,625, and so on up to 50,000 people.\n\n" +
+    "With a 50,000-person network on $100 base tier:\n\n" +
+    "Position 3 (did the work): $28,730/month \u2014 $344,766/year\n" +
+    "Position 2 (above Position 3): $14,502/month \u2014 $174,034/year\n" +
+    "Position 1 (top of structure): $7,326/month \u2014 $87,924/year\n\n" +
+    "Position 3 makes the most because they're closest to the action. " +
+    "But everyone above them gets paid too. And with staking bonuses and higher tiers, " +
+    "Position 3 can cross $1 million a year.\n\n" +
+    "Want me to walk you through the gold and crypto side?",
 
-    "Here's what you receive as a member:\n\n" +
-    "First — your .helios identity. A permanent on-chain namespace like 'yourname.helios'. " +
-    "That's yours. It's how the protocol knows you.\n\n" +
-    "Second \u2014 Gold Certificates. NFTs on XRPL backed by physical gold in the treasury. " +
-    "Redeemable for physical metal or convertible to stablecoin.\n\n" +
-    "Third \u2014 Crypto Access. Convert your allocations into BTC, ETH, XRP, or hold in " +
-    "stablecoins like USDC. You build wealth across multiple asset classes, not just gold.\n\n" +
-    "Fourth \u2014 Certificate Staking. Lock your certificates for 30 to 365 days and earn " +
-    "bonus allocations from 5% up to 30%.\n\n" +
-    "Fifth \u2014 Full protocol access. Treasury verification, allocation model, the AI advisory, " +
-    "and live metrics. Everything is transparent.\n\n" +
-    "Any questions about what you'd receive?",
+    "Every membership buys physical gold. 50,000 members means $750,000 in gold purchased. " +
+    "That's real metal in a vault, not numbers on a screen.\n\n" +
+    "You receive gold-backed NFTs \u2014 digital certificates that represent actual gold weight. " +
+    "You can redeem them for physical gold, physical silver, or convert to stablecoins.\n\n" +
+    "You also get access to BTC, ETH, XRP, XLM, USDC, and USDT. " +
+    "Build wealth across multiple asset classes, not just one.\n\n" +
+    "On top of that, you can stake your certificates:\n" +
+    "30 days = +5% bonus\n" +
+    "90 days = +12% bonus\n" +
+    "180 days = +20% bonus\n" +
+    "365 days = +30% bonus\n\n" +
+    "Lock your certificates, earn bonus allocations on top of everything else. " +
+    "That 30% staking bonus on $344,766 turns into $448,195.\n\n" +
+    "Any questions before we talk about getting you started?",
 
     "This is your space. Ask me anything you want to know. " +
-    "Whether it's about the technology, the gold, the math, the team, the risks " +
-    "— anything at all. I'd rather you ask now than wonder later.\n\n" +
-    "There's no such thing as a dumb question here. What's on your mind?",
+    "Whether it's about the math, the gold, the crypto, the tiers, the risks, " +
+    "how the formula works, what happens to your money \u2014 anything at all.\n\n" +
+    "I'd rather you ask now than wonder later. There's no such thing as a dumb question here. " +
+    "What's on your mind?",
 
-    "If you feel comfortable with what we've covered, the next step is straightforward.\n\n" +
-    "You choose your tier \u2014 $100, $250, $500, $1,000, or $5,000 \u2014 and activate. " +
-    "One transaction. Atomic \u2014 meaning if anything fails, nothing happens. Your money " +
-    "doesn't go into a black box.\n\n" +
-    "You'll receive your .helios identity, your first certificate allocation begins, " +
-    "and you'll have full access to the protocol including crypto tools.\n\n" +
-    "When you're ready, head to the activation page. And if you need more time or " +
-    "have more questions \u2014 that's perfectly fine. I'm not going anywhere.\n\n" +
-    "<a href='/activate' style='color:var(--gold);font-weight:600;'>\u2192 Choose Your Tier</a>"
+    "If you're ready, here's the move.\n\n" +
+    "Pick your tier: $100, $250, $500, $1,000, or $5,000. " +
+    "Higher tier means bigger allocation pool, bigger direct referral payouts, " +
+    "and more gold and crypto access.\n\n" +
+    "One payment. No monthly fees. No autoship. No re-qualifying.\n\n" +
+    "You get your .helios identity, your first certificate allocation, " +
+    "and full access to the protocol \u2014 including crypto tools and the AI guide.\n\n" +
+    "Start with 5 people. Help your 5 get their 5. " +
+    "Let the 15-level math do the rest.\n\n" +
+    "<a href='/activate' style='color:var(--gold);font-weight:600;'>\u2192 Choose Your Tier</a> &nbsp; " +
+    "<a href='/opportunity' style='color:var(--gold);font-weight:600;'>\u2192 See the Full Breakdown</a>"
 ];
 
 function updateIntakeProgress(step) {

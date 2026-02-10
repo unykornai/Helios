@@ -54,6 +54,8 @@ def freeze():
         ("/metrics", "metrics/index.html"),
         ("/earnings", "earnings/index.html"),
         ("/certificates", "certificates/index.html"),
+        ("/opportunity", "opportunity/index.html"),
+        ("/recruit", "recruit/index.html"),
         ("/enter", "enter/index.html"),
         ("/join", "join/index.html"),
         ("/health", "health/index.html"),
