@@ -1,10 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Ask Helios — The Voice{% endblock %}
+{% block title %}Ask Helios — Your AI Guide{% endblock %}
+{% block og_title %}Ask Helios — AI Voice Guide{% endblock %}
+{% block og_description %}Talk to Helios. Ask anything about how the protocol works, how you earn, what backs the treasury. Voice-powered AI guide.{% endblock %}
+{% block og_url %}/ask{% endblock %}
 
 {% block head %}
 <style>
 /* ─── Avatar ──────────────────────────────────────────────────── */
-.avatar-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem; }
+.avatar-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
 .helios-avatar { width: 160px; height: 160px; cursor: pointer; transition: transform .3s; }
 .helios-avatar:hover { transform: scale(1.03); }
 .avatar-rings { animation: avatar-idle 8s ease-in-out infinite; }
@@ -45,6 +48,154 @@
     font-size: .75rem; color: var(--text-muted); margin-top: .25rem;
     min-height: 1.1rem;
 }
+
+/* ─── Topic Guide Cards ───────────────────────────────────────── */
+.guide-section { margin-bottom: 1.8rem; }
+.guide-title {
+    font-size: .75rem; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--text-muted); font-weight: 700; margin-bottom: .65rem;
+    padding-left: .2rem;
+}
+.topic-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: .55rem;
+}
+.topic-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: .75rem 1rem;
+    cursor: pointer; transition: all .25s;
+    display: flex; align-items: center; gap: .6rem;
+}
+.topic-card:hover {
+    border-color: rgba(245,158,11,0.3);
+    background: rgba(245,158,11,0.04);
+    transform: translateY(-1px);
+}
+.topic-icon { font-size: 1.3rem; flex-shrink: 0; }
+.topic-text {
+    font-size: .82rem; font-weight: 600; color: var(--text);
+    line-height: 1.3;
+}
+.topic-sub { font-size: .7rem; color: var(--text-muted); font-weight: 400; }
+
+/* ─── Voice Toggle ────────────────────────────────────────────── */
+.voice-toggle-bar {
+    display: inline-flex; align-items: center;
+    gap: .8rem; padding: .45rem 1rem; border-radius: 20px;
+    background: var(--bg-card); border: 1px solid var(--border);
+}
+.voice-toggle-wrap { display: flex; justify-content: center; margin-bottom: 1.5rem; }
+.voice-toggle-label { font-size: .78rem; color: var(--text-muted); font-weight: 600; }
+.voice-toggle {
+    width: 36px; height: 20px; border-radius: 10px;
+    background: var(--border); position: relative;
+    cursor: pointer; transition: background .3s;
+}
+.voice-toggle.active { background: var(--gold); }
+.voice-toggle::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: white; transition: transform .3s;
+}
+.voice-toggle.active::after { transform: translateX(16px); }
+
+/* ─── Chat Area ───────────────────────────────────────────────── */
+.chat-container {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); max-height: 400px; overflow-y: auto;
+    margin-bottom: 1rem; scroll-behavior: smooth;
+}
+.chat-messages { padding: 1rem; }
+.chat-message {
+    display: flex; gap: .75rem; margin-bottom: 1rem;
+    animation: msgFadeIn .3s ease;
+}
+@keyframes msgFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.chat-message.user { flex-direction: row-reverse; }
+.msg-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+    background: var(--bg);
+}
+.msg-content {
+    max-width: 80%; padding: .75rem 1rem;
+    border-radius: 10px;
+    font-size: .9rem; line-height: 1.5;
+}
+.chat-message.assistant .msg-content {
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.12);
+    color: var(--text);
+}
+.chat-message.user .msg-content {
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.15);
+    color: var(--text);
+}
+.msg-content p { margin: 0; }
+.voice-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.1rem; margin-top: .4rem; padding: .2rem;
+    opacity: .6; transition: opacity .2s;
+}
+.voice-btn:hover { opacity: 1; }
+.voice-btn.playing { opacity: 1; color: var(--gold); }
+.follow-up {
+    display: flex; flex-wrap: wrap; gap: .4rem;
+    padding: 0 1rem .5rem;
+}
+.follow-btn {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: .3rem .8rem;
+    font-size: .75rem; color: var(--text-muted);
+    cursor: pointer; transition: all .2s;
+    font-family: 'Inter', sans-serif;
+}
+.follow-btn:hover {
+    border-color: var(--gold); color: var(--gold);
+    background: rgba(245,158,11,0.06);
+}
+.chat-input-area {
+    display: flex; gap: .5rem;
+}
+.chat-input-area input {
+    flex: 1; padding: .7rem 1rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text);
+    font-size: .95rem; font-family: 'Inter', sans-serif;
+}
+.chat-input-area input:focus {
+    outline: none; border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+}
+.chat-input-area .btn { white-space: nowrap; }
+
+/* ─── Page Links ──────────────────────────────────────────────── */
+.page-links {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    justify-content: center;
+    margin-top: 1.5rem; padding: 1rem 0;
+    border-top: 1px solid var(--border);
+}
+.page-link {
+    padding: .4rem .8rem; border-radius: 20px;
+    font-size: .75rem; font-weight: 600;
+    border: 1px solid var(--border); color: var(--text-muted);
+    text-decoration: none; transition: all .2s;
+}
+.page-link:hover { border-color: var(--gold); color: var(--gold); }
+
+@media (max-width: 768px) {
+    .topic-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+    .topic-grid { grid-template-columns: 1fr; }
+    .helios-avatar { width: 130px; height: 130px; }
+}
 </style>
 {% endblock %}
 
@@ -70,15 +221,12 @@
                         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
                 </defs>
-                <!-- Ambient glow -->
                 <circle cx="80" cy="80" r="70" fill="url(#avatarGlow)" opacity=".4"/>
-                <!-- Orbital rings -->
                 <g class="avatar-rings">
                     <circle cx="80" cy="80" r="55" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity=".3"/>
                     <circle cx="80" cy="80" r="42" fill="none" stroke="#fde68a" stroke-width="1" opacity=".2"/>
                     <circle cx="80" cy="80" r="65" fill="none" stroke="#d97706" stroke-width=".8" opacity=".15" stroke-dasharray="8 6"/>
                 </g>
-                <!-- 5 rays (Power of 5) -->
                 <g class="avatar-rays" opacity=".5">
                     <line x1="80" y1="25" x2="80" y2="8" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
                     <line x1="132" y1="49" x2="146" y2="37" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
@@ -86,11 +234,9 @@
                     <line x1="80" y1="135" x2="80" y2="152" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
                     <line x1="28" y1="49" x2="14" y2="37" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
                 </g>
-                <!-- Core -->
                 <g class="avatar-core" filter="url(#avatarBlur)">
                     <circle class="avatar-core-circle" cx="80" cy="80" r="16" fill="url(#avatarCore)"/>
                 </g>
-                <!-- Neural nodes (5) -->
                 <g opacity=".4">
                     <circle cx="80" cy="52" r="3" fill="#fde68a"/>
                     <circle cx="107" cy="68" r="3" fill="#fde68a"/>
@@ -105,11 +251,84 @@
                 </g>
             </svg>
             <div class="avatar-label" id="avatar-label">HELIOS</div>
-            <div class="avatar-status" id="avatar-status">Tap to speak &middot; Type below to ask</div>
+            <div class="avatar-status" id="avatar-status">Tap to speak &middot; Voice powered by ElevenLabs</div>
         </div>
 
-        <!-- ═══ QUICK ANSWERS ═══ -->
-        <div id="quick-answers" class="quick-grid"></div>
+        <!-- ═══ VOICE TOGGLE ═══ -->
+        <div class="voice-toggle-wrap">
+            <div class="voice-toggle-bar">
+                <span class="voice-toggle-label">🔇 Text</span>
+                <div class="voice-toggle active" id="voiceToggle" onclick="toggleVoice()"></div>
+                <span class="voice-toggle-label">🔊 Voice</span>
+            </div>
+        </div>
+
+        <!-- ═══ WALKTHROUGH TOPICS ═══ -->
+        <div class="guide-section">
+            <div class="guide-title">💰 How You Make Money</div>
+            <div class="topic-grid">
+                <div class="topic-card" onclick="askQuestion('How do I make money in Helios?')">
+                    <div class="topic-icon">💵</div>
+                    <div><div class="topic-text">How Do I Earn?</div><div class="topic-sub">The 3 income streams</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('Walk me through the $100 entry — where does every dollar go?')">
+                    <div class="topic-icon">💰</div>
+                    <div><div class="topic-text">Where Does $100 Go?</div><div class="topic-sub">Atomic dollar split</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What is my realistic earning potential with 5 bonds?')">
+                    <div class="topic-icon">📊</div>
+                    <div><div class="topic-text">Earning Potential</div><div class="topic-sub">Real numbers, real math</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('How does energy propagation work? How much do I get at each hop?')">
+                    <div class="topic-icon">🌊</div>
+                    <div><div class="topic-text">Propagation Math</div><div class="topic-sub">1/(2^hop) explained</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-title">🥇 Gold &amp; Treasury</div>
+            <div class="topic-grid">
+                <div class="topic-card" onclick="askQuestion('What backs the treasury? Is the gold real?')">
+                    <div class="topic-icon">🥇</div>
+                    <div><div class="topic-text">Is the Gold Real?</div><div class="topic-sub">APMEX + XRPL proof</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('How do I redeem my certificates for physical gold?')">
+                    <div class="topic-icon">🔋</div>
+                    <div><div class="topic-text">Redeem for Gold</div><div class="topic-sub">Certificate → metal</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What is the RRR covenant and how does it protect me?')">
+                    <div class="topic-icon">🛡️</div>
+                    <div><div class="topic-text">RRR Covenant</div><div class="topic-sub">Automated safety net</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What precious metals can I get from the vault?')">
+                    <div class="topic-icon">🏦</div>
+                    <div><div class="topic-text">Gold Vault Products</div><div class="topic-sub">APMEX bars &amp; rounds</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-title">⬡ How the Protocol Works</div>
+            <div class="topic-grid">
+                <div class="topic-card" onclick="askQuestion('What is Helios and how is it different from traditional networks?')">
+                    <div class="topic-icon">☀️</div>
+                    <div><div class="topic-text">What is Helios?</div><div class="topic-sub">The protocol explained</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What is the Power of 5?')">
+                    <div class="topic-icon">⬡</div>
+                    <div><div class="topic-text">Power of 5</div><div class="topic-sub">Pentagonal geometry</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What protections exist so this cannot be a rug pull?')">
+                    <div class="topic-icon">🔒</div>
+                    <div><div class="topic-text">Anti-Rug Proof</div><div class="topic-sub">Fixed supply, no mint</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('How does the conservation law work? Can I verify it?')">
+                    <div class="topic-icon">⚖️</div>
+                    <div><div class="topic-text">Conservation Law</div><div class="topic-sub">∑in = ∑out, verify it</div></div>
+                </div>
+            </div>
+        </div>
 
         <!-- ═══ CHAT ═══ -->
         <div id="chat-container" class="chat-container">
@@ -118,17 +337,27 @@
                     <div class="msg-avatar">&#9728;&#65039;</div>
                     <div class="msg-content">
                         <p>I'm Helios. The protocol speaks through me.<br><br>
-                        Ask me anything &mdash; how energy flows, what backs the treasury, whether this is real.<br>
-                        I'll explain it. You decide.</p>
+                        I can walk you through everything &mdash; how you earn, where the $100 goes, what backs the gold treasury, and how the Power of 5 works.<br><br>
+                        <strong>Tap any topic above</strong>, or ask me anything below. Voice is on &mdash; I'll speak every answer.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask anything about the protocol..."
+            <input type="text" id="chat-input" placeholder="Ask anything — earnings, gold, how the protocol works..."
                    class="input-large" autocomplete="off">
             <button id="chat-send" class="btn btn-primary">Ask</button>
+        </div>
+
+        <!-- ═══ PAGE LINKS ═══ -->
+        <div class="page-links">
+            <a href="/earnings" class="page-link">💰 How You Earn</a>
+            <a href="/vault/gold" class="page-link">🥇 Gold Vault</a>
+            <a href="/treasury" class="page-link">🏦 Treasury</a>
+            <a href="/field" class="page-link">🌐 Your Field</a>
+            <a href="/metrics" class="page-link">📊 Metrics</a>
+            <a href="/activate" class="page-link">⚡ Enter Helios</a>
         </div>
     </div>
 </section>
@@ -146,6 +375,17 @@ const avatarStatus = document.getElementById('avatar-status');
 
 let currentAudio = null;
 let lastAnswer = null;
+let voiceEnabled = true;
+
+// ═══ Voice Toggle ═════════════════════════════════════════════
+function toggleVoice() {
+    const toggle = document.getElementById('voiceToggle');
+    voiceEnabled = !voiceEnabled;
+    toggle.classList.toggle('active', voiceEnabled);
+    avatarStatus.textContent = voiceEnabled
+        ? 'Voice on \u2014 I\u2019ll speak every answer'
+        : 'Voice off \u2014 text only';
+}
 
 // ═══ Avatar State Machine ═════════════════════════════════════
 function setAvatarState(state) {
@@ -163,11 +403,13 @@ function setAvatarState(state) {
     } else {
         avatarLabel.textContent = 'HELIOS';
         avatarLabel.style.color = '';
-        avatarStatus.textContent = lastAnswer ? 'Tap to hear again' : 'Tap to speak \u00b7 Type below to ask';
+        avatarStatus.textContent = voiceEnabled
+            ? (lastAnswer ? 'Tap to hear again' : 'Voice on \u2014 I\u2019ll speak every answer')
+            : 'Voice off \u2014 text only';
     }
 }
 
-// Tap avatar to replay last answer
+// Tap avatar to replay / stop
 avatar.addEventListener('click', function() {
     if (currentAudio) {
         currentAudio.pause();
@@ -175,22 +417,10 @@ avatar.addEventListener('click', function() {
         setAvatarState('idle');
         return;
     }
-    if (lastAnswer) {
+    if (lastAnswer && voiceEnabled) {
         speakText(null, lastAnswer);
     }
 });
-
-// ═══ Quick Answers ════════════════════════════════════════════
-fetch('/api/chat/quick-answers')
-    .then(r => r.json())
-    .then(data => {
-        if (data.success) {
-            const grid = document.getElementById('quick-answers');
-            grid.innerHTML = data.data.map(q =>
-                `<button class="quick-btn" onclick="askQuestion('${q.question.replace(/'/g, "\\'")}')">${q.icon} ${q.question}</button>`
-            ).join('');
-        }
-    });
 
 // ═══ Chat Functions ═══════════════════════════════════════════
 function addMessage(role, text, showVoice) {
@@ -198,7 +428,7 @@ function addMessage(role, text, showVoice) {
     div.className = 'chat-message ' + role;
 
     let voiceHtml = '';
-    if (role === 'assistant' && showVoice) {
+    if (role === 'assistant' && showVoice && voiceEnabled) {
         voiceHtml = '<button class="voice-btn" title="Listen">&#128266;</button>';
     }
 
@@ -212,18 +442,21 @@ function addMessage(role, text, showVoice) {
     if (role === 'assistant' && showVoice) {
         lastAnswer = text;
         const voiceBtn = div.querySelector('.voice-btn');
-        voiceBtn.addEventListener('click', function() { speakText(this, text); });
+        if (voiceBtn) {
+            voiceBtn.addEventListener('click', function() { speakText(this, text); });
+        }
     }
 
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+    document.getElementById('chat-container').scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
 async function speakText(btn, text) {
     if (currentAudio) {
         currentAudio.pause();
         currentAudio = null;
-        document.querySelectorAll('.voice-btn.playing').forEach(b => {
+        document.querySelectorAll('.voice-btn.playing').forEach(function(b) {
             b.classList.remove('playing');
             b.innerHTML = '&#128266;';
         });
@@ -235,14 +468,14 @@ async function speakText(btn, text) {
     setAvatarState('speaking');
 
     try {
-        const res = await fetch('/api/voice/speak', {
+        var res = await fetch('/api/voice/speak', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({text: text})
-        }).then(r => r.json());
+        }).then(function(r) { return r.json(); });
 
-        if (res.success && res.data.audio) {
-            const audioData = 'data:audio/mpeg;base64,' + res.data.audio;
+        if (res.success && res.data && res.data.audio) {
+            var audioData = 'data:audio/mpeg;base64,' + res.data.audio;
             currentAudio = new Audio(audioData);
             if (btn) btn.innerHTML = '&#9208;&#65039;';
 
@@ -258,11 +491,11 @@ async function speakText(btn, text) {
             };
             currentAudio.play();
         } else {
-            if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(() => btn.innerHTML = '&#128266;', 2000); }
+            if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(function() { btn.innerHTML = '&#128266;'; }, 2000); }
             setAvatarState('idle');
         }
     } catch (err) {
-        if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(() => btn.innerHTML = '&#128266;', 2000); }
+        if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(function() { btn.innerHTML = '&#128266;'; }, 2000); }
         setAvatarState('idle');
     }
 }
@@ -274,18 +507,18 @@ async function askQuestion(question) {
     chatInput.value = '';
     setAvatarState('thinking');
 
-    const typing = document.createElement('div');
+    var typing = document.createElement('div');
     typing.className = 'chat-message assistant typing';
     typing.innerHTML = '<div class="msg-avatar">&#9728;&#65039;</div><div class="msg-content"><p>Processing...</p></div>';
     chatMessages.appendChild(typing);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
-        const res = await fetch('/api/chat/ask', {
+        var res = await fetch('/api/chat/ask', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({question: question, member_id: memberId})
-        }).then(r => r.json());
+        }).then(function(r) { return r.json(); });
 
         typing.remove();
         setAvatarState('idle');
@@ -294,17 +527,19 @@ async function askQuestion(question) {
             addMessage('assistant', res.data.answer, true);
 
             if (res.data.follow_up && res.data.follow_up.length > 0) {
-                const suggestions = document.createElement('div');
+                var suggestions = document.createElement('div');
                 suggestions.className = 'follow-up';
-                suggestions.innerHTML = res.data.follow_up.map(q =>
-                    `<button class="follow-btn" onclick="askQuestion('${q.replace(/'/g, "\\'")}')">${q}</button>`
-                ).join('');
+                suggestions.innerHTML = res.data.follow_up.map(function(q) {
+                    return '<button class="follow-btn" onclick="askQuestion(\'' + q.replace(/'/g, "\\'") + '\')">' + q + '</button>';
+                }).join('');
                 chatMessages.appendChild(suggestions);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
 
-            // Auto-speak the response
-            speakText(null, res.data.answer);
+            // Auto-speak if voice is on
+            if (voiceEnabled) {
+                speakText(null, res.data.answer);
+            }
         } else {
             addMessage('assistant', 'Something went wrong. Please try again.');
         }
@@ -315,7 +550,22 @@ async function askQuestion(question) {
     }
 }
 
-chatSend.addEventListener('click', () => askQuestion(chatInput.value));
-chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') askQuestion(chatInput.value); });
+chatSend.addEventListener('click', function() { askQuestion(chatInput.value); });
+chatInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') askQuestion(chatInput.value); });
+
+// ═══ Auto-greet with voice on first visit ═════════════════════
+(function() {
+    var greeted = sessionStorage.getItem('helios_greeted');
+    if (!greeted && voiceEnabled) {
+        sessionStorage.setItem('helios_greeted', '1');
+        setTimeout(function() {
+            var intro = "Welcome to Helios. I'm your guide to the protocol. " +
+                "I can walk you through how you earn, where the gold comes from, " +
+                "and exactly how the Power of 5 works. " +
+                "Tap any topic, or ask me anything.";
+            speakText(null, intro);
+        }, 1500);
+    }
+})();
 </script>
 {% endblock %}

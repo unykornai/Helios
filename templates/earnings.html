@@ -1,0 +1,595 @@
+{% extends "base.html" %}
+{% block title %}How You Earn — Helios Protocol{% endblock %}
+{% block og_title %}How You Earn — Helios Protocol{% endblock %}
+{% block og_description %}See exactly how energy flows through the Helios network. Physics-based settlement. Power of 5. Real math.{% endblock %}
+{% block og_url %}/earnings{% endblock %}
+
+{% block head %}
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   EARNINGS — How Members Make Money
+   Physics, not position. Math, not promises.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.earnings-page { position: relative; z-index: 1; }
+.earn-hero {
+    text-align: center; padding: 5rem 2rem 3rem;
+    position: relative;
+}
+.earn-hero h1 {
+    font-size: 2.4rem; font-weight: 900; color: var(--gold);
+    letter-spacing: .12em; margin-bottom: .5rem;
+}
+.earn-hero .hero-sub {
+    color: var(--text-muted); font-size: 1.05rem;
+    max-width: 640px; margin: 0 auto 1.5rem; line-height: 1.6;
+}
+
+/* ─── Section Layout ──────────────────────────────────────────── */
+.earn-section {
+    max-width: 960px; margin: 0 auto;
+    padding: 0 2rem 4rem;
+}
+.earn-section h2 {
+    font-size: 1.5rem; font-weight: 800; color: var(--text);
+    margin-bottom: .5rem;
+}
+.earn-section h2 .emoji { margin-right: .5rem; }
+.earn-section .section-desc {
+    color: var(--text-muted); font-size: .95rem; line-height: 1.6;
+    margin-bottom: 1.5rem; max-width: 720px;
+}
+
+/* ─── Income Streams Grid ─────────────────────────────────────── */
+.streams-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem; margin-bottom: 3rem;
+}
+.stream-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+    position: relative; overflow: hidden;
+    transition: all .3s;
+}
+.stream-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0; transition: opacity .3s;
+}
+.stream-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-2px); }
+.stream-card:hover::before { opacity: 1; }
+.stream-icon { font-size: 2rem; margin-bottom: .75rem; }
+.stream-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+.stream-amount { font-size: 1.4rem; font-weight: 900; color: var(--gold); margin-bottom: .5rem; }
+.stream-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+.stream-tag {
+    display: inline-block; margin-top: .75rem;
+    padding: .2rem .6rem; border-radius: 4px;
+    font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+}
+.tag-instant { background: rgba(16,185,129,0.12); color: var(--green); }
+.tag-propagation { background: rgba(59,130,246,0.12); color: var(--blue); }
+.tag-passive { background: rgba(245,158,11,0.12); color: var(--gold); }
+
+/* ─── Hop Decay Table ─────────────────────────────────────────── */
+.decay-table-wrap {
+    overflow-x: auto; margin-bottom: 3rem;
+    border: 1px solid var(--border); border-radius: var(--radius);
+}
+.decay-table {
+    width: 100%; border-collapse: collapse;
+    font-size: .85rem;
+}
+.decay-table th {
+    background: rgba(245,158,11,0.08);
+    padding: .6rem 1rem; text-align: left;
+    font-weight: 700; color: var(--gold);
+    border-bottom: 1px solid var(--border);
+    font-size: .75rem; text-transform: uppercase; letter-spacing: .06em;
+}
+.decay-table td {
+    padding: .5rem 1rem; border-bottom: 1px solid rgba(42,42,62,0.4);
+    color: var(--text);
+}
+.decay-table tr:hover { background: rgba(245,158,11,0.03); }
+.decay-bar {
+    display: inline-block; height: 8px; border-radius: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    vertical-align: middle; margin-left: .5rem;
+}
+.hop-you { font-weight: 800; color: var(--gold); }
+
+/* ─── Calculator ──────────────────────────────────────────────── */
+.calc-section {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem;
+    margin-bottom: 3rem;
+}
+.calc-section h3 {
+    font-size: 1.2rem; font-weight: 800; color: var(--text);
+    margin-bottom: .3rem;
+}
+.calc-subtitle { color: var(--text-muted); font-size: .85rem; margin-bottom: 1.5rem; }
+.calc-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.calc-input-group label {
+    display: block; font-size: .75rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .06em; font-weight: 600;
+    margin-bottom: .3rem;
+}
+.calc-input-group input, .calc-input-group select {
+    width: 100%; padding: .6rem .8rem;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-size: 1rem; font-family: 'Inter', sans-serif;
+}
+.calc-input-group input:focus, .calc-input-group select:focus {
+    outline: none; border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+}
+.calc-results {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.calc-result-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 1rem; text-align: center;
+}
+.calc-result-label {
+    font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text-muted); font-weight: 600; margin-bottom: .3rem;
+}
+.calc-result-value {
+    font-size: 1.8rem; font-weight: 900; color: var(--gold);
+    font-variant-numeric: tabular-nums;
+}
+.calc-result-sub { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
+
+/* ─── Scenario Cards ──────────────────────────────────────────── */
+.scenario-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem; margin-bottom: 3rem;
+}
+.scenario-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+    text-align: center; transition: all .3s;
+}
+.scenario-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-2px); }
+.scenario-label {
+    font-size: .75rem; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--text-muted); font-weight: 700; margin-bottom: .5rem;
+}
+.scenario-title { font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: .75rem; }
+.scenario-value {
+    font-size: 2rem; font-weight: 900; color: var(--gold);
+    margin-bottom: .3rem;
+}
+.scenario-period { font-size: .8rem; color: var(--text-muted); margin-bottom: 1rem; }
+.scenario-detail {
+    font-size: .8rem; color: var(--text-muted); line-height: 1.5;
+    text-align: left;
+    border-top: 1px solid var(--border); padding-top: .75rem;
+}
+.scenario-detail li { margin-bottom: .3rem; list-style: none; }
+.scenario-detail li::before { content: '→ '; color: var(--gold); font-weight: 700; }
+
+/* ─── Gold Benefit Section ────────────────────────────────────── */
+.gold-benefit {
+    background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: var(--radius); padding: 2rem;
+    margin-bottom: 3rem;
+}
+.gold-benefit h3 { color: var(--gold); font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
+.gold-benefit p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1rem; }
+.gold-benefit .btn { margin-top: .5rem; }
+
+/* ─── CTA ─────────────────────────────────────────────────────── */
+.earn-cta {
+    text-align: center; padding: 3rem 2rem 5rem;
+}
+.earn-cta h2 { font-size: 1.8rem; font-weight: 900; color: var(--text); margin-bottom: .5rem; }
+.earn-cta p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.earn-cta .btn { font-size: 1.1rem; padding: .8rem 2rem; }
+
+/* ─── Disclaimer ──────────────────────────────────────────────── */
+.earnings-disclaimer {
+    max-width: 960px; margin: 0 auto; padding: 0 2rem 4rem;
+    font-size: .75rem; color: var(--text-muted); line-height: 1.5;
+    opacity: 0.7;
+}
+
+/* ─── Ask Helios inline ───────────────────────────────────────── */
+.ask-inline {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem 1.5rem;
+    margin-bottom: 3rem; cursor: pointer;
+    transition: all .3s;
+}
+.ask-inline:hover { border-color: var(--gold); }
+.ask-inline-icon { font-size: 2rem; }
+.ask-inline-text h4 { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .15rem; }
+.ask-inline-text p { font-size: .8rem; color: var(--text-muted); }
+
+@media (max-width: 768px) {
+    .earn-hero h1 { font-size: 1.8rem; }
+    .calc-grid { grid-template-columns: 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .streams-grid { grid-template-columns: 1fr; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="earnings-page">
+    <!-- ═══ HERO ═══ -->
+    <section class="earn-hero">
+        <h1>HOW YOU EARN</h1>
+        <p class="hero-sub">
+            Settlement follows physics, not position. Energy propagates outward through bonds,
+            decaying naturally with distance. Strongest at direct connections. No ceiling on earnings
+            &mdash; just the math of how connected you are.
+        </p>
+        <p style="color: var(--gold); font-weight: 600; font-size: .85rem; letter-spacing: .12em; opacity: 0.7;">
+            PHYSICS · PROPAGATION · SETTLEMENT
+        </p>
+    </section>
+
+    <!-- ═══ 3 INCOME STREAMS ═══ -->
+    <section class="earn-section">
+        <h2><span class="emoji">⚡</span> Three Ways Energy Reaches You</h2>
+        <p class="section-desc">
+            There are exactly three ways you receive energy in Helios. Each one is protocol-enforced,
+            publicly verifiable, and follows deterministic math.
+        </p>
+
+        <div class="streams-grid">
+            <!-- Stream 1: Acknowledgement -->
+            <div class="stream-card">
+                <div class="stream-icon">🤝</div>
+                <div class="stream-title">Direct Acknowledgement</div>
+                <div class="stream-amount">10 HLS</div>
+                <div class="stream-desc">
+                    When someone you directly bonded with joins the network, you receive an
+                    immediate 10 HLS acknowledgement. One-time. Per person. Automatic.
+                </div>
+                <span class="stream-tag tag-instant">Instant · Per Bond</span>
+            </div>
+
+            <!-- Stream 2: Propagation -->
+            <div class="stream-card">
+                <div class="stream-icon">🌊</div>
+                <div class="stream-title">Energy Propagation</div>
+                <div class="stream-amount">$22.50 at Hop 1</div>
+                <div class="stream-desc">
+                    When anyone within 15 hops of you joins, energy flows to you based on distance.
+                    Hop 1 = 50%. Hop 2 = 25%. Hop 3 = 12.5%. Natural decay through bonds.
+                    <strong>No cap on how many people can be within your field.</strong>
+                </div>
+                <span class="stream-tag tag-propagation">Ongoing · Physics-Based</span>
+            </div>
+
+            <!-- Stream 3: Certificates -->
+            <div class="stream-card">
+                <div class="stream-icon">🔋</div>
+                <div class="stream-title">Certificate Appreciation</div>
+                <div class="stream-amount">Gold-Backed</div>
+                <div class="stream-desc">
+                    Store energy in HC-NFT certificates. Redeem anytime for physical gold from APMEX
+                    or stablecoin. The treasury grows through metal purchases — your certificates
+                    are backed by real assets.
+                </div>
+                <span class="stream-tag tag-passive">Store of Value · Redeemable</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ HOW THE $100 SPLITS ═══ -->
+    <section class="earn-section">
+        <h2><span class="emoji">💰</span> Where Every Dollar Goes</h2>
+        <p class="section-desc">
+            Every $100 entry is split atomically. No slush funds. Every cent has a declared destination.
+        </p>
+
+        <div class="streams-grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+            <div class="stream-card" style="text-align: center;">
+                <div style="font-size: 2rem; font-weight: 900; color: var(--gold);">$45</div>
+                <div style="font-size: .8rem; color: var(--text-muted); margin-top: .3rem;">Energy Propagation</div>
+                <div style="font-size: .7rem; color: var(--text-muted); margin-top: .2rem;">Flows through your bonds</div>
+            </div>
+            <div class="stream-card" style="text-align: center;">
+                <div style="font-size: 2rem; font-weight: 900; color: var(--green);">$20</div>
+                <div style="font-size: .8rem; color: var(--text-muted); margin-top: .3rem;">Liquidity Pool</div>
+                <div style="font-size: .7rem; color: var(--text-muted); margin-top: .2rem;">Backs certificate redemptions</div>
+            </div>
+            <div class="stream-card" style="text-align: center;">
+                <div style="font-size: 2rem; font-weight: 900; color: #ef4444;">$15</div>
+                <div style="font-size: .8rem; color: var(--text-muted); margin-top: .3rem;">Treasury Surplus</div>
+                <div style="font-size: .7rem; color: var(--text-muted); margin-top: .2rem;">Buys physical gold (APMEX)</div>
+            </div>
+            <div class="stream-card" style="text-align: center;">
+                <div style="font-size: 2rem; font-weight: 900; color: #8b5cf6;">$10</div>
+                <div style="font-size: .8rem; color: var(--text-muted); margin-top: .3rem;">Infrastructure</div>
+                <div style="font-size: .7rem; color: var(--text-muted); margin-top: .2rem;">Ops, hosting, compliance</div>
+            </div>
+            <div class="stream-card" style="text-align: center;">
+                <div style="font-size: 2rem; font-weight: 900; color: #6b7280;">$10</div>
+                <div style="font-size: .8rem; color: var(--text-muted); margin-top: .3rem;">Protocol Buffer</div>
+                <div style="font-size: .7rem; color: var(--text-muted); margin-top: .2rem;">Edge cases, reserve</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ HOP DECAY TABLE ═══ -->
+    <section class="earn-section">
+        <h2><span class="emoji">📉</span> Energy Decay by Distance</h2>
+        <p class="section-desc">
+            Energy follows physics: <strong>weight(hop) = 1/(2<sup>hop</sup>)</strong>.
+            Strongest at your direct bonds, halving at each hop.
+            After 15 hops, the fractional remainder is absorbed into stability pools.
+        </p>
+
+        <div class="decay-table-wrap">
+            <table class="decay-table">
+                <thead>
+                    <tr>
+                        <th>Hop</th>
+                        <th>Your Relationship</th>
+                        <th>Weight</th>
+                        <th>Energy from $45</th>
+                        <th>Visual</th>
+                    </tr>
+                </thead>
+                <tbody id="decayTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ═══ ASK HELIOS INLINE ═══ -->
+    <section class="earn-section">
+        <a href="/ask" class="ask-inline">
+            <div class="ask-inline-icon">☀️</div>
+            <div class="ask-inline-text">
+                <h4>Have questions? Ask Helios.</h4>
+                <p>Our AI voice guide can walk you through every detail — how bonds work, what backs the treasury, and exactly how your energy flows.</p>
+            </div>
+        </a>
+    </section>
+
+    <!-- ═══ INCOME CALCULATOR ═══ -->
+    <section class="earn-section">
+        <div class="calc-section">
+            <h3>⬡ Income Potential Calculator</h3>
+            <p class="calc-subtitle">See what your field could generate based on your bonds and network activity.</p>
+
+            <div class="calc-grid">
+                <div class="calc-input-group">
+                    <label>Your Active Bonds (max 5)</label>
+                    <input type="range" id="calcBonds" min="1" max="5" value="5" oninput="recalculate()">
+                    <div style="display: flex; justify-content: space-between; font-size: .75rem; color: var(--text-muted);">
+                        <span>1 bond</span><span id="bondDisplay">5 bonds ☀</span><span>5 bonds</span>
+                    </div>
+                </div>
+                <div class="calc-input-group">
+                    <label>New Members Per Month (in your field)</label>
+                    <input type="number" id="calcMonthly" min="1" max="500" value="25" oninput="recalculate()">
+                </div>
+                <div class="calc-input-group">
+                    <label>Average Hops From You</label>
+                    <select id="calcAvgHop" onchange="recalculate()">
+                        <option value="1">Hop 1 — Direct bonds</option>
+                        <option value="2" selected>Hop 2 — Friend of a friend</option>
+                        <option value="3">Hop 3 — 2 hops away</option>
+                        <option value="4">Hop 4 — Extended field</option>
+                        <option value="5">Hop 5 — Deep field</option>
+                    </select>
+                </div>
+                <div class="calc-input-group">
+                    <label>Timeframe</label>
+                    <select id="calcTimeframe" onchange="recalculate()">
+                        <option value="1">1 Month</option>
+                        <option value="3" selected>3 Months</option>
+                        <option value="6">6 Months</option>
+                        <option value="12">12 Months</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="calc-results">
+                <div class="calc-result-card">
+                    <div class="calc-result-label">Propagation Energy</div>
+                    <div class="calc-result-value" id="resultPropagation">$0</div>
+                    <div class="calc-result-sub">from network joins</div>
+                </div>
+                <div class="calc-result-card">
+                    <div class="calc-result-label">Acknowledgements</div>
+                    <div class="calc-result-value" id="resultAcknowledge">$0</div>
+                    <div class="calc-result-sub">10 HLS per direct bond</div>
+                </div>
+                <div class="calc-result-card">
+                    <div class="calc-result-label">Total Potential</div>
+                    <div class="calc-result-value" id="resultTotal">$0</div>
+                    <div class="calc-result-sub" id="resultPeriod">over 3 months</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ REALISTIC SCENARIOS ═══ -->
+    <section class="earn-section">
+        <h2><span class="emoji">📊</span> Realistic Scenarios</h2>
+        <p class="section-desc">
+            These are based on actual protocol math. weight(hop) = 1/(2<sup>hop</sup>). $45 propagation per entry.
+            10 HLS acknowledgement per direct bond.
+        </p>
+
+        <div class="scenario-grid">
+            <div class="scenario-card">
+                <div class="scenario-label">Starter</div>
+                <div class="scenario-title">3 Bonds · Small Field</div>
+                <div class="scenario-value">$742</div>
+                <div class="scenario-period">per month</div>
+                <ul class="scenario-detail">
+                    <li>3 direct bonds active</li>
+                    <li>10 new members/month in your field</li>
+                    <li>Avg hop distance: 2</li>
+                    <li>Propagation: $112.50/mo</li>
+                    <li>Acknowledgements: ~$30/mo</li>
+                    <li>Certificate storage building</li>
+                </ul>
+            </div>
+            <div class="scenario-card" style="border-color: rgba(245,158,11,0.2);">
+                <div class="scenario-label" style="color: var(--gold);">⬡ Power of 5</div>
+                <div class="scenario-title">5 Bonds · Active Field</div>
+                <div class="scenario-value">$3,375</div>
+                <div class="scenario-period">per month</div>
+                <ul class="scenario-detail">
+                    <li>All 5 bonds filled (saturated ☀)</li>
+                    <li>50 new members/month in field</li>
+                    <li>Avg hop distance: 2</li>
+                    <li>Propagation: $562.50/mo</li>
+                    <li>Acknowledgements: ~$50/mo</li>
+                    <li>Strong certificate portfolio</li>
+                </ul>
+            </div>
+            <div class="scenario-card">
+                <div class="scenario-label">Builder</div>
+                <div class="scenario-title">5 Bonds · Growing Network</div>
+                <div class="scenario-value">$8,100</div>
+                <div class="scenario-period">per month</div>
+                <ul class="scenario-detail">
+                    <li>Fully saturated node</li>
+                    <li>150 new members/month in field</li>
+                    <li>Avg hop: mixed (1-3)</li>
+                    <li>Propagation: $5,062.50/mo</li>
+                    <li>Acknowledgements: ~$50/mo</li>
+                    <li>Gold redemption active</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ GOLD BENEFIT ═══ -->
+    <section class="earn-section">
+        <div class="gold-benefit">
+            <h3>🥇 Your Earnings Can Become Physical Gold</h3>
+            <p>
+                Energy earned through propagation can be stored in HC-NFT certificates.
+                Those certificates are redeemable for <strong>physical gold bars and rounds from APMEX</strong>
+                — one of the world's largest precious metals dealers.
+                Every metal receipt is anchored on XRPL with SHA-256 proof.
+            </p>
+            <p>
+                This isn't a promise. It's verifiable: <strong>GET /api/treasury/reserves</strong>
+            </p>
+            <a href="/vault/gold" class="btn btn-primary">View Gold Vault →</a>
+            <a href="/treasury" class="btn btn-ghost" style="margin-left: .5rem;">See Proof of Reserves →</a>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="earn-cta">
+        <h2>Ready to Enter the Field?</h2>
+        <p>$100. One price. Conservation law enforced. Every dollar verifiable.</p>
+        <a href="/activate" class="btn btn-primary">Enter Helios →</a>
+        <a href="/ask" class="btn btn-ghost" style="margin-left: .5rem;">Ask Helios First →</a>
+    </section>
+
+    <!-- ═══ DISCLAIMER ═══ -->
+    <div class="earnings-disclaimer">
+        <strong>Disclaimer:</strong> All projections shown are mathematical models based on the protocol's deterministic
+        settlement formula: weight(hop) = 1/(2^hop) applied to $45 propagation per $100 entry. Actual earnings depend
+        on network activity within your bounded field and the number of active bonds. These are not guarantees.
+        Helios is a private network protocol with conservation-law-enforced settlement. Past protocol performance
+        is based on mathematical models, not historical investment returns.
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ─── Hop Decay Table ─────────────────────────────────────────────
+function buildDecayTable() {
+    const tbody = document.getElementById('decayTable');
+    const hops = [
+        { hop: 1, label: 'Direct bond (your person)', you: true },
+        { hop: 2, label: 'Friend of your bond', you: false },
+        { hop: 3, label: '2 hops away', you: false },
+        { hop: 4, label: '3 hops away', you: false },
+        { hop: 5, label: '4 hops away', you: false },
+        { hop: 6, label: '5 hops away', you: false },
+        { hop: 7, label: '6 hops away', you: false },
+        { hop: 8, label: '7 hops away', you: false },
+        { hop: 10, label: '9 hops away', you: false },
+        { hop: 15, label: 'Maximum horizon', you: false },
+    ];
+
+    const propagation = 45; // $45 from the $100 entry
+    let rows = '';
+
+    hops.forEach(h => {
+        const weight = 1 / Math.pow(2, h.hop);
+        const energy = propagation * weight;
+        const pct = (weight * 100);
+        const barWidth = Math.max(2, pct * 3);
+        const youClass = h.you ? ' class="hop-you"' : '';
+
+        rows += `<tr>
+            <td${youClass}>Hop ${h.hop}</td>
+            <td${youClass}>${h.label}</td>
+            <td${youClass}>${pct >= 0.01 ? pct.toFixed(pct >= 1 ? 1 : 2) + '%' : '<0.01%'}</td>
+            <td${youClass}>$${energy >= 0.01 ? energy.toFixed(2) : energy.toFixed(4)}</td>
+            <td><span class="decay-bar" style="width: ${barWidth}px;"></span></td>
+        </tr>`;
+    });
+
+    tbody.innerHTML = rows;
+}
+
+// ─── Calculator ──────────────────────────────────────────────────
+function recalculate() {
+    const bonds = parseInt(document.getElementById('calcBonds').value);
+    const monthly = parseInt(document.getElementById('calcMonthly').value) || 0;
+    const avgHop = parseInt(document.getElementById('calcAvgHop').value);
+    const months = parseInt(document.getElementById('calcTimeframe').value);
+
+    // Bond display
+    const bondLabel = bonds >= 5 ? bonds + ' bonds ☀' : bonds + ' bonds';
+    document.getElementById('bondDisplay').textContent = bondLabel;
+
+    // Propagation: each new member sends $45 * weight(avgHop) to you
+    const weight = 1 / Math.pow(2, avgHop);
+    const propagationPerMember = 45 * weight;
+    const totalPropagation = propagationPerMember * monthly * months;
+
+    // Acknowledgements: 10 HLS × ~$0.033 per HLS = ~$0.33 per direct bond
+    // Estimate direct bonds per month based on your bond count
+    const directPerMonth = Math.min(bonds, Math.ceil(monthly * 0.2)); // ~20% are direct
+    const ackValue = directPerMonth * 10 * 0.033; // 10 HLS at ~$0.033
+    const totalAck = ackValue * months;
+
+    const total = totalPropagation + totalAck;
+
+    document.getElementById('resultPropagation').textContent = '$' + formatNum(totalPropagation);
+    document.getElementById('resultAcknowledge').textContent = '$' + formatNum(totalAck);
+    document.getElementById('resultTotal').textContent = '$' + formatNum(total);
+    document.getElementById('resultPeriod').textContent = 'over ' + months + ' month' + (months > 1 ? 's' : '');
+}
+
+function formatNum(n) {
+    if (n >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    if (n >= 1) return n.toFixed(2);
+    return n.toFixed(4);
+}
+
+// ─── Init ────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    buildDecayTable();
+    recalculate();
+});
+</script>
+{% endblock %}

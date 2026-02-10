@@ -51,6 +51,7 @@ def freeze():
         ("/vault/gold", "vault/gold/index.html"),
         ("/activate", "activate/index.html"),
         ("/metrics", "metrics/index.html"),
+        ("/earnings", "earnings/index.html"),
         ("/enter", "enter/index.html"),
         ("/join", "join/index.html"),
         ("/health", "health/index.html"),

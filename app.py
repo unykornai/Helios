@@ -217,6 +217,10 @@ def create_app():
     def activate(referrer=None):
         return render_template("activate.html", referrer=referrer)
 
+    @app.route("/earnings")
+    def earnings():
+        return render_template("earnings.html")
+
     @app.route("/metrics")
     def metrics():
         return render_template("metrics.html")
