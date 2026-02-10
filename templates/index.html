@@ -72,62 +72,137 @@
     <canvas id="neural-bg" class="hero-neural-bg"></canvas>
 </section>
 
-<!-- ═══ HOW MONEY FLOWS — 5 STEPS ═══ -->
+<!-- ═══ THE HELIOS FLOWLINE ═══ -->
 <section class="section section-dark">
     <div class="container" style="max-width:960px;">
-        <h2 style="text-align:center;">How Capital Flows Through the Protocol</h2>
+        <h2 style="text-align:center;">The Helios Flowline</h2>
         <p class="section-subtitle" style="max-width:680px;margin:0 auto 2.5rem;">
-            Every dollar follows a published, deterministic path. Fiat enters, stablecoins settle,
-            gold is acquired, certificates are issued, and value is allocated across 15 levels.
-            No discretionary intervention. No manual payouts.
+            Follow the Flowline. Watch value move through the protocol in real time —
+            from membership activation to gold-backed certificates distributed across 15 levels.
         </p>
 
-        <div class="phase-grid" style="grid-template-columns:1fr;">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;">
-                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
-                    <div class="phase-marker" style="flex-shrink:0;margin:0;">1</div>
-                    <div>
-                        <h3 style="margin-bottom:.3rem;">Member Joins</h3>
-                        <p>A member chooses one of 5 tiers — $100, $250, $500, $1,000, or $5,000. Every dollar
-                        is allocated according to published percentages. Higher tiers mean bigger pools.</p>
-                    </div>
+        <!-- Flowline Animation Container -->
+        <div class="flowline-wrap">
+            <svg class="flowline-svg" viewBox="0 0 920 120" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="fl-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#c9a84c" stop-opacity="0"/>
+                        <stop offset="40%" stop-color="#c9a84c" stop-opacity="1"/>
+                        <stop offset="60%" stop-color="#e8d694" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+                    </linearGradient>
+                    <filter id="fl-glow">
+                        <feGaussianBlur stdDeviation="4" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <filter id="fl-glow-strong">
+                        <feGaussianBlur stdDeviation="8" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Track line (dim base) -->
+                <line x1="92" y1="60" x2="828" y2="60" stroke="rgba(201,168,76,0.12)" stroke-width="2"/>
+
+                <!-- Segment lines (light up per step) -->
+                <line class="fl-seg" data-seg="1" x1="92" y1="60" x2="276" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+                <line class="fl-seg" data-seg="2" x1="276" y1="60" x2="460" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+                <line class="fl-seg" data-seg="3" x1="460" y1="60" x2="644" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+                <line class="fl-seg" data-seg="4" x1="644" y1="60" x2="828" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+
+                <!-- Electricity bolt (the moving element) -->
+                <rect class="fl-bolt" x="0" y="56" width="60" height="8" rx="4" fill="url(#fl-grad)" filter="url(#fl-glow-strong)" opacity="0"/>
+
+                <!-- Node circles -->
+                <circle class="fl-node" data-step="0" cx="92"  cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <circle class="fl-node" data-step="1" cx="276" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <circle class="fl-node" data-step="2" cx="460" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <circle class="fl-node" data-step="3" cx="644" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <circle class="fl-node" data-step="4" cx="828" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+
+                <!-- Step numbers -->
+                <text class="fl-num" data-step="0" x="92"  y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">1</text>
+                <text class="fl-num" data-step="1" x="276" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">2</text>
+                <text class="fl-num" data-step="2" x="460" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">3</text>
+                <text class="fl-num" data-step="3" x="644" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">4</text>
+                <text class="fl-num" data-step="4" x="828" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">5</text>
+            </svg>
+
+            <!-- Step labels (below SVG) -->
+            <div class="flowline-labels">
+                <div class="fl-label" data-step="0">
+                    <div class="fl-label-icon">⚡</div>
+                    <h4>Membership Activation</h4>
+                    <p>Choose your tier — $100 to $5,000. One payment activates your position in the network.</p>
                 </div>
-                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
-                    <div class="phase-marker" style="flex-shrink:0;margin:0;">2</div>
-                    <div>
-                        <h3 style="margin-bottom:.3rem;">Fiat → Stablecoin</h3>
-                        <p>Incoming fiat is converted to USDC/USDT on XRPL or Stellar.
-                        Stablecoins provide transparent, auditable settlement rails.</p>
-                    </div>
+                <div class="fl-label" data-step="1">
+                    <div class="fl-label-icon">💱</div>
+                    <h4>Fiat → Stablecoin</h4>
+                    <p>Dollars convert to USDC/USDT on XRPL or Stellar. Transparent, auditable settlement.</p>
                 </div>
-                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
-                    <div class="phase-marker" style="flex-shrink:0;margin:0;">3</div>
-                    <div>
-                        <h3 style="margin-bottom:.3rem;">Stablecoin → Physical Gold</h3>
-                        <p>Stablecoins are used to purchase physical gold by weight through APMEX,
-                        one of the world's largest accredited precious metals dealers.</p>
-                    </div>
+                <div class="fl-label" data-step="2">
+                    <div class="fl-label-icon">🥇</div>
+                    <h4>Stablecoin → Gold</h4>
+                    <p>Stablecoins acquire physical gold by weight through APMEX. Verified. Vaulted.</p>
                 </div>
-                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
-                    <div class="phase-marker" style="flex-shrink:0;margin:0;">4</div>
-                    <div>
-                        <h3 style="margin-bottom:.3rem;">Gold → Digital Certificates</h3>
-                        <p>Gold is tokenized into Gold Certificates (NFTs), Bonus Certificates, and
-                        Staking Certificates. Each represents a verifiable weight of physical gold.</p>
-                    </div>
+                <div class="fl-label" data-step="3">
+                    <div class="fl-label-icon">📜</div>
+                    <h4>Gold → Certificates</h4>
+                    <p>Gold is tokenized into NFT certificates on XRPL. Each one represents real metal.</p>
                 </div>
-                <div class="phase" style="text-align:left;display:flex;gap:1.2rem;align-items:flex-start;">
-                    <div class="phase-marker" style="flex-shrink:0;margin:0;">5</div>
-                    <div>
-                        <h3 style="margin-bottom:.3rem;">Allocation Across 15 Levels</h3>
-                        <p>The deterministic weighting model distributes gold-backed value
-                        across up to 15 levels of the contribution network. Fixed math. No discretion.</p>
-                    </div>
+                <div class="fl-label" data-step="4">
+                    <div class="fl-label-icon">🔺</div>
+                    <h4>15-Level Allocation</h4>
+                    <p>Certificates distribute across 15 levels. Fixed formula. No discretion. Pure math.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+/* ═══ FLOWLINE ═══ */
+.flowline-wrap { position:relative; padding:1rem 0 0; }
+.flowline-svg { width:100%; height:auto; display:block; }
+.flowline-labels { display:grid; grid-template-columns:repeat(5,1fr); gap:.5rem; margin-top:1rem; }
+.fl-label { text-align:center; padding:.5rem .3rem; opacity:.35; transition:opacity .6s ease, transform .6s ease; transform:translateY(6px); }
+.fl-label.active { opacity:1; transform:translateY(0); }
+.fl-label-icon { font-size:1.4rem; margin-bottom:.3rem; }
+.fl-label h4 { font-size:.82rem; color:var(--gold); margin-bottom:.25rem; font-family:'Inter',sans-serif; letter-spacing:.02em; }
+.fl-label p { font-size:.74rem; color:var(--text-muted); line-height:1.5; margin:0; }
+
+/* Node activation states */
+.fl-node { transition: stroke .4s ease, fill .4s ease; }
+.fl-node.lit { stroke:var(--gold); stroke-width:2.5; fill:rgba(201,168,76,.15); filter:url(#fl-glow); }
+.fl-num { transition: fill .4s ease; }
+.fl-num.lit { fill:var(--gold); }
+.fl-seg { transition: stroke .5s ease; }
+.fl-seg.lit { stroke:var(--gold); stroke-opacity:.6; }
+
+/* Pulse ring on active node */
+@keyframes fl-ring-pulse {
+    0% { r:18; stroke-opacity:.6; }
+    100% { r:30; stroke-opacity:0; }
+}
+.fl-ring { animation: fl-ring-pulse 1.2s ease-out forwards; }
+
+/* Responsive: stack labels on mobile */
+@media(max-width:640px){
+    .flowline-labels { grid-template-columns:1fr; gap:1.2rem; }
+    .fl-label { text-align:left; display:flex; gap:.8rem; align-items:flex-start; padding:.3rem 0; }
+    .fl-label-icon { flex-shrink:0; margin:0; }
+    .fl-label h4 { font-size:.88rem; }
+    .fl-label p { font-size:.8rem; }
+    .flowline-svg { display:none; }
+    .fl-label { opacity:1; transform:none; }
+}
+</style>
 
 <!-- ═══ THE MATH MODEL ═══ -->
 <section class="section">
@@ -343,6 +418,110 @@
 
 {% block scripts %}
 <script>
+// ═══ THE HELIOS FLOWLINE — Electricity Animation ═══
+(function(){
+    var svg = document.querySelector('.flowline-svg');
+    if(!svg) return;
+
+    var nodes = svg.querySelectorAll('.fl-node');
+    var nums  = svg.querySelectorAll('.fl-num');
+    var segs  = svg.querySelectorAll('.fl-seg');
+    var bolt  = svg.querySelector('.fl-bolt');
+    var labels = document.querySelectorAll('.fl-label');
+
+    var stepCx = [92, 276, 460, 644, 828];
+    var TOTAL_STEPS = 5;
+    var TRAVEL_MS   = 800;   // time bolt takes to travel between nodes
+    var HOLD_MS     = 1200;  // pause while node is active
+    var RESET_MS    = 600;   // pause before restart
+    var currentStep = -1;
+    var boltWidth   = 60;
+
+    function resetAll(){
+        nodes.forEach(function(n){ n.classList.remove('lit'); });
+        nums.forEach(function(n){ n.classList.remove('lit'); });
+        segs.forEach(function(s){ s.classList.remove('lit'); });
+        labels.forEach(function(l){ l.classList.remove('active'); });
+        bolt.setAttribute('opacity','0');
+        // remove old pulse rings
+        svg.querySelectorAll('.fl-ring').forEach(function(r){ r.remove(); });
+    }
+
+    function activateNode(i){
+        nodes[i].classList.add('lit');
+        nums[i].classList.add('lit');
+        labels[i].classList.add('active');
+        // pulse ring
+        var ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        ring.setAttribute('cx', stepCx[i]);
+        ring.setAttribute('cy', 60);
+        ring.setAttribute('r', 18);
+        ring.setAttribute('fill','none');
+        ring.setAttribute('stroke','#c9a84c');
+        ring.setAttribute('stroke-width','2');
+        ring.classList.add('fl-ring');
+        svg.appendChild(ring);
+        setTimeout(function(){ if(ring.parentNode) ring.remove(); }, 1300);
+    }
+
+    function animateBolt(fromX, toX, cb){
+        bolt.setAttribute('opacity','1');
+        var startTime = null;
+        function frame(ts){
+            if(!startTime) startTime = ts;
+            var p = Math.min((ts - startTime) / TRAVEL_MS, 1);
+            // easeInOut
+            var ease = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2,2)/2;
+            var x = fromX + (toX - fromX) * ease - boltWidth/2;
+            bolt.setAttribute('x', x);
+            if(p < 1){
+                requestAnimationFrame(frame);
+            } else {
+                bolt.setAttribute('opacity','0');
+                if(cb) cb();
+            }
+        }
+        requestAnimationFrame(frame);
+    }
+
+    function runStep(){
+        currentStep++;
+        if(currentStep >= TOTAL_STEPS){
+            // loop: hold a beat, then reset and restart
+            setTimeout(function(){
+                resetAll();
+                currentStep = -1;
+                setTimeout(runStep, RESET_MS);
+            }, HOLD_MS);
+            return;
+        }
+
+        if(currentStep === 0){
+            // first node: just activate, no bolt travel
+            activateNode(0);
+            setTimeout(runStep, HOLD_MS);
+        } else {
+            // light the connecting segment
+            segs[currentStep - 1].classList.add('lit');
+            // animate bolt from previous node to this one
+            animateBolt(stepCx[currentStep-1], stepCx[currentStep], function(){
+                activateNode(currentStep);
+                setTimeout(runStep, HOLD_MS);
+            });
+        }
+    }
+
+    // Start when section scrolls into view (IntersectionObserver)
+    var started = false;
+    var observer = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting && !started){
+            started = true;
+            runStep();
+        }
+    }, { threshold: 0.3 });
+    observer.observe(svg.closest('.flowline-wrap'));
+})();
+
 // ═══ Subtle Network Background Animation ═══
 (function() {
     var canvas = document.getElementById('neural-bg');

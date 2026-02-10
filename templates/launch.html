@@ -62,6 +62,30 @@
     .cd-unit { text-align:center; }
     .cd-unit .num { font-size:2rem; font-weight:700; color:var(--gold); font-family:'Inter',sans-serif; line-height:1; }
     .cd-unit .label { font-size:.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.1em; font-family:'Inter',sans-serif; margin-top:.2rem; }
+
+    /* Flowline */
+    .flowline-wrap { position:relative; padding:1rem 0 0; }
+    .flowline-svg { width:100%; height:auto; display:block; }
+    .flowline-labels { display:grid; gap:.5rem; margin-top:1rem; }
+    .fl-label { text-align:center; padding:.5rem .3rem; opacity:.35; transition:opacity .6s ease, transform .6s ease; transform:translateY(6px); }
+    .fl-label.active { opacity:1; transform:translateY(0); }
+    .fl-label-icon { font-size:1.4rem; margin-bottom:.3rem; }
+    .fl-label h4 { font-size:.82rem; color:var(--gold); margin-bottom:.25rem; font-family:'Inter',sans-serif; letter-spacing:.02em; }
+    .fl-label p { font-size:.74rem; color:var(--text-muted); line-height:1.5; margin:0; }
+    .fl-node { transition: stroke .4s ease, fill .4s ease; }
+    .fl-node.lit { stroke:var(--gold); stroke-width:2.5; fill:rgba(201,168,76,.15); filter:url(#fl2-glow); }
+    .fl-num { transition: fill .4s ease; }
+    .fl-num.lit { fill:var(--gold); }
+    .fl-seg { transition: stroke .5s ease; }
+    .fl-seg.lit { stroke:var(--gold); stroke-opacity:.6; }
+    @keyframes fl-ring-pulse { 0%{r:18;stroke-opacity:.6} 100%{r:30;stroke-opacity:0} }
+    .fl-ring { animation: fl-ring-pulse 1.2s ease-out forwards; }
+    @media(max-width:640px){
+        .flowline-labels { grid-template-columns:1fr !important; gap:1.2rem; }
+        .fl-label { text-align:left; display:flex; gap:.8rem; align-items:flex-start; padding:.3rem 0; opacity:1; transform:none; }
+        .fl-label-icon { flex-shrink:0; margin:0; }
+        .flowline-svg { display:none; }
+    }
 </style>
 
 <!-- ═══ HERO ═══ -->
@@ -86,6 +110,75 @@
 
         <div style="margin-top:1.5rem;">
             <a href="/activate" class="btn btn-primary btn-lg">Register Now — Lock Your Price</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ACTIVATION FLOWLINE ═══ -->
+<section class="section" style="padding-bottom:2rem;">
+    <div class="container" style="max-width:900px;">
+        <h2 style="text-align:center;">The Activation Flowline</h2>
+        <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
+            Watch how value activates through the protocol — step by step,
+            like electricity through a wire.
+        </p>
+
+        <div class="flowline-wrap fl-launch">
+            <svg class="flowline-svg fl-svg-launch" viewBox="0 0 740 120" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="fl2-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#c9a84c" stop-opacity="0"/>
+                        <stop offset="40%" stop-color="#c9a84c" stop-opacity="1"/>
+                        <stop offset="60%" stop-color="#e8d694" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+                    </linearGradient>
+                    <filter id="fl2-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    <filter id="fl2-glow-s"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <line x1="92" y1="60" x2="648" y2="60" stroke="rgba(201,168,76,0.12)" stroke-width="2"/>
+                <line class="fl-seg fl2" data-seg="1" x1="92"  y1="60" x2="277" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+                <line class="fl-seg fl2" data-seg="2" x1="277" y1="60" x2="463" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+                <line class="fl-seg fl2" data-seg="3" x1="463" y1="60" x2="648" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+                <rect class="fl-bolt fl2-bolt" x="0" y="56" width="50" height="8" rx="4" fill="url(#fl2-grad)" filter="url(#fl2-glow-s)" opacity="0"/>
+                <circle class="fl-node fl2" data-step="0" cx="92"  cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <circle class="fl-node fl2" data-step="1" cx="277" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <circle class="fl-node fl2" data-step="2" cx="463" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <circle class="fl-node fl2" data-step="3" cx="648" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
+                <text class="fl-num fl2" data-step="0" x="92"  y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">1</text>
+                <text class="fl-num fl2" data-step="1" x="277" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">2</text>
+                <text class="fl-num fl2" data-step="2" x="463" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">3</text>
+                <text class="fl-num fl2" data-step="3" x="648" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">4</text>
+            </svg>
+
+            <div class="flowline-labels" style="grid-template-columns:repeat(4,1fr);">
+                <div class="fl-label fl2-label" data-step="0">
+                    <div class="fl-label-icon">🔑</div>
+                    <h4>Register & Choose Tier</h4>
+                    <p>Pick your tier. Lock in $0.10/HLS founding price. Activate your position.</p>
+                </div>
+                <div class="fl-label fl2-label" data-step="1">
+                    <div class="fl-label-icon">🔗</div>
+                    <h4>Set Up Trustlines</h4>
+                    <p>Connect your XRPL & Stellar wallets. Trustlines open the channel for tokens to flow.</p>
+                </div>
+                <div class="fl-label fl2-label" data-step="2">
+                    <div class="fl-label-icon">💎</div>
+                    <h4>Purchase HLS Tokens</h4>
+                    <p>Buy HLS at founding price. Get 20% bonus tokens. Your tokens land in your wallet.</p>
+                </div>
+                <div class="fl-label fl2-label" data-step="3">
+                    <div class="fl-label-icon">⚡</div>
+                    <h4>Network Activates</h4>
+                    <p>15-level engine turns on. Gold is purchased. Certificates mint. Value flows upward.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin-top:1.5rem;">
+            <p style="font-size:.82rem;color:var(--text-muted);">
+                The Flowline shows how value moves through Helios — from your membership activation
+                to gold-backed certificates distributed across the entire network.
+            </p>
         </div>
     </div>
 </section>
@@ -515,6 +608,72 @@
         document.getElementById('cd-secs').textContent = s < 10 ? '0'+s : s;
     }
     tick(); setInterval(tick, 1000);
+})();
+
+// ═══ ACTIVATION FLOWLINE — Launch Page (4-step) ═══
+(function(){
+    var svg = document.querySelector('.fl-svg-launch');
+    if(!svg) return;
+
+    var nodes  = svg.querySelectorAll('.fl-node.fl2');
+    var nums   = svg.querySelectorAll('.fl-num.fl2');
+    var segs   = svg.querySelectorAll('.fl-seg.fl2');
+    var bolt   = svg.querySelector('.fl2-bolt');
+    var labels = document.querySelectorAll('.fl2-label');
+
+    var stepCx = [92, 277, 463, 648];
+    var STEPS     = 4;
+    var TRAVEL_MS = 800;
+    var HOLD_MS   = 1200;
+    var RESET_MS  = 600;
+    var cur = -1;
+    var boltW = 50;
+
+    function resetAll(){
+        nodes.forEach(function(n){ n.classList.remove('lit'); });
+        nums.forEach(function(n){ n.classList.remove('lit'); });
+        segs.forEach(function(s){ s.classList.remove('lit'); });
+        labels.forEach(function(l){ l.classList.remove('active'); });
+        bolt.setAttribute('opacity','0');
+        svg.querySelectorAll('.fl-ring').forEach(function(r){ r.remove(); });
+    }
+
+    function activateNode(i){
+        nodes[i].classList.add('lit');
+        nums[i].classList.add('lit');
+        labels[i].classList.add('active');
+        var ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        ring.setAttribute('cx', stepCx[i]); ring.setAttribute('cy',60);
+        ring.setAttribute('r',18); ring.setAttribute('fill','none');
+        ring.setAttribute('stroke','#c9a84c'); ring.setAttribute('stroke-width','2');
+        ring.classList.add('fl-ring'); svg.appendChild(ring);
+        setTimeout(function(){ if(ring.parentNode) ring.remove(); },1300);
+    }
+
+    function animateBolt(fromX,toX,cb){
+        bolt.setAttribute('opacity','1');
+        var start=null;
+        function frame(ts){
+            if(!start) start=ts;
+            var p=Math.min((ts-start)/TRAVEL_MS,1);
+            var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+            bolt.setAttribute('x', fromX+(toX-fromX)*ease - boltW/2);
+            if(p<1) requestAnimationFrame(frame);
+            else { bolt.setAttribute('opacity','0'); if(cb) cb(); }
+        }
+        requestAnimationFrame(frame);
+    }
+
+    function runStep(){
+        cur++;
+        if(cur>=STEPS){ setTimeout(function(){ resetAll(); cur=-1; setTimeout(runStep,RESET_MS); },HOLD_MS); return; }
+        if(cur===0){ activateNode(0); setTimeout(runStep,HOLD_MS); }
+        else { segs[cur-1].classList.add('lit'); animateBolt(stepCx[cur-1],stepCx[cur],function(){ activateNode(cur); setTimeout(runStep,HOLD_MS); }); }
+    }
+
+    var started=false;
+    var obs=new IntersectionObserver(function(e){ if(e[0].isIntersecting&&!started){ started=true; runStep(); } },{threshold:0.3});
+    obs.observe(svg.closest('.flowline-wrap'));
 })();
 </script>
 {% endblock %}

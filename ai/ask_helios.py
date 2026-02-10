@@ -614,6 +614,22 @@ HELIOS_KNOWLEDGE = {
         "The contract is immutable. This isn't a promise — "
         "it's code on a blockchain."
     ),
+
+    "flowline": (
+        "The Flowline is the animated path on our site that shows how Helios works.\n\n"
+        "It moves like electricity through a wire, lighting up each step as value \n"
+        "flows through the system. Five steps:\n\n"
+        "Step 1 — MEMBERSHIP ACTIVATION: You choose your tier and activate.\n"
+        "Step 2 — FIAT TO STABLECOIN: Dollars convert to USDC/USDT.\n"
+        "Step 3 — STABLECOIN TO GOLD: Stablecoins acquire physical gold.\n"
+        "Step 4 — GOLD TO CERTIFICATES: Gold tokenizes into NFT certificates.\n"
+        "Step 5 — 15-LEVEL ALLOCATION: Certificates distribute across 15 levels.\n\n"
+        "When a new member activates, the Flowline shows the movement of value \n"
+        "through the 15-level structure — step by step, level by level.\n\n"
+        "It's a visual way to understand how Helios distributes value, issues \n"
+        "gold-backed certificates, and triggers allocations across the network.\n\n"
+        "Visit the homepage to watch the Flowline in action."
+    ),
 }
 
 
@@ -654,6 +670,7 @@ TOPIC_MAP = {
     "launch_phases": ["phase 1", "phase 2", "phase 3", "phases", "roadmap", "timeline", "when", "dates", "launch date", "when does it start", "launch schedule"],
     "liquidity_pools": ["liquidity", "liquidity pool", "lp", "trading", "dex", "exchange", "trade hls", "pool"],
     "hls_token_details": ["supply", "total supply", "100 million", "token pool", "settlement pool", "network distribution", "emergency reserve", "issuance", "token issuance", "how many tokens", "tokenomics"],
+    "flowline": ["flowline", "flow line", "animation", "how it works visually", "the line", "electricity", "glowing line", "activation flow", "show me how it works"],
 }
 
 
