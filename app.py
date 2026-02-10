@@ -238,6 +238,11 @@ def create_app():
     def metrics():
         return render_template("metrics.html")
 
+    @app.route("/launch")
+    @app.route("/token-offering")
+    def launch():
+        return render_template("launch.html")
+
     # ─── Health Check ─────────────────────────────────────────────
     @app.route("/health")
     @app.route("/api/health")

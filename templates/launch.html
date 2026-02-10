@@ -1,0 +1,520 @@
+{% extends "base.html" %}
+{% block title %}Helios — Token Launch & Early Registration{% endblock %}
+{% block og_title %}Helios — Founding Member Token Offering{% endblock %}
+{% block og_description %}Register early. Lock in the lowest token price. Establish your position before the network opens to the public.{% endblock %}
+{% block og_url %}/launch{% endblock %}
+
+{% block content %}
+<style>
+    .launch-hero { padding:5rem 1.5rem 3.5rem; text-align:center; position:relative; overflow:hidden; }
+    .launch-hero h1 { font-size:2.8rem; color:var(--gold); margin-bottom:.5rem; letter-spacing:.04em; }
+    .launch-hero .hero-sub { font-size:1.15rem; color:var(--text-muted); max-width:640px; margin:0 auto 1rem; line-height:1.7; }
+    .launch-badge { display:inline-block; background:rgba(201,168,76,.12); border:1px solid var(--gold); color:var(--gold); font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; padding:.45rem 1.2rem; border-radius:2rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:1.5rem; }
+    .launch-badge.live { animation: badge-pulse 2s ease-in-out infinite; }
+    @keyframes badge-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.3)} 50%{box-shadow:0 0 20px 4px rgba(201,168,76,.15)} }
+
+    .phase-timeline { max-width:880px; margin:0 auto; position:relative; padding-left:2.5rem; }
+    .phase-timeline::before { content:''; position:absolute; left:1rem; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,.2) 100%); }
+    .tl-item { position:relative; margin-bottom:2.5rem; }
+    .tl-dot { position:absolute; left:-1.85rem; top:.35rem; width:14px; height:14px; border-radius:50%; border:2px solid var(--gold); background:var(--bg); z-index:1; }
+    .tl-dot.active { background:var(--gold); box-shadow:0 0 12px rgba(201,168,76,.4); }
+    .tl-dot.future { border-color:rgba(201,168,76,.35); }
+    .tl-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem 1.8rem; }
+    .tl-card.active-phase { border-color:var(--gold); box-shadow:0 0 30px rgba(201,168,76,.08); }
+    .tl-date { font-family:'Inter',sans-serif; font-size:.72rem; color:var(--gold); text-transform:uppercase; letter-spacing:.1em; font-weight:600; margin-bottom:.4rem; }
+    .tl-card h3 { font-size:1.25rem; margin-bottom:.5rem; color:var(--text); }
+    .tl-card p { color:var(--text-muted); font-size:.92rem; line-height:1.65; margin:0; }
+    .tl-card ul { list-style:none; padding:0; margin:.8rem 0 0; }
+    .tl-card ul li { color:var(--text-muted); font-size:.88rem; padding:.3rem 0; padding-left:1.2rem; position:relative; }
+    .tl-card ul li::before { content:'→'; position:absolute; left:0; color:var(--gold); }
+
+    .token-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem; max-width:900px; margin:0 auto; }
+    .token-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; text-align:center; }
+    .token-card.featured { border-color:var(--gold); position:relative; }
+    .token-card.featured::after { content:'NOW'; position:absolute; top:-10px; right:16px; background:var(--gold); color:var(--bg); font-family:'Inter',sans-serif; font-size:.6rem; font-weight:700; padding:2px 10px; border-radius:2px; letter-spacing:.1em; }
+    .token-card h4 { color:var(--gold); font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; font-family:'Inter',sans-serif; margin-bottom:.5rem; }
+    .token-price { font-size:2rem; font-weight:700; color:var(--text); font-family:'Inter',sans-serif; }
+    .token-price small { font-size:.85rem; color:var(--text-muted); font-weight:400; }
+    .token-card .detail { font-size:.82rem; color:var(--text-muted); margin-top:.5rem; }
+    .token-card .bonus-tag { display:inline-block; background:rgba(76,201,120,.12); border:1px solid rgba(76,201,120,.3); color:#4cc978; font-size:.72rem; font-weight:600; padding:2px 8px; border-radius:3px; margin-top:.5rem; font-family:'Inter',sans-serif; }
+
+    .benefit-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; max-width:900px; margin:0 auto; }
+    .benefit-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.3rem 1.5rem; }
+    .benefit-card .b-icon { font-size:1.5rem; margin-bottom:.5rem; }
+    .benefit-card h4 { font-size:1rem; margin-bottom:.4rem; color:var(--text); }
+    .benefit-card p { font-size:.85rem; color:var(--text-muted); line-height:1.6; margin:0; }
+
+    .trust-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; max-width:900px; margin:0 auto; }
+    .trust-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; }
+    .trust-card h4 { color:var(--gold); font-size:.95rem; margin-bottom:.5rem; }
+    .trust-card p { color:var(--text-muted); font-size:.88rem; line-height:1.65; margin:0; }
+    .trust-card code { background:rgba(201,168,76,.1); color:var(--gold); padding:1px 6px; border-radius:3px; font-size:.82rem; }
+
+    .issuance-table { width:100%; border-collapse:collapse; max-width:800px; margin:0 auto; }
+    .issuance-table th { font-family:'Inter',sans-serif; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); padding:.6rem .8rem; border-bottom:1px solid var(--border); text-align:left; }
+    .issuance-table td { padding:.65rem .8rem; border-bottom:1px solid rgba(255,255,255,.04); font-size:.9rem; color:var(--text-muted); }
+    .issuance-table tr:hover td { background:rgba(201,168,76,.03); }
+    .issuance-table .pool-name { color:var(--text); font-weight:500; }
+    .issuance-table .pct { color:var(--gold); font-weight:600; font-family:'Inter',sans-serif; }
+    .issuance-table .lock { font-size:.78rem; }
+
+    .countdown-bar { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin:1.5rem auto; }
+    .cd-unit { text-align:center; }
+    .cd-unit .num { font-size:2rem; font-weight:700; color:var(--gold); font-family:'Inter',sans-serif; line-height:1; }
+    .cd-unit .label { font-size:.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.1em; font-family:'Inter',sans-serif; margin-top:.2rem; }
+</style>
+
+<!-- ═══ HERO ═══ -->
+<section class="launch-hero">
+    <div class="container" style="max-width:800px;">
+        <div class="launch-badge live">Founding Window Open</div>
+        <h1>GET IN EARLY</h1>
+        <p class="hero-sub">
+            The Helios token offering is live. Founding members lock in the lowest price,
+            establish their position at the top of the network, and get bonus tokens
+            before the public launch. This window closes March&nbsp;31,&nbsp;2026.
+        </p>
+
+        <!-- Countdown -->
+        <div class="countdown-bar" id="countdown">
+            <div class="cd-unit"><div class="num" id="cd-days">--</div><div class="label">Days</div></div>
+            <div class="cd-unit"><div class="num" id="cd-hours">--</div><div class="label">Hours</div></div>
+            <div class="cd-unit"><div class="num" id="cd-mins">--</div><div class="label">Minutes</div></div>
+            <div class="cd-unit"><div class="num" id="cd-secs">--</div><div class="label">Seconds</div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-top:.5rem;">Until Founding Window closes · Phase 1 pricing ends</p>
+
+        <div style="margin-top:1.5rem;">
+            <a href="/activate" class="btn btn-primary btn-lg">Register Now — Lock Your Price</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ 3-PHASE TIMELINE ═══ -->
+<section class="section section-dark">
+    <div class="container" style="max-width:900px;">
+        <h2 style="text-align:center;">The Roadmap</h2>
+        <p class="section-subtitle" style="max-width:640px;margin:0 auto 2.5rem;">
+            Three phases. Clear dates. Each phase raises the token price
+            and reduces early bonuses. The earlier you're in, the more you benefit.
+        </p>
+
+        <div class="phase-timeline">
+            <!-- Phase 1 -->
+            <div class="tl-item">
+                <div class="tl-dot active"></div>
+                <div class="tl-card active-phase">
+                    <div class="tl-date">Phase 1 — Founding Window · Feb 10 – Mar 31, 2026</div>
+                    <h3>🟢 Token Offering — Founding Members</h3>
+                    <p>
+                        This is where it starts. Founding members register, set up trustlines,
+                        and purchase HLS tokens at the lowest price the protocol will ever offer.
+                        Everyone who joins now locks in Position 1 when the network opens.
+                    </p>
+                    <ul>
+                        <li>HLS token price: <strong style="color:var(--gold);">$0.10 per token</strong></li>
+                        <li>20% bonus tokens on all purchases</li>
+                        <li>Founding Member badge — permanent, non-transferable</li>
+                        <li>Priority .helios identity reservation</li>
+                        <li>Trustline setup on XRPL + Stellar</li>
+                        <li>First gold purchase with treasury allocation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="tl-item">
+                <div class="tl-dot future"></div>
+                <div class="tl-card">
+                    <div class="tl-date">Phase 2 — Builder Phase · Apr 1 – May 31, 2026</div>
+                    <h3>Builder Expansion</h3>
+                    <p>
+                        Token price increases. The founding positions are established.
+                        Builders join under founders. The 15-level engine activates.
+                        Liquidity pools begin forming from membership revenue and token sales.
+                    </p>
+                    <ul>
+                        <li>HLS token price: <strong>$0.25 per token</strong></li>
+                        <li>10% bonus tokens (reduced from Phase 1)</li>
+                        <li>15-level allocation engine goes live</li>
+                        <li>Liquidity pools funded from treasury + membership fees</li>
+                        <li>First NFT certificate minting begins</li>
+                        <li>Gold treasury publishes first proof of reserves</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="tl-item">
+                <div class="tl-dot future"></div>
+                <div class="tl-card">
+                    <div class="tl-date">Phase 3 — Public Launch · Jun 1, 2026 →</div>
+                    <h3>Full Protocol Live</h3>
+                    <p>
+                        The protocol opens to the public. Token price at full market rate.
+                        All systems operational — allocation engine, gold certificates,
+                        crypto conversions, staking, and the full certificate marketplace.
+                    </p>
+                    <ul>
+                        <li>HLS token price: <strong>$0.50 per token</strong> (5× founding price)</li>
+                        <li>No bonus tokens — market rate only</li>
+                        <li>Full NFT certificate marketplace</li>
+                        <li>Staking program live (5-30% bonuses)</li>
+                        <li>Cross-chain settlement fully operational</li>
+                        <li>DEX listing for HLS token</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TOKEN PRICING BY PHASE ═══ -->
+<section class="section">
+    <div class="container" style="max-width:900px;">
+        <h2 style="text-align:center;">Token Pricing</h2>
+        <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
+            HLS token price increases with each phase. Founding members pay the least
+            and receive the most bonus tokens. The math is simple — early = cheaper.
+        </p>
+
+        <div class="token-grid">
+            <div class="token-card featured">
+                <h4>Phase 1 · Founding</h4>
+                <div class="token-price">$0.10 <small>/ HLS</small></div>
+                <div class="detail">Feb 10 – Mar 31, 2026</div>
+                <div class="bonus-tag">+20% BONUS TOKENS</div>
+                <div class="detail" style="margin-top:.8rem;">
+                    $100 → 1,200 HLS<br>
+                    $1,000 → 12,000 HLS<br>
+                    $5,000 → 60,000 HLS
+                </div>
+            </div>
+            <div class="token-card">
+                <h4>Phase 2 · Builder</h4>
+                <div class="token-price">$0.25 <small>/ HLS</small></div>
+                <div class="detail">Apr 1 – May 31, 2026</div>
+                <div class="bonus-tag" style="background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.25);color:var(--gold);">+10% BONUS</div>
+                <div class="detail" style="margin-top:.8rem;">
+                    $100 → 440 HLS<br>
+                    $1,000 → 4,400 HLS<br>
+                    $5,000 → 22,000 HLS
+                </div>
+            </div>
+            <div class="token-card">
+                <h4>Phase 3 · Public</h4>
+                <div class="token-price">$0.50 <small>/ HLS</small></div>
+                <div class="detail">Jun 1, 2026 →</div>
+                <div class="detail" style="margin-top:1.3rem;">
+                    $100 → 200 HLS<br>
+                    $1,000 → 2,000 HLS<br>
+                    $5,000 → 10,000 HLS
+                </div>
+            </div>
+        </div>
+
+        <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-top:1.5rem;">
+            Founding members get <strong style="color:var(--gold);">6× more tokens</strong> per dollar than public launch buyers.
+        </p>
+    </div>
+</section>
+
+<!-- ═══ WHY REGISTER EARLY ═══ -->
+<section class="section section-dark">
+    <div class="container" style="max-width:900px;">
+        <h2 style="text-align:center;">Why Register Now</h2>
+        <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
+            Every week you wait, the advantage shrinks. Here's what founding members get
+            that nobody after March 31 will ever have access to.
+        </p>
+
+        <div class="benefit-grid">
+            <div class="benefit-card">
+                <div class="b-icon">💰</div>
+                <h4>Lowest Token Price — Ever</h4>
+                <p>$0.10 per HLS. Phase 2 is $0.25. Public launch is $0.50.
+                Your $1,000 buys 12,000 tokens now vs 2,000 at public launch.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="b-icon">🎁</div>
+                <h4>20% Bonus Tokens</h4>
+                <p>Every purchase during the Founding Window gets an automatic 20% bonus.
+                Buy 1,000 tokens, receive 1,200. This drops to 10% in Phase 2 and 0% at public launch.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="b-icon">👑</div>
+                <h4>Position 1 — Top of Network</h4>
+                <p>Everyone who registers during Phase 1 becomes a founding position holder.
+                When the 15-level engine activates, you're at the top. That position is permanent.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="b-icon">🏷️</div>
+                <h4>Priority .helios Identity</h4>
+                <p>First pick of .helios names. king.helios, money.helios, gold.helios —
+                whatever you want. Founding members reserve before anyone else.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="b-icon">🥇</div>
+                <h4>Founding Member Badge</h4>
+                <p>A permanent, non-transferable on-chain badge that marks you as a founding member.
+                This cannot be purchased later at any price. You were either here or you weren't.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="b-icon">🔗</div>
+                <h4>First Trustline Access</h4>
+                <p>Your XRPL and Stellar trustlines are set up during Phase 1.
+                When tokens begin flowing, your wallet is already connected and ready.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TOKEN ISSUANCE BREAKDOWN ═══ -->
+<section class="section">
+    <div class="container" style="max-width:900px;">
+        <h2 style="text-align:center;">HLS Token Issuance</h2>
+        <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
+            100 million HLS tokens. Fixed supply. No minting function.
+            Nobody — not even founders — can create more tokens after genesis.
+        </p>
+
+        <table class="issuance-table">
+            <thead>
+                <tr>
+                    <th>Pool</th>
+                    <th>Allocation</th>
+                    <th>Tokens</th>
+                    <th>Lock Period</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="pool-name">Settlement Pool</td>
+                    <td class="pct">40%</td>
+                    <td>40,000,000</td>
+                    <td class="lock">Locked — released as network grows</td>
+                    <td>Powers the 15-level allocation engine</td>
+                </tr>
+                <tr>
+                    <td class="pool-name">Network Distribution</td>
+                    <td class="pct">35%</td>
+                    <td>35,000,000</td>
+                    <td class="lock">Released per phase schedule</td>
+                    <td>Token offering, membership rewards, referral bonuses</td>
+                </tr>
+                <tr>
+                    <td class="pool-name">Development</td>
+                    <td class="pct">15%</td>
+                    <td>15,000,000</td>
+                    <td class="lock">4-year linear vesting</td>
+                    <td>Protocol development, engineering, partnerships</td>
+                </tr>
+                <tr>
+                    <td class="pool-name">Emergency Reserve</td>
+                    <td class="pct">10%</td>
+                    <td>10,000,000</td>
+                    <td class="lock">Locked 5 years</td>
+                    <td>Black swan protection, liquidity backstop</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align:center;margin-top:1.5rem;">
+            <p style="font-size:.85rem;color:var(--text-muted);">
+                Founder tokens are locked for <strong style="color:var(--gold);">3 years</strong>.
+                No admin minting keys exist. The contract is immutable.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TRUSTLINES ═══ -->
+<section class="section section-dark">
+    <div class="container" style="max-width:900px;">
+        <h2 style="text-align:center;">Trustlines & Wallet Setup</h2>
+        <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
+            Before you can hold HLS tokens or receive certificates, your wallet needs
+            trustlines on XRPL and Stellar. Think of trustlines like opening a lane
+            on the highway — once it's set, value flows freely.
+        </p>
+
+        <div class="trust-grid">
+            <div class="trust-card">
+                <h4>🔗 XRPL Trustline</h4>
+                <p>
+                    Enables your XRPL wallet to hold HLS tokens and receive
+                    gold-backed NFT certificates. One-time setup. Uses the standard
+                    <code>TrustSet</code> transaction. Requires a small XRP reserve
+                    (~2 XRP) which stays in your wallet.
+                </p>
+            </div>
+            <div class="trust-card">
+                <h4>⭐ Stellar Trustline</h4>
+                <p>
+                    Connects your Stellar wallet to the HLS asset issuer.
+                    Enables stablecoin settlement (USDC), cross-asset swaps,
+                    and fiat on/off ramps through Stellar anchors.
+                    Uses the standard <code>ChangeTrust</code> operation.
+                </p>
+            </div>
+            <div class="trust-card">
+                <h4>📋 What You Need</h4>
+                <p>
+                    An XRPL wallet (XUMM/Xaman recommended) and a Stellar wallet
+                    (Lobstr or StellarTerm). Founding members receive step-by-step
+                    setup instructions and support during onboarding.
+                    No technical experience required.
+                </p>
+            </div>
+            <div class="trust-card">
+                <h4>⚡ When It Happens</h4>
+                <p>
+                    Trustlines are set up during Phase 1. When you register,
+                    we walk you through the wallet setup. By the time Phase 2
+                    launches and tokens start flowing, your wallet is already
+                    connected and ready to receive.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ WHAT HAPPENS AFTER ═══ -->
+<section class="section">
+    <div class="container" style="max-width:800px;">
+        <h2 style="text-align:center;">After the Founding Window</h2>
+        <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
+            Phase 1 establishes the foundation. Here's what happens next.
+        </p>
+
+        <div style="display:grid;gap:1rem;max-width:700px;margin:0 auto;">
+            <div style="display:flex;gap:1rem;align-items:flex-start;">
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">1</div>
+                <div>
+                    <strong style="color:var(--text);">Liquidity Pools Form (Phase 2)</strong>
+                    <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
+                        Membership fees and token sale proceeds fund HLS/USDC and HLS/XRP liquidity pools.
+                        This gives HLS real trading depth and price discovery.
+                    </p>
+                </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start;">
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">2</div>
+                <div>
+                    <strong style="color:var(--text);">NFT Certificates Mint (Phase 2)</strong>
+                    <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
+                        Gold-backed certificates begin minting on XRPL. Each certificate
+                        is backed by physical gold purchased through APMEX. First proof of reserves published.
+                    </p>
+                </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start;">
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">3</div>
+                <div>
+                    <strong style="color:var(--text);">15-Level Engine Activates (Phase 2)</strong>
+                    <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
+                        The allocation formula goes live. Founding members at the top start
+                        earning from every new member that joins beneath their network.
+                    </p>
+                </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start;">
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">4</div>
+                <div>
+                    <strong style="color:var(--text);">Staking Goes Live (Phase 3)</strong>
+                    <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
+                        Lock your certificates for 30-365 days. Earn 5-30% bonus allocations.
+                        Founding members with early certificates have the most to stake.
+                    </p>
+                </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start;">
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">5</div>
+                <div>
+                    <strong style="color:var(--text);">DEX Listing (Phase 3)</strong>
+                    <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
+                        HLS lists on decentralized exchanges. Your $0.10 tokens
+                        enter a market where the public price is $0.50. Your 6× advantage materializes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ SIMPLE MATH ═══ -->
+<section class="section section-dark">
+    <div class="container" style="max-width:800px;text-align:center;">
+        <h2>The Math Is Simple</h2>
+        <p class="section-subtitle" style="max-width:560px;margin:0 auto 2rem;">
+            Here's what your founding purchase looks like by the time the protocol goes public.
+        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:700px;margin:0 auto 2rem;">
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                <div style="font-size:.75rem;color:var(--text-muted);font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;">You invest</div>
+                <div style="font-size:2rem;font-weight:700;color:var(--text);font-family:'Inter',sans-serif;">$1,000</div>
+            </div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                <div style="font-size:.75rem;color:var(--text-muted);font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;">You receive</div>
+                <div style="font-size:2rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">12,000 <small style="font-size:.85rem;">HLS</small></div>
+                <div style="font-size:.78rem;color:var(--text-muted);">10,000 + 2,000 bonus</div>
+            </div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+                <div style="font-size:.75rem;color:var(--text-muted);font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;">At $0.50 public price</div>
+                <div style="font-size:2rem;font-weight:700;color:#4cc978;font-family:'Inter',sans-serif;">$6,000</div>
+                <div style="font-size:.78rem;color:var(--text-muted);">6× your investment</div>
+            </div>
+        </div>
+
+        <p style="font-size:.82rem;color:var(--text-muted);max-width:540px;margin:0 auto;">
+            This is before the 15-level allocation engine, before gold appreciation,
+            before staking bonuses, and before network growth.
+            The token offering is just the starting line.
+        </p>
+    </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="section section-cta" style="padding:4rem 1.5rem;">
+    <div class="container" style="max-width:700px;text-align:center;">
+        <h2 style="font-size:2.2rem;">The Founding Window Is Open</h2>
+        <p style="font-size:1.05rem;color:var(--text-muted);max-width:520px;margin:.5rem auto 1rem;line-height:1.7;">
+            $0.10/HLS. 20% bonus. Founding position. Priority .helios identity.
+            This pricing ends March 31, 2026. After that, it's 2.5× more expensive
+            and the bonus drops.
+        </p>
+        <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;">
+            No monthly fees. No autoship. No hidden charges. One purchase. Real tokens. Real gold.
+        </p>
+        <div class="hero-actions" style="justify-content:center;">
+            <a href="/activate" class="btn btn-primary btn-lg">Register Now</a>
+            <a href="/opportunity" class="btn btn-ghost btn-lg">See How the Money Works</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Countdown to March 31, 2026 23:59:59 UTC
+(function(){
+    var end = new Date('2026-03-31T23:59:59Z').getTime();
+    function tick(){
+        var now = Date.now();
+        var diff = end - now;
+        if(diff <= 0){ document.getElementById('countdown').innerHTML='<div style="color:var(--gold);font-weight:600;">Founding Window Closed</div>'; return; }
+        var d = Math.floor(diff/86400000); diff %= 86400000;
+        var h = Math.floor(diff/3600000); diff %= 3600000;
+        var m = Math.floor(diff/60000); diff %= 60000;
+        var s = Math.floor(diff/1000);
+        document.getElementById('cd-days').textContent = d;
+        document.getElementById('cd-hours').textContent = h < 10 ? '0'+h : h;
+        document.getElementById('cd-mins').textContent = m < 10 ? '0'+m : m;
+        document.getElementById('cd-secs').textContent = s < 10 ? '0'+s : s;
+    }
+    tick(); setInterval(tick, 1000);
+})();
+</script>
+{% endblock %}

@@ -519,6 +519,101 @@ HELIOS_KNOWLEDGE = {
         "Nothing worth having comes without effort. But the math here "
         "is better than anything a bank will ever offer you."
     ),
+
+    # ─── Token Offering & Launch ──────────────────────────────────
+
+    "token_offering": (
+        "The HLS token offering is the starting line. Three phases, clear dates.\n\n"
+        "PHASE 1 — FOUNDING WINDOW (Feb 10 – Mar 31, 2026):\n"
+        "Token price: $0.10 per HLS. 20% bonus tokens on every purchase. "
+        "Founding Member badge — permanent, on-chain. Priority .helios identity.\n\n"
+        "PHASE 2 — BUILDER PHASE (Apr 1 – May 31, 2026):\n"
+        "Token price: $0.25 per HLS. 10% bonus. 15-level engine activates. "
+        "Liquidity pools funded. First NFT certificate minting.\n\n"
+        "PHASE 3 — PUBLIC LAUNCH (Jun 1, 2026 →):\n"
+        "Token price: $0.50 per HLS. No bonus. DEX listing. Full protocol live.\n\n"
+        "$1,000 during Phase 1 = 12,000 HLS tokens. At public price that's $6,000 worth. "
+        "6× your money before the network engine even starts."
+    ),
+
+    "trustlines": (
+        "A trustline is like opening a lane on the highway for a specific token.\n\n"
+        "On XRPL, you set a TrustSet transaction to tell your wallet: "
+        "'I'm willing to hold HLS tokens.' Costs about 2 XRP as a reserve — "
+        "not a fee, it stays in your wallet.\n\n"
+        "On Stellar, it's a ChangeTrust operation. Same idea — you authorize "
+        "your wallet to hold HLS and stablecoins like USDC.\n\n"
+        "You need trustlines set up before you can receive tokens. "
+        "During Phase 1, we walk every founding member through the setup "
+        "step by step. XUMM/Xaman for XRPL, Lobstr for Stellar. "
+        "No technical experience required.\n\n"
+        "Once your trustlines are set, tokens flow directly to your wallet. "
+        "No middleman. No exchange. Wallet to wallet."
+    ),
+
+    "early_benefits": (
+        "Here's what founding members get that nobody else will ever have:\n\n"
+        "1. LOWEST PRICE EVER — $0.10/HLS. Phase 2 is $0.25. Public is $0.50. "
+        "Your dollar goes 5× further than someone joining at launch.\n\n"
+        "2. 20% BONUS TOKENS — Buy 1,000, receive 1,200. "
+        "Drops to 10% in Phase 2. Zero at public launch.\n\n"
+        "3. POSITION 1 — Top of the network. When the 15-level engine "
+        "activates, you're at the top. That position is permanent.\n\n"
+        "4. FOUNDING MEMBER BADGE — Permanent, non-transferable, on-chain. "
+        "You can't buy this later at any price.\n\n"
+        "5. PRIORITY .HELIOS IDENTITY — First pick of names. "
+        "gold.helios, king.helios — whatever you want.\n\n"
+        "6. FIRST TRUSTLINE ACCESS — Your wallet is ready before "
+        "everyone else's. When tokens flow, you're already connected."
+    ),
+
+    "launch_phases": (
+        "Three phases. Each one raises the price and reduces bonuses.\n\n"
+        "PHASE 1 — FOUNDING (Feb 10 – Mar 31, 2026):\n"
+        "Register. Set up trustlines. Buy HLS at $0.10. Get 20% bonus. "
+        "First gold purchase with treasury allocation.\n\n"
+        "PHASE 2 — BUILDER (Apr 1 – May 31, 2026):\n"
+        "Token price goes to $0.25. Bonus drops to 10%. "
+        "15-level engine turns on. Liquidity pools form. "
+        "NFT certificates start minting. First proof of reserves.\n\n"
+        "PHASE 3 — PUBLIC (Jun 1, 2026 →):\n"
+        "Price hits $0.50. No more bonus. Full protocol live. "
+        "DEX listing. Staking. Certificate marketplace. "
+        "Cross-chain settlement fully operational.\n\n"
+        "Every week you wait in Phase 1, you're closer to paying "
+        "2.5× more in Phase 2."
+    ),
+
+    "liquidity_pools": (
+        "Liquidity pools are how HLS gets real trading depth.\n\n"
+        "20% of every membership fee goes into the liquidity allocation. "
+        "During Phase 2, that money funds HLS/USDC and HLS/XRP pools "
+        "on decentralized exchanges.\n\n"
+        "That means HLS isn't just a token you hold — it's a token "
+        "you can trade. Real buyers, real sellers, real price discovery.\n\n"
+        "The Phase 1 token offering is the starting fuel. "
+        "Membership fees add to it continuously. "
+        "As the network grows, the pools grow. "
+        "More liquidity = tighter spreads = better for everyone.\n\n"
+        "By Phase 3, when HLS lists on DEXes at $0.50, "
+        "there's already real liquidity behind it — not just hype."
+    ),
+
+    "hls_token_details": (
+        "100 million HLS tokens. Fixed supply. No minting function. "
+        "Nobody can create more — not even founders.\n\n"
+        "SETTLEMENT POOL — 40% (40M tokens):\n"
+        "Powers the 15-level allocation engine.\n\n"
+        "NETWORK DISTRIBUTION — 35% (35M tokens):\n"
+        "Token offering, membership rewards, referral bonuses.\n\n"
+        "DEVELOPMENT — 15% (15M tokens):\n"
+        "4-year linear vesting. Engineering, partnerships.\n\n"
+        "EMERGENCY RESERVE — 10% (10M tokens):\n"
+        "Locked 5 years. Black swan protection.\n\n"
+        "Founder tokens locked 3 years. No admin minting keys. "
+        "The contract is immutable. This isn't a promise — "
+        "it's code on a blockchain."
+    ),
 }
 
 
@@ -553,6 +648,12 @@ TOPIC_MAP = {
     "earning_examples": ["example", "show me the math", "break it down", "real numbers", "how much with 5", "small network"],
     "mixed_tier_math": ["mixed tier", "higher tier", "bigger numbers", "what if $5000", "multiply"],
     "vs_traditional": ["compare", "savings", "bank", "stock market", "real estate", "better than", "vs", "compared to"],
+    "token_offering": ["token offering", "offering", "presale", "pre-sale", "token sale", "buy tokens", "buy hls", "get tokens", "founding window", "get the party started"],
+    "trustlines": ["trustline", "trustlines", "trust line", "trustset", "changetrust", "xumm", "xaman", "lobstr", "wallet setup", "set up wallet"],
+    "early_benefits": ["early", "register early", "why now", "why join now", "founding member", "founding", "early registration", "early bird", "first mover", "benefits of joining early"],
+    "launch_phases": ["phase 1", "phase 2", "phase 3", "phases", "roadmap", "timeline", "when", "dates", "launch date", "when does it start", "launch schedule"],
+    "liquidity_pools": ["liquidity", "liquidity pool", "lp", "trading", "dex", "exchange", "trade hls", "pool"],
+    "hls_token_details": ["supply", "total supply", "100 million", "token pool", "settlement pool", "network distribution", "emergency reserve", "issuance", "token issuance", "how many tokens", "tokenomics"],
 }
 
 
@@ -606,18 +707,18 @@ class AskHelios:
     def get_quick_answers(self) -> list:
         """Pre-built questions for the interface."""
         return [
-            {"question": "What is Helios?", "icon": "\u2600\ufe0f"},
-            {"question": "How do I make money?", "icon": "\U0001f4b0"},
-            {"question": "What are the 5 tiers?", "icon": "\U0001f4ca"},
-            {"question": "Show me the depth chart", "icon": "\U0001f4c8"},
-            {"question": "Is this MLM?", "icon": "\U0001f50d"},
-            {"question": "How does the 15-level engine work?", "icon": "\u2699\ufe0f"},
-            {"question": "What's the 50K scenario?", "icon": "\U0001f4b5"},
-            {"question": "How does the gold backing work?", "icon": "\U0001f3c6"},
-            {"question": "What crypto can I access?", "icon": "\U0001f517"},
-            {"question": "How does staking work?", "icon": "\U0001f512"},
-            {"question": "What about rug pulls?", "icon": "\U0001f6e1\ufe0f"},
-            {"question": "How do I join?", "icon": "\U0001f680"},
+            {"question": "How does the token offering work?", "icon": "🚀"},
+            {"question": "Why should I register early?", "icon": "⏰"},
+            {"question": "What are trustlines?", "icon": "🔗"},
+            {"question": "What is Helios?", "icon": "☀️"},
+            {"question": "How do I make money?", "icon": "💰"},
+            {"question": "What are the 5 tiers?", "icon": "📊"},
+            {"question": "Show me the depth chart", "icon": "📈"},
+            {"question": "Is this MLM?", "icon": "🔍"},
+            {"question": "How does the 15-level engine work?", "icon": "⚙️"},
+            {"question": "What's the 50K scenario?", "icon": "💵"},
+            {"question": "How does the gold backing work?", "icon": "🏆"},
+            {"question": "What about the liquidity pools?", "icon": "🌊"},
         ]
 
     # ═══ Knowledge Base Search ═══════════════════════════════════
@@ -786,10 +887,20 @@ class AskHelios:
     # ═══ Helpers ═════════════════════════════════════════════════
 
     def _suggest_follow_up(self, question: str) -> list:
-        if any(w in question for w in ["join", "start", "sign", "activate", "entry"]):
-            return ["What are the 5 tiers?", "Show me the depth chart"]
+        if any(w in question for w in ["offering", "presale", "token sale", "buy tokens", "founding window"]):
+            return ["Why should I register early?", "What are trustlines?"]
+        elif any(w in question for w in ["trustline", "wallet", "xumm", "lobstr"]):
+            return ["How does the token offering work?", "What are the 5 tiers?"]
+        elif any(w in question for w in ["early", "founding", "register early", "why now", "benefits"]):
+            return ["How does the token offering work?", "Show me the depth chart"]
+        elif any(w in question for w in ["phase", "roadmap", "timeline", "dates", "when"]):
+            return ["Why should I register early?", "What about the liquidity pools?"]
+        elif any(w in question for w in ["liquidity", "pool", "dex", "trade"]):
+            return ["How does the token offering work?", "What's the 50K scenario?"]
+        elif any(w in question for w in ["join", "start", "sign", "activate", "entry"]):
+            return ["How does the token offering work?", "What are the 5 tiers?"]
         elif any(w in question for w in ["tier", "$100", "$250", "$500", "$1000", "$5000"]):
-            return ["How do I make money?", "What's the 50K scenario?"]
+            return ["How do I make money?", "Why should I register early?"]
         elif any(w in question for w in ["earn", "paid", "money", "income", "referral"]):
             return ["Show me the depth chart", "What's the 50K scenario?"]
         elif any(w in question for w in ["depth", "position", "chain", "structure"]):
@@ -808,12 +919,12 @@ class AskHelios:
             return ["Show me the depth chart", "What are the 5 tiers?"]
         elif any(w in question for w in ["50k", "scenario", "million", "projection"]):
             return ["How does staking work?", "What about mixed tiers?"]
-        elif any(w in question for w in ["token", "supply", "hls"]):
-            return ["How does the gold backing work?", "What are the protocol rules?"]
+        elif any(w in question for w in ["token", "supply", "hls", "issuance"]):
+            return ["How does the token offering work?", "What about the liquidity pools?"]
         elif any(w in question for w in ["founder", "team", "who"]):
             return ["What are the protocol rules?", "How does verification work?"]
         else:
-            return ["How do I make money?", "What are the 5 tiers?"]
+            return ["How does the token offering work?", "What are the 5 tiers?"]
 
     def _get_member_context(self, member_id: str) -> dict:
         try:
