@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Allocation Model — Helios Protocol{% endblock %}
 {% block og_title %}15-Level Allocation Model — Helios Protocol{% endblock %}
-{% block og_description %}A 5-wide, 15-level contribution network with deterministic allocation weights. Full formula: W_L = W_1 · r^(L−1). Complete table, calculator, and bonus structure.{% endblock %}
+{% block og_description %}5 membership tiers. 15 levels of deterministic allocation. Monthly and yearly earnings projections. Gold-backed certificates. BTC, ETH, and stablecoin access.{% endblock %}
 {% block og_url %}/earnings{% endblock %}
 
 {% block head %}
 <style>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ALLOCATION MODEL — 15-Level Deterministic Weighting
+   ALLOCATION MODEL — 5 Tiers × 15 Levels × Monthly/Yearly
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .alloc-page { position: relative; z-index: 1; }
@@ -20,11 +20,11 @@
 }
 .alloc-hero .hero-sub {
     color: var(--text-muted); font-size: 1.05rem;
-    max-width: 680px; margin: 0 auto 1.5rem; line-height: 1.7;
+    max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7;
 }
 
 .alloc-section {
-    max-width: 960px; margin: 0 auto;
+    max-width: 1060px; margin: 0 auto;
     padding: 0 2rem 4rem;
 }
 .alloc-section h2 {
@@ -33,7 +33,86 @@
 }
 .alloc-section .section-desc {
     color: var(--text-muted); font-size: .95rem; line-height: 1.7;
-    margin-bottom: 1.5rem; max-width: 720px;
+    margin-bottom: 1.5rem; max-width: 760px;
+}
+
+/* ─── Tier Selector ───────────────────────────────────────────── */
+.tier-selector {
+    display: flex; gap: .6rem; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 2.5rem;
+}
+.tier-btn {
+    padding: .55rem 1.2rem; border-radius: 20px; font-size: .82rem;
+    font-weight: 600; font-family: 'Inter', sans-serif;
+    background: var(--bg-card); border: 1px solid var(--border);
+    color: var(--text-muted); cursor: pointer; transition: all .25s;
+    text-align: center;
+}
+.tier-btn:hover { border-color: rgba(201,168,76,.3); color: var(--text); }
+.tier-btn.active {
+    background: rgba(201,168,76,.08); border-color: var(--gold);
+    color: var(--gold);
+}
+.tier-btn .tb-amount {
+    display: block; font-size: 1.1rem; font-weight: 700; color: inherit;
+}
+.tier-btn .tb-label {
+    display: block; font-size: .68rem; letter-spacing: .04em;
+    opacity: .7; margin-top: .1rem;
+}
+
+/* ─── Tier Cards Grid ─────────────────────────────────────────── */
+.tier-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+}
+.tier-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.3rem; text-align: center;
+    transition: all .3s; position: relative; overflow: hidden;
+}
+.tier-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold); opacity: 0; transition: opacity .3s;
+}
+.tier-card:hover { border-color: rgba(201,168,76,.25); transform: translateY(-2px); }
+.tier-card:hover::before { opacity: 1; }
+.tier-card.featured { border-color: rgba(201,168,76,.3); }
+.tier-card.featured::before { opacity: 1; }
+.tc-name {
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 600;
+    margin-bottom: .3rem;
+}
+.tc-price {
+    font-size: 1.8rem; font-weight: 700; color: var(--gold);
+    font-family: 'Inter', sans-serif;
+}
+.tc-mult {
+    font-size: .78rem; color: var(--text-muted); margin-bottom: .8rem;
+}
+.tc-pool {
+    background: var(--bg); border-radius: var(--radius-sm);
+    padding: .5rem; margin-bottom: .6rem;
+}
+.tc-pool-label {
+    font-size: .65rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text-muted); font-family: 'Inter', sans-serif;
+}
+.tc-pool-val {
+    font-size: 1.2rem; font-weight: 700; color: var(--gold);
+    font-family: 'Inter', sans-serif;
+}
+.tc-direct {
+    font-size: .82rem; color: var(--text-muted); margin-bottom: .5rem;
+}
+.tc-direct strong { color: var(--text); }
+.tc-features {
+    text-align: left; list-style: none; padding: 0; margin: 0;
+    font-size: .78rem; color: var(--text-muted); line-height: 1.8;
+}
+.tc-features li::before {
+    content: '\2713'; color: var(--gold); margin-right: .4rem; font-weight: 700;
 }
 
 /* ─── Formula Display ─────────────────────────────────────────── */
@@ -46,20 +125,14 @@
     display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
     margin-top: 1.5rem;
 }
-.formula-var {
-    text-align: center; min-width: 100px;
-}
+.formula-var { text-align: center; min-width: 100px; }
 .formula-var-name {
     font-size: .72rem; color: var(--text-muted);
     text-transform: uppercase; letter-spacing: .08em;
     font-family: 'Inter', sans-serif; margin-bottom: .2rem;
 }
-.formula-var-val {
-    font-size: 1.3rem; font-weight: 700; color: var(--gold);
-}
-.formula-var-desc {
-    font-size: .75rem; color: var(--text-muted);
-}
+.formula-var-val { font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+.formula-var-desc { font-size: .75rem; color: var(--text-muted); }
 
 /* ─── Settlement Channel Grid ─────────────────────────────────── */
 .streams-grid {
@@ -90,33 +163,62 @@
 .tag-instant { background: rgba(61,139,110,0.12); color: var(--green); }
 .tag-tiered { background: rgba(74,126,181,0.12); color: var(--blue); }
 .tag-reserve { background: rgba(201,168,76,0.12); color: var(--gold); }
+.tag-crypto { background: rgba(147,51,234,0.12); color: #a78bfa; }
 
-/* ─── 15-Level Decay Table ────────────────────────────────────── */
-.decay-table-wrap {
-    overflow-x: auto; margin-bottom: 3rem;
+/* ─── Network + Earnings Table ────────────────────────────────── */
+.earnings-table-wrap {
+    overflow-x: auto; margin-bottom: 2rem;
     border: 1px solid var(--border); border-radius: var(--radius);
 }
-.decay-table {
-    width: 100%; border-collapse: collapse; font-size: .88rem;
+.earnings-table {
+    width: 100%; border-collapse: collapse; font-size: .82rem;
 }
-.decay-table th {
+.earnings-table th {
     background: rgba(201,168,76,0.06);
-    padding: .6rem 1rem; text-align: left;
+    padding: .6rem .7rem; text-align: right;
     font-weight: 600; color: var(--gold);
     border-bottom: 1px solid var(--border);
-    font-size: .75rem; text-transform: uppercase; letter-spacing: .06em;
+    font-size: .68rem; text-transform: uppercase; letter-spacing: .05em;
+    font-family: 'Inter', sans-serif;
 }
-.decay-table td {
-    padding: .5rem 1rem; border-bottom: 1px solid rgba(36,40,51,0.6);
-    color: var(--text);
+.earnings-table th:first-child,
+.earnings-table th:nth-child(2) { text-align: left; }
+.earnings-table td {
+    padding: .45rem .7rem; border-bottom: 1px solid rgba(36,40,51,0.6);
+    color: var(--text); text-align: right;
+    font-family: 'Inter', sans-serif; font-variant-numeric: tabular-nums;
 }
-.decay-table tr:hover { background: rgba(201,168,76,0.02); }
-.decay-bar {
-    display: inline-block; height: 6px; border-radius: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
-    vertical-align: middle; margin-left: .5rem;
-}
+.earnings-table td:first-child,
+.earnings-table td:nth-child(2) { text-align: left; font-family: 'EB Garamond', serif; }
+.earnings-table tr:hover { background: rgba(201,168,76,0.02); }
+.earnings-table .row-highlight { background: rgba(201,168,76,0.04); }
+.earnings-table .row-highlight td { font-weight: 600; }
 .tier-primary { font-weight: 700; color: var(--gold); }
+.earnings-table tfoot td {
+    font-weight: 700; color: var(--gold); border-top: 2px solid var(--gold);
+    padding: .7rem .7rem; font-size: .88rem;
+}
+
+/* ─── Summary Cards ───────────────────────────────────────────── */
+.summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+}
+.summary-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.3rem; text-align: center;
+}
+.summary-card.gold-border { border-color: rgba(201,168,76,.3); }
+.sc-label {
+    font-size: .68rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text-muted); font-weight: 600; margin-bottom: .3rem;
+    font-family: 'Inter', sans-serif;
+}
+.sc-value {
+    font-size: 1.8rem; font-weight: 700; color: var(--gold);
+    font-variant-numeric: tabular-nums; font-family: 'Inter', sans-serif;
+}
+.sc-sub { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
 
 /* ─── Bonus Cards ─────────────────────────────────────────────── */
 .bonus-grid {
@@ -161,8 +263,27 @@
 .staking-bonus {
     font-size: 1.4rem; font-weight: 700; color: var(--blue); font-family: 'Inter', sans-serif;
 }
-.staking-label {
-    font-size: .75rem; color: var(--text-muted); margin-top: .2rem;
+.staking-label { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
+
+/* ─── Crypto Access Block ─────────────────────────────────────── */
+.crypto-block {
+    background: rgba(147,51,234,0.04); border: 1px solid rgba(147,51,234,0.15);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
+}
+.crypto-block h3 { color: #a78bfa; font-size: 1.15rem; font-weight: 600; margin-bottom: .5rem; }
+.crypto-assets {
+    display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1rem;
+}
+.crypto-chip {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .4rem .8rem; border-radius: 20px;
+    background: var(--bg); border: 1px solid var(--border);
+    font-size: .82rem; font-weight: 600; font-family: 'Inter', sans-serif;
+    color: var(--text);
+}
+.crypto-chip .cc-sym {
+    font-size: .68rem; color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: .04em;
 }
 
 /* ─── Calculator ──────────────────────────────────────────────── */
@@ -191,7 +312,7 @@
     box-shadow: 0 0 0 2px rgba(201,168,76,0.1);
 }
 .calc-results {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
 }
 .calc-result-card {
@@ -203,7 +324,7 @@
     color: var(--text-muted); font-weight: 600; margin-bottom: .3rem;
 }
 .calc-result-value {
-    font-size: 1.6rem; font-weight: 700; color: var(--gold);
+    font-size: 1.5rem; font-weight: 700; color: var(--gold);
     font-variant-numeric: tabular-nums; font-family: 'Inter', sans-serif;
 }
 .calc-result-sub { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
@@ -213,9 +334,9 @@
     text-align: center; padding: 3rem 2rem 5rem;
 }
 .alloc-cta h2 { font-size: 1.6rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
-.alloc-cta p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.alloc-cta p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 .alloc-disclaimer {
-    max-width: 960px; margin: 0 auto; padding: 0 2rem 4rem;
+    max-width: 1060px; margin: 0 auto; padding: 0 2rem 4rem;
     font-size: .78rem; color: var(--text-muted); line-height: 1.6; opacity: 0.7;
 }
 
@@ -230,6 +351,25 @@
 .ask-inline-text h4 { font-size: .95rem; font-weight: 600; color: var(--text); margin-bottom: .15rem; }
 .ask-inline-text p { font-size: .82rem; color: var(--text-muted); }
 
+/* ─── How It Works Steps ──────────────────────────────────────── */
+.how-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+}
+.how-step {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.3rem; text-align: center;
+}
+.how-step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.2);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto .6rem; font-size: .82rem; font-weight: 700;
+    color: var(--gold); font-family: 'Inter', sans-serif;
+}
+.how-step h4 { font-size: .88rem; font-weight: 600; margin-bottom: .3rem; }
+.how-step p { font-size: .78rem; color: var(--text-muted); line-height: 1.6; }
+
 @media (max-width: 768px) {
     .alloc-hero h1 { font-size: 1.6rem; }
     .calc-grid { grid-template-columns: 1fr; }
@@ -237,6 +377,11 @@
     .bonus-grid { grid-template-columns: 1fr 1fr; }
     .staking-tiers { grid-template-columns: 1fr 1fr; }
     .formula-vars { gap: 1rem; }
+    .tier-cards { grid-template-columns: 1fr 1fr; }
+    .tier-selector { gap: .35rem; }
+    .tier-btn { padding: .4rem .7rem; font-size: .75rem; }
+    .earnings-table { font-size: .72rem; }
+    .how-steps { grid-template-columns: 1fr 1fr; }
 }
 </style>
 {% endblock %}
@@ -247,13 +392,143 @@
     <section class="alloc-hero">
         <h1>ALLOCATION MODEL</h1>
         <p class="hero-sub">
-            A 5-wide, 15-level contribution network with deterministic allocation weights.
-            Every distribution follows a published formula. No discretionary payouts.
-            No manual intervention. The math is the protocol.
+            Five membership tiers. Fifteen levels of deterministic allocation.
+            Every distribution follows a published formula. Choose your tier,
+            bring in 5 people, and let the 15-level math do the heavy lifting.
         </p>
         <p style="color:var(--gold);font-weight:600;font-size:.8rem;letter-spacing:.12em;opacity:.7;font-family:'Inter',sans-serif;">
-            W<sub>L</sub> = W<sub>1</sub> · r<sup>(L−1)</sup> &ensp;&middot;&ensp; 15 LEVELS &ensp;&middot;&ensp; 5-WIDE
+            W<sub>L</sub> = W<sub>1</sub> &middot; r<sup>(L&minus;1)</sup> &ensp;&middot;&ensp; 5 TIERS &ensp;&middot;&ensp; 15 LEVELS &ensp;&middot;&ensp; 5-WIDE
         </p>
+    </section>
+
+    <!-- ═══ HOW IT WORKS (SIMPLE) ═══ -->
+    <section class="alloc-section">
+        <h2>How You Make Money &mdash; 5 Simple Steps</h2>
+        <p class="section-desc">
+            No ranks. No autoship. No monthly fees. No inventory. No hidden rules.
+            You bring in 5 people. They bring in 5. The math pays you across 15 levels.
+            Your earnings settle in gold-backed certificates, stablecoins, or crypto.
+        </p>
+
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="how-step-num">1</div>
+                <h4>Choose Your Tier</h4>
+                <p>$100 to $5,000. Higher tiers mean bigger allocation pools and bigger payouts at every level.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-step-num">2</div>
+                <h4>Bring in 5 People</h4>
+                <p>Each person you refer directly triggers an immediate cash allocation. That is your fast money.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-step-num">3</div>
+                <h4>They Bring in 5</h4>
+                <p>5 becomes 25, becomes 125, becomes 625. Every new member anywhere in your 15 levels pays you.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-step-num">4</div>
+                <h4>Stack Gold + Crypto</h4>
+                <p>Your earnings convert to gold-backed certificates, BTC, ETH, or stablecoins. Real assets, not points.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-step-num">5</div>
+                <h4>Stake for Bonuses</h4>
+                <p>Lock your certificates for 30 to 365 days and receive additional allocation bonuses on top.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ 5 MEMBERSHIP TIERS ═══ -->
+    <section class="alloc-section">
+        <h2>Five Membership Tiers</h2>
+        <p class="section-desc">
+            Choose the tier that matches your goals. Every tier uses the same 15-level formula.
+            Higher tiers simply have larger allocation pools, which means bigger payouts at every level.
+        </p>
+
+        <div class="tier-cards">
+            <div class="tier-card">
+                <div class="tc-name">Starter</div>
+                <div class="tc-price">$100</div>
+                <div class="tc-mult">1&times; allocation</div>
+                <div class="tc-pool">
+                    <div class="tc-pool-label">Allocation Pool</div>
+                    <div class="tc-pool-val">$45</div>
+                </div>
+                <div class="tc-direct">Direct referral: <strong>$22.50</strong></div>
+                <ul class="tc-features">
+                    <li>Gold certificate</li>
+                    <li>Staking access</li>
+                    <li>BTC/ETH access</li>
+                    <li>.helios identity</li>
+                </ul>
+            </div>
+            <div class="tier-card">
+                <div class="tc-name">Builder</div>
+                <div class="tc-price">$250</div>
+                <div class="tc-mult">2.5&times; allocation</div>
+                <div class="tc-pool">
+                    <div class="tc-pool-label">Allocation Pool</div>
+                    <div class="tc-pool-val">$112.50</div>
+                </div>
+                <div class="tc-direct">Direct referral: <strong>$56.25</strong></div>
+                <ul class="tc-features">
+                    <li>Larger gold certificate</li>
+                    <li>Higher staking bonus</li>
+                    <li>Full crypto access</li>
+                    <li>.helios identity</li>
+                </ul>
+            </div>
+            <div class="tier-card featured">
+                <div class="tc-name">Pro</div>
+                <div class="tc-price">$500</div>
+                <div class="tc-mult">5&times; allocation</div>
+                <div class="tc-pool">
+                    <div class="tc-pool-label">Allocation Pool</div>
+                    <div class="tc-pool-val">$225</div>
+                </div>
+                <div class="tc-direct">Direct referral: <strong>$112.50</strong></div>
+                <ul class="tc-features">
+                    <li>Premium gold certificate</li>
+                    <li>Higher referral bonus</li>
+                    <li>Crypto vault access</li>
+                    <li>.helios identity</li>
+                </ul>
+            </div>
+            <div class="tier-card">
+                <div class="tc-name">Leader</div>
+                <div class="tc-price">$1,000</div>
+                <div class="tc-mult">10&times; allocation</div>
+                <div class="tc-pool">
+                    <div class="tc-pool-label">Allocation Pool</div>
+                    <div class="tc-pool-val">$450</div>
+                </div>
+                <div class="tc-direct">Direct referral: <strong>$225</strong></div>
+                <ul class="tc-features">
+                    <li>High-value gold cert</li>
+                    <li>Maximum staking bonus</li>
+                    <li>Priority crypto tools</li>
+                    <li>.helios identity</li>
+                </ul>
+            </div>
+            <div class="tier-card">
+                <div class="tc-name">Executive</div>
+                <div class="tc-price">$5,000</div>
+                <div class="tc-mult">50&times; allocation</div>
+                <div class="tc-pool">
+                    <div class="tc-pool-label">Allocation Pool</div>
+                    <div class="tc-pool-val">$2,250</div>
+                </div>
+                <div class="tc-direct">Direct referral: <strong>$1,125</strong></div>
+                <ul class="tc-features">
+                    <li>Large gold purchase</li>
+                    <li>Highest staking tier</li>
+                    <li>Private crypto pools</li>
+                    <li>Exclusive NFT drops</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <!-- ═══ THE FORMULA ═══ -->
@@ -262,8 +537,7 @@
         <p class="section-desc">
             All allocations across 15 levels are determined by a single formula.
             The direct allocation (Level 1) receives the highest weight.
-            Each successive level decays by a fixed ratio, creating a mathematically
-            defensible, predictable, and fully transparent distribution model.
+            Each successive level decays by a fixed ratio.
         </p>
 
         <div class="formula-block">
@@ -273,13 +547,8 @@
             <div class="formula-vars">
                 <div class="formula-var">
                     <div class="formula-var-name">L</div>
-                    <div class="formula-var-val">1 – 15</div>
+                    <div class="formula-var-val">1 &ndash; 15</div>
                     <div class="formula-var-desc">Level number</div>
-                </div>
-                <div class="formula-var">
-                    <div class="formula-var-name">W<sub>L</sub></div>
-                    <div class="formula-var-val">Variable</div>
-                    <div class="formula-var-desc">Weight at level L</div>
                 </div>
                 <div class="formula-var">
                     <div class="formula-var-name">W<sub>1</sub></div>
@@ -291,126 +560,169 @@
                     <div class="formula-var-val">0.5</div>
                     <div class="formula-var-desc">Decay ratio</div>
                 </div>
+                <div class="formula-var">
+                    <div class="formula-var-name">Pool</div>
+                    <div class="formula-var-val">45%</div>
+                    <div class="formula-var-desc">Of membership fee</div>
+                </div>
             </div>
 
             <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.85rem;color:var(--text-muted);">
-                At Level 1, W = 50%. At Level 2, W = 25%. At Level 3, W = 12.5%.
+                Level 1 = 50%. Level 2 = 25%. Level 3 = 12.5%.
                 Each level receives exactly half of the previous level's weight.
-                After Level 15, any fractional remainder is retained in the stability reserve.
+                Higher tiers multiply the allocation pool &mdash; the formula stays the same.
             </div>
         </div>
     </section>
 
-    <!-- ═══ 3 ALLOCATION CHANNELS ═══ -->
+    <!-- ═══ 4 EARNING CHANNELS ═══ -->
     <section class="alloc-section">
-        <h2>Three Allocation Channels</h2>
+        <h2>Four Ways You Get Paid</h2>
         <p class="section-desc">
-            Member contributions are distributed through three distinct channels.
-            Each operates under fixed, published rules with no discretionary intervention.
+            Member contributions are distributed through four distinct channels.
+            Each operates under fixed, published rules. No discretionary intervention.
         </p>
 
-        <div class="streams-grid">
+        <div class="streams-grid" style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));">
             <div class="stream-card">
                 <div class="stream-title">Direct Referral Allocation</div>
-                <div class="stream-amount">$22.50 per member</div>
+                <div class="stream-amount">$22.50 &ndash; $1,125</div>
                 <div class="stream-desc">
-                    When an individual you referred directly completes their membership,
-                    a fixed allocation of $22.50 is distributed to your account.
-                    One-time, per-member, protocol-enforced.
+                    Every person you bring in pays you immediately. Amount depends on their tier.
+                    One-time, per-member, protocol-enforced. This is your fast money.
                 </div>
-                <span class="stream-tag tag-instant">Immediate</span>
+                <span class="stream-tag tag-instant">Instant Cash</span>
             </div>
             <div class="stream-card">
-                <div class="stream-title">15-Level Weighted Distribution</div>
-                <div class="stream-amount">W<sub>L</sub> = W<sub>1</sub> · r<sup>(L−1)</sup></div>
+                <div class="stream-title">15-Level Network Allocation</div>
+                <div class="stream-amount">W<sub>L</sub> = W<sub>1</sub> &middot; r<sup>(L&minus;1)</sup></div>
                 <div class="stream-desc">
-                    When any member within 15 levels of your position activates, you receive
-                    an allocation weighted by distance. Level 1 = 50%. Level 2 = 25%.
-                    Level 3 = 12.5%. Deterministic decay. No limit on network size.
+                    Every time someone joins anywhere within 15 levels of you,
+                    you receive a weighted allocation. You do not need to know them.
+                    This is your scaling money.
                 </div>
-                <span class="stream-tag tag-tiered">Ongoing · Distance-Weighted</span>
+                <span class="stream-tag tag-tiered">Ongoing &middot; Automatic</span>
             </div>
             <div class="stream-card">
                 <div class="stream-title">Gold Certificate Accrual</div>
                 <div class="stream-amount">Asset-Backed</div>
                 <div class="stream-desc">
                     Accumulate value in gold-backed digital certificates (NFTs on XRPL).
-                    Redeemable for physical gold or silver from APMEX, or convertible
-                    to stablecoin. All holdings verified with SHA-256 proof of custody.
+                    Redeemable for physical gold, silver, or stablecoin.
+                    This is your safe money.
                 </div>
-                <span class="stream-tag tag-reserve">Store of Value · Redeemable</span>
+                <span class="stream-tag tag-reserve">Store of Value &middot; Redeemable</span>
+            </div>
+            <div class="stream-card">
+                <div class="stream-title">Crypto Access</div>
+                <div class="stream-amount">BTC &middot; ETH &middot; XRP &middot; USDC</div>
+                <div class="stream-desc">
+                    Convert allocations into Bitcoin, Ethereum, XRP, or stablecoins.
+                    Move value across chains. Build wealth in multiple asset classes.
+                    This is your freedom money.
+                </div>
+                <span class="stream-tag tag-crypto">Multi-Asset &middot; Cross-Chain</span>
             </div>
         </div>
     </section>
 
+    <!-- ═══ TIER SELECTOR + 15-LEVEL NETWORK GROWTH TABLE ═══ -->
+    <section class="alloc-section">
+        <h2>15-Level Network Growth &amp; Earnings</h2>
+        <p class="section-desc">
+            Select a tier to see the full 15-level breakdown. This table shows
+            how many members can exist at each level, the allocation weight,
+            per-member payout, and what happens when every position is active.
+        </p>
+
+        <div class="tier-selector">
+            <button class="tier-btn active" onclick="setTier(100)" data-tier="100">
+                <span class="tb-amount">$100</span>
+                <span class="tb-label">Starter</span>
+            </button>
+            <button class="tier-btn" onclick="setTier(250)" data-tier="250">
+                <span class="tb-amount">$250</span>
+                <span class="tb-label">Builder</span>
+            </button>
+            <button class="tier-btn" onclick="setTier(500)" data-tier="500">
+                <span class="tb-amount">$500</span>
+                <span class="tb-label">Pro</span>
+            </button>
+            <button class="tier-btn" onclick="setTier(1000)" data-tier="1000">
+                <span class="tb-amount">$1,000</span>
+                <span class="tb-label">Leader</span>
+            </button>
+            <button class="tier-btn" onclick="setTier(5000)" data-tier="5000">
+                <span class="tb-amount">$5,000</span>
+                <span class="tb-label">Executive</span>
+            </button>
+        </div>
+
+        <div class="earnings-table-wrap">
+            <table class="earnings-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:left;">Level</th>
+                        <th style="text-align:left;">Relationship</th>
+                        <th>Max Members</th>
+                        <th>Weight</th>
+                        <th>Per Member</th>
+                        <th>Monthly (all active)</th>
+                        <th>Yearly (all active)</th>
+                    </tr>
+                </thead>
+                <tbody id="earningsTable"></tbody>
+                <tfoot id="earningsFoot"></tfoot>
+            </table>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-grid" id="summaryCards"></div>
+    </section>
+
     <!-- ═══ MEMBERSHIP FEE ALLOCATION ═══ -->
     <section class="alloc-section">
-        <h2>$100 Membership Fee Allocation</h2>
+        <h2>Where Your Membership Fee Goes</h2>
         <p class="section-desc">
-            Every dollar of every membership has a declared, published destination.
-            No discretionary funds. Full transparency.
+            Every dollar has a declared, published destination. No slush funds.
+            No mystery fees. The same percentage split applies to all tiers.
         </p>
 
         <div class="streams-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));">
             <div class="stream-card" style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">$45</div>
+                <div style="font-size:1.6rem;font-weight:700;color:var(--gold);font-family:'Inter',sans-serif;">45%</div>
                 <div style="font-size:.82rem;color:var(--text-muted);margin-top:.3rem;">Allocation Pool</div>
                 <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;">Distributed across 15 levels</div>
             </div>
             <div class="stream-card" style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--green);font-family:'Inter',sans-serif;">$20</div>
+                <div style="font-size:1.6rem;font-weight:700;color:var(--green);font-family:'Inter',sans-serif;">20%</div>
                 <div style="font-size:.82rem;color:var(--text-muted);margin-top:.3rem;">Liquidity Reserve</div>
                 <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;">Certificate redemptions</div>
             </div>
             <div class="stream-card" style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--purple);font-family:'Inter',sans-serif;">$15</div>
-                <div style="font-size:.82rem;color:var(--text-muted);margin-top:.3rem;">Precious Metals Reserve</div>
+                <div style="font-size:1.6rem;font-weight:700;color:var(--purple);font-family:'Inter',sans-serif;">15%</div>
+                <div style="font-size:.82rem;color:var(--text-muted);margin-top:.3rem;">Precious Metals</div>
                 <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;">Physical gold acquisition</div>
             </div>
             <div class="stream-card" style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--blue);font-family:'Inter',sans-serif;">$10</div>
+                <div style="font-size:1.6rem;font-weight:700;color:var(--blue);font-family:'Inter',sans-serif;">10%</div>
                 <div style="font-size:.82rem;color:var(--text-muted);margin-top:.3rem;">Infrastructure</div>
                 <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;">Operations &amp; compliance</div>
             </div>
             <div class="stream-card" style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--text-muted);font-family:'Inter',sans-serif;">$10</div>
+                <div style="font-size:1.6rem;font-weight:700;color:var(--text-muted);font-family:'Inter',sans-serif;">10%</div>
                 <div style="font-size:.82rem;color:var(--text-muted);margin-top:.3rem;">Protocol Buffer</div>
                 <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;">Contingency reserve</div>
             </div>
         </div>
     </section>
 
-    <!-- ═══ FULL 15-LEVEL TABLE ═══ -->
-    <section class="alloc-section">
-        <h2>Complete 15-Level Allocation Table</h2>
-        <p class="section-desc">
-            Formula: <strong>W<sub>L</sub> = 0.50 &times; 0.5<sup>(L&minus;1)</sup></strong>
-            applied to the $45 allocation pool per $100 membership.
-            All 15 levels shown.
-        </p>
-
-        <div class="decay-table-wrap">
-            <table class="decay-table">
-                <thead>
-                    <tr>
-                        <th>Level</th>
-                        <th>Relationship</th>
-                        <th>Weight (W<sub>L</sub>)</th>
-                        <th>Allocation from $45</th>
-                        <th>Proportion</th>
-                    </tr>
-                </thead>
-                <tbody id="decayTable"></tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- ═══ BONUSES (Compliance-Safe) ═══ -->
+    <!-- ═══ BONUSES ═══ -->
     <section class="alloc-section">
         <h2>Certificate Bonuses</h2>
         <p class="section-desc">
-            Bonuses are issued as gold-backed digital certificates under fixed, published rules.
-            No promises. No projections. No income claims. Rules-based allocation only.
+            Bonuses are issued as gold-backed digital certificates. Fixed rules.
+            No promises. No projections. Rules-based allocation only.
         </p>
 
         <div class="bonus-grid">
@@ -418,25 +730,25 @@
                 <div class="bonus-icon">J</div>
                 <div class="bonus-name">Joining Bonus</div>
                 <div class="bonus-desc">A fixed certificate issued at enrollment.
-                All new members receive the same allocation regardless of position in the network.</div>
+                Every new member receives this regardless of position.</div>
             </div>
             <div class="bonus-card">
                 <div class="bonus-icon">R</div>
                 <div class="bonus-name">Referral Bonus</div>
-                <div class="bonus-desc">Issued when a directly referred member completes activation.
-                Based on the deterministic level weighting formula — not discretionary.</div>
+                <div class="bonus-desc">Issued when a directly referred member activates.
+                Based on the deterministic formula &mdash; not discretionary.</div>
             </div>
             <div class="bonus-card">
                 <div class="bonus-icon">S</div>
                 <div class="bonus-name">Staking Bonus</div>
                 <div class="bonus-desc">Issued when certificates are locked for a defined period.
-                Longer lock durations yield higher bonus multipliers. Terms are protocol-enforced.</div>
+                Longer lock durations produce higher bonus multipliers.</div>
             </div>
             <div class="bonus-card">
                 <div class="bonus-icon">A</div>
                 <div class="bonus-name">Activity Bonus</div>
                 <div class="bonus-desc">Optional, based on participation metrics.
-                Encourages sustained engagement without requiring additional capital outlay.</div>
+                Encourages engagement without requiring additional capital.</div>
             </div>
         </div>
     </section>
@@ -446,11 +758,10 @@
         <div class="staking-block">
             <h3>Certificate Staking</h3>
             <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;margin-bottom:.5rem;">
-                Members may lock their certificates for a defined period to receive additional
-                allocation bonuses. This is not yield. This is not APY. This is a
+                Lock your certificates for a defined period to receive additional allocation bonuses.
+                This is not yield. This is not APY. This is a
                 <strong>rules-based bonus allocation</strong> tied to lock duration.
             </p>
-
             <div class="staking-tiers">
                 <div class="staking-tier">
                     <div class="staking-duration">30 Days</div>
@@ -473,7 +784,6 @@
                     <div class="staking-label">allocation bonus</div>
                 </div>
             </div>
-
             <p style="font-size:.78rem;color:var(--text-muted);margin-top:1.2rem;opacity:.7;">
                 Staking bonuses are calculated on the locked certificate value at time of lock.
                 Early withdrawal forfeits accrued bonus. All terms are published and protocol-enforced.
@@ -481,12 +791,37 @@
         </div>
     </section>
 
+    <!-- ═══ CRYPTO ACCESS ═══ -->
+    <section class="alloc-section">
+        <div class="crypto-block">
+            <h3>Crypto &amp; Digital Asset Access</h3>
+            <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;margin-bottom:.5rem;">
+                Members can convert their allocations and certificates into multiple
+                digital assets. Move value across chains. Build wealth in multiple asset classes.
+            </p>
+            <div class="crypto-assets">
+                <span class="crypto-chip">Bitcoin <span class="cc-sym">BTC</span></span>
+                <span class="crypto-chip">Ethereum <span class="cc-sym">ETH</span></span>
+                <span class="crypto-chip">XRP <span class="cc-sym">XRP</span></span>
+                <span class="crypto-chip">Stellar <span class="cc-sym">XLM</span></span>
+                <span class="crypto-chip">USD Coin <span class="cc-sym">USDC</span></span>
+                <span class="crypto-chip">Tether <span class="cc-sym">USDT</span></span>
+                <span class="crypto-chip">Physical Gold <span class="cc-sym">Au</span></span>
+                <span class="crypto-chip">Physical Silver <span class="cc-sym">Ag</span></span>
+            </div>
+            <p style="font-size:.78rem;color:var(--text-muted);margin-top:1.2rem;opacity:.7;">
+                Conversions settle through XRPL and Stellar. Stablecoin liquidity provided by regulated anchors.
+                Physical metals available through APMEX. All conversions are protocol-enforced and verifiable on-chain.
+            </p>
+        </div>
+    </section>
+
     <!-- ═══ ADVISORY LINK ═══ -->
     <section class="alloc-section">
-        <a href="/ask" class="ask-inline">
+        <a href="/guide" class="ask-inline">
             <div class="ask-inline-text">
-                <h4>Questions about the allocation model?</h4>
-                <p>Our AI-powered Member Advisory can explain the formula, level weights, bonuses, staking, and certificate mechanics in detail.</p>
+                <h4>Questions about tiers, allocations, or the math?</h4>
+                <p>Talk to the Helios AI Guide &mdash; voice-powered, patient, and ready to walk you through everything.</p>
             </div>
         </a>
     </section>
@@ -494,57 +829,82 @@
     <!-- ═══ CALCULATOR ═══ -->
     <section class="alloc-section">
         <div class="calc-section">
-            <h3>Allocation Projection Calculator</h3>
-            <p class="calc-subtitle">Model potential allocations based on your referral positions and network configuration.</p>
+            <h3>Earnings Projection Calculator</h3>
+            <p class="calc-subtitle">Model your potential earnings based on your tier, referrals, and network growth.</p>
 
             <div class="calc-grid">
                 <div class="calc-input-group">
-                    <label>Direct Referral Positions (max 5)</label>
+                    <label>Your Membership Tier</label>
+                    <select id="calcTier" onchange="recalculate()">
+                        <option value="100">$100 &mdash; Starter (1&times;)</option>
+                        <option value="250">$250 &mdash; Builder (2.5&times;)</option>
+                        <option value="500" selected>$500 &mdash; Pro (5&times;)</option>
+                        <option value="1000">$1,000 &mdash; Leader (10&times;)</option>
+                        <option value="5000">$5,000 &mdash; Executive (50&times;)</option>
+                    </select>
+                </div>
+                <div class="calc-input-group">
+                    <label>Your Direct Referrals (max 5)</label>
                     <input type="range" id="calcBonds" min="1" max="5" value="5" oninput="recalculate()">
                     <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-muted);font-family:'Inter',sans-serif;">
-                        <span>1 position</span><span id="bondDisplay">5 positions</span><span>5 positions</span>
+                        <span>1</span><span id="bondDisplay">5</span><span>5</span>
                     </div>
                 </div>
                 <div class="calc-input-group">
                     <label>New Members Per Month (in your network)</label>
-                    <input type="number" id="calcMonthly" min="1" max="500" value="25" oninput="recalculate()">
+                    <input type="number" id="calcMonthly" min="1" max="1000" value="50" oninput="recalculate()">
+                </div>
+                <div class="calc-input-group">
+                    <label>Average Network Tier</label>
+                    <select id="calcNetTier" onchange="recalculate()">
+                        <option value="100" selected>$100 &mdash; Starter</option>
+                        <option value="250">$250 &mdash; Builder</option>
+                        <option value="500">$500 &mdash; Pro</option>
+                        <option value="1000">$1,000 &mdash; Leader</option>
+                        <option value="5000">$5,000 &mdash; Executive</option>
+                    </select>
                 </div>
                 <div class="calc-input-group">
                     <label>Average Level Distance</label>
                     <select id="calcAvgLevel" onchange="recalculate()">
-                        <option value="1">Level 1 — Direct referrals (50%)</option>
-                        <option value="2" selected>Level 2 — Second-degree (25%)</option>
-                        <option value="3">Level 3 — Third-degree (12.5%)</option>
-                        <option value="4">Level 4 — Fourth-degree (6.25%)</option>
-                        <option value="5">Level 5 — Fifth-degree (3.125%)</option>
+                        <option value="1">Level 1 &mdash; Direct (50%)</option>
+                        <option value="2" selected>Level 2 &mdash; Second-degree (25%)</option>
+                        <option value="3">Level 3 &mdash; Third-degree (12.5%)</option>
+                        <option value="4">Level 4 &mdash; Fourth-degree (6.25%)</option>
+                        <option value="5">Level 5 &mdash; Fifth-degree (3.125%)</option>
                     </select>
                 </div>
                 <div class="calc-input-group">
                     <label>Projection Period</label>
                     <select id="calcTimeframe" onchange="recalculate()">
                         <option value="1">1 Month</option>
-                        <option value="3" selected>3 Months</option>
+                        <option value="3">3 Months</option>
                         <option value="6">6 Months</option>
-                        <option value="12">12 Months</option>
+                        <option value="12" selected>12 Months (1 Year)</option>
                     </select>
                 </div>
             </div>
 
             <div class="calc-results">
                 <div class="calc-result-card">
-                    <div class="calc-result-label">Tiered Allocation</div>
+                    <div class="calc-result-label">Network Allocation</div>
                     <div class="calc-result-value" id="resultTiered">$0</div>
                     <div class="calc-result-sub">from 15-level distribution</div>
                 </div>
                 <div class="calc-result-card">
-                    <div class="calc-result-label">Direct Referral Allocations</div>
+                    <div class="calc-result-label">Direct Referral Cash</div>
                     <div class="calc-result-value" id="resultDirect">$0</div>
-                    <div class="calc-result-sub">$22.50 per direct member</div>
+                    <div class="calc-result-sub" id="resultDirectSub">per direct member</div>
                 </div>
                 <div class="calc-result-card">
-                    <div class="calc-result-label">Total Projected Allocation</div>
+                    <div class="calc-result-label">Monthly Average</div>
+                    <div class="calc-result-value" id="resultMonthly">$0</div>
+                    <div class="calc-result-sub">per month</div>
+                </div>
+                <div class="calc-result-card">
+                    <div class="calc-result-label">Total Projected</div>
                     <div class="calc-result-value" id="resultTotal">$0</div>
-                    <div class="calc-result-sub" id="resultPeriod">over 3 months</div>
+                    <div class="calc-result-sub" id="resultPeriod">over 12 months</div>
                 </div>
             </div>
         </div>
@@ -552,107 +912,218 @@
 
     <!-- ═══ CTA ═══ -->
     <section class="alloc-cta">
-        <h2>15 Levels. Deterministic Math. Gold-Backed Certificates.</h2>
-        <p>$100 membership. Published formula. Every allocation verifiable on-chain.</p>
-        <a href="/activate" class="btn btn-primary" style="margin-right:.5rem;">Apply for Membership</a>
+        <h2>5 Tiers. 15 Levels. Gold-Backed. Crypto-Accessible.</h2>
+        <p>Choose your tier. Bring in 5 people. Let the math work.
+        Every allocation is verifiable on-chain.</p>
+        <a href="/activate" class="btn btn-primary" style="margin-right:.5rem;">Choose Your Tier</a>
         <a href="/certificates" class="btn btn-ghost">View Certificate Types</a>
     </section>
 
     <!-- ═══ DISCLAIMER ═══ -->
     <div class="alloc-disclaimer">
         <strong>Disclaimer:</strong> All projections are mathematical models derived from the protocol's
-        deterministic allocation formula: W<sub>L</sub> = W<sub>1</sub> · r<sup>(L−1)</sup>
-        where W<sub>1</sub> = 0.50 and r = 0.50, applied to the $45 allocation pool per $100 membership.
+        deterministic allocation formula: W<sub>L</sub> = W<sub>1</sub> &middot; r<sup>(L&minus;1)</sup>
+        where W<sub>1</sub> = 0.50 and r = 0.50, applied to the allocation pool (45% of membership fee).
         Actual allocations depend on network activity within your contribution structure.
         These projections do not constitute guarantees of income, investment returns, or financial performance.
         Helios operates as a private membership protocol with formula-governed allocation.
+        Past mathematical models are not indicative of future results. All membership tiers
+        are subject to terms of service and membership agreement.
     </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-// ─── Full 15-Level Decay Table ───────────────────────────────────
-function buildDecayTable() {
-    var tbody = document.getElementById('decayTable');
-    var levels = [];
-    var W1 = 0.50;
-    var r = 0.50;
-    var pool = 45;
-    var labels = [
-        'Direct referral (your member)',
-        'Second-degree connection',
-        'Third-degree connection',
-        'Fourth-degree connection',
-        'Fifth-degree connection',
-        'Sixth-degree connection',
-        'Seventh-degree connection',
-        'Eighth-degree connection',
-        'Ninth-degree connection',
-        'Tenth-degree connection',
-        'Eleventh-degree connection',
-        'Twelfth-degree connection',
-        'Thirteenth-degree connection',
-        'Fourteenth-degree connection',
-        'Maximum allocation horizon'
-    ];
+// ═══ TIER CONFIG ═══════════════════════════════════════════════
+var TIERS = {
+    100:  { name: 'Starter',   pool: 45,     direct: 22.50,   mult: '1\u00d7' },
+    250:  { name: 'Builder',   pool: 112.50, direct: 56.25,   mult: '2.5\u00d7' },
+    500:  { name: 'Pro',       pool: 225,    direct: 112.50,  mult: '5\u00d7' },
+    1000: { name: 'Leader',    pool: 450,    direct: 225,     mult: '10\u00d7' },
+    5000: { name: 'Executive', pool: 2250,   direct: 1125,    mult: '50\u00d7' }
+};
+
+var W1 = 0.50;
+var R  = 0.50;
+var LABELS = [
+    'Direct referral',
+    'Second-degree',
+    'Third-degree',
+    'Fourth-degree',
+    'Fifth-degree',
+    'Sixth-degree',
+    'Seventh-degree',
+    'Eighth-degree',
+    'Ninth-degree',
+    'Tenth-degree',
+    'Eleventh-degree',
+    'Twelfth-degree',
+    'Thirteenth-degree',
+    'Fourteenth-degree',
+    'Maximum horizon'
+];
+
+var activeTier = 100;
+
+// ═══ TIER SELECTOR ═══════════════════════════════════════════
+function setTier(tier) {
+    activeTier = tier;
+    var btns = document.querySelectorAll('.tier-btn');
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.toggle('active', parseInt(btns[i].getAttribute('data-tier')) === tier);
+    }
+    buildEarningsTable();
+}
+
+// ═══ 15-LEVEL EARNINGS TABLE ════════════════════════════════
+function buildEarningsTable() {
+    var t = TIERS[activeTier];
+    var pool = t.pool;
+    var tbody = document.getElementById('earningsTable');
+    var tfoot = document.getElementById('earningsFoot');
+    var summary = document.getElementById('summaryCards');
 
     var rows = '';
-    for (var L = 1; L <= 15; L++) {
-        var weight = W1 * Math.pow(r, L - 1);
-        var alloc = pool * weight;
-        var pct = weight * 100;
-        var barWidth = Math.max(2, pct * 3);
-        var cls = L === 1 ? ' class="tier-primary"' : '';
+    var totalMonthly = 0;
+    var totalYearly = 0;
 
-        rows += '<tr>' +
-            '<td' + cls + '>Level ' + L + '</td>' +
-            '<td' + cls + '>' + labels[L - 1] + '</td>' +
-            '<td' + cls + '>' + (pct >= 0.01 ? pct.toFixed(pct >= 1 ? 1 : pct >= 0.1 ? 2 : 3) + '%' : '<0.001%') + '</td>' +
-            '<td' + cls + '>$' + (alloc >= 0.01 ? alloc.toFixed(2) : alloc.toFixed(4)) + '</td>' +
-            '<td><span class="decay-bar" style="width:' + barWidth + 'px;"></span></td>' +
+    for (var L = 1; L <= 15; L++) {
+        var weight = W1 * Math.pow(R, L - 1);
+        var pct = weight * 100;
+        var perMember = pool * weight;
+        var maxMembers = Math.pow(5, L);
+        var monthly = perMember * maxMembers;
+        var yearly = monthly * 12;
+        totalMonthly += monthly;
+        totalYearly += yearly;
+
+        var cls = L <= 5 ? ' class="row-highlight"' : '';
+        var pCls = L === 1 ? ' class="tier-primary"' : '';
+
+        rows += '<tr' + cls + '>' +
+            '<td' + pCls + '>Level ' + L + '</td>' +
+            '<td' + pCls + '>' + LABELS[L - 1] + '</td>' +
+            '<td>' + fmtInt(maxMembers) + '</td>' +
+            '<td>' + fmtPct(pct) + '</td>' +
+            '<td>$' + fmtMoney(perMember) + '</td>' +
+            '<td>$' + fmtMoney(monthly) + '</td>' +
+            '<td>$' + fmtMoney(yearly) + '</td>' +
             '</tr>';
     }
 
     tbody.innerHTML = rows;
+
+    tfoot.innerHTML = '<tr>' +
+        '<td colspan="2">TOTAL (all 15 levels, all positions filled)</td>' +
+        '<td>' + fmtInt(totalPositions()) + '</td>' +
+        '<td></td><td></td>' +
+        '<td>$' + fmtMoney(totalMonthly) + '</td>' +
+        '<td>$' + fmtMoney(totalYearly) + '</td>' +
+        '</tr>';
+
+    // Summary cards
+    summary.innerHTML =
+        '<div class="summary-card gold-border">' +
+            '<div class="sc-label">Your Tier</div>' +
+            '<div class="sc-value">$' + fmtInt(activeTier) + '</div>' +
+            '<div class="sc-sub">' + t.name + ' (' + t.mult + ')</div>' +
+        '</div>' +
+        '<div class="summary-card">' +
+            '<div class="sc-label">Direct Referral Payout</div>' +
+            '<div class="sc-value">$' + fmtMoney(t.direct) + '</div>' +
+            '<div class="sc-sub">per person you refer</div>' +
+        '</div>' +
+        '<div class="summary-card">' +
+            '<div class="sc-label">5 Directs = Instant Cash</div>' +
+            '<div class="sc-value">$' + fmtMoney(t.direct * 5) + '</div>' +
+            '<div class="sc-sub">bring in 5, get paid</div>' +
+        '</div>' +
+        '<div class="summary-card gold-border">' +
+            '<div class="sc-label">Monthly (L1\u2013L5 filled)</div>' +
+            '<div class="sc-value">$' + fmtMoney(monthlyL5(pool)) + '</div>' +
+            '<div class="sc-sub">first 5 levels active</div>' +
+        '</div>';
 }
 
-// ─── Calculator ──────────────────────────────────────────────────
+function totalPositions() {
+    var t = 0;
+    for (var L = 1; L <= 15; L++) t += Math.pow(5, L);
+    return t;
+}
+
+function monthlyL5(pool) {
+    var total = 0;
+    for (var L = 1; L <= 5; L++) {
+        var weight = W1 * Math.pow(R, L - 1);
+        total += pool * weight * Math.pow(5, L);
+    }
+    return total;
+}
+
+// ═══ CALCULATOR ═══════════════════════════════════════════════
 function recalculate() {
+    var yourTier = parseInt(document.getElementById('calcTier').value);
     var bonds = parseInt(document.getElementById('calcBonds').value);
     var monthly = parseInt(document.getElementById('calcMonthly').value) || 0;
+    var netTier = parseInt(document.getElementById('calcNetTier').value);
     var avgLevel = parseInt(document.getElementById('calcAvgLevel').value);
     var months = parseInt(document.getElementById('calcTimeframe').value);
 
-    document.getElementById('bondDisplay').textContent = bonds + ' position' + (bonds > 1 ? 's' : '');
+    document.getElementById('bondDisplay').textContent = bonds;
 
-    var W1 = 0.50;
-    var r = 0.50;
-    var weight = W1 * Math.pow(r, avgLevel - 1);
-    var allocationPerMember = 45 * weight;
-    var totalAllocation = allocationPerMember * monthly * months;
+    var netPool = TIERS[netTier].pool;
+    var weight = W1 * Math.pow(R, avgLevel - 1);
+    var allocPerMember = netPool * weight;
+    var networkAlloc = allocPerMember * monthly * months;
 
+    var yourDirect = TIERS[yourTier].direct;
     var directPerMonth = Math.min(bonds, Math.ceil(monthly * 0.2));
-    var directValue = directPerMonth * 22.50;
-    var totalDirect = directValue * months;
+    var totalDirect = directPerMonth * yourDirect * months;
 
-    var total = totalAllocation + totalDirect;
+    var total = networkAlloc + totalDirect;
+    var monthlyAvg = total / months;
 
-    document.getElementById('resultTiered').textContent = '$' + formatNum(totalAllocation);
-    document.getElementById('resultDirect').textContent = '$' + formatNum(totalDirect);
-    document.getElementById('resultTotal').textContent = '$' + formatNum(total);
+    document.getElementById('resultTiered').textContent = '$' + fmtCalc(networkAlloc);
+    document.getElementById('resultDirect').textContent = '$' + fmtCalc(totalDirect);
+    document.getElementById('resultDirectSub').textContent = '$' + fmtMoney(yourDirect) + ' per direct member';
+    document.getElementById('resultMonthly').textContent = '$' + fmtCalc(monthlyAvg);
+    document.getElementById('resultTotal').textContent = '$' + fmtCalc(total);
     document.getElementById('resultPeriod').textContent = 'over ' + months + ' month' + (months > 1 ? 's' : '');
 }
 
-function formatNum(n) {
+// ═══ FORMATTERS ══════════════════════════════════════════════
+function fmtMoney(n) {
+    if (n >= 1000000000) return (n / 1000000000).toFixed(1) + 'B';
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    if (n >= 0.01) return n.toFixed(2);
+    return n.toFixed(4);
+}
+
+function fmtInt(n) {
+    if (n >= 1000000000) return (n / 1000000000).toFixed(1) + 'B';
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    return n.toLocaleString('en-US');
+}
+
+function fmtPct(p) {
+    if (p >= 1) return p.toFixed(1) + '%';
+    if (p >= 0.01) return p.toFixed(2) + '%';
+    return '<0.01%';
+}
+
+function fmtCalc(n) {
+    if (n >= 1000000000) return (n / 1000000000).toFixed(1) + 'B';
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
     if (n >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
     if (n >= 1) return n.toFixed(2);
     return n.toFixed(4);
 }
 
-// ─── Init ────────────────────────────────────────────────────────
+// ═══ INIT ════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
-    buildDecayTable();
+    buildEarningsTable();
     recalculate();
 });
 </script>

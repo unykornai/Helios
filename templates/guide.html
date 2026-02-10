@@ -352,9 +352,9 @@
                     <div class="guide-topic-icon">☀</div>
                     <div><div class="guide-topic-text">What is Helios?</div><div class="guide-topic-sub">The basics, plain and simple</div></div>
                 </div>
-                <div class="guide-topic" onclick="guideAsk('How does the 15-level allocation work? Walk me through where my $100 actually goes.')">
+                <div class="guide-topic" onclick="guideAsk('How does the 15-level allocation work? Walk me through where my membership fee actually goes across the 5 tiers.')">
                     <div class="guide-topic-icon">$</div>
-                    <div><div class="guide-topic-text">Where does my $100 go?</div><div class="guide-topic-sub">Every dollar, accounted for</div></div>
+                    <div><div class="guide-topic-text">Where does my money go?</div><div class="guide-topic-sub">Every dollar, every tier, accounted for</div></div>
                 </div>
                 <div class="guide-topic" onclick="guideAsk('What are gold-backed certificates? How do they work and what makes them valuable?')">
                     <div class="guide-topic-icon">🏅</div>
@@ -406,11 +406,11 @@
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(2)">
                     <div class="guide-topic-icon">2</div>
-                    <div><div class="guide-topic-text">Your $100 Allocation</div><div class="guide-topic-sub">Where every dollar goes</div></div>
+                    <div><div class="guide-topic-text">Choosing Your Tier</div><div class="guide-topic-sub">$100 to $5,000 — where the money goes</div></div>
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(3)">
                     <div class="guide-topic-icon">3</div>
-                    <div><div class="guide-topic-text">What You Receive</div><div class="guide-topic-sub">Certificates, identity, access</div></div>
+                    <div><div class="guide-topic-text">What You Receive</div><div class="guide-topic-sub">Gold, crypto, identity, access</div></div>
                 </div>
                 <div class="guide-topic" onclick="startIntakeStep(4)">
                     <div class="guide-topic-icon">4</div>
@@ -503,31 +503,36 @@ function setMode(mode) {
 // ═══ Intake Progress ══════════════════════════════════════════════
 var intakeQuestions = [
     "Let me walk you through what Helios actually is. It's a membership-based protocol " +
-    "— not a fund, not an investment platform. When you join, your $100 membership fee " +
-    "enters a deterministic pipeline. Fiat converts to stablecoin, stablecoin acquires " +
-    "physical gold through APMEX, and that gold backs digital certificates issued on " +
-    "XRPL and Stellar. Every step is verifiable. Nothing is discretionary.\n\n" +
-    "The protocol has 15 levels of allocation, each calculated by a published formula. " +
+    "\u2014 not a fund, not an investment platform. You pick one of 5 tiers: $100, $250, $500, " +
+    "$1,000, or $5,000. Your membership fee enters a deterministic pipeline. Fiat converts " +
+    "to stablecoin, stablecoin acquires physical gold through APMEX, and that gold backs " +
+    "digital certificates issued on XRPL and Stellar. Every step is verifiable.\n\n" +
+    "Higher tiers mean bigger allocation pools and bigger direct referral payouts. The " +
+    "protocol has 15 levels of allocation, each calculated by a published formula. " +
     "No one decides who gets what — the math does. Does this make sense so far?",
 
-    "Now let me show you exactly where your $100 goes. Nothing is hidden.\n\n" +
-    "$45 — goes into the 15-level allocation system. This is distributed across your " +
-    "network based on the weighting formula. Level 1 receives 50%, Level 2 receives 25%, " +
-    "and so on. The math is public.\n\n" +
-    "$20 — Liquidity Pool. This ensures certificates can always be redeemed.\n\n" +
-    "$15 — Treasury. Physical gold purchases through APMEX. This is what backs the certificates.\n\n" +
-    "$10 — Infrastructure. Operations, hosting, compliance.\n\n" +
-    "$10 — Protocol Buffer. Edge-case reserves so the system never runs dry.\n\n" +
-    "Every dollar has a destination. No slush funds. Want me to go deeper on any of these?",
+    "Now let me show you exactly where your money goes. The same percentage split applies " +
+    "to every tier \u2014 higher tiers just mean bigger dollar amounts.\n\n" +
+    "45% \u2014 goes into the 15-level allocation system. That's $45 at Starter, $112.50 at Builder, " +
+    "$225 at Pro, $450 at Leader, or $2,250 at Executive. Distributed across your " +
+    "network based on the weighting formula.\n\n" +
+    "20% \u2014 Liquidity Pool. Ensures certificates can always be redeemed.\n\n" +
+    "15% \u2014 Treasury. Physical gold purchases through APMEX.\n\n" +
+    "10% \u2014 Infrastructure. Operations, hosting, compliance.\n\n" +
+    "10% \u2014 Protocol Buffer. Edge-case reserves.\n\n" +
+    "Your Level 1 direct referral payout is 50% of your pool \u2014 so $22.50 at Starter " +
+    "all the way up to $1,125 at Executive. Per person. Want me to go deeper?",
 
     "Here's what you receive as a member:\n\n" +
     "First — your .helios identity. A permanent on-chain namespace like 'yourname.helios'. " +
     "That's yours. It's how the protocol knows you.\n\n" +
-    "Second — Gold Certificates. These are NFTs on XRPL backed by physical gold in the treasury. " +
-    "They can be redeemed for physical metal or converted to stablecoin.\n\n" +
-    "Third — Bonus Certificates. You can earn these through referrals, staking, and activity. " +
-    "Staking locks your certificates for 30, 90, 180, or 365 days with bonus rates from 5% to 30%.\n\n" +
-    "Fourth — access to the full protocol: Treasury verification, allocation model, the advisory, " +
+    "Second \u2014 Gold Certificates. NFTs on XRPL backed by physical gold in the treasury. " +
+    "Redeemable for physical metal or convertible to stablecoin.\n\n" +
+    "Third \u2014 Crypto Access. Convert your allocations into BTC, ETH, XRP, or hold in " +
+    "stablecoins like USDC. You build wealth across multiple asset classes, not just gold.\n\n" +
+    "Fourth \u2014 Certificate Staking. Lock your certificates for 30 to 365 days and earn " +
+    "bonus allocations from 5% up to 30%.\n\n" +
+    "Fifth \u2014 Full protocol access. Treasury verification, allocation model, the AI advisory, " +
     "and live metrics. Everything is transparent.\n\n" +
     "Any questions about what you'd receive?",
 
@@ -537,13 +542,14 @@ var intakeQuestions = [
     "There's no such thing as a dumb question here. What's on your mind?",
 
     "If you feel comfortable with what we've covered, the next step is straightforward.\n\n" +
-    "You activate your membership at $100. One price. One transaction. Atomic — " +
-    "meaning if anything fails, nothing happens. Your money doesn't go into a black box.\n\n" +
+    "You choose your tier \u2014 $100, $250, $500, $1,000, or $5,000 \u2014 and activate. " +
+    "One transaction. Atomic \u2014 meaning if anything fails, nothing happens. Your money " +
+    "doesn't go into a black box.\n\n" +
     "You'll receive your .helios identity, your first certificate allocation begins, " +
-    "and you'll have full access to the protocol.\n\n" +
+    "and you'll have full access to the protocol including crypto tools.\n\n" +
     "When you're ready, head to the activation page. And if you need more time or " +
-    "have more questions — that's perfectly fine. I'm not going anywhere.\n\n" +
-    "<a href='/activate' style='color:var(--gold);font-weight:600;'>→ Go to Activation Page</a>"
+    "have more questions \u2014 that's perfectly fine. I'm not going anywhere.\n\n" +
+    "<a href='/activate' style='color:var(--gold);font-weight:600;'>\u2192 Choose Your Tier</a>"
 ];
 
 function updateIntakeProgress(step) {

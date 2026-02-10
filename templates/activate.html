@@ -1,163 +1,466 @@
 {% extends "base.html" %}
-{% block title %}Activate — Enter the Field — Helios{% endblock %}
-{% block og_title %}Enter the Field — $100 Atomic{% endblock %}
-{% block og_description %}Every dollar has a destination. 45% energy propagation. 20% liquidity. 15% metal-backed treasury. No hidden fees.{% endblock %}
+{% block title %}Choose Your Tier — Helios Protocol{% endblock %}
+{% block og_title %}Membership Tiers — Helios Protocol{% endblock %}
+{% block og_description %}Five membership tiers from $100 to $5,000. Gold-backed certificates, 15-level allocations, BTC/ETH/stablecoin access. Choose your tier and start earning.{% endblock %}
 {% block og_url %}/activate{% endblock %}
 
-{% block content %}
-<section class="section activate-section">
-    <div class="container container-sm">
-        <div class="activate-header">
-            <div class="activate-coin">
-                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="activate-coin-svg">
-                    <defs>
-                        <radialGradient id="actCoinGrad" cx="50%" cy="45%" r="50%">
-                            <stop offset="0%" style="stop-color:#fde68a"/>
-                            <stop offset="40%" style="stop-color:#f59e0b"/>
-                            <stop offset="80%" style="stop-color:#d97706"/>
-                            <stop offset="100%" style="stop-color:#92400e"/>
-                        </radialGradient>
-                    </defs>
-                    <circle cx="60" cy="60" r="56" fill="url(#actCoinGrad)" filter="url(#coinGlow)"/>
-                    <circle cx="60" cy="60" r="48" fill="none" stroke="#92400e" stroke-width="1" opacity="0.4"/>
-                    <text x="60" y="66" text-anchor="middle" fill="#fef3c7" font-size="22" font-weight="900" font-family="Inter, sans-serif">$100</text>
-                </svg>
-            </div>
-            <h1>One Price. Atomic.</h1>
-            <p class="activate-tagline">Every dollar has a destination. No slush funds. No mystery fees.</p>
-        </div>
+{% block head %}
+<style>
+.activate-page { position: relative; z-index: 1; }
 
-        <!-- Allocation Breakdown -->
-        <div class="allocation-visual">
-            <h2>Where Your $100 Goes</h2>
+/* ─── Hero ────────────────────────────────────────────────────── */
+.act-hero {
+    text-align: center; padding: 5rem 2rem 3rem;
+}
+.act-hero h1 {
+    font-size: 2.2rem; font-weight: 600; color: var(--gold);
+    letter-spacing: .1em; margin-bottom: .5rem;
+}
+.act-hero .act-sub {
+    color: var(--text-muted); font-size: 1.05rem;
+    max-width: 640px; margin: 0 auto 1.5rem; line-height: 1.7;
+}
+
+.act-section {
+    max-width: 1060px; margin: 0 auto; padding: 0 2rem 4rem;
+}
+.act-section h2 {
+    font-size: 1.4rem; font-weight: 600; color: var(--text);
+    margin-bottom: .5rem;
+}
+.act-section .section-desc {
+    color: var(--text-muted); font-size: .95rem; line-height: 1.7;
+    margin-bottom: 1.5rem; max-width: 720px;
+}
+
+/* ─── Tier Selection Cards ────────────────────────────────────── */
+.act-tiers {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem; margin-bottom: 3rem;
+}
+.act-tier {
+    background: var(--bg-card); border: 2px solid var(--border);
+    border-radius: var(--radius); padding: 1.8rem 1.3rem; text-align: center;
+    transition: all .3s; cursor: pointer; position: relative; overflow: hidden;
+}
+.act-tier::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold); opacity: 0; transition: opacity .3s;
+}
+.act-tier:hover { border-color: rgba(201,168,76,.3); transform: translateY(-3px); }
+.act-tier:hover::before { opacity: 1; }
+.act-tier.popular { border-color: rgba(201,168,76,.4); }
+.act-tier.popular::before { opacity: 1; }
+.act-tier.popular::after {
+    content: 'MOST POPULAR'; position: absolute; top: 10px; right: -28px;
+    background: var(--gold); color: var(--bg); font-size: .6rem; font-weight: 700;
+    padding: .15rem 2rem; transform: rotate(45deg);
+    font-family: 'Inter', sans-serif; letter-spacing: .06em;
+}
+.at-name {
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 600;
+    margin-bottom: .5rem;
+}
+.at-price {
+    font-size: 2.4rem; font-weight: 700; color: var(--gold);
+    font-family: 'Inter', sans-serif; margin-bottom: .2rem;
+}
+.at-mult {
+    font-size: .82rem; color: var(--text-muted); margin-bottom: 1rem;
+}
+
+.at-stats {
+    list-style: none; padding: 0; margin: 0 0 1.2rem;
+    font-size: .82rem; color: var(--text-muted); text-align: left;
+}
+.at-stats li {
+    padding: .35rem 0; border-bottom: 1px solid rgba(36,40,51,.4);
+    display: flex; justify-content: space-between;
+}
+.at-stats li:last-child { border-bottom: none; }
+.at-stats .stat-val { color: var(--gold); font-weight: 600; font-family: 'Inter', sans-serif; }
+
+.at-features {
+    list-style: none; padding: 0; margin: 0 0 1.2rem;
+    font-size: .78rem; color: var(--text-muted); text-align: left; line-height: 1.8;
+}
+.at-features li::before {
+    content: '\2713'; color: var(--gold); margin-right: .4rem; font-weight: 700;
+}
+
+.at-cta {
+    display: block; width: 100%; padding: .65rem 0;
+    background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.3);
+    border-radius: var(--radius-sm); color: var(--gold); font-weight: 600;
+    font-size: .88rem; font-family: 'Inter', sans-serif; text-align: center;
+    text-decoration: none; transition: all .25s;
+}
+.at-cta:hover { background: rgba(201,168,76,.15); border-color: var(--gold); }
+.act-tier.popular .at-cta {
+    background: var(--gold); color: var(--bg); border-color: var(--gold);
+}
+.act-tier.popular .at-cta:hover { opacity: .9; }
+
+/* ─── Allocation Breakdown ────────────────────────────────────── */
+.alloc-bar-wrap { margin-bottom: 2rem; }
+.alloc-bar {
+    display: flex; border-radius: var(--radius-sm); overflow: hidden;
+    height: 32px; margin-bottom: 1rem;
+}
+.alloc-seg {
+    display: flex; align-items: center; justify-content: center;
+    font-size: .72rem; font-weight: 600; font-family: 'Inter', sans-serif;
+    color: white; transition: width .5s;
+}
+.seg-pool { background: var(--gold); }
+.seg-liq { background: var(--green); }
+.seg-metal { background: var(--purple); }
+.seg-infra { background: var(--blue); }
+.seg-buffer { background: #555; }
+.alloc-legend {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: .8rem;
+}
+.al-item {
+    display: flex; gap: .6rem; align-items: flex-start;
+}
+.al-dot {
+    width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; margin-top: .3rem;
+}
+.al-item strong { font-size: .88rem; display: block; }
+.al-item p { font-size: .78rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+/* ─── What You Get ────────────────────────────────────────────── */
+.benefit-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+}
+.benefit-item {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.3rem;
+    display: flex; gap: .8rem; align-items: flex-start;
+}
+.bi-marker {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--gold); font-weight: 700;
+    font-family: 'Inter', sans-serif; font-size: .82rem;
+}
+.bi-text strong { font-size: .92rem; display: block; margin-bottom: .2rem; }
+.bi-text p { font-size: .78rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+/* ─── Referrer + CTA ──────────────────────────────────────────── */
+.act-referrer {
+    text-align: center; padding: 1rem; margin-bottom: 1.5rem;
+    background: rgba(201,168,76,.04); border: 1px solid rgba(201,168,76,.15);
+    border-radius: var(--radius-sm);
+}
+.act-referrer p { margin: 0; font-size: .92rem; color: var(--text-muted); }
+.act-referrer strong { color: var(--gold); }
+
+.act-note {
+    text-align: center; font-size: .82rem; color: var(--text-muted);
+    max-width: 500px; margin: 1rem auto 2rem;
+}
+
+/* ─── Transparency Block ──────────────────────────────────────── */
+.transparency-block {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; text-align: center;
+    margin-bottom: 2rem;
+}
+.transparency-block h3 {
+    font-size: 1rem; font-weight: 600; margin-bottom: .3rem;
+}
+.transparency-block p {
+    font-size: .82rem; color: var(--text-muted); line-height: 1.6;
+    max-width: 560px; margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .act-hero h1 { font-size: 1.6rem; }
+    .act-tiers { grid-template-columns: 1fr 1fr; }
+    .at-price { font-size: 1.8rem; }
+    .benefit-grid { grid-template-columns: 1fr; }
+    .alloc-legend { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .act-tiers { grid-template-columns: 1fr; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="activate-page">
+    <!-- ═══ HERO ═══ -->
+    <section class="act-hero">
+        <h1>CHOOSE YOUR TIER</h1>
+        <p class="act-sub">
+            Five tiers. One protocol. Every dollar has a published destination.
+            Higher tiers mean bigger allocation pools, bigger direct referral payouts,
+            and access to more features. Pick the tier that matches your goals.
+        </p>
+    </section>
+
+    <!-- ═══ TIER CARDS ═══ -->
+    <section class="act-section">
+        <div class="act-tiers">
+            <!-- Starter -->
+            <div class="act-tier">
+                <div class="at-name">Starter</div>
+                <div class="at-price">$100</div>
+                <div class="at-mult">1&times; allocation</div>
+                <ul class="at-stats">
+                    <li>Allocation Pool <span class="stat-val">$45</span></li>
+                    <li>Direct Referral <span class="stat-val">$22.50</span></li>
+                    <li>5 Directs <span class="stat-val">$112.50</span></li>
+                </ul>
+                <ul class="at-features">
+                    <li>Gold-backed certificate</li>
+                    <li>15-level allocations</li>
+                    <li>BTC/ETH/stablecoin access</li>
+                    <li>.helios identity</li>
+                    <li>Certificate staking</li>
+                </ul>
+                <a href="/join" class="at-cta">Activate &mdash; $100</a>
+            </div>
+
+            <!-- Builder -->
+            <div class="act-tier">
+                <div class="at-name">Builder</div>
+                <div class="at-price">$250</div>
+                <div class="at-mult">2.5&times; allocation</div>
+                <ul class="at-stats">
+                    <li>Allocation Pool <span class="stat-val">$112.50</span></li>
+                    <li>Direct Referral <span class="stat-val">$56.25</span></li>
+                    <li>5 Directs <span class="stat-val">$281.25</span></li>
+                </ul>
+                <ul class="at-features">
+                    <li>Larger gold certificate</li>
+                    <li>15-level allocations</li>
+                    <li>Full crypto access</li>
+                    <li>.helios identity</li>
+                    <li>Higher staking bonus</li>
+                </ul>
+                <a href="/join" class="at-cta">Activate &mdash; $250</a>
+            </div>
+
+            <!-- Pro (Popular) -->
+            <div class="act-tier popular">
+                <div class="at-name">Pro</div>
+                <div class="at-price">$500</div>
+                <div class="at-mult">5&times; allocation</div>
+                <ul class="at-stats">
+                    <li>Allocation Pool <span class="stat-val">$225</span></li>
+                    <li>Direct Referral <span class="stat-val">$112.50</span></li>
+                    <li>5 Directs <span class="stat-val">$562.50</span></li>
+                </ul>
+                <ul class="at-features">
+                    <li>Premium gold certificate</li>
+                    <li>15-level allocations</li>
+                    <li>Crypto vault access</li>
+                    <li>.helios identity</li>
+                    <li>Higher referral bonus</li>
+                </ul>
+                <a href="/join" class="at-cta">Activate &mdash; $500</a>
+            </div>
+
+            <!-- Leader -->
+            <div class="act-tier">
+                <div class="at-name">Leader</div>
+                <div class="at-price">$1,000</div>
+                <div class="at-mult">10&times; allocation</div>
+                <ul class="at-stats">
+                    <li>Allocation Pool <span class="stat-val">$450</span></li>
+                    <li>Direct Referral <span class="stat-val">$225</span></li>
+                    <li>5 Directs <span class="stat-val">$1,125</span></li>
+                </ul>
+                <ul class="at-features">
+                    <li>High-value gold certificate</li>
+                    <li>15-level allocations</li>
+                    <li>Priority crypto tools</li>
+                    <li>.helios identity</li>
+                    <li>Maximum staking bonus</li>
+                </ul>
+                <a href="/join" class="at-cta">Activate &mdash; $1,000</a>
+            </div>
+
+            <!-- Executive -->
+            <div class="act-tier">
+                <div class="at-name">Executive</div>
+                <div class="at-price">$5,000</div>
+                <div class="at-mult">50&times; allocation</div>
+                <ul class="at-stats">
+                    <li>Allocation Pool <span class="stat-val">$2,250</span></li>
+                    <li>Direct Referral <span class="stat-val">$1,125</span></li>
+                    <li>5 Directs <span class="stat-val">$5,625</span></li>
+                </ul>
+                <ul class="at-features">
+                    <li>Large gold purchase</li>
+                    <li>15-level allocations</li>
+                    <li>Private crypto pools</li>
+                    <li>Exclusive NFT drops</li>
+                    <li>Highest staking tier</li>
+                </ul>
+                <a href="/join" class="at-cta">Activate &mdash; $5,000</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ ALLOCATION BREAKDOWN ═══ -->
+    <section class="act-section">
+        <h2>Where Every Dollar Goes</h2>
+        <p class="section-desc">
+            The same percentage split applies to every tier. No slush funds.
+            No mystery fees. Every dollar has a declared, auditable destination.
+        </p>
+
+        <div class="alloc-bar-wrap">
             <div class="alloc-bar">
-                <div class="alloc-segment alloc-propagation" style="width:45%">45%</div>
-                <div class="alloc-segment alloc-liquidity" style="width:20%">20%</div>
-                <div class="alloc-segment alloc-treasury" style="width:15%">15%</div>
-                <div class="alloc-segment alloc-infra" style="width:10%">10%</div>
-                <div class="alloc-segment alloc-buffer" style="width:10%">10%</div>
+                <div class="alloc-seg seg-pool" style="width:45%">45%</div>
+                <div class="alloc-seg seg-liq" style="width:20%">20%</div>
+                <div class="alloc-seg seg-metal" style="width:15%">15%</div>
+                <div class="alloc-seg seg-infra" style="width:10%">10%</div>
+                <div class="alloc-seg seg-buffer" style="width:10%">10%</div>
             </div>
             <div class="alloc-legend">
-                <div class="alloc-legend-item">
-                    <span class="alloc-dot alloc-propagation"></span>
+                <div class="al-item">
+                    <div class="al-dot seg-pool"></div>
                     <div>
-                        <strong>$45 — Energy Propagation</strong>
-                        <p>Flows through bonds to your peers. Strongest at direct connections, attenuating naturally with distance.</p>
+                        <strong>45% &mdash; Allocation Pool</strong>
+                        <p>Distributed across 15 levels of your network using the deterministic weighting formula.</p>
                     </div>
                 </div>
-                <div class="alloc-legend-item">
-                    <span class="alloc-dot alloc-liquidity"></span>
+                <div class="al-item">
+                    <div class="al-dot seg-liq"></div>
                     <div>
-                        <strong>$20 — Liquidity Pool</strong>
-                        <p>Internal LP providing redemption depth. Ensures certificates can always be redeemed.</p>
+                        <strong>20% &mdash; Liquidity Reserve</strong>
+                        <p>Provides redemption depth so certificates can always be redeemed for gold or stablecoin.</p>
                     </div>
                 </div>
-                <div class="alloc-legend-item">
-                    <span class="alloc-dot alloc-treasury"></span>
+                <div class="al-item">
+                    <div class="al-dot seg-metal"></div>
                     <div>
-                        <strong>$15 — Treasury</strong>
-                        <p>Surplus allocated to physical metal purchases (APMEX). Backs the protocol with real assets.</p>
+                        <strong>15% &mdash; Precious Metals</strong>
+                        <p>Used to purchase physical gold by weight through APMEX. Backs the protocol with real assets.</p>
                     </div>
                 </div>
-                <div class="alloc-legend-item">
-                    <span class="alloc-dot alloc-infra"></span>
+                <div class="al-item">
+                    <div class="al-dot seg-infra"></div>
                     <div>
-                        <strong>$10 — Infrastructure</strong>
+                        <strong>10% &mdash; Infrastructure</strong>
                         <p>Operations, hosting, compliance, and protocol maintenance.</p>
                     </div>
                 </div>
-                <div class="alloc-legend-item">
-                    <span class="alloc-dot alloc-buffer"></span>
+                <div class="al-item">
+                    <div class="al-dot seg-buffer"></div>
                     <div>
-                        <strong>$10 — Protocol Buffer</strong>
-                        <p>Reserve for edge cases. Ensures the system never runs dry.</p>
+                        <strong>10% &mdash; Protocol Buffer</strong>
+                        <p>Contingency reserve. Ensures the system operates with margin for edge cases.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- What You Get -->
-        <div class="activate-benefits">
-            <h2>What You Get</h2>
-            <div class="benefit-list">
-                <div class="benefit-item">
-                    <span class="benefit-icon">◉</span>
-                    <div>
-                        <strong>yourname.helios</strong>
-                        <p>Permanent identity NFT on the Helios network. Your node in the field.</p>
-                    </div>
+    <!-- ═══ WHAT YOU GET ═══ -->
+    <section class="act-section">
+        <h2>What Every Member Receives</h2>
+        <p class="section-desc">
+            Regardless of tier, every member gets the full protocol experience.
+            Higher tiers unlock larger allocations and premium features.
+        </p>
+
+        <div class="benefit-grid">
+            <div class="benefit-item">
+                <div class="bi-marker">H</div>
+                <div class="bi-text">
+                    <strong>yourname.helios</strong>
+                    <p>Permanent identity on the Helios network. Your membership anchor on XRPL.</p>
                 </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">⚡</span>
-                    <div>
-                        <strong>Energy Flow</strong>
-                        <p>Energy propagates through your bonds. Up to 5 connections, 15 hops deep.</p>
-                    </div>
+            </div>
+            <div class="benefit-item">
+                <div class="bi-marker">15</div>
+                <div class="bi-text">
+                    <strong>15-Level Allocations</strong>
+                    <p>Earn from activity across 15 levels of your network. Deterministic. Automatic. No manual intervention.</p>
                 </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">🔋</span>
-                    <div>
-                        <strong>Certificate Minting</strong>
-                        <p>Store energy in HC-NFT certificates. Redeem for gold or stablecoin anytime.</p>
-                    </div>
+            </div>
+            <div class="benefit-item">
+                <div class="bi-marker">Au</div>
+                <div class="bi-text">
+                    <strong>Gold-Backed Certificates</strong>
+                    <p>Digital certificates backed by physical gold. Redeemable for gold, silver, or stablecoin at any time.</p>
                 </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">☀</span>
-                    <div>
-                        <strong>Ask Helios</strong>
-                        <p>AI assistant with voice. Understands the full protocol. Always available.</p>
-                    </div>
+            </div>
+            <div class="benefit-item">
+                <div class="bi-marker">BTC</div>
+                <div class="bi-text">
+                    <strong>Crypto Access</strong>
+                    <p>Convert allocations into BTC, ETH, XRP, or stablecoins. Build wealth across multiple asset classes.</p>
                 </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">📊</span>
-                    <div>
-                        <strong>Transparent Metrics</strong>
-                        <p>SR-level dashboards. Reserve ratio, flow efficiency, churn — all public.</p>
-                    </div>
+            </div>
+            <div class="benefit-item">
+                <div class="bi-marker">S</div>
+                <div class="bi-text">
+                    <strong>Certificate Staking</strong>
+                    <p>Lock certificates for 30 to 365 days. Receive rules-based bonus allocations on top of your earnings.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="bi-marker">AI</div>
+                <div class="bi-text">
+                    <strong>Helios AI Guide</strong>
+                    <p>Voice-powered AI assistant that understands the full protocol. Available to guide you through everything.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Referrer Info -->
-        {% if referrer %}
-        <div class="activate-referrer">
+    <!-- ═══ REFERRER ═══ -->
+    {% if referrer %}
+    <section class="act-section">
+        <div class="act-referrer">
             <p>Invited by: <strong>{{ referrer }}.helios</strong></p>
         </div>
-        {% endif %}
-        <div id="dynamic-referrer" style="display:none" class="activate-referrer"></div>
-
-        <!-- CTA -->
-        <div class="activate-cta">
-            <a id="activate-cta-link" href="/join{% if referrer %}/{{ referrer }}{% endif %}" class="btn btn-primary btn-lg btn-full">Activate — $100</a>
-            <p class="activate-note">One price. One transaction. Atomic. If payment fails, nothing happens.</p>
-        </div>
-
-        <!-- Conservation Law -->
-        <div class="activate-conservation">
-            <h3>Conservation Law</h3>
-            <p class="conservation-formula">∑ inflows = routed + stored + pooled + burned</p>
-            <p class="conservation-note">Total energy entering the system always equals total energy distributed. No leaks. No hidden pools. Verifiable at <a href="/api/energy/conservation">/api/energy/conservation</a>.</p>
-        </div>
+    </section>
+    {% endif %}
+    <div id="dynamic-referrer" style="display:none" class="act-section">
+        <div class="act-referrer"></div>
     </div>
-</section>
+
+    <!-- ═══ TRANSPARENCY ═══ -->
+    <section class="act-section">
+        <div class="transparency-block">
+            <h3>Full Transparency</h3>
+            <p>
+                Every dollar entering the protocol equals every dollar distributed.
+                No hidden pools. No discretionary funds. All allocations are
+                formula-governed, published, and verifiable on-chain.
+            </p>
+        </div>
+
+        <p class="act-note">
+            All tiers are one-time memberships. No monthly fees. No autoship. No recurring charges.
+            Choose your tier, activate, and let the 15-level math do the rest.
+        </p>
+    </section>
+</div>
 
 <script>
-// Client-side referrer detection for static hosting (Netlify)
+// Client-side referrer detection for static hosting
 (function() {
-    const parts = window.location.pathname.split('/').filter(Boolean);
+    var parts = window.location.pathname.split('/').filter(Boolean);
     if (parts[0] === 'activate' && parts[1]) {
-        const ref = parts[1];
-        const dynRef = document.getElementById('dynamic-referrer');
-        if (dynRef && !document.querySelector('.activate-referrer p')) {
-            dynRef.innerHTML = '<p>Invited by: <strong>' + ref + '.helios</strong></p>';
+        var ref = parts[1];
+        var dynRef = document.getElementById('dynamic-referrer');
+        if (dynRef && !document.querySelector('.act-referrer p')) {
+            dynRef.querySelector('.act-referrer').innerHTML = '<p>Invited by: <strong>' + ref + '.helios</strong></p>';
             dynRef.style.display = 'block';
-        }
-        const ctaLink = document.getElementById('activate-cta-link');
-        if (ctaLink && !ctaLink.href.includes('/' + ref)) {
-            ctaLink.href = '/join/' + ref;
         }
     }
 })();
 </script>
-</section>
 {% endblock %}
