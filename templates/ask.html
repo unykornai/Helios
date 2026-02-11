@@ -1,104 +1,133 @@
 {% extends "base.html" %}
-{% block title %}Member Advisory — Helios Protocol{% endblock %}
-{% block og_title %}Member Advisory — Helios Protocol{% endblock %}
-{% block og_description %}AI-powered advisory for the Helios protocol. Understand settlement mechanics, reserve composition, allocation formulas, and smart contract structure.{% endblock %}
+{% block title %}Ask Helios — AI Intelligence Hub{% endblock %}
+{% block og_title %}Ask Helios — AI Intelligence Hub{% endblock %}
+{% block og_description %}Your personal AI advisor for the Helios protocol. Real-time answers on smart contracts, gold reserves, tokenomics, allocation formulas, and Web3 infrastructure.{% endblock %}
 {% block og_url %}/ask{% endblock %}
 
 {% block head %}
 <style>
-/* ─── Avatar ──────────────────────────────────────────────────── */
-.avatar-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
-.helios-avatar { width: 140px; height: 140px; cursor: pointer; transition: transform .3s; }
-.helios-avatar:hover { transform: scale(1.02); }
-.avatar-rings { animation: avatar-idle 10s ease-in-out infinite; }
-.avatar-core { filter: drop-shadow(0 0 8px rgba(41,151,255,0.3)); }
-@keyframes avatar-idle {
-    0%,100% { opacity: .5; }
-    50% { opacity: .9; }
-}
-@keyframes avatar-speak {
-    0%,100% { r: 16; opacity: .7; }
-    25% { r: 19; opacity: 1; }
-    50% { r: 14; opacity: .6; }
-    75% { r: 20; opacity: .9; }
-}
-@keyframes avatar-ring-pulse {
-    0%,100% { stroke-width: 1.5; opacity: .3; }
-    50% { stroke-width: 2.5; opacity: .5; }
-}
-.avatar-speaking .avatar-core-circle { animation: avatar-speak .6s ease-in-out infinite; }
-.avatar-speaking .avatar-rings circle { animation: avatar-ring-pulse 1.2s ease-in-out infinite; }
-.avatar-speaking .avatar-rays line { animation: ray-pulse .8s ease-in-out infinite alternate; }
-@keyframes ray-pulse {
-    0% { stroke-opacity: .3; stroke-width: 1.5; }
-    100% { stroke-opacity: .7; stroke-width: 2.5; }
-}
-.avatar-thinking .avatar-core-circle { animation: avatar-think 2s ease-in-out infinite; }
-@keyframes avatar-think {
-    0%,100% { r: 16; fill-opacity: .8; }
-    50% { r: 12; fill-opacity: .5; }
-}
-.avatar-label {
-    margin-top: .75rem; font-size: .8rem; color: var(--text-muted);
-    text-transform: uppercase; letter-spacing: .15em; font-weight: 600;
-    transition: color .3s; font-family: 'Inter', sans-serif;
-}
-.avatar-speaking + .avatar-label { color: var(--gold); }
-.avatar-status {
-    font-size: .75rem; color: var(--text-muted); margin-top: .25rem;
-    min-height: 1.1rem; font-family: 'Inter', sans-serif;
-}
+/* ═══════════════════════════════════════════════════════════════════
+   ASK HELIOS — THE INTELLIGENCE HUB
+   ═══════════════════════════════════════════════════════════════════ */
 
-/* ─── Topic Guide Cards ───────────────────────────────────────── */
-.guide-section { margin-bottom: 1.8rem; }
-.guide-title {
-    font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
-    color: var(--text-muted); font-weight: 600; margin-bottom: .65rem;
-    padding-left: .2rem; font-family: 'Inter', sans-serif;
+/* ── Hero Oracle ──────────────────────────────────────────────────── */
+.ask-hero {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    position: relative;
 }
-.topic-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: .55rem;
+.oracle-container {
+    position: relative;
+    width: 180px; height: 180px;
+    margin: 0 auto 1.5rem;
+    cursor: pointer;
 }
-.topic-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: .75rem 1rem;
-    cursor: pointer; transition: all .25s;
-    display: flex; align-items: center; gap: .6rem;
+.oracle-glow {
+    position: absolute; inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(41,151,255,0.15) 0%, transparent 70%);
+    animation: oracle-breathe 4s ease-in-out infinite;
 }
-.topic-card:hover {
-    border-color: rgba(41,151,255,0.25);
-    background: rgba(41,151,255,0.03);
-    transform: translateY(-1px);
+@keyframes oracle-breathe {
+    0%,100% { opacity: .4; transform: scale(.95); }
+    50% { opacity: .8; transform: scale(1.05); }
 }
-.topic-marker {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(41,151,255,0.08); border: 1px solid rgba(41,151,255,0.15);
+.oracle-ring {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(41,151,255,0.2);
+    animation: oracle-ring-spin 20s linear infinite;
+}
+.oracle-ring::before {
+    content: ''; position: absolute;
+    top: -3px; left: 50%; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--primary);
+    box-shadow: 0 0 12px var(--primary);
+}
+@keyframes oracle-ring-spin { to { transform: rotate(360deg); } }
+.oracle-ring-outer {
+    position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 1px solid rgba(41,151,255,0.08);
+    animation: oracle-ring-spin 30s linear infinite reverse;
+}
+.oracle-ring-outer::before {
+    content: ''; position: absolute;
+    top: -2px; left: 50%; width: 4px; height: 4px;
+    border-radius: 50%; background: rgba(41,151,255,0.4);
+}
+.oracle-core {
+    position: absolute; inset: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, rgba(41,151,255,0.25), rgba(41,151,255,0.05));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(41,151,255,0.15);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: .75rem; font-weight: 700;
-    color: var(--gold); font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    transition: all .3s;
 }
-.topic-text {
-    font-size: .85rem; font-weight: 600; color: var(--text);
-    line-height: 1.3;
+.oracle-core:hover { border-color: rgba(41,151,255,0.4); }
+.oracle-core .oracle-icon { animation: oracle-pulse 3s ease-in-out infinite; }
+@keyframes oracle-pulse {
+    0%,100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.08); filter: brightness(1.3); }
 }
-.topic-sub { font-size: .72rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif; }
 
-/* ─── Voice Toggle ────────────────────────────────────────────── */
-.voice-toggle-bar {
-    display: inline-flex; align-items: center;
-    gap: .8rem; padding: .45rem 1rem; border-radius: 20px;
-    background: var(--bg-card); border: 1px solid var(--border);
-    font-family: 'Inter', sans-serif;
+/* Oracle states */
+.oracle-speaking .oracle-glow { animation: oracle-speak-glow .6s ease-in-out infinite; }
+@keyframes oracle-speak-glow {
+    0%,100% { opacity: .5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
-.voice-toggle-wrap { display: flex; justify-content: center; margin-bottom: 1.5rem; }
+.oracle-thinking .oracle-core { animation: oracle-think 1.5s ease-in-out infinite; }
+@keyframes oracle-think {
+    0%,100% { opacity: .6; }
+    50% { opacity: 1; }
+}
+
+.ask-title {
+    font-size: 2.2rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--chrome), var(--primary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: .4rem;
+}
+.ask-subtitle {
+    font-size: 1rem; color: var(--text-muted);
+    max-width: 540px; margin: 0 auto .5rem;
+    line-height: 1.5;
+}
+.ask-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .3rem .8rem; border-radius: 20px;
+    background: rgba(41,151,255,0.06);
+    border: 1px solid rgba(41,151,255,0.12);
+    font-size: .72rem; font-weight: 600;
+    color: var(--primary); text-transform: uppercase;
+    letter-spacing: .08em; margin-top: .5rem;
+}
+.ask-badge .pulse-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #34d399; animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+    0%,100% { opacity: .4; transform: scale(.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ── Voice Toggle ─────────────────────────────────────────────────── */
+.voice-toggle-wrap { display: flex; justify-content: center; margin-bottom: 1.8rem; }
+.voice-toggle-bar {
+    display: inline-flex; align-items: center; gap: .8rem;
+    padding: .45rem 1rem; border-radius: 20px;
+    background: var(--bg-card); border: 1px solid var(--border);
+}
 .voice-toggle-label { font-size: .78rem; color: var(--text-muted); font-weight: 600; }
 .voice-toggle {
     width: 36px; height: 20px; border-radius: 10px;
     background: var(--border); position: relative;
     cursor: pointer; transition: background .3s;
 }
-.voice-toggle.active { background: var(--gold); }
+.voice-toggle.active { background: var(--primary); }
 .voice-toggle::after {
     content: ''; position: absolute; top: 2px; left: 2px;
     width: 16px; height: 16px; border-radius: 50%;
@@ -106,16 +135,88 @@
 }
 .voice-toggle.active::after { transform: translateX(16px); }
 
-/* ─── Chat Area ───────────────────────────────────────────────── */
-.chat-container {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: var(--radius); max-height: 400px; overflow-y: auto;
-    margin-bottom: 1rem; scroll-behavior: smooth;
+/* ── Topic Categories ─────────────────────────────────────────────── */
+.topic-categories { margin-bottom: 2rem; }
+.category-header {
+    display: flex; align-items: center; gap: .5rem;
+    margin-bottom: .75rem; padding-bottom: .4rem;
+    border-bottom: 1px solid rgba(41,151,255,0.08);
 }
-.chat-messages { padding: 1rem; }
+.category-icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: rgba(41,151,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8rem;
+}
+.category-label {
+    font-size: .72rem; text-transform: uppercase;
+    letter-spacing: .1em; font-weight: 700;
+    color: var(--text-muted);
+}
+.topic-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: .55rem; margin-bottom: 1.5rem;
+}
+.topic-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: .7rem .9rem;
+    cursor: pointer; transition: all .25s;
+    display: flex; align-items: center; gap: .6rem;
+    position: relative; overflow: hidden;
+}
+.topic-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(41,151,255,0.04), transparent);
+    opacity: 0; transition: opacity .25s;
+}
+.topic-card:hover::before { opacity: 1; }
+.topic-card:hover {
+    border-color: rgba(41,151,255,0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(41,151,255,0.06);
+}
+.topic-marker {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: rgba(41,151,255,0.06); border: 1px solid rgba(41,151,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: .85rem;
+}
+.topic-text { font-size: .85rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+.topic-sub { font-size: .7rem; color: var(--text-muted); font-weight: 400; margin-top: .1rem; }
+
+/* ── Chat Container ───────────────────────────────────────────────── */
+.chat-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+.chat-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .6rem 1rem;
+    background: rgba(41,151,255,0.03);
+    border-bottom: 1px solid var(--border);
+}
+.chat-header-left { display: flex; align-items: center; gap: .5rem; }
+.chat-header-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #34d399; animation: pulse-dot 2s ease-in-out infinite;
+}
+.chat-header-title { font-size: .78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; }
+.chat-header-clear {
+    font-size: .72rem; color: var(--text-muted); cursor: pointer;
+    padding: .2rem .5rem; border-radius: 8px; border: 1px solid var(--border);
+    background: none; transition: all .2s;
+}
+.chat-header-clear:hover { border-color: var(--primary); color: var(--primary); }
+.chat-messages {
+    max-height: 500px; overflow-y: auto;
+    padding: 1rem; scroll-behavior: smooth;
+}
 .chat-message {
     display: flex; gap: .75rem; margin-bottom: 1rem;
-    animation: msgFadeIn .3s ease;
+    animation: msgFadeIn .35s ease;
 }
 @keyframes msgFadeIn {
     from { opacity: 0; transform: translateY(8px); }
@@ -123,25 +224,31 @@
 }
 .chat-message.user { flex-direction: row-reverse; }
 .msg-avatar {
-    width: 32px; height: 32px; border-radius: 50%;
+    width: 34px; height: 34px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     font-size: .8rem; flex-shrink: 0;
-    background: var(--bg); font-weight: 600;
-    color: var(--gold); font-family: 'Inter', sans-serif;
+    font-weight: 700; color: var(--primary);
+}
+.chat-message.assistant .msg-avatar {
+    background: rgba(41,151,255,0.08); border: 1px solid rgba(41,151,255,0.12);
+}
+.chat-message.user .msg-avatar {
+    background: rgba(74,126,181,0.08); border: 1px solid rgba(74,126,181,0.12);
+    color: var(--text-muted);
 }
 .msg-content {
     max-width: 80%; padding: .75rem 1rem;
     border-radius: var(--radius);
-    font-size: .92rem; line-height: 1.6;
+    font-size: .92rem; line-height: 1.65;
 }
 .chat-message.assistant .msg-content {
-    background: rgba(41,151,255,0.04);
-    border: 1px solid rgba(41,151,255,0.1);
+    background: rgba(41,151,255,0.03);
+    border: 1px solid rgba(41,151,255,0.08);
     color: var(--text);
 }
 .chat-message.user .msg-content {
-    background: rgba(74,126,181,0.08);
-    border: 1px solid rgba(74,126,181,0.12);
+    background: rgba(74,126,181,0.06);
+    border: 1px solid rgba(74,126,181,0.1);
     color: var(--text);
 }
 .msg-content p { margin: 0; }
@@ -151,116 +258,101 @@
     opacity: .5; transition: opacity .2s;
 }
 .voice-btn:hover { opacity: 1; }
-.voice-btn.playing { opacity: 1; color: var(--gold); }
+.voice-btn.playing { opacity: 1; color: var(--primary); }
 .follow-up {
     display: flex; flex-wrap: wrap; gap: .4rem;
-    padding: 0 1rem .5rem;
+    padding: .5rem 1rem .75rem;
 }
 .follow-btn {
     background: var(--bg); border: 1px solid var(--border);
     border-radius: 16px; padding: .3rem .8rem;
-    font-size: .75rem; color: var(--text-muted);
+    font-size: .73rem; color: var(--text-muted);
     cursor: pointer; transition: all .2s;
-    font-family: 'Inter', sans-serif;
 }
 .follow-btn:hover {
-    border-color: var(--gold); color: var(--gold);
-    background: rgba(41,151,255,0.04);
+    border-color: var(--primary); color: var(--primary);
+    background: rgba(41,151,255,0.03);
 }
 .chat-input-area {
     display: flex; gap: .5rem;
+    padding: .75rem 1rem;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
 }
 .chat-input-area input {
     flex: 1; padding: .7rem 1rem;
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); color: var(--text);
-    font-size: .95rem; font-family: 'EB Garamond', serif;
+    font-size: .92rem; font-family: 'EB Garamond', serif;
 }
 .chat-input-area input:focus {
-    outline: none; border-color: var(--gold);
-    box-shadow: 0 0 0 2px rgba(41,151,255,0.1);
+    outline: none; border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(41,151,255,0.08);
 }
-.chat-input-area .btn { white-space: nowrap; }
+.chat-input-area input::placeholder { color: var(--text-muted); opacity: .6; }
 
-/* ─── Page Links ──────────────────────────────────────────────── */
-.page-links {
+/* ── Context Awareness Bar ────────────────────────────────────────── */
+.context-bar {
     display: flex; flex-wrap: wrap; gap: .5rem;
-    justify-content: center;
-    margin-top: 1.5rem; padding: 1rem 0;
-    border-top: 1px solid var(--border);
+    justify-content: center; margin-top: 1.5rem;
+    padding-top: 1rem; border-top: 1px solid var(--border);
 }
-.page-link {
-    padding: .4rem .8rem; border-radius: 20px;
-    font-size: .75rem; font-weight: 600;
-    border: 1px solid var(--border); color: var(--text-muted);
+.context-chip {
+    display: flex; align-items: center; gap: .3rem;
+    padding: .3rem .7rem; border-radius: 20px;
+    font-size: .7rem; font-weight: 600; color: var(--text-muted);
+    border: 1px solid var(--border); background: var(--bg-card);
     text-decoration: none; transition: all .2s;
-    font-family: 'Inter', sans-serif;
 }
-.page-link:hover { border-color: var(--gold); color: var(--gold); }
+.context-chip:hover { border-color: var(--primary); color: var(--primary); }
+.context-chip .chip-icon { font-size: .75rem; }
 
-@media (max-width: 768px) {
-    .topic-grid { grid-template-columns: 1fr 1fr; }
+/* ── Capabilities Grid ────────────────────────────────────────────── */
+.capabilities {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: .75rem; margin: 1.5rem 0;
 }
-@media (max-width: 480px) {
-    .topic-grid { grid-template-columns: 1fr; }
-    .helios-avatar { width: 110px; height: 110px; }
+.capability-card {
+    text-align: center; padding: 1.2rem .8rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); transition: all .25s;
 }
+.capability-card:hover {
+    border-color: rgba(41,151,255,0.2);
+    transform: translateY(-2px);
+}
+.capability-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+.capability-title { font-size: .82rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+.capability-desc { font-size: .7rem; color: var(--text-muted); line-height: 1.4; }
+
+/* ── No floating AI on /ask page (already here) ───────────────────── */
+.helios-fab { display: none !important; }
 </style>
 {% endblock %}
 
 {% block content %}
-<section class="section ask-section">
-    <div class="container container-sm">
-        <!-- ═══ ADVISORY AVATAR ═══ -->
-        <div class="avatar-container">
-            <svg class="helios-avatar" id="helios-avatar" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <radialGradient id="avatarGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:0.7"/>
-                        <stop offset="40%" style="stop-color:#2997ff;stop-opacity:0.5"/>
-                        <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0"/>
-                    </radialGradient>
-                    <radialGradient id="avatarCore" cx="50%" cy="45%" r="40%">
-                        <stop offset="0%" style="stop-color:#93c5fd"/>
-                        <stop offset="60%" style="stop-color:#2997ff"/>
-                        <stop offset="100%" style="stop-color:#0071e3"/>
-                    </radialGradient>
-                    <filter id="avatarBlur">
-                        <feGaussianBlur stdDeviation="4" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                </defs>
-                <circle cx="80" cy="80" r="70" fill="url(#avatarGlow)" opacity=".3"/>
-                <g class="avatar-rings">
-                    <circle cx="80" cy="80" r="55" fill="none" stroke="#2997ff" stroke-width="1" opacity=".25"/>
-                    <circle cx="80" cy="80" r="42" fill="none" stroke="#64d2ff" stroke-width=".8" opacity=".15"/>
-                    <circle cx="80" cy="80" r="65" fill="none" stroke="#0071e3" stroke-width=".6" opacity=".1" stroke-dasharray="8 6"/>
-                </g>
-                <g class="avatar-rays" opacity=".35">
-                    <line x1="80" y1="25" x2="80" y2="10" stroke="#64d2ff" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="130" y1="50" x2="142" y2="40" stroke="#64d2ff" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="130" y1="110" x2="142" y2="120" stroke="#64d2ff" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="80" y1="135" x2="80" y2="150" stroke="#64d2ff" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="30" y1="50" x2="18" y2="40" stroke="#64d2ff" stroke-width="1.5" stroke-linecap="round"/>
-                </g>
-                <g class="avatar-core" filter="url(#avatarBlur)">
-                    <circle class="avatar-core-circle" cx="80" cy="80" r="16" fill="url(#avatarCore)"/>
-                </g>
-                <g opacity=".3">
-                    <circle cx="80" cy="52" r="2.5" fill="#64d2ff"/>
-                    <circle cx="107" cy="68" r="2.5" fill="#64d2ff"/>
-                    <circle cx="97" cy="100" r="2.5" fill="#64d2ff"/>
-                    <circle cx="63" cy="100" r="2.5" fill="#64d2ff"/>
-                    <circle cx="53" cy="68" r="2.5" fill="#64d2ff"/>
-                    <line x1="80" y1="52" x2="107" y2="68" stroke="#64d2ff" stroke-width=".5" opacity=".4"/>
-                    <line x1="107" y1="68" x2="97" y2="100" stroke="#64d2ff" stroke-width=".5" opacity=".4"/>
-                    <line x1="97" y1="100" x2="63" y2="100" stroke="#64d2ff" stroke-width=".5" opacity=".4"/>
-                    <line x1="63" y1="100" x2="53" y2="68" stroke="#64d2ff" stroke-width=".5" opacity=".4"/>
-                    <line x1="53" y1="68" x2="80" y2="52" stroke="#64d2ff" stroke-width=".5" opacity=".4"/>
-                </g>
-            </svg>
-            <div class="avatar-label" id="avatar-label">MEMBER ADVISORY</div>
-            <div class="avatar-status" id="avatar-status">Voice-powered advisory &middot; Tap to listen</div>
+<section class="section">
+    <div class="container" style="max-width: 820px;">
+
+        <!-- ═══ ORACLE HERO ═══ -->
+        <div class="ask-hero">
+            <div class="oracle-container" id="helios-oracle" title="Tap to replay last response">
+                <div class="oracle-glow"></div>
+                <div class="oracle-ring-outer"></div>
+                <div class="oracle-ring"></div>
+                <div class="oracle-core">
+                    <span class="oracle-icon">☀️</span>
+                </div>
+            </div>
+            <h1 class="ask-title">Ask Helios</h1>
+            <p class="ask-subtitle">
+                Your personal AI advisor. Protocol mechanics, allocation math,
+                gold reserves, smart contracts — I'll explain it. You decide.
+            </p>
+            <div class="ask-badge">
+                <span class="pulse-dot"></span>
+                <span id="oracle-status">Intelligence Hub Active</span>
+            </div>
         </div>
 
         <!-- ═══ VOICE TOGGLE ═══ -->
@@ -272,160 +364,247 @@
             </div>
         </div>
 
-        <!-- ═══ INQUIRY TOPICS ═══ -->
-        <div class="guide-section">
-            <div class="guide-title">Smart Contract Allocation</div>
+        <!-- ═══ WHAT I CAN DO ═══ -->
+        <div class="capabilities">
+            <div class="capability-card">
+                <div class="capability-icon">⚡</div>
+                <div class="capability-title">Smart Contracts</div>
+                <div class="capability-desc">Allocation engine, propagation formula, depth mechanics</div>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">🪙</div>
+                <div class="capability-title">Gold &amp; Reserves</div>
+                <div class="capability-desc">Physical gold, APMEX, NFT certificates, redemption</div>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">📊</div>
+                <div class="capability-title">Tokenomics</div>
+                <div class="capability-desc">HLS token, burns, staking, exchange mechanics</div>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">🔗</div>
+                <div class="capability-title">Web3 Infrastructure</div>
+                <div class="capability-desc">XRPL, Stellar, .helios identity, proof chains</div>
+            </div>
+        </div>
+
+        <!-- ═══ TOPIC CATEGORIES ═══ -->
+        <div class="topic-categories">
+
+            <!-- Smart Contract Allocation -->
+            <div class="category-header">
+                <div class="category-icon">⚙️</div>
+                <span class="category-label">Smart Contract Allocation</span>
+            </div>
             <div class="topic-grid">
-                <div class="topic-card" onclick="askQuestion('How does the smart contract allocation engine work in Helios?')">
-                    <div class="topic-marker">⚙</div>
+                <div class="topic-card" onclick="askQuestion('How does the smart contract allocation engine work?')">
+                    <div class="topic-marker">⚙️</div>
                     <div><div class="topic-text">Allocation Engine</div><div class="topic-sub">Propagation across the connection mesh</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('Walk me through the $100 activation fee allocation — where does every dollar go?')">
+                <div class="topic-card" onclick="askQuestion('Walk me through the activation fee — where does every dollar go?')">
                     <div class="topic-marker">$</div>
-                    <div><div class="topic-text">Fee Allocation</div><div class="topic-sub">Complete dollar breakdown</div></div>
+                    <div><div class="topic-text">Fee Breakdown</div><div class="topic-sub">Complete dollar-by-dollar allocation</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('Explain the formula W_h = W_1 times r to the power of h minus 1. What is the allocation at each depth?')">
+                <div class="topic-card" onclick="askQuestion('Explain the propagation formula W_h = W_1 times r to the power of h minus 1.')">
                     <div class="topic-marker">W</div>
                     <div><div class="topic-text">Weighting Formula</div><div class="topic-sub">W<sub>h</sub> = W<sub>1</sub> · r<sup>(h−1)</sup></div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('What rewards are available? How do the connection, staking, and Engagement rewards work?')">
-                    <div class="topic-marker">B</div>
-                    <div><div class="topic-text">Rewards &amp; Staking</div><div class="topic-sub">Certificate lock rewards</div></div>
+                <div class="topic-card" onclick="askQuestion('What are the five contract levels and how do allocations scale?')">
+                    <div class="topic-marker">📋</div>
+                    <div><div class="topic-text">Contract Levels</div><div class="topic-sub">$100 → $250 → $500 → $1K → $5K</div></div>
                 </div>
             </div>
-        </div>
 
-        <div class="guide-section">
-            <div class="guide-title">Certificates &amp; Treasury</div>
+            <!-- Gold & Treasury -->
+            <div class="category-header">
+                <div class="category-icon">🪙</div>
+                <span class="category-label">Gold, Certificates &amp; Treasury</span>
+            </div>
             <div class="topic-grid">
-                <div class="topic-card" onclick="askQuestion('What are the three certificate types? How do Gold, Welcome, and Staking Certificates work?')">
-                    <div class="topic-marker">C</div>
+                <div class="topic-card" onclick="askQuestion('How does the gold backing work? Physical gold through APMEX?')">
+                    <div class="topic-marker">🪙</div>
+                    <div><div class="topic-text">Gold Backing</div><div class="topic-sub">Physical metal reserves via APMEX</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What are the three certificate types? Gold, Welcome, and Staking?')">
+                    <div class="topic-marker">📜</div>
                     <div><div class="topic-text">Certificate Classes</div><div class="topic-sub">Gold, Welcome, Staking NFTs</div></div>
                 </div>
                 <div class="topic-card" onclick="askQuestion('How do I redeem certificates for physical gold or convert to stablecoin?')">
-                    <div class="topic-marker">R</div>
-                    <div><div class="topic-text">Redemption Process</div><div class="topic-sub">Physical metal or USDC</div></div>
+                    <div class="topic-marker">♻️</div>
+                    <div><div class="topic-text">Redemption</div><div class="topic-sub">Physical metal or USDC conversion</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('How does the money flow work? Fiat to stablecoin to gold to certificates?')">
-                    <div class="topic-marker">F</div>
-                    <div><div class="topic-text">Capital Flow</div><div class="topic-sub">5-step money pipeline</div></div>
-                </div>
-                <div class="topic-card" onclick="askQuestion('What precious metals are held in the reserve? How are they verified on-chain?')">
-                    <div class="topic-marker">V</div>
-                    <div><div class="topic-text">Reserve Verification</div><div class="topic-sub">APMEX + XRPL proof chain</div></div>
+                <div class="topic-card" onclick="askQuestion('How does certificate staking work? What are the reward tiers?')">
+                    <div class="topic-marker">📈</div>
+                    <div><div class="topic-text">Staking Rewards</div><div class="topic-sub">5% → 12% → 20% → 30% tiers</div></div>
                 </div>
             </div>
-        </div>
 
-        <div class="guide-section">
-            <div class="guide-title">Web3 Infrastructure</div>
+            <!-- Web3 & Blockchain -->
+            <div class="category-header">
+                <div class="category-icon">🔗</div>
+                <span class="category-label">Web3 &amp; Blockchain Infrastructure</span>
+            </div>
             <div class="topic-grid">
                 <div class="topic-card" onclick="askQuestion('How does Helios use XRPL and Stellar? What role does each blockchain play?')">
-                    <div class="topic-marker">X</div>
+                    <div class="topic-marker">🔗</div>
                     <div><div class="topic-text">XRPL &amp; Stellar</div><div class="topic-sub">Dual-chain settlement</div></div>
                 </div>
                 <div class="topic-card" onclick="askQuestion('What is the .helios namespace and how does member identity work on-chain?')">
                     <div class="topic-marker">.h</div>
-                    <div><div class="topic-text">.helios Namespace</div><div class="topic-sub">Decentralized identity</div></div>
+                    <div><div class="topic-text">.helios Identity</div><div class="topic-sub">Decentralized namespace</div></div>
                 </div>
                 <div class="topic-card" onclick="askQuestion('How is the SHA-256 proof chain created from physical gold to digital certificate?')">
-                    <div class="topic-marker">P</div>
-                    <div><div class="topic-text">Proof Chain</div><div class="topic-sub">Gold → IPFS → XRPL</div></div>
+                    <div class="topic-marker">🔒</div>
+                    <div><div class="topic-text">Proof Chain</div><div class="topic-sub">Gold → IPFS → XRPL verification</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What crypto assets are available? BTC, ETH, XRP, stablecoins?')">
+                    <div class="topic-marker">💱</div>
+                    <div><div class="topic-text">Crypto Access</div><div class="topic-sub">BTC, ETH, XRP, XLM, USDC, USDT</div></div>
+                </div>
+            </div>
+
+            <!-- Tokenomics & HLS -->
+            <div class="category-header">
+                <div class="category-icon">📊</div>
+                <span class="category-label">Tokenomics &amp; HLS Token</span>
+            </div>
+            <div class="topic-grid">
+                <div class="topic-card" onclick="askQuestion('What is the HLS token and how does it work within the protocol?')">
+                    <div class="topic-marker">🌟</div>
+                    <div><div class="topic-text">HLS Token</div><div class="topic-sub">Utility, governance, value</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('How do token burns work? What triggers a burn event?')">
+                    <div class="topic-marker">🔥</div>
+                    <div><div class="topic-text">Burn Mechanics</div><div class="topic-sub">Deflationary supply dynamics</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What is the Founding Window and the 10x token multiplier?')">
+                    <div class="topic-marker">⏳</div>
+                    <div><div class="topic-text">Founding Window</div><div class="topic-sub">10× multiplier until Mar 31</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('How does the internal HLS marketplace and exchange work?')">
+                    <div class="topic-marker">🏪</div>
+                    <div><div class="topic-text">Marketplace</div><div class="topic-sub">Internal exchange mechanics</div></div>
+                </div>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="category-header">
+                <div class="category-icon">🚀</div>
+                <span class="category-label">Getting Started</span>
+            </div>
+            <div class="topic-grid">
+                <div class="topic-card" onclick="askQuestion('I am new. Walk me through how Helios works from the beginning.')">
+                    <div class="topic-marker">👋</div>
+                    <div><div class="topic-text">New Member Guide</div><div class="topic-sub">Complete walkthrough from zero</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('What makes Helios different from other crypto or gold platforms?')">
+                    <div class="topic-marker">💎</div>
+                    <div><div class="topic-text">Why Helios?</div><div class="topic-sub">What sets this apart</div></div>
                 </div>
                 <div class="topic-card" onclick="askQuestion('What structural safeguards prevent protocol misuse or fund misappropriation?')">
-                    <div class="topic-marker">S</div>
-                    <div><div class="topic-text">Integrity Safeguards</div><div class="topic-sub">Structural protections</div></div>
+                    <div class="topic-marker">🛡️</div>
+                    <div><div class="topic-text">Safeguards</div><div class="topic-sub">Structural integrity protections</div></div>
+                </div>
+                <div class="topic-card" onclick="askQuestion('How do I activate a contract and start building my connection mesh?')">
+                    <div class="topic-marker">⚡</div>
+                    <div><div class="topic-text">Activate Now</div><div class="topic-sub">Step-by-step activation</div></div>
                 </div>
             </div>
         </div>
 
-        <!-- ═══ CHAT ═══ -->
-        <div id="chat-container" class="chat-container">
+        <!-- ═══ CHAT INTERFACE ═══ -->
+        <div class="chat-wrapper">
+            <div class="chat-header">
+                <div class="chat-header-left">
+                    <div class="chat-header-dot"></div>
+                    <span class="chat-header-title">Helios Intelligence</span>
+                </div>
+                <button class="chat-header-clear" onclick="clearChat()">Clear</button>
+            </div>
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-message assistant">
-                    <div class="msg-avatar">H</div>
+                    <div class="msg-avatar">☀️</div>
                     <div class="msg-content">
-                        <p>Welcome to the Helios Member Advisory.<br><br>
-                        I can provide detailed information on the smart contract allocation engine,
-                        gold-backed certificates, Web3 infrastructure (XRPL &amp; Stellar),
-                        staking mechanics, and the activation process.<br><br>
-                        <strong>Select a topic above</strong>, or type your question below. Voice advisory is available.</p>
+                        <p>Welcome to Ask Helios — your AI advisor for the entire protocol.<br><br>
+                        I know the smart contract allocation engine inside and out — the propagation formula,
+                        every contract level, the gold reserve pipeline, certificate classes, staking tiers,
+                        XRPL/Stellar settlement, and tokenomics.<br><br>
+                        <strong>Select any topic above</strong>, or ask me anything directly.
+                        I'll explain it. You decide.</p>
                     </div>
                 </div>
             </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input"
+                    placeholder="Ask about contracts, gold, tokenomics, allocation formula..."
+                    class="input-large" autocomplete="off">
+                <button id="chat-send" class="btn btn-primary">Ask</button>
+            </div>
         </div>
 
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask about settlements, reserves, allocation, contracts..."
-                   class="input-large" autocomplete="off">
-            <button id="chat-send" class="btn btn-primary">Submit</button>
+        <!-- ═══ CONTEXT AWARENESS BAR ═══ -->
+        <div class="context-bar">
+            <a href="/earnings" class="context-chip"><span class="chip-icon">⚡</span> Allocation Model</a>
+            <a href="/certificates" class="context-chip"><span class="chip-icon">📜</span> Certificates</a>
+            <a href="/treasury" class="context-chip"><span class="chip-icon">🏦</span> Treasury</a>
+            <a href="/vault/gold" class="context-chip"><span class="chip-icon">🪙</span> Gold Reserve</a>
+            <a href="/tokenomics" class="context-chip"><span class="chip-icon">📊</span> Tokenomics</a>
+            <a href="/metrics" class="context-chip"><span class="chip-icon">📉</span> Protocol Metrics</a>
+            <a href="/launch" class="context-chip"><span class="chip-icon">🚀</span> Token Launch</a>
+            <a href="/activate" class="context-chip"><span class="chip-icon">🔑</span> Activate</a>
         </div>
 
-        <!-- ═══ PAGE LINKS ═══ -->
-        <div class="page-links">
-            <a href="/earnings" class="page-link">Allocation Model</a>
-            <a href="/certificates" class="page-link">Certificates</a>
-            <a href="/treasury" class="page-link">Treasury &amp; Infrastructure</a>
-            <a href="/vault/gold" class="page-link">Reserve Assets</a>
-            <a href="/metrics" class="page-link">Protocol Metrics</a>
-            <a href="/activate" class="page-link">Activate Your Contract</a>
-        </div>
     </div>
 </section>
 {% endblock %}
 
 {% block scripts %}
 <script>
+/* ═══════════════════════════════════════════════════════════════════
+   ASK HELIOS — INTELLIGENCE ENGINE
+   ═══════════════════════════════════════════════════════════════════ */
+
 var memberId = localStorage.getItem('helios_id') || null;
 var chatMessages = document.getElementById('chat-messages');
 var chatInput = document.getElementById('chat-input');
 var chatSend = document.getElementById('chat-send');
-var avatar = document.getElementById('helios-avatar');
-var avatarLabel = document.getElementById('avatar-label');
-var avatarStatus = document.getElementById('avatar-status');
+var oracle = document.getElementById('helios-oracle');
+var oracleStatus = document.getElementById('oracle-status');
 
 var currentAudio = null;
 var lastAnswer = null;
 var voiceEnabled = true;
 
-// ═══ Voice Toggle ═════════════════════════════════════════════
+// ═══ Voice Toggle ════════════════════════════════════════════════════
 function toggleVoice() {
     var toggle = document.getElementById('voiceToggle');
     voiceEnabled = !voiceEnabled;
     toggle.classList.toggle('active', voiceEnabled);
-    avatarStatus.textContent = voiceEnabled
-        ? 'Voice advisory active'
-        : 'Text-only mode';
+    oracleStatus.textContent = voiceEnabled ? 'Voice Advisory Active' : 'Text Mode Active';
 }
 
-// ═══ Avatar State Machine ═════════════════════════════════════
-function setAvatarState(state) {
-    avatar.classList.remove('avatar-speaking', 'avatar-thinking');
+// ═══ Oracle State Machine ════════════════════════════════════════════
+function setOracleState(state) {
+    oracle.classList.remove('oracle-speaking', 'oracle-thinking');
     if (state === 'speaking') {
-        avatar.classList.add('avatar-speaking');
-        avatarLabel.textContent = 'SPEAKING';
-        avatarLabel.style.color = 'var(--gold)';
-        avatarStatus.textContent = 'Tap to pause';
+        oracle.classList.add('oracle-speaking');
+        oracleStatus.textContent = 'Speaking — Tap to pause';
     } else if (state === 'thinking') {
-        avatar.classList.add('avatar-thinking');
-        avatarLabel.textContent = 'PROCESSING';
-        avatarLabel.style.color = 'var(--text-muted)';
-        avatarStatus.textContent = '';
+        oracle.classList.add('oracle-thinking');
+        oracleStatus.textContent = 'Processing…';
     } else {
-        avatarLabel.textContent = 'MEMBER ADVISORY';
-        avatarLabel.style.color = '';
-        avatarStatus.textContent = voiceEnabled
-            ? (lastAnswer ? 'Tap to hear again' : 'Voice advisory active')
-            : 'Text-only mode';
+        oracleStatus.textContent = voiceEnabled
+            ? (lastAnswer ? 'Tap oracle to hear again' : 'Intelligence Hub Active')
+            : 'Text Mode Active';
     }
 }
 
-// Tap avatar to replay / stop
-avatar.addEventListener('click', function() {
+// Tap oracle to replay / stop
+oracle.addEventListener('click', function() {
     if (currentAudio) {
         currentAudio.pause();
         currentAudio = null;
-        setAvatarState('idle');
+        setOracleState('idle');
         return;
     }
     if (lastAnswer && voiceEnabled) {
@@ -433,7 +612,7 @@ avatar.addEventListener('click', function() {
     }
 });
 
-// ═══ Chat Functions ═══════════════════════════════════════════
+// ═══ Chat Functions ══════════════════════════════════════════════════
 function addMessage(role, text, showVoice) {
     var div = document.createElement('div');
     div.className = 'chat-message ' + role;
@@ -444,7 +623,7 @@ function addMessage(role, text, showVoice) {
     }
 
     div.innerHTML =
-        '<div class="msg-avatar">' + (role === 'assistant' ? 'H' : 'M') + '</div>' +
+        '<div class="msg-avatar">' + (role === 'assistant' ? '☀️' : '👤') + '</div>' +
         '<div class="msg-content">' +
             '<p>' + text.replace(/\n/g, '<br>') + '</p>' +
             voiceHtml +
@@ -460,7 +639,13 @@ function addMessage(role, text, showVoice) {
 
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    document.getElementById('chat-container').scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function clearChat() {
+    chatMessages.innerHTML = '';
+    addMessage('assistant',
+        'Chat cleared. Ask me anything about the Helios protocol — ' +
+        'smart contracts, gold reserves, tokenomics, certificates, or Web3 infrastructure.', false);
 }
 
 async function speakText(btn, text) {
@@ -471,12 +656,12 @@ async function speakText(btn, text) {
             b.classList.remove('playing');
             b.innerHTML = '&#128266;';
         });
-        setAvatarState('idle');
+        setOracleState('idle');
         return;
     }
 
     if (btn) { btn.classList.add('playing'); btn.innerHTML = '&#8987;'; }
-    setAvatarState('speaking');
+    setOracleState('speaking');
 
     try {
         var res = await fetch('/api/voice/speak', {
@@ -489,25 +674,24 @@ async function speakText(btn, text) {
             var audioData = 'data:audio/mpeg;base64,' + res.data.audio;
             currentAudio = new Audio(audioData);
             if (btn) btn.innerHTML = '&#9208;&#65039;';
-
             currentAudio.onended = function() {
                 if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128266;'; }
                 currentAudio = null;
-                setAvatarState('idle');
+                setOracleState('idle');
             };
             currentAudio.onerror = function() {
                 if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128266;'; }
                 currentAudio = null;
-                setAvatarState('idle');
+                setOracleState('idle');
             };
             currentAudio.play();
         } else {
             if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(function() { btn.innerHTML = '&#128266;'; }, 2000); }
-            setAvatarState('idle');
+            setOracleState('idle');
         }
     } catch (err) {
         if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#128263;'; setTimeout(function() { btn.innerHTML = '&#128266;'; }, 2000); }
-        setAvatarState('idle');
+        setOracleState('idle');
     }
 }
 
@@ -516,11 +700,11 @@ async function askQuestion(question) {
 
     addMessage('user', question);
     chatInput.value = '';
-    setAvatarState('thinking');
+    setOracleState('thinking');
 
     var typing = document.createElement('div');
     typing.className = 'chat-message assistant typing';
-    typing.innerHTML = '<div class="msg-avatar">H</div><div class="msg-content"><p>Processing inquiry...</p></div>';
+    typing.innerHTML = '<div class="msg-avatar">☀️</div><div class="msg-content"><p>Processing…</p></div>';
     chatMessages.appendChild(typing);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -532,7 +716,7 @@ async function askQuestion(question) {
         }).then(function(r) { return r.json(); });
 
         typing.remove();
-        setAvatarState('idle');
+        setOracleState('idle');
 
         if (res.success) {
             addMessage('assistant', res.data.answer, true);
@@ -541,13 +725,13 @@ async function askQuestion(question) {
                 var suggestions = document.createElement('div');
                 suggestions.className = 'follow-up';
                 suggestions.innerHTML = res.data.follow_up.map(function(q) {
-                    return '<button class="follow-btn" onclick="askQuestion(\'' + q.replace(/'/g, "\\'") + '\')">' + q + '</button>';
+                    return '<button class="follow-btn" onclick="askQuestion(\'' +
+                        q.replace(/'/g, "\\'") + '\')">' + q + '</button>';
                 }).join('');
                 chatMessages.appendChild(suggestions);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
 
-            // Auto-speak if voice is on
             if (voiceEnabled) {
                 speakText(null, res.data.answer);
             }
@@ -556,7 +740,7 @@ async function askQuestion(question) {
         }
     } catch(err) {
         typing.remove();
-        setAvatarState('idle');
+        setOracleState('idle');
         addMessage('assistant', 'Connection error. Please try again.');
     }
 }
@@ -564,16 +748,15 @@ async function askQuestion(question) {
 chatSend.addEventListener('click', function() { askQuestion(chatInput.value); });
 chatInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') askQuestion(chatInput.value); });
 
-// ═══ Auto-greet with voice on first visit ═════════════════════
+// ═══ Auto-greet with voice on first visit ════════════════════════════
 (function() {
-    var greeted = sessionStorage.getItem('helios_greeted');
+    var greeted = sessionStorage.getItem('helios_ask_greeted');
     if (!greeted && voiceEnabled) {
-        sessionStorage.setItem('helios_greeted', '1');
+        sessionStorage.setItem('helios_ask_greeted', '1');
         setTimeout(function() {
-            var intro = "Welcome to the Helios Member Advisory. " +
-                "I can provide detailed information on settlement mechanics, " +
-                "reserve composition, allocation formulas, and smart contract structure. " +
-                "Select any topic, or ask me your question directly.";
+            var intro = "Welcome to Ask Helios. I'm your AI advisor for the entire protocol. " +
+                "Smart contracts, gold reserves, tokenomics, allocation formulas — " +
+                "ask me anything. I'll explain it. You decide.";
             speakText(null, intro);
         }, 1500);
     }
