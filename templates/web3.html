@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+{% block title %}Web3 Preferences — Helios Protocol{% endblock %}
+{% block og_title %}Web3 Preferences — Helios Protocol{% endblock %}
+{% block og_description %}Configure your dual-chain wallet, auto-settlement, staking, and certificate preferences. XRPL + Stellar. Your Web3, your way.{% endblock %}
+{% block og_url %}/web3{% endblock %}
+
+{% block head %}
+<style>
+.w3-page { position: relative; z-index: 1; }
+.w3-hero {
+    text-align: center; padding: 5rem 2rem 3rem;
+}
+.w3-hero h1 {
+    font-size: 2.2rem; font-weight: 600; color: var(--gold);
+    letter-spacing: .1em; margin-bottom: .5rem;
+}
+.w3-hero .hero-sub {
+    color: var(--text-muted); font-size: 1.05rem;
+    max-width: 680px; margin: 0 auto 1.5rem; line-height: 1.7;
+}
+
+.w3-section {
+    max-width: 960px; margin: 0 auto; padding: 0 2rem 4rem;
+}
+.w3-section h2 {
+    font-size: 1.4rem; font-weight: 600; color: var(--text);
+    margin-bottom: .5rem;
+}
+.w3-section .section-desc {
+    color: var(--text-muted); font-size: .95rem; line-height: 1.7;
+    margin-bottom: 1.5rem; max-width: 720px;
+}
+
+/* ——— Wallet Overview ——————————————————————————————————————— */
+.wallet-overview {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-bottom: 3rem;
+}
+.wallet-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem; position: relative;
+    overflow: hidden;
+}
+.wallet-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--blue));
+}
+.wallet-chain {
+    font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--gold);
+    font-family: 'Inter', sans-serif; margin-bottom: .5rem;
+}
+.wallet-address {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: .82rem; color: var(--text-muted);
+    word-break: break-all; line-height: 1.6;
+    background: rgba(41,151,255,.04);
+    padding: .5rem .75rem; border-radius: 6px;
+    border: 1px solid rgba(41,151,255,.1);
+    margin-bottom: 1rem;
+}
+.wallet-status {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .82rem; color: var(--green);
+}
+.wallet-status .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green); animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .4; }
+}
+
+/* ——— Issuance Summary ————————————————————————————————————— */
+.issuance-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-bottom: 3rem;
+}
+.issuance-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem; text-align: center;
+    transition: all .3s;
+}
+.issuance-card:hover { border-color: rgba(41,151,255,0.25); transform: translateY(-2px); }
+.issuance-icon {
+    font-size: 2rem; margin-bottom: .75rem;
+}
+.issuance-label {
+    font-size: .7rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text-muted); font-family: 'Inter', sans-serif;
+    margin-bottom: .3rem;
+}
+.issuance-value {
+    font-size: 1.4rem; font-weight: 700; color: var(--gold);
+    font-family: 'Inter', sans-serif;
+}
+.issuance-sub {
+    font-size: .78rem; color: var(--text-muted); margin-top: .3rem;
+}
+
+/* ——— Preferences Panel ——————————————————————————————————— */
+.pref-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-bottom: 3rem;
+}
+.pref-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+}
+.pref-card h4 {
+    font-size: .95rem; font-weight: 600; color: var(--text);
+    margin-bottom: .75rem;
+}
+.pref-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .6rem 0; border-bottom: 1px solid rgba(36,40,51,0.4);
+}
+.pref-row:last-child { border-bottom: none; }
+.pref-label {
+    font-size: .85rem; color: var(--text-muted);
+}
+.pref-value {
+    font-size: .85rem; font-weight: 600; color: var(--gold);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Toggle switch */
+.toggle {
+    position: relative; width: 44px; height: 24px;
+    border-radius: 12px; background: rgba(36,40,51,0.8);
+    border: 1px solid var(--border); cursor: pointer;
+    transition: all .3s;
+}
+.toggle.on { background: rgba(41,151,255,0.3); border-color: var(--blue); }
+.toggle .knob {
+    position: absolute; top: 2px; left: 2px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--text-muted); transition: all .3s;
+}
+.toggle.on .knob { left: 22px; background: var(--blue); }
+
+/* Select dropdown */
+.pref-select {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--text); font-size: .82rem;
+    padding: .4rem .6rem; font-family: 'Inter', sans-serif;
+    appearance: none; cursor: pointer;
+}
+.pref-select:focus { border-color: var(--blue); outline: none; }
+
+/* ——— NFT Display ————————————————————————————————————————— */
+.nft-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; margin-bottom: 3rem;
+}
+.nft-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem; text-align: center;
+    position: relative; overflow: hidden;
+}
+.nft-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+}
+.nft-card.gold::before { background: linear-gradient(90deg, var(--gold), var(--gold-dark)); }
+.nft-card.welcome::before { background: linear-gradient(90deg, var(--green), #2ec4b6); }
+.nft-card.ceremonial::before { background: linear-gradient(90deg, var(--blue), #bf5af2); }
+.nft-badge {
+    display: inline-block; padding: .2rem .6rem; border-radius: 4px;
+    font-size: .65rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; margin-bottom: .75rem;
+}
+.nft-card.gold .nft-badge { background: rgba(41,151,255,.1); color: var(--gold); }
+.nft-card.welcome .nft-badge { background: rgba(61,139,110,.1); color: var(--green); }
+.nft-card.ceremonial .nft-badge { background: rgba(191,90,242,.1); color: #bf5af2; }
+.nft-title { font-size: 1.05rem; font-weight: 600; margin-bottom: .3rem; }
+.nft-desc { font-size: .82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ——— Settlement Flow ————————————————————————————————————— */
+.flow-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+}
+.flow-step {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; text-align: center;
+    position: relative;
+}
+.flow-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--bg); display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: .8rem; margin: 0 auto .6rem;
+    font-family: 'Inter', sans-serif;
+}
+.flow-step h4 { font-size: .85rem; font-weight: 600; margin-bottom: .2rem; }
+.flow-step p { font-size: .78rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ——— Responsive ————————————————————————————————————————— */
+@media (max-width: 768px) {
+    .w3-hero h1 { font-size: 1.6rem; }
+    .wallet-overview { grid-template-columns: 1fr; }
+    .issuance-grid { grid-template-columns: 1fr; }
+    .pref-grid { grid-template-columns: 1fr; }
+    .nft-grid { grid-template-columns: 1fr; }
+    .flow-steps { grid-template-columns: 1fr 1fr; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="w3-page">
+    <!-- ═══ HERO ═══ -->
+    <section class="w3-hero">
+        <h1>YOUR WEB3</h1>
+        <p class="hero-sub">
+            Dual-chain atomic wallet. Instant token issuance. NFT certificates.
+            Ceremonial artifacts. Auto-settlement. Configure your Web3 experience —
+            your chains, your assets, your rules.
+        </p>
+        <p style="color:var(--gold);font-weight:600;font-size:.8rem;letter-spacing:.12em;opacity:.7;font-family:'Inter',sans-serif;">
+            XRPL &middot; STELLAR &middot; SELF-SETTLING &middot; YOUR KEYS
+        </p>
+    </section>
+
+    <!-- ═══ WALLET OVERVIEW ═══ -->
+    <section class="w3-section">
+        <h2>Atomic Wallet</h2>
+        <p class="section-desc">
+            Your dual-chain wallet is provisioned automatically when you join.
+            Both chains set trustlines for HLS. All allocations settle directly
+            to your wallet — no manual steps.
+        </p>
+
+        <div class="wallet-overview">
+            <div class="wallet-card">
+                <div class="wallet-chain">XRPL · XRP Ledger</div>
+                <div class="wallet-address" id="xrplAddress">r4wK8x...awaiting activation</div>
+                <div class="wallet-status">
+                    <span class="dot"></span>
+                    Trustline set · HLS ready
+                </div>
+                <p style="font-size:.78rem;color:var(--text-muted);margin-top:.75rem;">
+                    TrustSet for HLS token. Reserve: 2 XRP (held in wallet, not a fee).
+                    All gold certificates, tokens, and NFTs arrive here.
+                </p>
+            </div>
+            <div class="wallet-card">
+                <div class="wallet-chain">Stellar Network</div>
+                <div class="wallet-address" id="stellarAddress">GXXX...awaiting activation</div>
+                <div class="wallet-status">
+                    <span class="dot"></span>
+                    ChangeTrust set · HLS ready
+                </div>
+                <p style="font-size:.78rem;color:var(--text-muted);margin-top:.75rem;">
+                    ChangeTrust for HLS asset. Cross-chain settlement enabled.
+                    Stablecoin conversions (USDC/USDT) route through Stellar anchors.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ ISSUANCE SUMMARY ═══ -->
+    <section class="w3-section">
+        <h2>What You Receive</h2>
+        <p class="section-desc">
+            Every new member receives three Web3 issuances automatically.
+            No manual claims. No waiting period. Instant delivery to your atomic wallet.
+        </p>
+
+        <div class="issuance-grid">
+            <div class="issuance-card">
+                <div class="issuance-icon">⚡</div>
+                <div class="issuance-label">Instant Tokens</div>
+                <div class="issuance-value" id="tokenAmount">—</div>
+                <div class="issuance-sub">HLS at $0.05/token · Phase 1</div>
+            </div>
+            <div class="issuance-card">
+                <div class="issuance-icon">🏅</div>
+                <div class="issuance-label">NFT Certificate</div>
+                <div class="issuance-value">Gold-Backed</div>
+                <div class="issuance-sub">XLS-20 NFT on XRPL · redeemable</div>
+            </div>
+            <div class="issuance-card">
+                <div class="issuance-icon">🔥</div>
+                <div class="issuance-label">Ceremonial NFT</div>
+                <div class="issuance-value">Genesis Flame</div>
+                <div class="issuance-sub">Soulbound · non-transferable · founding proof</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ YOUR NFTS ═══ -->
+    <section class="w3-section">
+        <h2>Your Certificates & NFTs</h2>
+        <p class="section-desc">
+            All certificates are NFTs on XRPL (XLS-20 standard). Gold certificates
+            are redeemable for physical metal. Ceremonial NFTs are soulbound — they stay
+            with you permanently.
+        </p>
+
+        <div class="nft-grid">
+            <div class="nft-card gold">
+                <span class="nft-badge">Gold-Backed</span>
+                <div class="nft-title">Gold Certificate</div>
+                <div class="nft-desc">
+                    Represents allocated gold weight in the protocol reserve.
+                    Redeemable for physical gold from APMEX or convertible to USDC.
+                </div>
+            </div>
+            <div class="nft-card welcome">
+                <span class="nft-badge">Welcome</span>
+                <div class="nft-title">Welcome Certificate</div>
+                <div class="nft-desc">
+                    Issued at enrollment. Fixed allocation based on contract tier.
+                    Same gold backing and redemption terms as primary certificates.
+                </div>
+            </div>
+            <div class="nft-card ceremonial">
+                <span class="nft-badge">Soulbound</span>
+                <div class="nft-title">Genesis Flame</div>
+                <div class="nft-desc">
+                    Founding member artifact. Non-transferable.
+                    Marks your place in the genesis of Helios. One per member, ever.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SETTLEMENT FLOW ═══ -->
+    <section class="w3-section">
+        <h2>Self-Settling Architecture</h2>
+        <p class="section-desc">
+            Your wallet settles automatically. No claims. No manual routing.
+            Smart contracts deliver allocations the moment they're calculated.
+        </p>
+
+        <div class="flow-steps">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <h4>Wallet Created</h4>
+                <p>XRPL + Stellar keypairs generated. Trustlines set.</p>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <h4>Tokens Issued</h4>
+                <p>HLS delivered instantly to your XRPL wallet.</p>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <h4>NFTs Minted</h4>
+                <p>Gold certificate + ceremonial NFT minted on-chain.</p>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">4</div>
+                <h4>Settlement Active</h4>
+                <p>All future allocations auto-route to your wallet.</p>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">5</div>
+                <h4>Cross-Chain</h4>
+                <p>Stellar bridge for stablecoin conversions + anchors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ WEB3 PREFERENCES ═══ -->
+    <section class="w3-section">
+        <h2>Your Preferences</h2>
+        <p class="section-desc">
+            Configure your Web3 experience. Choose your preferred chains, assets,
+            automation settings, and certificate formats.
+        </p>
+
+        <div class="pref-grid">
+            <div class="pref-card">
+                <h4>Chain & Settlement</h4>
+                <div class="pref-row">
+                    <span class="pref-label">Primary Chain</span>
+                    <select class="pref-select" id="prefChain">
+                        <option value="XRPL" selected>XRPL</option>
+                        <option value="Stellar">Stellar</option>
+                    </select>
+                </div>
+                <div class="pref-row">
+                    <span class="pref-label">Cross-Chain Settlement</span>
+                    <div class="toggle on" onclick="togglePref(this)" data-key="cross_chain"><div class="knob"></div></div>
+                </div>
+                <div class="pref-row">
+                    <span class="pref-label">Preferred Stablecoin</span>
+                    <select class="pref-select" id="prefStable">
+                        <option value="USDC" selected>USDC</option>
+                        <option value="USDT">USDT</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pref-card">
+                <h4>Auto-Staking</h4>
+                <div class="pref-row">
+                    <span class="pref-label">Auto-Stake Rewards</span>
+                    <div class="toggle" onclick="togglePref(this)" data-key="auto_stake"><div class="knob"></div></div>
+                </div>
+                <div class="pref-row">
+                    <span class="pref-label">Default Lock Duration</span>
+                    <select class="pref-select" id="prefStakeDuration">
+                        <option value="30">30 days (+5%)</option>
+                        <option value="90" selected>90 days (+12%)</option>
+                        <option value="180">180 days (+20%)</option>
+                        <option value="365">365 days (+30%)</option>
+                    </select>
+                </div>
+                <div class="pref-row">
+                    <span class="pref-label">Re-Stake on Maturity</span>
+                    <div class="toggle" onclick="togglePref(this)" data-key="restake"><div class="knob"></div></div>
+                </div>
+            </div>
+
+            <div class="pref-card">
+                <h4>Certificates</h4>
+                <div class="pref-row">
+                    <span class="pref-label">Certificate Format</span>
+                    <select class="pref-select" id="prefCertFormat">
+                        <option value="nft" selected>NFT (on-chain)</option>
+                        <option value="json">JSON (off-chain)</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div class="pref-row">
+                    <span class="pref-label">.helios Identity Public</span>
+                    <div class="toggle on" onclick="togglePref(this)" data-key="identity_public"><div class="knob"></div></div>
+                </div>
+            </div>
+
+            <div class="pref-card">
+                <h4>Notifications</h4>
+                <div class="pref-row">
+                    <span class="pref-label">On Token Issuance</span>
+                    <div class="toggle on" onclick="togglePref(this)" data-key="notify_issuance"><div class="knob"></div></div>
+                </div>
+                <div class="pref-row">
+                    <span class="pref-label">On Allocation Received</span>
+                    <div class="toggle on" onclick="togglePref(this)" data-key="notify_allocation"><div class="knob"></div></div>
+                </div>
+                <div class="pref-row">
+                    <span class="pref-label">On Staking Maturity</span>
+                    <div class="toggle on" onclick="togglePref(this)" data-key="notify_staking"><div class="knob"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin-top:1rem;">
+            <button class="btn btn-primary" onclick="savePreferences()" style="min-width:200px;">
+                Save Preferences
+            </button>
+        </div>
+    </section>
+
+    <!-- ═══ AVAILABLE ASSETS ═══ -->
+    <section class="w3-section">
+        <h2>Available Assets</h2>
+        <p class="section-desc">
+            Convert your allocations and certificates into any of these assets.
+            All conversions happen on-chain. Wallet-to-wallet. No intermediary.
+        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;">
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:.3rem;">₿</div>
+                <div style="font-size:.85rem;font-weight:600;">BTC</div>
+                <div style="font-size:.72rem;color:var(--text-muted);">Bitcoin</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:.3rem;">⟠</div>
+                <div style="font-size:.85rem;font-weight:600;">ETH</div>
+                <div style="font-size:.72rem;color:var(--text-muted);">Ethereum</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:.3rem;">✕</div>
+                <div style="font-size:.85rem;font-weight:600;">XRP</div>
+                <div style="font-size:.72rem;color:var(--text-muted);">Ripple</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:.3rem;">✦</div>
+                <div style="font-size:.85rem;font-weight:600;">XLM</div>
+                <div style="font-size:.72rem;color:var(--text-muted);">Stellar</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:.3rem;">$</div>
+                <div style="font-size:.85rem;font-weight:600;">USDC</div>
+                <div style="font-size:.72rem;color:var(--text-muted);">Stablecoin</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:.3rem;">$</div>
+                <div style="font-size:.85rem;font-weight:600;">USDT</div>
+                <div style="font-size:.72rem;color:var(--text-muted);">Tether</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:.3rem;">◉</div>
+                <div style="font-size:.85rem;font-weight:600;">HLS</div>
+                <div style="font-size:.72rem;color:var(--text-muted);">Helios Token</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section style="text-align:center;padding:3rem 2rem 5rem;">
+        <h2 style="font-size:1.6rem;font-weight:600;color:var(--text);margin-bottom:.5rem;">
+            Your Web3 is Ready
+        </h2>
+        <p style="color:var(--text-muted);font-size:1rem;margin-bottom:1.5rem;max-width:500px;margin-left:auto;margin-right:auto;">
+            Dual-chain wallet. Instant issuance. Self-settling smart contracts.
+            Configure your preferences and let the protocol work for you.
+        </p>
+        <a href="/activate" class="btn btn-primary" style="margin-right:.75rem;">Activate Your Contract</a>
+        <a href="/certificates" class="btn btn-ghost">View Certificates</a>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function togglePref(el) {
+    el.classList.toggle('on');
+}
+
+function savePreferences() {
+    var prefs = {};
+    document.querySelectorAll('.toggle').forEach(function(t) {
+        prefs[t.dataset.key] = t.classList.contains('on');
+    });
+    document.querySelectorAll('.pref-select').forEach(function(s) {
+        prefs[s.id] = s.value;
+    });
+    localStorage.setItem('helios_web3_prefs', JSON.stringify(prefs));
+    alert('Preferences saved.');
+}
+
+// Load saved prefs
+(function() {
+    var saved = localStorage.getItem('helios_web3_prefs');
+    if (saved) {
+        try {
+            var p = JSON.parse(saved);
+            document.querySelectorAll('.toggle').forEach(function(t) {
+                if (p[t.dataset.key] !== undefined) {
+                    t.classList.toggle('on', p[t.dataset.key]);
+                }
+            });
+            Object.keys(p).forEach(function(k) {
+                var sel = document.getElementById(k);
+                if (sel && sel.tagName === 'SELECT') sel.value = p[k];
+            });
+        } catch(e) {}
+    }
+})();
+</script>
+{% endblock %}

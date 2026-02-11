@@ -73,7 +73,7 @@ HELIOS_KNOWLEDGE = {
         "3. GOLD, NFTs, AND CRYPTO — part of every activation buys "
         "physical gold. You get gold-backed NFT certificates. You can "
         "convert to BTC, ETH, XRP, stablecoins, or hold physical metal. "
-        "Plus staking bonuses from 5% to 30%.\n\n"
+        "Plus Staking rewards from 5% to 30%.\n\n"
         "No ranks. No quotas. No monthly. Just these three channels."
     ),
 
@@ -222,16 +222,16 @@ HELIOS_KNOWLEDGE = {
     ),
 
     "certificate_staking": (
-        "Staking lets you lock your certificates for bonus allocations.\n\n"
-        "30 days → +5% bonus\n"
-        "90 days → +12% bonus\n"
-        "180 days → +20% bonus\n"
-        "365 days → +30% bonus\n\n"
+        "Staking lets you lock your certificates for Reward Allocations.\n\n"
+        "30 days → +5% reward\n"
+        "90 days → +12% reward\n"
+        "180 days → +20% reward\n"
+        "365 days → +30% reward\n\n"
         "You're not lending your certificates to anyone. You're locking them "
-        "in the protocol and earning bonus allocations on top of your "
+        "in the protocol and earning Reward Allocations on top of your "
         "existing allocations.\n\n"
-        "Staking bonuses compound on top of your base allocations. "
-        "That 30% annual bonus adds significant value over time.\n\n"
+        "Staking rewards compound on top of your base allocations. "
+        "That 30% annual reward adds significant value over time.\n\n"
         "Staking is optional. Your certificates, your choice. "
         "But the math rewards patience."
     ),
@@ -248,7 +248,7 @@ HELIOS_KNOWLEDGE = {
         "3. Redeem for silver — physical silver, same process.\n"
         "4. Convert to stablecoin — USDC or USDT equivalent.\n"
         "5. Convert to crypto — BTC, ETH, XRP, or XLM.\n"
-        "6. Stake — lock for 30-365 days, earn bonus allocations.\n\n"
+        "6. Stake — lock for 30-365 days, earn Reward Allocations.\n\n"
         "They're not points. They're not credits. They're assets."
     ),
 
@@ -318,7 +318,7 @@ HELIOS_KNOWLEDGE = {
         "4. Crypto tools — convert to BTC, ETH, XRP, XLM, USDC, USDT. "
         "Build your portfolio.\n\n"
         "5. Certificate staking — lock for 30 to 365 days, earn 5-30% "
-        "bonus allocations.\n\n"
+        "Reward Allocations.\n\n"
         "6. Full protocol access — treasury verification, allocation model, "
         "AI advisory, AI guide, and live protocol metrics.\n\n"
         "7. The Helios AI — that's me. Available 24/7 to walk you through "
@@ -512,15 +512,15 @@ HELIOS_KNOWLEDGE = {
     "token_offering": (
         "The HLS token offering is the starting line. Three phases, clear dates.\n\n"
         "PHASE 1 — FOUNDING WINDOW (Feb 10 – Mar 31, 2026):\n"
-        "Token price: $0.10 per HLS. 20% bonus tokens on every purchase. "
+        "Token price: $0.05 per HLS. "
         "Founding Member badge — permanent, on-chain. Priority .helios identity.\n\n"
         "PHASE 2 — BUILDER PHASE (Apr 1 – May 31, 2026):\n"
-        "Token price: $0.25 per HLS. 10% bonus. Smart contract engine activates. "
+        "Token price: $0.25 per HLS. instant issuance. Smart contract engine activates. "
         "Liquidity pools funded. First NFT certificate minting.\n\n"
         "PHASE 3 — PUBLIC LAUNCH (Jun 1, 2026 →):\n"
-        "Token price: $0.50 per HLS. No bonus. DEX listing. Full protocol live.\n\n"
-        "$1,000 during Phase 1 = 12,000 HLS tokens. At public price that's $6,000 worth. "
-        "6× your money before the smart contract engine even starts."
+        "Token price: $0.50 per HLS. Market rate. DEX listing. Full protocol live.\n\n"
+        "$1,000 during Phase 1 = 20,000 HLS tokens. At public price that's $10,000 worth. "
+        "10× your money before the smart contract engine even starts."
     ),
 
     "trustlines": (
@@ -540,9 +540,9 @@ HELIOS_KNOWLEDGE = {
 
     "early_benefits": (
         "Here's what founding members get that nobody else will ever have:\n\n"
-        "1. LOWEST PRICE EVER — $0.10/HLS. Phase 2 is $0.25. Public is $0.50. "
-        "Your dollar goes 5× further than someone joining at launch.\n\n"
-        "2. 20% BONUS TOKENS — Buy 1,000, receive 1,200. "
+        "1. LOWEST PRICE EVER — $0.05/HLS. Phase 2 is $0.25. Public is $0.50. "
+        "Your dollar goes 10× further than someone joining at launch.\n\n"
+        "2. INSTANT ISSUANCE — Tokens delivered directly to your wallet. "
         "Drops to 10% in Phase 2. Zero at public launch.\n\n"
         "3. FOUNDING ACCESS — First to activate when the smart contract engine "
         "goes live. That access is permanent.\n\n"
@@ -555,16 +555,16 @@ HELIOS_KNOWLEDGE = {
     ),
 
     "launch_phases": (
-        "Three phases. Each one raises the price and reduces bonuses.\n\n"
+        "Three phases. Each one raises the price and reduces the founding advantage.\n\n"
         "PHASE 1 — FOUNDING (Feb 10 – Mar 31, 2026):\n"
-        "Register. Set up trustlines. Buy HLS at $0.10. Get 20% bonus. "
+        "Register. Set up trustlines. Buy HLS at $0.05. Instant token issuance. "
         "First gold purchase with treasury allocation.\n\n"
         "PHASE 2 — BUILDER (Apr 1 – May 31, 2026):\n"
-        "Token price goes to $0.25. Bonus drops to 10%. "
+        "Token price goes to $0.25. Founding reward drops to 10%. "
         "Smart contract engine activates. Liquidity pools form. "
         "NFT certificates start minting. First proof of reserves.\n\n"
         "PHASE 3 — PUBLIC (Jun 1, 2026 →):\n"
-        "Price hits $0.50. No more bonus. Full protocol live. "
+        "Price hits $0.50. No more reward. Full protocol live. "
         "DEX listing. Staking. Certificate marketplace. "
         "Cross-chain settlement fully operational.\n\n"
         "Every week you wait in Phase 1, you're closer to paying "
@@ -592,7 +592,7 @@ HELIOS_KNOWLEDGE = {
         "SETTLEMENT POOL — 40% (40M tokens):\n"
         "Powers the smart contract allocation engine.\n\n"
         "PROTOCOL DISTRIBUTION — 35% (35M tokens):\n"
-        "Token offering, protocol rewards, connection bonuses.\n\n"
+        "Token offering, protocol rewards, Connection rewards.\n\n"
         "DEVELOPMENT — 15% (15M tokens):\n"
         "4-year linear vesting. Engineering, partnerships.\n\n"
         "EMERGENCY RESERVE — 10% (10M tokens):\n"
@@ -633,8 +633,8 @@ HELIOS_KNOWLEDGE = {
         "Buy a gold certificate with HLS? Part of the fee disappears forever.\n\n"
         "Conversion Fee — every HLS→stablecoin swap carries a 1% fee. 20% of that "
         "fee is burned. Every swap reduces supply.\n\n"
-        "Early Staking Exit — if you break a staking lock, forfeited bonus tokens "
-        "are burned. 50-100% of accrued bonus, depending on timing.\n\n"
+        "Early Staking Exit — if you break a staking lock, forfeited reward tokens "
+        "are burned. 50-100% of accrued reward, depending on timing.\n\n"
         "Expired Identities — unclaimed .helios reserves are burned after 365 days.\n\n"
         "Supply can only go down. Never up. The burn address is public on XRPL."
     ),
@@ -643,14 +643,14 @@ HELIOS_KNOWLEDGE = {
         "Penalties protect long-term members from short-term exploiters. "
         "Every forfeited token is burned — benefiting everyone who stays.\n\n"
         "STAKING PENALTIES:\n"
-        "Break lock within 7 days → 100% of accrued bonus forfeited and burned.\n"
-        "Break lock after 7 days → 50% of accrued bonus forfeited and burned.\n\n"
+        "Break lock within 7 days → 100% of accrued reward forfeited and burned.\n"
+        "Break lock after 7 days → 50% of accrued reward forfeited and burned.\n\n"
         "RAPID CONVERSION PENALTY:\n"
         "Convert HLS→stablecoin within 48 hours of receiving tokens? "
         "2.5% conversion surcharge instead of the standard 1%. "
         "Discourages pump-and-dump behavior.\n\n"
         "DORMANT ACCOUNT:\n"
-        "No activity for 730 days? Staking bonuses pause. "
+        "No activity for 730 days? Staking rewards pause. "
         "Reactivate anytime with any transaction. No tokens are lost.\n\n"
         "IMPORTANT: No penalty for simply holding. Your tokens, your certificates, "
         "your gold — they're yours. Penalties only apply to breaking commitments "
@@ -702,23 +702,23 @@ HELIOS_KNOWLEDGE = {
         "Total backing becomes $1,050,000. Total supply: 1,050,000 tokens. "
         "Token price stays at $1.00 — but the backing is now massive.\n\n"
         "The Genesis 10 earn $20K–$225K each from the allocation pool alone, "
-        "plus gold certificates, staking bonuses, and token allocations.\n\n"
+        "plus gold certificates, Staking rewards, and token allocations.\n\n"
         "The math compounds. The promises don't."
     ),
 
     "bonus_structure": (
-        "Multiple bonus channels reward different behaviors. All bonuses are funded "
+        "Multiple reward channels reward different behaviors. All Rewards are funded "
         "from existing pools — never from new token creation.\n\n"
-        "FOUNDING BONUS: +20% tokens on Phase 1 purchases. Drops to +10% Phase 2. "
+        "FOUNDING REWARD: Instant issuance on Phase 1 purchases. Drops to +10% Phase 2. "
         "Zero at public launch.\n\n"
-        "CONTRACT UPGRADE BONUS: Upgrade contracts and receive 10% transition bonus on "
+        "Contract Upgrade Reward: Upgrade contracts and receive 10% transition reward on "
         "the price difference. $100→$1,000 = $900 × 10% = $90 in HLS.\n\n"
-        "STAKING BONUS: 5-30% based on lock duration (30d/90d/180d/365d).\n\n"
+        "Staking Reward: 5-30% based on lock duration (30d/90d/180d/365d).\n\n"
         "LOYALTY MILESTONES: 6 months active = +2%. 12 months = +5%. "
         "24 months = +10%. These stack on top of staking.\n\n"
         "GROWTH MILESTONES: 100 connections = 500 HLS. 500 = 2,500 HLS. "
         "1,000 = 7,500 HLS. 5,000 = 25,000 HLS.\n\n"
-        "GOLD ACCUMULATION: Every 10 oz of gold in treasury triggers 1% bonus "
+        "GOLD ACCUMULATION: Every 10 oz of gold in treasury triggers 1% reward "
         "on your next certificate allocation.\n\n"
         "All formula-governed. All published. No discretion."
     ),
@@ -763,7 +763,7 @@ TOPIC_MAP = {
     "what_is_helios": ["what is", "what's helios", "explain helios", "about helios", "tell me about", "how does helios", "what does helios do"],
     "contracts": ["contract", "contracts", "$100", "$250", "$500", "$1000", "$5000", "which contract", "pick a contract", "activation", "contract amount"],
     "three_ways_to_earn": ["three ways", "3 ways", "how do i earn", "how do i make money", "how you earn", "ways to earn", "income streams", "revenue streams"],
-    "direct_referral": ["direct connection", "connection allocation", "connect someone", "bring someone", "per person", "per member", "per connection", "connection bonus"],
+    "direct_referral": ["direct connection", "connection allocation", "connect someone", "bring someone", "per person", "per member", "per connection", "Connection Reward"],
     "smart_contract_engine": ["smart contract", "contract engine", "allocation engine", "formula", "weight", "depth", "how many depths", "propagation"],
     "allocation_formula": ["formula", "w_h", "w_1", "decay", "weighting", "math behind", "calculation", "how is it calculated"],
     "propagation": ["propagation", "signal", "mesh", "how allocations flow", "flow through", "connection graph"],
@@ -771,7 +771,7 @@ TOPIC_MAP = {
     "allocation_split": ["where does my money go", "fee split", "45%", "20%", "15%", "allocation split", "how is the fee split", "where money goes"],
     "gold_backing": ["gold", "physical gold", "metal", "apmex", "vault", "gold backed", "gold backing", "bullion", "precious metal", "real gold"],
     "crypto_access": ["crypto", "bitcoin", "btc", "eth", "ethereum", "xrp", "xlm", "stellar", "usdc", "usdt", "stablecoin", "which crypto"],
-    "certificate_staking": ["staking", "stake", "lock", "bonus", "30 day", "90 day", "180 day", "365 day", "staking bonus", "lock certificate"],
+    "certificate_staking": ["staking", "stake", "lock", "bonus", "30 day", "90 day", "180 day", "365 day", "Staking Reward", "lock certificate"],
     "nft_certificates": ["nft", "certificate", "certificates", "what do i get", "digital asset", "redeemable"],
     "protocol_structure": ["mlm", "pyramid", "ponzi", "scam", "scheme", "legit", "legitimate", "is this", "multilevel", "multi-level", "network marketing", "is it a"],
     "protocol_integrity": ["no bs", "no ranks", "no monthly", "what's the catch", "hidden fees", "monthly fee", "quota"],
@@ -800,7 +800,7 @@ TOPIC_MAP = {
     "internal_marketplace": ["marketplace", "buy with hls", "spend hls", "internal market", "buy gold with tokens", "buy certificates", "purchase with hls", "use tokens"],
     "stablecoin_exchange": ["convert", "conversion", "swap", "exchange", "hls to usdc", "hls to usdt", "stablecoin exchange", "cash out", "sell tokens", "sell hls", "convert to dollars"],
     "genesis_pool": ["genesis", "genesis pool", "genesis contract", "first 10", "seed", "initial", "50000", "$50,000", "founding pool", "starting pool", "how it starts"],
-    "bonus_structure": ["bonus", "bonuses", "loyalty", "milestone", "growth bonus", "upgrade bonus", "contract upgrade bonus", "gold accumulation", "compound"],
+    "bonus_structure": ["bonus", "bonuses", "loyalty", "milestone", "growth bonus", "upgrade bonus", "Contract Upgrade Reward", "gold accumulation", "compound"],
     "token_value_drivers": ["value driver", "what drives value", "why go up", "price increase", "appreciation", "token value", "supply and demand", "scarcity", "deflationary pressure"],
     "qr_code_sharing": ["qr", "qr code", "share code", "share link", "scan", "my code", "my qr", "network code", "how do i share", "share helios", "send my link", "business card", "invite link", "personal link", "registration link"],
 }
@@ -951,20 +951,20 @@ class AskHelios:
             "1. Direct Connection Allocation — 50% of allocation pool per member you connect\n"
             "2. Smart Contract Engine — 45% of every activation distributed across connection depth, "
             "formula: W_h = W_1 · r^(h-1)\n"
-            "3. Gold, NFTs & Crypto — physical gold, certificates, staking bonuses\n\n"
+            "3. Gold, NFTs & Crypto — physical gold, certificates, Staking rewards\n\n"
             "CONTRACT ALLOCATIONS (direct connection per member):\n"
             "$100 → $22.50 | $250 → $56.25 | $500 → $112.50 | "
             "$1,000 → $225 | $5,000 → $1,125\n\n"
             "SMART CONTRACT PROPAGATION:\n"
             "Allocations propagate through the connection mesh. Depth 1 receives the most. "
             "Each deeper hop receives half the previous. The formula rewards direct connectors.\n\n"
-            "STAKING BONUSES:\n"
+            "Staking rewards:\n"
             "30d=+5%, 90d=+12%, 180d=+20%, 365d=+30%\n\n"
             "BURN MECHANICS:\n"
             "Contract upgrades, certificate redemptions, marketplace fees (20% burned), "
             "conversion fees (20% burned), early staking exits — all permanently reduce supply.\n\n"
             "PENALTIES:\n"
-            "Early staking exit <7d = 100% bonus forfeited. >7d = 50% forfeited. "
+            "Early staking exit <7d = 100% reward forfeited. >7d = 50% forfeited. "
             "Rapid conversion (<48h) = 2.5% surcharge. All forfeitures are burned.\n\n"
             "INTERNAL MARKETPLACE:\n"
             "Buy gold/silver certificates, .helios identities, contract upgrades with HLS. "

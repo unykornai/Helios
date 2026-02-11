@@ -252,6 +252,10 @@ def create_app():
     def tokenomics():
         return render_template("tokenomics.html")
 
+    @app.route("/web3")
+    def web3():
+        return render_template("web3.html")
+
     # ─── Health Check ─────────────────────────────────────────────
     @app.route("/health")
     @app.route("/api/health")

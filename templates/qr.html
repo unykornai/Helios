@@ -236,7 +236,289 @@
     </div>
 </div>
 
-<div class="copy-toast" id="copy-toast">Link copied âœ“</div>
+<div class="copy-toast" id="copy-toast">Link copied ✓</div>
+
+<!-- ═══ QR Execution System ═══ -->
+<section class="qr-exec-section">
+    <div class="container">
+        <h2 class="section-title">What Happens When They Scan</h2>
+        <p class="section-sub">One scan triggers the full protocol — wallet, tokens, NFTs, and settlement — automatically.</p>
+
+        <div class="exec-pipeline">
+            <div class="exec-step">
+                <div class="exec-icon">📱</div>
+                <div class="exec-num">01</div>
+                <h4>QR Scan</h4>
+                <p>New member scans your code and lands on your personal join link</p>
+            </div>
+            <div class="exec-arrow">→</div>
+
+            <div class="exec-step">
+                <div class="exec-icon">🔐</div>
+                <div class="exec-num">02</div>
+                <h4>Atomic Wallet</h4>
+                <p>Dual-chain wallet auto-provisions on XRPL + Stellar with trustlines set</p>
+            </div>
+            <div class="exec-arrow">→</div>
+
+            <div class="exec-step">
+                <div class="exec-icon">⚡</div>
+                <div class="exec-num">03</div>
+                <h4>Token Issuance</h4>
+                <p>HLS tokens issued instantly at $0.05 founding price — no delay, no approval</p>
+            </div>
+            <div class="exec-arrow">→</div>
+
+            <div class="exec-step">
+                <div class="exec-icon">🏆</div>
+                <div class="exec-num">04</div>
+                <h4>NFT Certificates</h4>
+                <p>Gold-backed membership NFT + ceremonial "Genesis Flame" NFT minted on-chain</p>
+            </div>
+            <div class="exec-arrow">→</div>
+
+            <div class="exec-step">
+                <div class="exec-icon">🌐</div>
+                <div class="exec-num">05</div>
+                <h4>Web3 Active</h4>
+                <p>Self-settling engine starts — staking, certificates, and cross-chain settlement live</p>
+            </div>
+        </div>
+
+        <!-- Execution Detail Cards -->
+        <div class="exec-details">
+            <div class="exec-card">
+                <div class="exec-card-header">
+                    <span class="exec-card-icon">🔗</span>
+                    <h4>Dual-Chain Settlement</h4>
+                </div>
+                <ul>
+                    <li>XRPL primary ledger — 3-second finality</li>
+                    <li>Stellar secondary — cross-border + stablecoin</li>
+                    <li>Trustlines auto-configured for HLS token</li>
+                    <li>10 XRP reserve + 2 XRP trustline funded</li>
+                </ul>
+            </div>
+
+            <div class="exec-card">
+                <div class="exec-card-header">
+                    <span class="exec-card-icon">🎖️</span>
+                    <h4>Instant Issuance Package</h4>
+                </div>
+                <ul>
+                    <li>HLS tokens at founding rate ($0.05)</li>
+                    <li>Gold-backed membership certificate NFT</li>
+                    <li>Ceremonial NFT — "Genesis Flame" (founding) or "Protocol Key" (member)</li>
+                    <li>Welcome Allocation credited automatically</li>
+                </ul>
+            </div>
+
+            <div class="exec-card">
+                <div class="exec-card-header">
+                    <span class="exec-card-icon">⚙️</span>
+                    <h4>Self-Settling Engine</h4>
+                </div>
+                <ul>
+                    <li>Smart contract governs all allocations</li>
+                    <li>Staking rewards auto-compound on schedule</li>
+                    <li>Certificate issuance — rules-based, no manual process</li>
+                    <li>Connection rewards propagate through the chain mesh</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- For-Referrer Stats -->
+        <div class="exec-referrer">
+            <h3>Your Chain, Your Network</h3>
+            <div class="referrer-stats">
+                <div class="ref-stat">
+                    <span class="ref-val" id="ref-scan-count">—</span>
+                    <span class="ref-label">Total Scans</span>
+                </div>
+                <div class="ref-stat">
+                    <span class="ref-val" id="ref-join-count">—</span>
+                    <span class="ref-label">Joined</span>
+                </div>
+                <div class="ref-stat">
+                    <span class="ref-val" id="ref-chain-depth">—</span>
+                    <span class="ref-label">Chain Depth</span>
+                </div>
+                <div class="ref-stat">
+                    <span class="ref-val" id="ref-reward-total">—</span>
+                    <span class="ref-label">Connection Rewards</span>
+                </div>
+            </div>
+            <p class="referrer-note">Stats update in real-time as your network grows. Every member who joins through your chain earns you connection rewards through the smart contract mesh.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+/* ═══ QR Execution System ═══ */
+.qr-exec-section {
+    padding: 5rem 0 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.qr-exec-section .container { padding: 0 1.5rem; }
+.qr-exec-section .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+}
+.qr-exec-section .section-sub {
+    text-align: center;
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+}
+
+/* Pipeline */
+.exec-pipeline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+.exec-step {
+    text-align: center;
+    flex: 0 0 140px;
+    padding: 1rem 0.5rem;
+}
+.exec-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+.exec-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #2997ff;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+.exec-step h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+}
+.exec-step p {
+    font-size: 0.72rem;
+    color: #888;
+    line-height: 1.5;
+}
+.exec-arrow {
+    color: #2997ff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-top: 2rem;
+    flex: 0 0 30px;
+    text-align: center;
+}
+
+/* Detail Cards */
+.exec-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+.exec-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.exec-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.exec-card-icon { font-size: 1.5rem; }
+.exec-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+.exec-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.exec-card li {
+    font-size: 0.82rem;
+    color: #aaa;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding-left: 1rem;
+    position: relative;
+}
+.exec-card li:last-child { border-bottom: none; }
+.exec-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #2997ff;
+    font-size: 0.7rem;
+}
+
+/* Referrer Stats */
+.exec-referrer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(41,151,255,0.04);
+    border: 1px solid rgba(41,151,255,0.1);
+    border-radius: 20px;
+}
+.exec-referrer h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+.referrer-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+.ref-stat { text-align: center; }
+.ref-val {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #2997ff;
+    letter-spacing: -0.03em;
+}
+.ref-label {
+    font-size: 0.72rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.referrer-note {
+    font-size: 0.78rem;
+    color: #666;
+    max-width: 500px;
+    margin: 0.75rem auto 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+    .exec-pipeline { flex-direction: column; align-items: center; }
+    .exec-arrow { transform: rotate(90deg); padding: 0.5rem 0; }
+    .referrer-stats { gap: 1.5rem; }
+}
+</style>
 {% endblock %}
 
 {% block scripts %}
