@@ -519,9 +519,31 @@
     .referrer-stats { gap: 1.5rem; }
 }
 </style>
+
+<!-- Sales Tools -->
+    <div style="max-width:420px;margin:1.5rem auto 0;text-align:center;">
+        <div style="background:var(--bg-card);border:1px solid rgba(251,191,36,.2);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1rem;">
+            <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--gold);margin-bottom:.4rem;font-family:'Inter',sans-serif;">&#128176; Your Earning Potential</div>
+            <div style="font-size:.88rem;color:var(--text-muted);line-height:1.6;">
+                Every scan &rarr; every activation earns you <strong style="color:var(--gold);">22.5% direct reward</strong>.<br>
+                One $500 activation = <strong style="color:var(--gold);">$112.50</strong> paid to you instantly via smart contract.
+            </div>
+        </div>
+        <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;">
+            <button onclick="navigator.share?navigator.share({title:'Join Helios',url:window.location.href}):navigator.clipboard.writeText(window.location.href)" style="padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-family:'Inter',sans-serif;">&#128228; Share This Code</button>
+            <a href="/recruit" style="padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);text-decoration:none;font-family:'Inter',sans-serif;">&#128231; Email Invite</a>
+            <a href="/network" style="padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);text-decoration:none;font-family:'Inter',sans-serif;">&#127760; My Network</a>
+        </div>
+        <div style="margin-top:1rem;font-size:.72rem;color:var(--text-muted);line-height:1.5;">
+            <strong style="color:var(--gold);">Founding Window Active</strong> &mdash; Your referrals get 10&times; token multiplier + $0.05/HLS pricing.<br>
+            More reason for them to say yes. More value in your mesh.
+        </div>
+    </div>
+
 {% endblock %}
 
-{% block scripts %}
+
+    {% block scripts %}
 <script>
 (function(){
     // ═══ Parse identity from URL path ═══

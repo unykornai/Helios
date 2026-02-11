@@ -9,7 +9,7 @@
 <div style="background:linear-gradient(90deg,rgba(41,151,255,.06),rgba(191,90,242,.04));border-bottom:1px solid rgba(41,151,255,.15);padding:.7rem 1rem;text-align:center;">
     <a href="/launch" style="color:var(--gold);text-decoration:none;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.01em;">
         🚀 HLS Token Offering Now Live — Founding Members Get $0.05/Token · Founding Price
-        <span style="display:inline-block;margin-left:.6rem;background:linear-gradient(135deg,#2997ff,#bf5af2);color:#fff;font-size:.65rem;padding:2px 8px;border-radius:980px;vertical-align:middle;letter-spacing:.04em;">REGISTER NOW</span>
+        <span style="display:inline-block;margin-left:.6rem;background:linear-gradient(135deg,#2997ff,#bf5af2);color:#fff;font-size:.65rem;padding:2px 8px;border-radius:980px;vertical-align:middle;letter-spacing:.04em;">FOUNDING BONUS</span>
     </a>
 </div>
 
@@ -429,6 +429,48 @@
     </div>
 </section>
 
+
+<!-- ═══ HELIOS FORTUNE SPIN — GAMIFICATION ENGINE ═══ -->
+<section class="section section-dark" id="fortune-section">
+    <div class="container" style="max-width:700px;text-align:center;">
+        <h2 style="margin-bottom:.3rem;">Helios Fortune Spin</h2>
+        <p class="section-subtitle" style="max-width:520px;margin:0 auto 1.5rem;">
+            Every founding member gets one spin. Win token bonuses, certificate upgrades,
+            NFT drops, and exclusive rewards. Your fortune is waiting.
+        </p>
+
+        <!-- Spin Wheel -->
+        <div style="position:relative;width:320px;height:320px;margin:0 auto 1.5rem;">
+            <!-- Pointer -->
+            <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);z-index:10;font-size:1.5rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));">&#9660;</div>
+            <canvas id="fortune-wheel" width="320" height="320" style="border-radius:50%;cursor:pointer;"></canvas>
+        </div>
+
+        <button id="spin-btn" onclick="spinWheel()" style="
+            padding:.75rem 2.5rem;border-radius:var(--radius-sm);
+            background:var(--gold);color:var(--bg);border:none;
+            font-weight:700;font-size:1rem;font-family:'Inter',sans-serif;
+            cursor:pointer;transition:all .25s;letter-spacing:.02em;
+        ">&#127920; SPIN TO WIN</button>
+        <p id="spin-status" style="font-size:.78rem;color:var(--text-muted);margin-top:.8rem;min-height:1.5em;"></p>
+
+        <!-- Prize reveal (hidden until win) -->
+        <div id="prize-reveal" style="display:none;margin-top:1.2rem;padding:1.2rem;background:var(--bg-card);border:1px solid var(--gold);border-radius:var(--radius);animation:prizeReveal .5s ease;">
+            <div id="prize-icon" style="font-size:2.5rem;margin-bottom:.5rem;"></div>
+            <div id="prize-title" style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;"></div>
+            <div id="prize-desc" style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.5;"></div>
+            <a href="/activate" id="prize-cta" style="
+                display:inline-block;padding:.65rem 2rem;
+                background:var(--gold);color:var(--bg);border-radius:var(--radius-sm);
+                font-weight:700;font-size:.92rem;text-decoration:none;transition:all .25s;
+            ">Claim Your Bonus &mdash; Activate Now &rarr;</a>
+        </div>
+    </div>
+</section>
+<style>
+@keyframes prizeReveal { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+</style>
+
 <!-- ═══ FINAL CTA ═══ -->
 <section class="section section-cta">
     <div class="container">
@@ -438,7 +480,7 @@
             Activate your contract and let the code do the rest.
         </p>
         <div class="hero-actions">
-            <a href="/activate" class="btn btn-primary btn-lg">Activate Your Contract</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Activate Your Contract &mdash; Claim Your Bonus</a>
             <a href="/certificates" class="btn btn-ghost btn-lg">View Certificate Types</a>
         </div>
     </div>
@@ -776,4 +818,162 @@
     obs.observe(c);
 })();
 </script>
+
+// ═══ HELIOS FORTUNE SPIN ENGINE ═══════════════════════════════════
+(function() {
+    var prizes = [
+        { label:'2× Token\nBonus',    icon:'🏆', color:'#d97706', title:'2× Token Bonus!',         desc:'Your HLS token allocation is doubled on your next activation. Founding price + double tokens = maximum value.' },
+        { label:'Gold Cert\nUpgrade', icon:'🪙', color:'#2997ff', title:'Gold Certificate Upgrade!', desc:'Receive a premium gold certificate — one tier above your contract level. Physical gold backing, amplified.' },
+        { label:'Silver Cert\nBonus', icon:'🥈', color:'#64d2ff', title:'Silver Certificate Bonus!', desc:'A bonus silver-class certificate added to your portfolio. Stack certificates. Stack value.' },
+        { label:'NFT Drop\nExclusive',icon:'🎨', color:'#bf5af2', title:'Exclusive NFT Drop!',       desc:'A limited-edition Helios founding NFT — minted on XRPL. Only available during the Founding Window.' },
+        { label:'+5% Staking\nReward',icon:'📈', color:'#34d399', title:'+5% Staking Reward!',       desc:'Your certificate staking yield increases by 5% for the first 12 months. Passive returns, amplified.' },
+        { label:'Founding\nBonus Lock',icon:'🔒', color:'#fbbf24', title:'Founding Bonus Lock!',     desc:'Your founding multiplier is locked permanently — even if you upgrade contracts later. 10× forever.' },
+        { label:'Early Access\nPass',  icon:'🔥', color:'#f43f5e', title:'Early Access Pass!',       desc:'Priority access to Phase 2 features: advanced staking tiers, marketplace, and governance voting.' },
+        { label:'Double\nAllocation',  icon:'💰', color:'#22c55e', title:'Double Allocation!',       desc:'Your smart contract allocation pool contribution is doubled. Twice the propagation power in your mesh.' }
+    ];
+
+    var canvas = document.getElementById('fortune-wheel');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var cx = 160, cy = 160, r = 150;
+    var sliceAngle = (2 * Math.PI) / prizes.length;
+    var currentAngle = 0;
+    var spinning = false;
+
+    function drawWheel(rotation) {
+        ctx.clearRect(0, 0, 320, 320);
+        for (var i = 0; i < prizes.length; i++) {
+            var startAngle = rotation + i * sliceAngle;
+            var endAngle = startAngle + sliceAngle;
+
+            // Slice
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, r, startAngle, endAngle);
+            ctx.closePath();
+            ctx.fillStyle = prizes[i].color;
+            ctx.globalAlpha = 0.85;
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Label
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(startAngle + sliceAngle / 2);
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 11px Inter, sans-serif';
+            var lines = prizes[i].label.split('\n');
+            for (var l = 0; l < lines.length; l++) {
+                ctx.fillText(lines[l], r * 0.62, 4 + (l - (lines.length-1)/2) * 14);
+            }
+            ctx.restore();
+        }
+        // Center circle
+        ctx.beginPath();
+        ctx.arc(cx, cy, 28, 0, 2 * Math.PI);
+        ctx.fillStyle = '#0a0a0c';
+        ctx.fill();
+        ctx.strokeStyle = 'var(--gold)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('☀️', cx, cy);
+    }
+
+    drawWheel(0);
+
+    window.spinWheel = function() {
+        if (spinning) return;
+        var played = sessionStorage.getItem('helios_spin_played');
+        if (played) {
+            document.getElementById('spin-status').textContent = 'You already claimed your spin! Activate to lock in your bonus.';
+            return;
+        }
+
+        spinning = true;
+        var btn = document.getElementById('spin-btn');
+        btn.style.opacity = '0.5';
+        btn.textContent = 'Spinning...';
+        document.getElementById('spin-status').textContent = '';
+        document.getElementById('prize-reveal').style.display = 'none';
+
+        // Weighted: slight bias toward good-but-not-best prizes
+        var weights = [8, 15, 18, 12, 18, 10, 12, 7]; // Double alloc & 2x token are rarer
+        var totalWeight = 0;
+        for (var w = 0; w < weights.length; w++) totalWeight += weights[w];
+        var rand = Math.random() * totalWeight;
+        var winIndex = 0;
+        var cumulative = 0;
+        for (var w = 0; w < weights.length; w++) {
+            cumulative += weights[w];
+            if (rand < cumulative) { winIndex = w; break; }
+        }
+
+        // Calculate target angle: pointer is at top (270deg = -PI/2)
+        // Prize i is centered at i*sliceAngle + sliceAngle/2
+        // We need the prize center to align with -PI/2
+        var targetSliceCenter = winIndex * sliceAngle + sliceAngle / 2;
+        var targetAngle = -Math.PI / 2 - targetSliceCenter;
+        // Add 5-8 full rotations for drama
+        var spins = 5 + Math.floor(Math.random() * 3);
+        var totalRotation = spins * 2 * Math.PI + (targetAngle - currentAngle % (2 * Math.PI));
+
+        var startTime = null;
+        var duration = 4000 + Math.random() * 1000;
+        var startAngle = currentAngle;
+
+        function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var elapsed = timestamp - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            var eased = 1 - Math.pow(1 - progress, 3);
+            currentAngle = startAngle + totalRotation * eased;
+            drawWheel(currentAngle);
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                spinning = false;
+                btn.style.opacity = '1';
+                btn.textContent = '🎰 SPIN TO WIN';
+                sessionStorage.setItem('helios_spin_played', '1');
+                showPrize(prizes[winIndex]);
+            }
+        }
+        requestAnimationFrame(animate);
+    };
+
+    function showPrize(prize) {
+        document.getElementById('prize-icon').textContent = prize.icon;
+        document.getElementById('prize-title').textContent = prize.title;
+        document.getElementById('prize-desc').textContent = prize.desc;
+        document.getElementById('prize-reveal').style.display = 'block';
+        document.getElementById('spin-status').innerHTML = '<strong style="color:var(--gold);">Bonus unlocked!</strong> Activate your contract to claim it.';
+
+        // Store the prize for the activation flow
+        localStorage.setItem('helios_spin_prize', JSON.stringify({
+            title: prize.title,
+            icon: prize.icon,
+            ts: Date.now()
+        }));
+    }
+
+    // If already spun, show the result
+    var stored = localStorage.getItem('helios_spin_prize');
+    if (stored && sessionStorage.getItem('helios_spin_played')) {
+        try {
+            var p = JSON.parse(stored);
+            document.getElementById('spin-status').innerHTML = 'You won: <strong style="color:var(--gold);">' + p.title + '</strong> — Activate to claim!';
+        } catch(e) {}
+    }
+})();
+
 {% endblock %}

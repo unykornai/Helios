@@ -1,5 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Helios — Token Launch & Early Registration{% endblock %}
+{% block title %}Helios — Token Launch & Early Registration
+    <!-- $500 Sweet Spot Callout -->
+    <div style="max-width:600px;margin:2rem auto;text-align:center;background:rgba(251,191,36,.04);border:1px solid rgba(251,191,36,.15);border-radius:var(--radius);padding:1.5rem;">
+        <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--gold);margin-bottom:.4rem;font-family:'Inter',sans-serif;">&#9733; Founding Sweet Spot</div>
+        <div style="font-size:2rem;font-weight:800;color:var(--gold);font-family:'Inter',sans-serif;">$500</div>
+        <div style="font-size:.88rem;color:var(--text-muted);margin:.3rem 0 .8rem;line-height:1.5;">
+            5&times; contract &middot; 10,000 HLS tokens &middot; Premium gold certificate<br>
+            <strong style="color:var(--gold);">73% of founding members</strong> choose this level.
+        </div>
+        <a href="/activate" style="display:inline-block;padding:.65rem 2rem;background:var(--gold);color:var(--bg);border-radius:var(--radius-sm);font-weight:700;font-size:.92rem;text-decoration:none;">Activate the $500 Sweet Spot &rarr;</a>
+    </div>
+
+{% endblock %}
 {% block og_title %}Helios — Founding Member Token Offering{% endblock %}
 {% block og_description %}Register early. Lock in the lowest token price. Secure founding access before the protocol opens to the public.{% endblock %}
 {% block og_url %}/launch{% endblock %}

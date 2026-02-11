@@ -1,4 +1,19 @@
-{% extends "base.html" %}
+"""
+Phase 17 Part 3 — Sweet Spot $500, Spin Game, QR Sales, Urgency Everywhere
+"""
+import pathlib, re
+
+ROOT = pathlib.Path(r"C:\Users\Kevan\helios-os\templates")
+
+# ═══════════════════════════════════════════════════════════════════════
+# 1. REBUILD ACTIVATE.HTML — $500 SWEET SPOT PSYCHOLOGY
+# ═══════════════════════════════════════════════════════════════════════
+print("═══ Rebuilding activate.html ═══")
+activate_path = ROOT / "activate.html"
+
+# Delete and recreate
+activate_path.unlink(missing_ok=True)
+activate_path.write_text(r'''{% extends "base.html" %}
 {% block title %}Activate — Helios Protocol{% endblock %}
 {% block og_title %}Activate Your Smart Contract — Helios Protocol{% endblock %}
 {% block og_description %}Choose your contract level. Every dollar has a published destination. $500 is the founding sweet spot — maximum value per dollar with 10× token multiplier.{% endblock %}
@@ -405,3 +420,393 @@
 
 </div>
 {% endblock %}
+''', encoding='utf-8')
+print(f"  activate.html: {activate_path.stat().st_size} bytes")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 2. INJECT HELIOS FORTUNE SPIN GAME INTO INDEX.HTML
+# ═══════════════════════════════════════════════════════════════════════
+print("\n═══ Injecting Fortune Spin into index.html ═══")
+index_path = ROOT / "index.html"
+index_content = index_path.read_text(encoding='utf-8')
+
+# Insert the game section BEFORE the final CTA
+game_section = '''
+<!-- ═══ HELIOS FORTUNE SPIN — GAMIFICATION ENGINE ═══ -->
+<section class="section section-dark" id="fortune-section">
+    <div class="container" style="max-width:700px;text-align:center;">
+        <h2 style="margin-bottom:.3rem;">Helios Fortune Spin</h2>
+        <p class="section-subtitle" style="max-width:520px;margin:0 auto 1.5rem;">
+            Every founding member gets one spin. Win token bonuses, certificate upgrades,
+            NFT drops, and exclusive rewards. Your fortune is waiting.
+        </p>
+
+        <!-- Spin Wheel -->
+        <div style="position:relative;width:320px;height:320px;margin:0 auto 1.5rem;">
+            <!-- Pointer -->
+            <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);z-index:10;font-size:1.5rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));">&#9660;</div>
+            <canvas id="fortune-wheel" width="320" height="320" style="border-radius:50%;cursor:pointer;"></canvas>
+        </div>
+
+        <button id="spin-btn" onclick="spinWheel()" style="
+            padding:.75rem 2.5rem;border-radius:var(--radius-sm);
+            background:var(--gold);color:var(--bg);border:none;
+            font-weight:700;font-size:1rem;font-family:'Inter',sans-serif;
+            cursor:pointer;transition:all .25s;letter-spacing:.02em;
+        ">&#127920; SPIN TO WIN</button>
+        <p id="spin-status" style="font-size:.78rem;color:var(--text-muted);margin-top:.8rem;min-height:1.5em;"></p>
+
+        <!-- Prize reveal (hidden until win) -->
+        <div id="prize-reveal" style="display:none;margin-top:1.2rem;padding:1.2rem;background:var(--bg-card);border:1px solid var(--gold);border-radius:var(--radius);animation:prizeReveal .5s ease;">
+            <div id="prize-icon" style="font-size:2.5rem;margin-bottom:.5rem;"></div>
+            <div id="prize-title" style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;"></div>
+            <div id="prize-desc" style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.5;"></div>
+            <a href="/activate" id="prize-cta" style="
+                display:inline-block;padding:.65rem 2rem;
+                background:var(--gold);color:var(--bg);border-radius:var(--radius-sm);
+                font-weight:700;font-size:.92rem;text-decoration:none;transition:all .25s;
+            ">Claim Your Bonus &mdash; Activate Now &rarr;</a>
+        </div>
+    </div>
+</section>
+<style>
+@keyframes prizeReveal { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+</style>
+
+'''
+
+# Find the final CTA marker and insert before it
+final_cta_marker = '<!-- \u2550\u2550\u2550 FINAL CTA \u2550\u2550\u2550 -->'
+if final_cta_marker in index_content:
+    index_content = index_content.replace(final_cta_marker, game_section + final_cta_marker)
+    print("  Injected game section before FINAL CTA")
+else:
+    # Try encoded version
+    for marker in ['<!-- ═══ FINAL CTA ═══ -->', '<!-- â•â•â• FINAL CTA â•â•â• -->']:
+        if marker in index_content:
+            index_content = index_content.replace(marker, game_section + marker)
+            print(f"  Injected game section (marker: {marker[:30]}...)")
+            break
+    else:
+        # Fallback: insert before the section-cta class
+        index_content = index_content.replace('<section class="section section-cta">', game_section + '<section class="section section-cta">')
+        print("  Injected game section before section-cta")
+
+# Now inject the Fortune Spin JS into the {% block scripts %} section
+spin_js = '''
+// ═══ HELIOS FORTUNE SPIN ENGINE ═══════════════════════════════════
+(function() {
+    var prizes = [
+        { label:'2× Token\\nBonus',    icon:'🏆', color:'#d97706', title:'2× Token Bonus!',         desc:'Your HLS token allocation is doubled on your next activation. Founding price + double tokens = maximum value.' },
+        { label:'Gold Cert\\nUpgrade', icon:'🪙', color:'#2997ff', title:'Gold Certificate Upgrade!', desc:'Receive a premium gold certificate — one tier above your contract level. Physical gold backing, amplified.' },
+        { label:'Silver Cert\\nBonus', icon:'🥈', color:'#64d2ff', title:'Silver Certificate Bonus!', desc:'A bonus silver-class certificate added to your portfolio. Stack certificates. Stack value.' },
+        { label:'NFT Drop\\nExclusive',icon:'🎨', color:'#bf5af2', title:'Exclusive NFT Drop!',       desc:'A limited-edition Helios founding NFT — minted on XRPL. Only available during the Founding Window.' },
+        { label:'+5% Staking\\nReward',icon:'📈', color:'#34d399', title:'+5% Staking Reward!',       desc:'Your certificate staking yield increases by 5% for the first 12 months. Passive returns, amplified.' },
+        { label:'Founding\\nBonus Lock',icon:'🔒', color:'#fbbf24', title:'Founding Bonus Lock!',     desc:'Your founding multiplier is locked permanently — even if you upgrade contracts later. 10× forever.' },
+        { label:'Early Access\\nPass',  icon:'🔥', color:'#f43f5e', title:'Early Access Pass!',       desc:'Priority access to Phase 2 features: advanced staking tiers, marketplace, and governance voting.' },
+        { label:'Double\\nAllocation',  icon:'💰', color:'#22c55e', title:'Double Allocation!',       desc:'Your smart contract allocation pool contribution is doubled. Twice the propagation power in your mesh.' }
+    ];
+
+    var canvas = document.getElementById('fortune-wheel');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var cx = 160, cy = 160, r = 150;
+    var sliceAngle = (2 * Math.PI) / prizes.length;
+    var currentAngle = 0;
+    var spinning = false;
+
+    function drawWheel(rotation) {
+        ctx.clearRect(0, 0, 320, 320);
+        for (var i = 0; i < prizes.length; i++) {
+            var startAngle = rotation + i * sliceAngle;
+            var endAngle = startAngle + sliceAngle;
+
+            // Slice
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, r, startAngle, endAngle);
+            ctx.closePath();
+            ctx.fillStyle = prizes[i].color;
+            ctx.globalAlpha = 0.85;
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Label
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(startAngle + sliceAngle / 2);
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 11px Inter, sans-serif';
+            var lines = prizes[i].label.split('\\n');
+            for (var l = 0; l < lines.length; l++) {
+                ctx.fillText(lines[l], r * 0.62, 4 + (l - (lines.length-1)/2) * 14);
+            }
+            ctx.restore();
+        }
+        // Center circle
+        ctx.beginPath();
+        ctx.arc(cx, cy, 28, 0, 2 * Math.PI);
+        ctx.fillStyle = '#0a0a0c';
+        ctx.fill();
+        ctx.strokeStyle = 'var(--gold)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('☀️', cx, cy);
+    }
+
+    drawWheel(0);
+
+    window.spinWheel = function() {
+        if (spinning) return;
+        var played = sessionStorage.getItem('helios_spin_played');
+        if (played) {
+            document.getElementById('spin-status').textContent = 'You already claimed your spin! Activate to lock in your bonus.';
+            return;
+        }
+
+        spinning = true;
+        var btn = document.getElementById('spin-btn');
+        btn.style.opacity = '0.5';
+        btn.textContent = 'Spinning...';
+        document.getElementById('spin-status').textContent = '';
+        document.getElementById('prize-reveal').style.display = 'none';
+
+        // Weighted: slight bias toward good-but-not-best prizes
+        var weights = [8, 15, 18, 12, 18, 10, 12, 7]; // Double alloc & 2x token are rarer
+        var totalWeight = 0;
+        for (var w = 0; w < weights.length; w++) totalWeight += weights[w];
+        var rand = Math.random() * totalWeight;
+        var winIndex = 0;
+        var cumulative = 0;
+        for (var w = 0; w < weights.length; w++) {
+            cumulative += weights[w];
+            if (rand < cumulative) { winIndex = w; break; }
+        }
+
+        // Calculate target angle: pointer is at top (270deg = -PI/2)
+        // Prize i is centered at i*sliceAngle + sliceAngle/2
+        // We need the prize center to align with -PI/2
+        var targetSliceCenter = winIndex * sliceAngle + sliceAngle / 2;
+        var targetAngle = -Math.PI / 2 - targetSliceCenter;
+        // Add 5-8 full rotations for drama
+        var spins = 5 + Math.floor(Math.random() * 3);
+        var totalRotation = spins * 2 * Math.PI + (targetAngle - currentAngle % (2 * Math.PI));
+
+        var startTime = null;
+        var duration = 4000 + Math.random() * 1000;
+        var startAngle = currentAngle;
+
+        function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var elapsed = timestamp - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            var eased = 1 - Math.pow(1 - progress, 3);
+            currentAngle = startAngle + totalRotation * eased;
+            drawWheel(currentAngle);
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                spinning = false;
+                btn.style.opacity = '1';
+                btn.textContent = '🎰 SPIN TO WIN';
+                sessionStorage.setItem('helios_spin_played', '1');
+                showPrize(prizes[winIndex]);
+            }
+        }
+        requestAnimationFrame(animate);
+    };
+
+    function showPrize(prize) {
+        document.getElementById('prize-icon').textContent = prize.icon;
+        document.getElementById('prize-title').textContent = prize.title;
+        document.getElementById('prize-desc').textContent = prize.desc;
+        document.getElementById('prize-reveal').style.display = 'block';
+        document.getElementById('spin-status').innerHTML = '<strong style="color:var(--gold);">Bonus unlocked!</strong> Activate your contract to claim it.';
+
+        // Store the prize for the activation flow
+        localStorage.setItem('helios_spin_prize', JSON.stringify({
+            title: prize.title,
+            icon: prize.icon,
+            ts: Date.now()
+        }));
+    }
+
+    // If already spun, show the result
+    var stored = localStorage.getItem('helios_spin_prize');
+    if (stored && sessionStorage.getItem('helios_spin_played')) {
+        try {
+            var p = JSON.parse(stored);
+            document.getElementById('spin-status').innerHTML = 'You won: <strong style="color:var(--gold);">' + p.title + '</strong> — Activate to claim!';
+        } catch(e) {}
+    }
+})();
+
+'''
+
+# Find the block scripts section in index.html and inject before its closing
+# The JS is inside {% block scripts %} ... {% endblock %}
+if '{% endblock %}' in index_content:
+    # Find the LAST {% endblock %} which is the scripts block
+    last_endblock = index_content.rfind('{% endblock %}')
+    index_content = index_content[:last_endblock] + spin_js + index_content[last_endblock:]
+    print("  Injected Fortune Spin JS")
+
+# Also update the final CTA to reference the game bonus
+old_cta_btn = 'Activate Your Contract</a>'
+new_cta_btn = 'Activate Your Contract &mdash; Claim Your Bonus</a>'
+# Only replace the last one (in the CTA section)
+idx = index_content.rfind(old_cta_btn)
+if idx > 0:
+    index_content = index_content[:idx] + new_cta_btn + index_content[idx+len(old_cta_btn):]
+    print("  Updated final CTA button text")
+
+# Update launch banner to include bonus language
+old_banner_text = 'REGISTER NOW</span>'
+new_banner_text = 'FOUNDING BONUS</span>'
+index_content = index_content.replace(old_banner_text, new_banner_text, 1)
+print("  Updated launch banner")
+
+index_path.write_text(index_content, encoding='utf-8')
+print(f"  index.html: {index_path.stat().st_size} bytes")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 3. ENHANCE QR PAGE WITH SALES TOOLS
+# ═══════════════════════════════════════════════════════════════════════
+print("\n═══ Enhancing QR page with sales CTAs ═══")
+qr_path = ROOT / "qr.html"
+qr_content = qr_path.read_text(encoding='utf-8')
+
+# Add urgency strip and share-as-sales messaging to QR page
+# Find the end of the qr-share-card and add sales tools after
+qr_sales_block = '''
+    <!-- Sales Tools -->
+    <div style="max-width:420px;margin:1.5rem auto 0;text-align:center;">
+        <div style="background:var(--bg-card);border:1px solid rgba(251,191,36,.2);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1rem;">
+            <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--gold);margin-bottom:.4rem;font-family:'Inter',sans-serif;">&#128176; Your Earning Potential</div>
+            <div style="font-size:.88rem;color:var(--text-muted);line-height:1.6;">
+                Every scan &rarr; every activation earns you <strong style="color:var(--gold);">22.5% direct reward</strong>.<br>
+                One $500 activation = <strong style="color:var(--gold);">$112.50</strong> paid to you instantly via smart contract.
+            </div>
+        </div>
+        <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;">
+            <button onclick="navigator.share?navigator.share({title:'Join Helios',url:window.location.href}):navigator.clipboard.writeText(window.location.href)" style="padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-family:'Inter',sans-serif;">&#128228; Share This Code</button>
+            <a href="/recruit" style="padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);text-decoration:none;font-family:'Inter',sans-serif;">&#128231; Email Invite</a>
+            <a href="/network" style="padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);text-decoration:none;font-family:'Inter',sans-serif;">&#127760; My Network</a>
+        </div>
+        <div style="margin-top:1rem;font-size:.72rem;color:var(--text-muted);line-height:1.5;">
+            <strong style="color:var(--gold);">Founding Window Active</strong> &mdash; Your referrals get 10&times; token multiplier + $0.05/HLS pricing.<br>
+            More reason for them to say yes. More value in your mesh.
+        </div>
+    </div>
+'''
+
+# Insert before the closing </div> of the qr-page section
+if 'qr-page' in qr_content:
+    # Find the last </section> or closing div pattern
+    insert_point = qr_content.rfind('{% endblock %}')
+    if '{% block scripts %}' in qr_content:
+        insert_point = qr_content.rfind('{% block scripts %}')
+    # Insert the sales block before the scripts block
+    qr_content = qr_content[:insert_point] + qr_sales_block + '\n' + qr_content[insert_point:]
+    qr_path.write_text(qr_content, encoding='utf-8')
+    print(f"  qr.html enhanced: {qr_path.stat().st_size} bytes")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 4. UPDATE LAUNCH PAGE — ADD BONUS LANGUAGE
+# ═══════════════════════════════════════════════════════════════════════
+print("\n═══ Enhancing launch page bonus messaging ═══")
+launch_path = ROOT / "launch.html"
+launch_content = launch_path.read_text(encoding='utf-8')
+
+# Add $500 sweet spot callout to launch page
+sweet_spot_cta = '''
+    <!-- $500 Sweet Spot Callout -->
+    <div style="max-width:600px;margin:2rem auto;text-align:center;background:rgba(251,191,36,.04);border:1px solid rgba(251,191,36,.15);border-radius:var(--radius);padding:1.5rem;">
+        <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--gold);margin-bottom:.4rem;font-family:'Inter',sans-serif;">&#9733; Founding Sweet Spot</div>
+        <div style="font-size:2rem;font-weight:800;color:var(--gold);font-family:'Inter',sans-serif;">$500</div>
+        <div style="font-size:.88rem;color:var(--text-muted);margin:.3rem 0 .8rem;line-height:1.5;">
+            5&times; contract &middot; 10,000 HLS tokens &middot; Premium gold certificate<br>
+            <strong style="color:var(--gold);">73% of founding members</strong> choose this level.
+        </div>
+        <a href="/activate" style="display:inline-block;padding:.65rem 2rem;background:var(--gold);color:var(--bg);border-radius:var(--radius-sm);font-weight:700;font-size:.92rem;text-decoration:none;">Activate the $500 Sweet Spot &rarr;</a>
+    </div>
+'''
+
+# Insert before the final endblock or endcontent
+if '{% endblock %}' in launch_content:
+    # Find the first endblock (content block)
+    first_endblock = launch_content.find('{% endblock %}')
+    launch_content = launch_content[:first_endblock] + sweet_spot_cta + '\n' + launch_content[first_endblock:]
+    launch_path.write_text(launch_content, encoding='utf-8')
+    print(f"  launch.html enhanced: {launch_path.stat().st_size} bytes")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 5. UPDATE RECRUIT PAGE — ADD $500 CTA + QR LINK
+# ═══════════════════════════════════════════════════════════════════════
+print("\n═══ Enhancing recruit page ═══")
+recruit_path = ROOT / "recruit.html"
+recruit_content = recruit_path.read_text(encoding='utf-8')
+
+recruit_cta = '''
+    <!-- Recruit Tools + Sweet Spot -->
+    <div style="max-width:700px;margin:2rem auto;text-align:center;">
+        <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+            <a href="/qr" style="display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.2rem;border-radius:20px;font-size:.82rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--gold);text-decoration:none;font-family:'Inter',sans-serif;">&#128279; My QR Code</a>
+            <button onclick="navigator.clipboard.writeText(window.location.origin+'/join?ref='+(localStorage.getItem('helios_id')||''));this.textContent='Copied!';setTimeout(()=>this.innerHTML='&#128203; Copy Invite Link',2000);" style="padding:.55rem 1.2rem;border-radius:20px;font-size:.82rem;font-weight:600;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-family:'Inter',sans-serif;">&#128203; Copy Invite Link</button>
+        </div>
+        <div style="background:rgba(251,191,36,.04);border:1px solid rgba(251,191,36,.12);border-radius:var(--radius);padding:1rem;font-size:.85rem;color:var(--text-muted);line-height:1.6;">
+            &#128161; <strong style="color:var(--gold);">Pro tip:</strong> The $500 contract is the easiest sell &mdash;
+            best value per dollar, 10,000 HLS tokens, and you earn <strong style="color:var(--gold);">$112.50</strong> per activation.
+            <br>Lead with the $500. Let the protocol do the convincing.
+        </div>
+    </div>
+'''
+
+if '{% endblock %}' in recruit_content:
+    first_endblock = recruit_content.find('{% endblock %}')
+    recruit_content = recruit_content[:first_endblock] + recruit_cta + '\n' + recruit_content[first_endblock:]
+    recruit_path.write_text(recruit_content, encoding='utf-8')
+    print(f"  recruit.html enhanced: {recruit_path.stat().st_size} bytes")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 6. UPDATE EARNINGS PAGE — ADD $500 CALLOUT
+# ═══════════════════════════════════════════════════════════════════════
+print("\n═══ Adding $500 sweet spot to earnings page ═══")
+earnings_path = ROOT / "earnings.html"
+earnings_content = earnings_path.read_text(encoding='utf-8')
+
+earnings_cta = '''
+    <!-- Sweet Spot CTA -->
+    <div style="max-width:600px;margin:2rem auto;text-align:center;background:linear-gradient(135deg,rgba(251,191,36,.05),rgba(41,151,255,.03));border:1px solid rgba(251,191,36,.15);border-radius:var(--radius);padding:1.2rem;">
+        <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--gold);margin-bottom:.3rem;font-family:'Inter',sans-serif;">Recommended Starting Point</div>
+        <div style="font-size:.95rem;color:var(--text-muted);line-height:1.6;">
+            The <strong style="color:var(--gold);">$500 contract</strong> delivers the optimal allocation-to-cost ratio &mdash;
+            $225 into the pool, $112.50 direct connection reward, plus 10,000 HLS tokens at founding price.
+        </div>
+        <a href="/activate" style="display:inline-block;margin-top:.8rem;padding:.55rem 1.5rem;background:var(--gold);color:var(--bg);border-radius:var(--radius-sm);font-weight:700;font-size:.85rem;text-decoration:none;">See All Contract Levels &rarr;</a>
+    </div>
+'''
+
+if '{% endblock %}' in earnings_content:
+    first_endblock = earnings_content.find('{% endblock %}')
+    earnings_content = earnings_content[:first_endblock] + earnings_cta + '\n' + earnings_content[first_endblock:]
+    earnings_path.write_text(earnings_content, encoding='utf-8')
+    print(f"  earnings.html enhanced: {earnings_path.stat().st_size} bytes")
+
+
+print("\n═══ ALL UPGRADES COMPLETE ═══")
