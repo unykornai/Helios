@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}How It Works â€” Helios Protocol{% endblock %}
-{% block og_title %}How Allocations Work â€” Helios Protocol{% endblock %}
+{% block title %}How It Works — Helios Protocol{% endblock %}
+{% block og_title %}How Allocations Work — Helios Protocol{% endblock %}
 {% block og_description %}Smart contract allocation protocol. Gold-backed certificates. Deterministic code-governed distribution.{% endblock %}
 {% block og_url %}/opportunity{% endblock %}
 
 {% block head %}
 <style>
-/* â”€â”€â”€ Page Container â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Page Container ──────────────────────────────────────────── */
 .deck { position: relative; z-index: 1; }
 .deck-section {
     max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem;
@@ -41,7 +41,7 @@
     color: var(--gold); font-weight: 700; margin-bottom: .6rem;
 }
 
-/* â”€â”€â”€ 6 Step Quick Pitch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── 6 Step Quick Pitch ──────────────────────────────────────── */
 .pitch-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem; margin-bottom: 2rem;
@@ -61,7 +61,7 @@
 .pitch-card strong { display: block; margin-bottom: .15rem; font-size: .95rem; }
 .pitch-card p { margin: 0; font-size: .82rem; color: var(--text-muted); line-height: 1.5; }
 
-/* â”€â”€â”€ Propagation Model â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Propagation Model ───────────────────────────────────────── */
 .depth-chart {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem;
@@ -79,7 +79,7 @@
     border-top: 1px solid var(--border); padding-top: .8rem; line-height: 1.6;
 }
 
-/* â”€â”€â”€ 3 Ways Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── 3 Ways Grid ─────────────────────────────────────────────── */
 .ways-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.2rem; margin-bottom: 2rem;
@@ -113,7 +113,7 @@
 .way-card td { padding: .3rem 0; border-bottom: 1px solid rgba(36,40,51,.3); }
 .way-card td:last-child { text-align: right; color: var(--gold); font-weight: 600; font-family: 'Inter', sans-serif; }
 
-/* â”€â”€â”€ Position Earnings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Position Earnings ───────────────────────────────────────── */
 .pos-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 1.2rem; margin-bottom: 2rem;
@@ -160,7 +160,7 @@
     margin-top: .2rem;
 }
 
-/* â”€â”€â”€ Summary Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Summary Table ───────────────────────────────────────────── */
 .summary-table-wrap {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem;
@@ -181,7 +181,7 @@
 .summary-table td:first-child { font-weight: 600; }
 .summary-table .gold-val { color: var(--gold); font-weight: 700; font-family: 'Inter', sans-serif; }
 
-/* â”€â”€â”€ Tiers Mini â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Tiers Mini ──────────────────────────────────────────────── */
 .tier-mini-grid {
     display: grid; grid-template-columns: repeat(5, 1fr);
     gap: .6rem; margin-bottom: 2rem;
@@ -207,7 +207,7 @@
     margin-top: .4rem;
 }
 
-/* â”€â”€â”€ Asset Chips â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Asset Chips ─────────────────────────────────────────────── */
 .asset-row {
     display: flex; flex-wrap: wrap; gap: .5rem;
     margin-bottom: 1.5rem;
@@ -220,7 +220,7 @@
 }
 .asset-chip.gold { border-color: rgba(41,151,255,.3); color: var(--gold); }
 
-/* â”€â”€â”€ No-BS List â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── No-BS List ──────────────────────────────────────────────── */
 .nobs-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: .5rem; margin-bottom: 2rem;
@@ -235,7 +235,7 @@
     font-size: .75rem; flex-shrink: 0;
 }
 
-/* â”€â”€â”€ CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── CTA ─────────────────────────────────────────────────────── */
 .deck-cta {
     text-align: center; padding: 3rem 2rem;
     border-top: 1px solid var(--border);
@@ -259,7 +259,7 @@
 {% block content %}
 <div class="deck">
 
-    <!-- â•â•â• HERO â•â•â• -->
+    <!-- ═══ HERO ═══ -->
     <section class="deck-hero">
         <h1>HERE'S HOW THIS WORKS</h1>
         <p class="deck-sub">
@@ -270,7 +270,7 @@
     </section>
 
 
-    <!-- â•â•â• 6-STEP QUICK PITCH â•â•â• -->
+    <!-- ═══ 6-STEP QUICK PITCH ═══ -->
     <section class="deck-section">
         <div class="deck-label">THE SHORT VERSION</div>
         <h2>Six things. <span>That's the whole system.</span></h2>
@@ -310,7 +310,7 @@
 
     <hr class="deck-divider">
 
-    <!-- â•â•â• SIGNAL PATH â•â•â• -->
+    <!-- ═══ SIGNAL PATH ═══ -->
     <section class="deck-section">
         <div class="deck-label">THE STRUCTURE</div>
         <h2>How allocations <span>propagate</span></h2>
@@ -323,7 +323,7 @@
 
     <hr class="deck-divider">
 
-    <!-- â•â•â• 3 ALLOCATION CHANNELS â•â•â• -->
+    <!-- ═══ 3 ALLOCATION CHANNELS ═══ -->
     <section class="deck-section">
         <div class="deck-label">THE MONEY</div>
         <h2>Three <span>allocation channels</span></h2>
@@ -399,7 +399,7 @@
 
     <hr class="deck-divider">
 
-    <!-- â•â•â• THE CONTRACTS â•â•â• -->
+    <!-- ═══ THE CONTRACTS ═══ -->
     <section class="deck-section">
         <div class="deck-label">THE CONTRACTS</div>
         <h2>Select the contract that <span>matches your goals</span></h2>
@@ -444,7 +444,7 @@
 
     <hr class="deck-divider">
 
-    <!-- â•â•â• SMART CONTRACT PROTOCOL â•â•â• -->
+    <!-- ═══ SMART CONTRACT PROTOCOL ═══ -->
     <section class="deck-section">
         <div class="deck-label">THE PROTOCOL</div>
         <h2>Deterministic. <span>Code-governed. Verifiable.</span></h2>
@@ -472,7 +472,7 @@
 
     <hr class="deck-divider">
 
-    <!-- â•â•â• GOLD + CRYPTO â•â•â• -->
+    <!-- ═══ GOLD + CRYPTO ═══ -->
     <section class="deck-section">
         <div class="deck-label">REAL ASSETS</div>
         <h2>Gold, NFTs, and crypto. <span>Not points.</span></h2>
@@ -515,7 +515,7 @@
     <hr class="deck-divider">
 
 
-    <!-- â•â•â• FINAL CTA â•â•â• -->
+    <!-- ═══ FINAL CTA ═══ -->
     <section class="deck-cta">
         <h2>Ready?</h2>
         <p>Select your contract. Connect members. Let the smart contract propagation do the rest.</p>

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Activate Your Contract â€” Helios Protocol{% endblock %}
-{% block og_title %}Smart Contract Activation â€” Helios Protocol{% endblock %}
+{% block title %}Activate Your Contract — Helios Protocol{% endblock %}
+{% block og_title %}Smart Contract Activation — Helios Protocol{% endblock %}
 {% block og_description %}Gold-backed certificates, smart contract allocation, BTC/ETH/stablecoin access. Choose your activation amount from $100 to $5,000.{% endblock %}
 {% block og_url %}/activate{% endblock %}
 
@@ -8,7 +8,7 @@
 <style>
 .activate-page { position: relative; z-index: 1; }
 
-/* â”€â”€â”€ Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Hero ────────────────────────────────────────────────────── */
 .act-hero {
     text-align: center; padding: 5rem 2rem 3rem;
 }
@@ -33,7 +33,7 @@
     margin-bottom: 1.5rem; max-width: 720px;
 }
 
-/* â”€â”€â”€ Tier Selection Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Tier Selection Cards ────────────────────────────────────── */
 .act-tiers {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.2rem; margin-bottom: 3rem;
@@ -102,7 +102,7 @@
 }
 .act-tier.popular .at-cta:hover { opacity: .9; }
 
-/* â”€â”€â”€ Allocation Breakdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Allocation Breakdown ────────────────────────────────────── */
 .alloc-bar-wrap { margin-bottom: 2rem; }
 .alloc-bar {
     display: flex; border-radius: var(--radius-sm); overflow: hidden;
@@ -131,7 +131,7 @@
 .al-item strong { font-size: .88rem; display: block; }
 .al-item p { font-size: .78rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
-/* â”€â”€â”€ What You Get â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── What You Get ────────────────────────────────────────────── */
 .benefit-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem; margin-bottom: 3rem;
@@ -151,7 +151,7 @@
 .bi-text strong { font-size: .92rem; display: block; margin-bottom: .2rem; }
 .bi-text p { font-size: .78rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
-/* â”€â”€â”€ Referrer + CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Referrer + CTA ──────────────────────────────────────────── */
 .act-referrer {
     text-align: center; padding: 1rem; margin-bottom: 1.5rem;
     background: rgba(41,151,255,.04); border: 1px solid rgba(41,151,255,.15);
@@ -165,7 +165,7 @@
     max-width: 500px; margin: 1rem auto 2rem;
 }
 
-/* â”€â”€â”€ Transparency Block â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Transparency Block ──────────────────────────────────────── */
 .transparency-block {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 1.5rem; text-align: center;
@@ -194,7 +194,7 @@
 
 {% block content %}
 <div class="activate-page">
-    <!-- â•â•â• HERO â•â•â• -->
+    <!-- ═══ HERO ═══ -->
     <section class="act-hero">
         <h1>ACTIVATE YOUR CONTRACT</h1>
         <p class="act-sub">
@@ -203,7 +203,7 @@
         </p>
     </section>
 
-    <!-- â•â•â• CONTRACT CARDS â•â•â• -->
+    <!-- ═══ CONTRACT CARDS ═══ -->
     <section class="act-section">
         <div class="act-tiers">
             <!-- $100 -->
@@ -229,7 +229,7 @@
             <div class="act-tier">
                 <div class="at-name">$250</div>
                 <div class="at-price">$250</div>
-                <div class="at-mult">2.5Ã— contract</div>
+                <div class="at-mult">2.5× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$112.50</span></li>
                     <li>Direct Connection <span class="stat-val">$56.25</span></li>
@@ -248,7 +248,7 @@
             <div class="act-tier popular">
                 <div class="at-name">$500</div>
                 <div class="at-price">$500</div>
-                <div class="at-mult">5Ã— contract</div>
+                <div class="at-mult">5× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$225</span></li>
                     <li>Direct Connection <span class="stat-val">$112.50</span></li>
@@ -267,7 +267,7 @@
             <div class="act-tier">
                 <div class="at-name">$1,000</div>
                 <div class="at-price">$1,000</div>
-                <div class="at-mult">10Ã— contract</div>
+                <div class="at-mult">10× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$450</span></li>
                     <li>Direct Connection <span class="stat-val">$225</span></li>
@@ -286,7 +286,7 @@
             <div class="act-tier">
                 <div class="at-name">$5,000</div>
                 <div class="at-price">$5,000</div>
-                <div class="at-mult">50Ã— contract</div>
+                <div class="at-mult">50× contract</div>
                 <ul class="at-stats">
                     <li>Allocation Pool <span class="stat-val">$2,250</span></li>
                     <li>Direct Connection <span class="stat-val">$1,125</span></li>
@@ -303,7 +303,7 @@
         </div>
     </section>
 
-    <!-- â•â•â• ALLOCATION BREAKDOWN â•â•â• -->
+    <!-- ═══ ALLOCATION BREAKDOWN ═══ -->
     <section class="act-section">
         <h2>Where Every Dollar Goes</h2>
         <p class="section-desc">
@@ -359,7 +359,7 @@
         </div>
     </section>
 
-    <!-- â•â•â• WHAT YOU GET â•â•â• -->
+    <!-- ═══ WHAT YOU GET ═══ -->
     <section class="act-section">
         <h2>What Every Participant Receives</h2>
         <p class="section-desc">
@@ -376,7 +376,7 @@
                 </div>
             </div>
             <div class="benefit-item">
-                <div class="bi-marker">âš™</div>
+                <div class="bi-marker">⚙</div>
                 <div class="bi-text">
                     <strong>Smart Contract Allocation</strong>
                     <p>Earn from activity across your connection mesh. Deterministic. Automatic. No manual intervention.</p>
@@ -413,7 +413,7 @@
         </div>
     </section>
 
-    <!-- â•â•â• REFERRER â•â•â• -->
+    <!-- ═══ REFERRER ═══ -->
     {% if referrer %}
     <section class="act-section">
         <div class="act-referrer">
@@ -425,7 +425,7 @@
         <div class="act-referrer"></div>
     </div>
 
-    <!-- â•â•â• TRANSPARENCY â•â•â• -->
+    <!-- ═══ TRANSPARENCY ═══ -->
     <section class="act-section">
         <div class="transparency-block">
             <h3>Full Transparency</h3>

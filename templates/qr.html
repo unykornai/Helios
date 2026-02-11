@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Helios â€” Your Network Code{% endblock %}
-{% block og_title %}Join Helios â€” Invitation from a Member{% endblock %}
+{% block title %}Helios — Your Network Code{% endblock %}
+{% block og_title %}Join Helios — Invitation from a Member{% endblock %}
 {% block og_description %}Scan this code to join Helios. Gold-backed smart contract protocol. One payment. Fully autonomous.{% endblock %}
 {% block og_url %}/qr{% endblock %}
 
 {% block head %}
 <style>
-    /* â•â•â• QR CODE PAGE â€” PREMIUM SHARE CARD â•â•â• */
+    /* ═══ QR CODE PAGE — PREMIUM SHARE CARD ═══ */
     .qr-page { min-height:calc(100vh - 80px); display:flex; align-items:center; justify-content:center; padding:2rem 1.5rem; }
 
     .qr-share-card {
@@ -166,7 +166,7 @@
         <div class="qr-empty">
             <h2>Generate Your QR Code</h2>
             <p>Register on Helios to get your personal network code.<br>
-            Share it with anyone â€” they scan, they join, they get their own code.</p>
+            Share it with anyone — they scan, they join, they get their own code.</p>
             <a href="/join" class="btn btn-primary btn-lg">Create Your .helios Identity</a>
         </div>
     </div>
@@ -180,7 +180,7 @@
                     <circle cx="50" cy="50" r="8" fill="#2997ff"/>
                 </svg>
             </div>
-            <div class="qr-identity" id="qr-name">â€”</div>
+            <div class="qr-identity" id="qr-name">—</div>
             <div class="qr-identity-sub">Helios Network Member</div>
         </div>
 
@@ -192,16 +192,16 @@
 
         <div class="qr-scan-label">
             <p>Scan to connect through this member</p>
-            <span class="join-url" id="qr-url">â€”</span>
+            <span class="join-url" id="qr-url">—</span>
         </div>
 
         <div class="qr-info-strip">
             <div class="qr-info-cell">
-                <span class="val">$100â€“$5K</span>
+                <span class="val">$100–$5K</span>
                 <span class="lbl">Contracts</span>
             </div>
             <div class="qr-info-cell">
-                <span class="val">âˆž</span>
+                <span class="val">∞</span>
                 <span class="lbl">Depth</span>
             </div>
             <div class="qr-info-cell">
@@ -214,24 +214,24 @@
             <h4>How the Chain Works</h4>
             <div class="chain-flow">
                 <div class="chain-node you" id="chain-you">YOU</div>
-                <div class="chain-arrow">â†’</div>
+                <div class="chain-arrow">→</div>
                 <div class="chain-node next">+1</div>
-                <div class="chain-arrow">â†’</div>
+                <div class="chain-arrow">→</div>
                 <div class="chain-node future">+N</div>
-                <div class="chain-arrow">â†’</div>
-                <div class="chain-node future" style="font-size:.5rem;">âˆž</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-node future" style="font-size:.5rem;">∞</div>
             </div>
             <p>When someone scans your code and joins, they receive <strong style="color:var(--gold);">their own code</strong> to share.
-            Their connections get codes too. The chain propagates through the smart contract mesh â€” automatically.</p>
+            Their connections get codes too. The chain propagates through the smart contract mesh — automatically.</p>
         </div>
 
         <div class="qr-actions">
-            <button class="btn btn-download" id="btn-download" onclick="downloadQR()">â¬‡ Download</button>
-            <button class="btn btn-share" id="btn-share" onclick="shareQR()">ðŸ“¤ Share Link</button>
+            <button class="btn btn-download" id="btn-download" onclick="downloadQR()">⬇ Download</button>
+            <button class="btn btn-share" id="btn-share" onclick="shareQR()">📤 Share Link</button>
         </div>
 
         <div class="qr-badge-row">
-            <div class="qr-protocol-badge">One Payment Â· Gold Backed Â· Smart Contract Governed</div>
+            <div class="qr-protocol-badge">One Payment · Gold Backed · Smart Contract Governed</div>
         </div>
     </div>
 </div>
@@ -524,7 +524,7 @@
 {% block scripts %}
 <script>
 (function(){
-    // â•â•â• Parse identity from URL path â•â•â•
+    // ═══ Parse identity from URL path ═══
     // Supports: /qr/kenny, /qr/kenny.helios, /qr#kenny
     var identity = '';
     var parts = window.location.pathname.split('/').filter(Boolean);
@@ -545,7 +545,7 @@
         return;
     }
 
-    // â•â•â• Populate the card â•â•â•
+    // ═══ Populate the card ═══
     var displayName = identity + '.helios';
     var joinUrl = window.location.origin + '/join/' + identity;
 
@@ -554,7 +554,7 @@
     document.getElementById('qr-url').textContent = joinUrl;
     document.getElementById('chain-you').textContent = identity.slice(0,5).toUpperCase();
 
-    // â•â•â• Generate QR Code (canvas-based, zero dependencies) â•â•â•
+    // ═══ Generate QR Code (canvas-based, zero dependencies) ═══
     generateQR(joinUrl);
 
     // Store for download/share
@@ -562,7 +562,7 @@
     window._qrJoinUrl = joinUrl;
 })();
 
-// â•â•â• QR Code Generator â€” Pure JS, no CDN â•â•â•
+// ═══ QR Code Generator — Pure JS, no CDN ═══
 // Lightweight QR encoder using canvas
 function generateQR(text) {
     var canvas = document.getElementById('qr-canvas');
@@ -633,7 +633,7 @@ function generateQR(text) {
     ctx.fill();
 }
 
-// â•â•â• QR Encoding (ISO 18004, Alphanumeric Mode, ECC-M, v3-v6) â•â•â•
+// ═══ QR Encoding (ISO 18004, Alphanumeric Mode, ECC-M, v3-v6) ═══
 // Minimal QR implementation for URLs up to ~120 chars
 function encodeQR(text) {
     // For reliability, use the proven img-tag fallback with Google Charts API
@@ -740,7 +740,7 @@ function getAlignmentPositions(version) {
 function encodeData(text, version, mode) {
     var bits = [];
 
-    // Mode indicator (4 bits) â€” byte mode = 0100
+    // Mode indicator (4 bits) — byte mode = 0100
     pushBits(bits, 4, 4);
 
     // Character count
@@ -829,7 +829,7 @@ function isReserved(matrix, row, col, size, version) {
     return false;
 }
 
-// â•â•â• Download QR as high-res PNG â•â•â•
+// ═══ Download QR as high-res PNG ═══
 function downloadQR() {
     var identity = window._qrIdentity || 'helios';
 
@@ -861,7 +861,7 @@ function downloadQR() {
     ctx.font = '500 18px Inter, sans-serif';
     ctx.fillText('HELIOS NETWORK MEMBER', exportSize / 2, 112);
 
-    // QR code â€” draw from source canvas scaled up
+    // QR code — draw from source canvas scaled up
     var srcCanvas = document.getElementById('qr-canvas');
     var qrSize = 700;
     var qrX = (exportSize - qrSize) / 2;
@@ -880,7 +880,7 @@ function downloadQR() {
     // Badge
     ctx.fillStyle = '#555';
     ctx.font = '400 16px Inter, sans-serif';
-    ctx.fillText('ONE PAYMENT  Â·  GOLD BACKED  Â·  SMART CONTRACT GOVERNED', exportSize / 2, qrY + qrSize + 100);
+    ctx.fillText('ONE PAYMENT  ·  GOLD BACKED  ·  SMART CONTRACT GOVERNED', exportSize / 2, qrY + qrSize + 100);
 
     // Download
     var link = document.createElement('a');
@@ -903,14 +903,14 @@ function roundRectFill(ctx, x, y, w, h, r) {
     ctx.fill();
 }
 
-// â•â•â• Share â€” copy link or native share â•â•â•
+// ═══ Share — copy link or native share ═══
 function shareQR() {
     var url = window._qrJoinUrl;
     var identity = window._qrIdentity;
 
     if (navigator.share) {
         navigator.share({
-            title: identity + '.helios â€” Join Helios',
+            title: identity + '.helios — Join Helios',
             text: 'Join Helios through ' + identity + '.helios. Gold-backed allocation protocol. One payment. No monthly fees.',
             url: url
         }).catch(function(){});

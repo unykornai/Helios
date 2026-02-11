@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Digital Certificates â€” Helios Protocol{% endblock %}
-{% block og_title %}Gold-Backed Digital Certificates â€” Helios Protocol{% endblock %}
-{% block og_description %}Gold Certificates, Welcome Certificates, and Staking Certificates â€” each representing a verifiable weight of physical gold, issued as NFTs on XRPL/Stellar.{% endblock %}
+{% block title %}Digital Certificates — Helios Protocol{% endblock %}
+{% block og_title %}Gold-Backed Digital Certificates — Helios Protocol{% endblock %}
+{% block og_description %}Gold Certificates, Welcome Certificates, and Staking Certificates — each representing a verifiable weight of physical gold, issued as NFTs on XRPL/Stellar.{% endblock %}
 {% block og_url %}/certificates{% endblock %}
 
 {% block head %}
@@ -31,7 +31,7 @@
     margin-bottom: 1.5rem; max-width: 720px;
 }
 
-/* â”€â”€â”€ Certificate Type Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Certificate Type Cards ──────────────────────────────────── */
 .cert-type-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem; margin-bottom: 3rem;
@@ -69,7 +69,7 @@
     background: var(--gold); opacity: .5;
 }
 
-/* â”€â”€â”€ Verification Process â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Verification Process ────────────────────────────────────── */
 .verify-flow {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem; margin-bottom: 3rem;
@@ -89,7 +89,7 @@
 .verify-step h4 { font-size: .95rem; font-weight: 600; margin-bottom: .3rem; }
 .verify-step p { font-size: .82rem; color: var(--text-muted); line-height: 1.6; }
 
-/* â”€â”€â”€ Redemption Options â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Redemption Options ──────────────────────────────────────── */
 .redeem-options {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
     margin-bottom: 3rem;
@@ -109,7 +109,7 @@
 }
 .redeem-card li:last-child { border-bottom: none; }
 
-/* â”€â”€â”€ XRPL/Stellar Detail â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── XRPL/Stellar Detail ────────────────────────────────────── */
 .chain-detail {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
     margin-bottom: 3rem;
@@ -139,11 +139,11 @@
 
 {% block content %}
 <div class="cert-page">
-    <!-- â•â•â• HERO â•â•â• -->
+    <!-- ═══ HERO ═══ -->
     <section class="cert-hero">
         <h1>DIGITAL CERTIFICATES</h1>
         <p class="hero-sub">
-            All value within the Helios protocol is represented by digital certificates â€”
+            All value within the Helios protocol is represented by digital certificates —
             each backed by a verifiable weight of physical gold, issued as NFTs on XRPL.
             Three certificate classes. One backing: physical precious metals.
         </p>
@@ -152,7 +152,7 @@
         </p>
     </section>
 
-    <!-- â•â•â• THREE CERTIFICATE TYPES â•â•â• -->
+    <!-- ═══ THREE CERTIFICATE TYPES ═══ -->
     <section class="cert-section">
         <h2>Certificate Classes</h2>
         <p class="section-desc">
@@ -192,9 +192,9 @@
                     No discretion. No manual approval. The protocol issues them automatically.
                 </p>
                 <ul class="cert-features">
-                    <li><strong>Welcome Allocation</strong> â€” fixed certificate at enrollment</li>
-                    <li><strong>Introduction Reward</strong> â€” issued per direct introduction activation</li>
-                    <li><strong>Engagement Reward</strong> â€” based on participation metrics</li>
+                    <li><strong>Welcome Allocation</strong> — fixed certificate at enrollment</li>
+                    <li><strong>Introduction Reward</strong> — issued per direct introduction activation</li>
+                    <li><strong>Engagement Reward</strong> — based on participation metrics</li>
                     <li>Same gold backing as primary certificates</li>
                     <li>Same redemption terms apply</li>
                 </ul>
@@ -220,7 +220,7 @@
         </div>
     </section>
 
-    <!-- â•â•â• VERIFICATION PROCESS â•â•â• -->
+    <!-- ═══ VERIFICATION PROCESS ═══ -->
     <section class="cert-section">
         <h2>On-Chain Verification</h2>
         <p class="section-desc">
@@ -252,7 +252,7 @@
         </div>
     </section>
 
-    <!-- â•â•â• REDEMPTION â•â•â• -->
+    <!-- ═══ REDEMPTION ═══ -->
     <section class="cert-section">
         <h2>Redemption Process</h2>
         <p class="section-desc">
@@ -267,8 +267,8 @@
                 <ul>
                     <li>Minimum redemption: 1g gold equivalent</li>
                     <li>Shipping to verified member address</li>
-                    <li>Available products: 1gâ€“1kg bars, coins, rounds</li>
-                    <li>Processing: 5â€“10 business days</li>
+                    <li>Available products: 1g–1kg bars, coins, rounds</li>
+                    <li>Processing: 5–10 business days</li>
                     <li>Shipping and insurance fees apply</li>
                 </ul>
             </div>
@@ -279,14 +279,14 @@
                     <li>Real-time conversion at spot price</li>
                     <li>Settlement via XRPL or Stellar</li>
                     <li>USDC deposited to member wallet</li>
-                    <li>Processing: near-instant (3â€“5 seconds on XRPL)</li>
+                    <li>Processing: near-instant (3–5 seconds on XRPL)</li>
                     <li>Protocol conversion fee: 1.5%</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- â•â•â• XRPL / STELLAR ISSUANCE â•â•â• -->
+    <!-- ═══ XRPL / STELLAR ISSUANCE ═══ -->
     <section class="cert-section">
         <h2>Blockchain Issuance Infrastructure</h2>
         <p class="section-desc">
@@ -296,10 +296,10 @@
 
         <div class="chain-detail">
             <div class="chain-card">
-                <h3>XRPL â€” Primary Issuance</h3>
+                <h3>XRPL — Primary Issuance</h3>
                 <p>
                     All Gold Certificates and Staking Certificates are issued as native NFTs on XRPL.
-                    The XRP Ledger provides 3â€“5 second settlement finality, near-zero fees,
+                    The XRP Ledger provides 3–5 second settlement finality, near-zero fees,
                     and built-in trustline-based asset issuance. Each certificate carries an on-chain
                     reference to the IPFS evidence bundle via SHA-256 hash.
                 </p>
@@ -310,7 +310,7 @@
                 </p>
             </div>
             <div class="chain-card">
-                <h3>Stellar â€” Stablecoin Settlement</h3>
+                <h3>Stellar — Stablecoin Settlement</h3>
                 <p>
                     Stablecoin redemptions and fiat conversions settle on Stellar, which provides
                     native USDC support, regulated anchor integrations, and institutional compliance
@@ -325,7 +325,7 @@
         </div>
     </section>
 
-    <!-- â•â•â• CTA â•â•â• -->
+    <!-- ═══ CTA ═══ -->
     <section class="cert-cta">
         <h2>Verifiable. Redeemable. Gold-Backed.</h2>
         <p>Every certificate represents physical gold. Every proof chain is independently verifiable.</p>

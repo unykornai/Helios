@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Metrics â€” Protocol Health â€” Helios{% endblock %}
+{% block title %}Metrics — Protocol Health — Helios{% endblock %}
 
 {% block content %}
 <section class="section metrics-section">
     <div class="container">
         <div class="metrics-header">
-            <h1>ðŸ“Š Protocol Metrics</h1>
+            <h1>📊 Protocol Metrics</h1>
             <p class="section-subtitle">SR-level health indicators. Real-time. Public. Verifiable.</p>
         </div>
 
@@ -22,22 +22,22 @@
                                 stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
                     </svg>
                     <div class="gauge-center">
-                        <div class="gauge-value" id="rrr-value">â€”</div>
-                        <div class="gauge-unit">Ã—</div>
+                        <div class="gauge-value" id="rrr-value">—</div>
+                        <div class="gauge-unit">×</div>
                     </div>
                 </div>
                 <div class="gauge-status" id="rrr-status">Loading...</div>
                 <div class="gauge-detail">LiquidTreasury / 30d Redeem Demand</div>
                 <div class="gauge-thresholds">
-                    <span class="threshold threshold-green">Healthy â‰¥ 3.0Ã—</span>
-                    <span class="threshold threshold-yellow">Warning â‰¥ 1.5Ã—</span>
-                    <span class="threshold threshold-red">Critical &lt; 1.0Ã—</span>
+                    <span class="threshold threshold-green">Healthy ≥ 3.0×</span>
+                    <span class="threshold threshold-yellow">Warning ≥ 1.5×</span>
+                    <span class="threshold threshold-red">Critical &lt; 1.0×</span>
                 </div>
             </div>
 
             <!-- Flow Efficiency -->
             <div class="gauge-card" id="gauge-flow">
-                <h3>Flow Efficiency (Î·)</h3>
+                <h3>Flow Efficiency (η)</h3>
                 <div class="gauge-ring-container">
                     <svg viewBox="0 0 140 140" class="gauge-svg">
                         <circle cx="70" cy="70" r="60" fill="none" stroke="#2a2a3e" stroke-width="10"/>
@@ -46,14 +46,14 @@
                                 stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
                     </svg>
                     <div class="gauge-center">
-                        <div class="gauge-value" id="flow-value">â€”</div>
+                        <div class="gauge-value" id="flow-value">—</div>
                         <div class="gauge-unit">%</div>
                     </div>
                 </div>
                 <div class="gauge-status" id="flow-status">Loading...</div>
                 <div class="gauge-detail">(Routed + Stored + Pooled) / In</div>
                 <div class="gauge-thresholds">
-                    <span class="threshold threshold-green">Target â‰¥ 95%</span>
+                    <span class="threshold threshold-green">Target ≥ 95%</span>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
                                 stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
                     </svg>
                     <div class="gauge-center">
-                        <div class="gauge-value" id="churn-value">â€”</div>
+                        <div class="gauge-value" id="churn-value">—</div>
                         <div class="gauge-unit">%</div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="gauge-thresholds">
                     <span class="threshold threshold-green">Healthy &lt; 2%</span>
                     <span class="threshold threshold-yellow">Warning &lt; 5%</span>
-                    <span class="threshold threshold-red">Critical â‰¥ 5%</span>
+                    <span class="threshold threshold-red">Critical ≥ 5%</span>
                 </div>
             </div>
 
@@ -92,14 +92,14 @@
                                 stroke-linecap="round" transform="rotate(-90, 70, 70)" class="gauge-fill"/>
                     </svg>
                     <div class="gauge-center">
-                        <div class="gauge-value" id="velocity-value">â€”</div>
+                        <div class="gauge-value" id="velocity-value">—</div>
                         <div class="gauge-unit">v</div>
                     </div>
                 </div>
                 <div class="gauge-status" id="velocity-status">Loading...</div>
                 <div class="gauge-detail">Transfers 7d / Stored Energy</div>
                 <div class="gauge-thresholds">
-                    <span class="threshold threshold-green">Target â‰¥ 0.30</span>
+                    <span class="threshold threshold-green">Target ≥ 0.30</span>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
         <!-- Conservation Check -->
         <div class="conservation-check">
             <h2>Conservation Law</h2>
-            <p class="section-subtitle">âˆ‘ inflows = routed + stored + pooled + burned</p>
+            <p class="section-subtitle">∑ inflows = routed + stored + pooled + burned</p>
             <div class="conservation-result" id="conservation-result">
                 <p class="loading">Verifying...</p>
             </div>
@@ -123,10 +123,10 @@
 
         <!-- Verify Links -->
         <div class="metrics-verify">
-            <a href="/api/metrics/all" target="_blank" class="btn btn-secondary">Full Metrics JSON â†’</a>
-            <a href="/api/energy/conservation" target="_blank" class="btn btn-secondary">Conservation Check â†’</a>
-            <a href="/api/metrics/health" target="_blank" class="btn btn-secondary">Network Health â†’</a>
-            <a href="/api/treasury/reserves" target="_blank" class="btn btn-secondary">Proof of Reserves â†’</a>
+            <a href="/api/metrics/all" target="_blank" class="btn btn-secondary">Full Metrics JSON →</a>
+            <a href="/api/energy/conservation" target="_blank" class="btn btn-secondary">Conservation Check →</a>
+            <a href="/api/metrics/health" target="_blank" class="btn btn-secondary">Network Health →</a>
+            <a href="/api/treasury/reserves" target="_blank" class="btn btn-secondary">Proof of Reserves →</a>
         </div>
     </div>
 </section>
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => (async function() {
         const balanced = data.balanced;
         el.innerHTML = `
             <div class="conservation-card ${balanced ? 'conservation-pass' : 'conservation-fail'}">
-                <div class="conservation-icon">${balanced ? 'âœ“' : 'âœ—'}</div>
+                <div class="conservation-icon">${balanced ? '✓' : '✗'}</div>
                 <div class="conservation-text">
                     <strong>${balanced ? 'Conservation Law Verified' : 'Conservation Imbalance Detected'}</strong>
                     <p>Total In: ${(data.total_in || 0).toFixed(4)} HE</p>

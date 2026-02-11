@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Helios â€” Token Economics{% endblock %}
-{% block og_title %}Helios â€” Full Token Economics{% endblock %}
-{% block og_description %}Burns, rewards, penalties, staking, internal marketplace, stablecoin exchange â€” every mechanism that governs HLS.{% endblock %}
+{% block title %}Helios — Token Economics{% endblock %}
+{% block og_title %}Helios — Full Token Economics{% endblock %}
+{% block og_description %}Burns, rewards, penalties, staking, internal marketplace, stablecoin exchange — every mechanism that governs HLS.{% endblock %}
 {% block og_url %}/tokenomics{% endblock %}
 
 {% block content %}
 <style>
-    /* â•â•â• TOKENOMICS PAGE STYLES â•â•â• */
+    /* ═══ TOKENOMICS PAGE STYLES ═══ */
     .tk-hero { padding:5rem 1.5rem 3rem; text-align:center; }
     .tk-hero h1 { font-size:2.6rem; color:var(--gold); margin-bottom:.5rem; letter-spacing:.04em; }
     .tk-hero .sub { font-size:1.1rem; color:var(--text-muted); max-width:640px; margin:0 auto; line-height:1.7; }
@@ -65,13 +65,13 @@
     }
 </style>
 
-<!-- â•â•â• HERO â•â•â• -->
+<!-- ═══ HERO ═══ -->
 <section class="tk-hero">
     <div class="container" style="max-width:800px;">
         <div class="tk-badge">Full Protocol Economics</div>
         <h1>TOKEN ECONOMICS</h1>
         <p class="sub">
-            Burns, rewards, penalties, staking, internal exchange, stablecoin conversion â€”
+            Burns, rewards, penalties, staking, internal exchange, stablecoin conversion —
             every mechanism that governs HLS and keeps the protocol healthy. No hidden levers.
             Every rule is published. Every number is math.
         </p>
@@ -80,7 +80,7 @@
 
 
 
-<!-- â•â•â• THE 7 MECHANISMS â•â•â• -->
+<!-- ═══ THE 7 MECHANISMS ═══ -->
 <div class="section">
     <div class="tk-section" style="padding-top:2rem;">
         <h2>Seven Economic Mechanisms</h2>
@@ -91,7 +91,7 @@
 
         <div class="mech-grid">
             <div class="mech-card">
-                <div class="mc-icon">ðŸ”¥</div>
+                <div class="mc-icon">🔥</div>
                 <h3>Token Burns</h3>
                 <p>
                     Every contract upgrade burns the difference between old and new contract tokens.
@@ -102,18 +102,18 @@
                 <div class="mc-tag deflationary">Deflationary</div>
             </div>
             <div class="mech-card">
-                <div class="mc-icon">ðŸŽ</div>
+                <div class="mc-icon">🎁</div>
                 <h3>Reward Allocations</h3>
                 <p>
                     Staking rewards from 5% to 30%. Founding member 20% token reward.
-                    Tier upgrade rewards â€” upgrade from $100 to $1,000 and receive a
+                    Tier upgrade rewards — upgrade from $100 to $1,000 and receive a
                     10% transition reward on the difference. Loyalty milestones at
                     6, 12, and 24 months.
                 </p>
                 <div class="mc-tag reward">Reward</div>
             </div>
             <div class="mech-card">
-                <div class="mc-icon">âš ï¸</div>
+                <div class="mc-icon">⚠️</div>
                 <h3>Early Exit Penalties</h3>
                 <p>
                     Break a staking lock early? 50% of accrued reward is forfeited
@@ -124,18 +124,18 @@
                 <div class="mc-tag penalty">Penalty</div>
             </div>
             <div class="mech-card">
-                <div class="mc-icon">ðŸ“ˆ</div>
+                <div class="mc-icon">📈</div>
                 <h3>Staking Locks</h3>
                 <p>
                     Four lock periods. Longer lock = higher reward. Staked tokens
                     are removed from circulating supply, increasing scarcity.
-                    Rewards are minted from the network distribution pool â€” not
+                    Rewards are minted from the network distribution pool — not
                     from inflation. Fixed supply is never violated.
                 </p>
                 <div class="mc-tag reward">Reward</div>
             </div>
             <div class="mech-card">
-                <div class="mc-icon">ðŸª</div>
+                <div class="mc-icon">🏪</div>
                 <h3>Internal Marketplace</h3>
                 <p>
                     Use HLS to purchase gold certificates, silver certificates,
@@ -146,10 +146,10 @@
                 <div class="mc-tag utility">Utility</div>
             </div>
             <div class="mech-card">
-                <div class="mc-icon">ðŸ’±</div>
+                <div class="mc-icon">💱</div>
                 <h3>Stablecoin Exchange</h3>
                 <p>
-                    Convert HLS â†’ USDC, USDT, or XRP on-chain. Convert certificates
+                    Convert HLS → USDC, USDT, or XRP on-chain. Convert certificates
                     to stablecoins at gold spot rate. Powered by XRPL DEX and
                     Stellar anchors. No intermediary. Wallet-to-wallet settlement
                     in seconds.
@@ -157,13 +157,13 @@
                 <div class="mc-tag utility">Utility</div>
             </div>
             <div class="mech-card" style="grid-column:1/-1;max-width:600px;margin:0 auto;">
-                <div class="mc-icon">ðŸŒ±</div>
+                <div class="mc-icon">🌱</div>
                 <h3>Genesis Pool Model</h3>
                 <p>
                     The first 10 members at $5,000 seed the protocol with $50,000.
                     This creates the genesis token supply, the first gold purchase,
                     and the initial liquidity. Every subsequent member builds on that
-                    foundation. The math compounds â€” not the promises.
+                    foundation. The math compounds — not the promises.
                 </p>
                 <div class="mc-tag reward">Foundation</div>
             </div>
@@ -171,10 +171,10 @@
     </div>
 </div>
 
-<!-- â•â•â• BURN MECHANICS â€” DETAILED â•â•â• -->
+<!-- ═══ BURN MECHANICS — DETAILED ═══ -->
 <div class="section section-dark">
     <div class="tk-section">
-        <h2>ðŸ”¥ Burn Mechanics</h2>
+        <h2>🔥 Burn Mechanics</h2>
         <p class="sec-sub">
             HLS has a fixed supply of 100 million tokens. Burns permanently reduce that supply.
             Every burn event is recorded on-chain. Nobody can reverse a burn.
@@ -207,7 +207,7 @@
                 <tr>
                     <td class="label">Stablecoin Conversion Fee</td>
                     <td>20% of the 1% conversion fee</td>
-                    <td class="note">Every HLSâ†’stablecoin swap reduces supply</td>
+                    <td class="note">Every HLS→stablecoin swap reduces supply</td>
                 </tr>
                 <tr>
                     <td class="label">Early Staking Exit</td>
@@ -229,13 +229,13 @@
     </div>
 </div>
 
-<!-- â•â•â• STAKING TIERS â•â•â• -->
+<!-- ═══ STAKING TIERS ═══ -->
 <div class="section">
     <div class="tk-section">
-        <h2>ðŸ“ˆ Staking Program</h2>
+        <h2>📈 Staking Program</h2>
         <p class="sec-sub">
             Lock your certificates or HLS tokens. Earn Reward Allocations.
-            Staked tokens are removed from circulating supply â€” increasing scarcity for everyone.
+            Staked tokens are removed from circulating supply — increasing scarcity for everyone.
         </p>
 
         <div class="stake-grid">
@@ -269,36 +269,36 @@
                 </thead>
                 <tbody>
                     <tr><td class="label">Minimum Stake</td><td>$50 equivalent in HLS or certificates</td></tr>
-                    <tr><td class="label">Reward Source</td><td>Network Distribution pool (35M tokens) â€” not inflationary</td></tr>
+                    <tr><td class="label">Reward Source</td><td>Network Distribution pool (35M tokens) — not inflationary</td></tr>
                     <tr><td class="label">Compound Staking</td><td>Re-stake reward at end of lock for compound growth</td></tr>
                     <tr><td class="label">Early Exit (7d)</td><td>100% reward forfeited and burned</td></tr>
                     <tr><td class="label">Early Exit (8d+)</td><td>50% of accrued reward forfeited and burned</td></tr>
-                    <tr><td class="label">No Penalty</td><td>Holding without staking â€” withdraw anytime, zero penalty</td></tr>
+                    <tr><td class="label">No Penalty</td><td>Holding without staking — withdraw anytime, zero penalty</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<!-- â•â•â• Reward Structure â•â•â• -->
+<!-- ═══ Reward Structure ═══ -->
 <div class="section section-dark">
     <div class="tk-section">
-        <h2>ðŸŽ Reward Structure</h2>
+        <h2>🎁 Reward Structure</h2>
         <p class="sec-sub">
             Multiple reward channels reward different behaviors.
-            All Rewards are funded from existing pools â€” never from new token creation.
+            All Rewards are funded from existing pools — never from new token creation.
         </p>
 
         <div class="mech-grid">
             <div class="mech-card">
                 <h3>Founding Member Reward</h3>
                 <p>INSTANT ISSUANCE on all Phase 1 purchases. Buy 10,000 HLS, receive 20,000.
-                Drops to +10% in Phase 2. Zero at public launch. This reward is permanent â€” once issued, it's yours.</p>
+                Drops to +10% in Phase 2. Zero at public launch. This reward is permanent — once issued, it's yours.</p>
             </div>
             <div class="mech-card">
                 <h3>Contract Upgrade Reward</h3>
                 <p>Upgrade from a lower contract to a higher contract and receive a 10% transition reward
-                on the price difference. $100 â†’ $1,000 upgrade = $900 difference Ã— 10% = $90 reward in HLS.</p>
+                on the price difference. $100 → $1,000 upgrade = $900 difference × 10% = $90 reward in HLS.</p>
             </div>
             <div class="mech-card">
                 <h3>Staking Reward</h3>
@@ -313,7 +313,7 @@
             </div>
             <div class="mech-card">
                 <h3>Network Growth Reward</h3>
-                <p>When your connections reach 100, 500, 1,000, and 5,000 members â€” one-time
+                <p>When your connections reach 100, 500, 1,000, and 5,000 members — one-time
                 Reward Allocations: 500, 2,500, 7,500, and 25,000 HLS respectively.
                 Milestone-based. Formula-governed.</p>
             </div>
@@ -327,13 +327,13 @@
     </div>
 </div>
 
-<!-- â•â•â• PENALTIES â•â•â• -->
+<!-- ═══ PENALTIES ═══ -->
 <div class="section">
     <div class="tk-section">
-        <h2>âš ï¸ Penalty Structure</h2>
+        <h2>⚠️ Penalty Structure</h2>
         <p class="sec-sub">
             Penalties protect long-term members from short-term exploiters.
-            Every forfeited token is burned â€” benefiting everyone who stays.
+            Every forfeited token is burned — benefiting everyone who stays.
         </p>
 
         <table class="flow-table">
@@ -348,21 +348,21 @@
                 <tr>
                     <td class="label">Break staking lock (within 7 days)</td>
                     <td>100% of accrued reward forfeited</td>
-                    <td class="note">Burned â€” permanently removed from supply</td>
+                    <td class="note">Burned — permanently removed from supply</td>
                 </tr>
                 <tr>
                     <td class="label">Break staking lock (after 7 days)</td>
                     <td>50% of accrued reward forfeited</td>
-                    <td class="note">Burned â€” permanently removed from supply</td>
+                    <td class="note">Burned — permanently removed from supply</td>
                 </tr>
                 <tr>
-                    <td class="label">Rapid conversion (HLSâ†’stablecoin within 48h of receipt)</td>
+                    <td class="label">Rapid conversion (HLS→stablecoin within 48h of receipt)</td>
                     <td>2.5% conversion surcharge (vs standard 1%)</td>
                     <td class="note">20% burned, 80% to liquidity pool</td>
                 </tr>
                 <tr>
                     <td class="label">Dormant account (no activity for 730 days)</td>
-                    <td>Account flagged â€” Staking rewards pause</td>
+                    <td>Account flagged — Staking rewards pause</td>
                     <td class="note">Reactivate anytime with any transaction</td>
                 </tr>
             </tbody>
@@ -370,56 +370,56 @@
 
         <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-top:1.5rem;">
             <strong style="color:var(--gold);">No penalty for simply holding.</strong>
-            Your tokens, your certificates, your gold â€” they're yours.
+            Your tokens, your certificates, your gold — they're yours.
             Penalties only apply to breaking commitments you voluntarily made.
         </p>
     </div>
 </div>
 
-<!-- â•â•â• INTERNAL MARKETPLACE â•â•â• -->
+<!-- ═══ INTERNAL MARKETPLACE ═══ -->
 <div class="section section-dark">
     <div class="tk-section">
-        <h2>ðŸª Internal Marketplace</h2>
+        <h2>🏪 Internal Marketplace</h2>
         <p class="sec-sub">
-            HLS isn't just something you hold â€” it's something you spend.
+            HLS isn't just something you hold — it's something you spend.
             The internal marketplace creates real demand for the token by letting you buy real assets with it.
         </p>
 
         <div class="exchange-grid">
             <div class="ex-card">
-                <h4>ðŸ¥‡ Gold Certificates</h4>
+                <h4>🥇 Gold Certificates</h4>
                 <p>Purchase additional gold-backed NFT certificates using HLS.
                 Certificates represent real gold weight in the treasury.
                 Redeemable for physical metal at any time.</p>
             </div>
             <div class="ex-card">
-                <h4>ðŸ¥ˆ Silver Certificates</h4>
+                <h4>🥈 Silver Certificates</h4>
                 <p>Purchase silver-backed certificates using HLS.
-                Same structure as gold â€” real metal, real receipts,
+                Same structure as gold — real metal, real receipts,
                 real redemption. Diversify your precious metals position.</p>
             </div>
             <div class="ex-card">
-                <h4>ðŸ·ï¸ .helios Identities</h4>
+                <h4>🏷️ .helios Identities</h4>
                 <p>Purchase premium .helios namespace identities.
                 Names like money.helios, crown.helios, or empire.helios.
                 On-chain, permanent, non-transferable.</p>
             </div>
             <div class="ex-card">
-                <h4>â¬†ï¸ Contract Upgrades</h4>
+                <h4>⬆️ Contract Upgrades</h4>
                 <p>Use HLS to upgrade your contract level.
                 Pay the difference with tokens instead of fiat.
-                Upgrade from $100 â†’ $5,000 using accumulated HLS.</p>
+                Upgrade from $100 → $5,000 using accumulated HLS.</p>
             </div>
             <div class="ex-card">
-                <h4>ðŸ“Š Premium Analytics</h4>
+                <h4>📊 Premium Analytics</h4>
                 <p>Access advanced protocol analytics, projection tools,
                 and propagation simulations. Pay with HLS tokens.
                 Knowledge tools for serious participants.</p>
             </div>
             <div class="ex-card">
-                <h4>ðŸŽ“ Protocol Courses</h4>
+                <h4>🎓 Protocol Courses</h4>
                 <p>Training materials, onboarding kits, and protocol
-                guides â€” all purchasable with HLS. Professional resources
+                guides — all purchasable with HLS. Professional resources
                 for growing your connections.</p>
             </div>
         </div>
@@ -432,10 +432,10 @@
     </div>
 </div>
 
-<!-- â•â•â• STABLECOIN EXCHANGE â•â•â• -->
+<!-- ═══ STABLECOIN EXCHANGE ═══ -->
 <div class="section">
     <div class="tk-section">
-        <h2>ðŸ’± Stablecoin Exchange</h2>
+        <h2>💱 Stablecoin Exchange</h2>
         <p class="sec-sub">
             Convert between HLS, certificates, and stablecoins. On-chain. No intermediary.
             Powered by XRPL decentralized exchange and Stellar anchor network.
@@ -443,25 +443,25 @@
 
         <div class="exchange-grid">
             <div class="ex-card">
-                <h4>HLS â†’ USDC / USDT</h4>
+                <h4>HLS → USDC / USDT</h4>
                 <p>Sell HLS for stablecoins at market rate.
                 1% conversion fee. 20% of fee burned.
                 Settles on XRPL DEX or Stellar in seconds.</p>
             </div>
             <div class="ex-card">
-                <h4>Certificates â†’ Stablecoin</h4>
+                <h4>Certificates → Stablecoin</h4>
                 <p>Redeem gold-backed certificates for USDC at
                 current gold spot rate. Real gold price,
                 real stablecoin settlement, real money in your wallet.</p>
             </div>
             <div class="ex-card">
-                <h4>USDC / USDT â†’ HLS</h4>
+                <h4>USDC / USDT → HLS</h4>
                 <p>Buy HLS with stablecoins at market rate.
                 0.5% conversion fee. Creates buy pressure.
                 Increases token demand and price floor.</p>
             </div>
             <div class="ex-card">
-                <h4>HLS â†’ BTC / ETH / XRP</h4>
+                <h4>HLS → BTC / ETH / XRP</h4>
                 <p>Swap HLS for major cryptocurrencies through
                 XRPL DEX pathfinding. Multi-hop routing finds
                 the best rate automatically. No manual trading required.</p>
@@ -475,10 +475,10 @@
                     <tr><th>Conversion</th><th>Fee</th><th>Burn</th><th>To Liquidity</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td class="label">HLS â†’ Stablecoin</td><td class="pct">1.0%</td><td>0.2%</td><td>0.8%</td></tr>
-                    <tr><td class="label">Stablecoin â†’ HLS</td><td class="pct">0.5%</td><td>0.1%</td><td>0.4%</td></tr>
-                    <tr><td class="label">HLS â†’ Crypto (BTC/ETH/XRP)</td><td class="pct">1.5%</td><td>0.3%</td><td>1.2%</td></tr>
-                    <tr><td class="label">Certificate â†’ Stablecoin</td><td class="pct">1.0%</td><td>0.2%</td><td>0.8%</td></tr>
+                    <tr><td class="label">HLS → Stablecoin</td><td class="pct">1.0%</td><td>0.2%</td><td>0.8%</td></tr>
+                    <tr><td class="label">Stablecoin → HLS</td><td class="pct">0.5%</td><td>0.1%</td><td>0.4%</td></tr>
+                    <tr><td class="label">HLS → Crypto (BTC/ETH/XRP)</td><td class="pct">1.5%</td><td>0.3%</td><td>1.2%</td></tr>
+                    <tr><td class="label">Certificate → Stablecoin</td><td class="pct">1.0%</td><td>0.2%</td><td>0.8%</td></tr>
                     <tr><td class="label">Rapid Conversion (&lt;48h)</td><td class="pct">2.5%</td><td>0.5%</td><td>2.0%</td></tr>
                 </tbody>
             </table>
@@ -486,10 +486,10 @@
     </div>
 </div>
 
-<!-- â•â•â• GENESIS POOL MODEL â•â•â• -->
+<!-- ═══ GENESIS POOL MODEL ═══ -->
 <div class="section section-dark">
     <div class="tk-section">
-        <h2>ðŸŒ± Genesis Pool Model</h2>
+        <h2>🌱 Genesis Pool Model</h2>
         <p class="sec-sub">
             The first 10 members at $5,000 each create the $50,000 Genesis Pool.
             This seeds the entire protocol. Here's how the math flows.
@@ -499,24 +499,24 @@
             <div class="gf-step">
                 <div class="gf-num">1</div>
                 <div>
-                    <strong>Genesis Contract â€” 10 Ã— $5,000 = $50,000</strong>
+                    <strong>Genesis Contract — 10 × $5,000 = $50,000</strong>
                     <p>Ten founding members activate at the $5,000 contract. IOU-USDT issued on XRPL.
-                    This $50K becomes the foundation â€” the first liquidity, the first gold, the first token backing.</p>
+                    This $50K becomes the foundation — the first liquidity, the first gold, the first token backing.</p>
                 </div>
             </div>
             <div class="gf-step">
                 <div class="gf-num">2</div>
                 <div>
-                    <strong>Genesis Allocation â€” $50,000 Split</strong>
-                    <p>45% ($22,500) â†’ Allocation Pool. 20% ($10,000) â†’ Liquidity.
-                    15% ($7,500) â†’ Gold Purchase. 10% ($5,000) â†’ Infrastructure.
-                    10% ($5,000) â†’ Protocol Buffer. Every dollar accounted for.</p>
+                    <strong>Genesis Allocation — $50,000 Split</strong>
+                    <p>45% ($22,500) → Allocation Pool. 20% ($10,000) → Liquidity.
+                    15% ($7,500) → Gold Purchase. 10% ($5,000) → Infrastructure.
+                    10% ($5,000) → Protocol Buffer. Every dollar accounted for.</p>
                 </div>
             </div>
             <div class="gf-step">
                 <div class="gf-num">3</div>
                 <div>
-                    <strong>Genesis Token Supply â€” 50,000 HLS</strong>
+                    <strong>Genesis Token Supply — 50,000 HLS</strong>
                     <p>1 token = $1 backing at genesis. 50,000 tokens minted.
                     Fully backed. Easy to explain. Easy to price. Clean starting point.</p>
                 </div>
@@ -524,7 +524,7 @@
             <div class="gf-step">
                 <div class="gf-num">4</div>
                 <div>
-                    <strong>First Token Offering â€” 10,000 Ã— $100 = $1,000,000</strong>
+                    <strong>First Token Offering — 10,000 × $100 = $1,000,000</strong>
                     <p>Ten thousand members join at $100 each. $450,000 enters the allocation pool.
                     $150,000 buys gold. $200,000 funds liquidity. The protocol becomes real.</p>
                 </div>
@@ -532,16 +532,16 @@
             <div class="gf-step">
                 <div class="gf-num">5</div>
                 <div>
-                    <strong>Total Backing: $1,050,000 â€” Token Price: $1.00</strong>
+                    <strong>Total Backing: $1,050,000 — Token Price: $1.00</strong>
                     <p>1,050,000 tokens backed by $1,050,000 in assets. Stable. Safe.
-                    Redeemable. Institution-grade. The token stays at $1.00 â€” but the
+                    Redeemable. Institution-grade. The token stays at $1.00 — but the
                     backing is now massive. Market demand can push it higher.</p>
                 </div>
             </div>
             <div class="gf-step">
                 <div class="gf-num">6</div>
                 <div>
-                    <strong>Genesis 10 Earnings: $20K â€“ $225K Each</strong>
+                    <strong>Genesis 10 Earnings: $20K – $225K Each</strong>
                     <p>The top 10 receive allocations from all 10,000 activations across the protocol mesh.
                     Plus gold certificates, Staking rewards, token allocations, and market appreciation.
                     Timing matters. The formula rewards early participants.</p>
@@ -551,7 +551,7 @@
     </div>
 </div>
 
-<!-- â•â•â• WHAT DRIVES TOKEN VALUE â•â•â• -->
+<!-- ═══ WHAT DRIVES TOKEN VALUE ═══ -->
 <div class="section">
     <div class="tk-section">
         <h2>What Drives HLS Value</h2>
@@ -562,24 +562,24 @@
 
         <div class="mech-grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr));">
             <div class="mech-card">
-                <h3>ðŸ“‰ Supply Reduction</h3>
+                <h3>📉 Supply Reduction</h3>
                 <p>Burns from upgrades, redemptions, marketplace fees, conversion fees,
                 and staking penalties permanently reduce supply.
-                100M is the ceiling â€” actual circulating supply decreases over time.</p>
+                100M is the ceiling — actual circulating supply decreases over time.</p>
             </div>
             <div class="mech-card">
-                <h3>ðŸ“ˆ Demand Creation</h3>
-                <p>Marketplace purchases, contract upgrades, staking locks, and stablecoinâ†’HLS
+                <h3>📈 Demand Creation</h3>
+                <p>Marketplace purchases, contract upgrades, staking locks, and stablecoin→HLS
                 conversions all create buy pressure. Real utility = real demand.</p>
             </div>
             <div class="mech-card">
-                <h3>ðŸ† Gold Floor</h3>
+                <h3>🏆 Gold Floor</h3>
                 <p>15% of every membership buys physical gold. Certificates are redeemable
                 at gold spot rate. The token has a hard asset floor that rises with
-                gold prices. Not just digital â€” it's metal.</p>
+                gold prices. Not just digital — it's metal.</p>
             </div>
             <div class="mech-card">
-                <h3>ðŸ”’ Circulating Lock</h3>
+                <h3>🔒 Circulating Lock</h3>
                 <p>Staked tokens, founder locks (3yr), emergency reserve (5yr),
                 and development vesting (4yr) remove tokens from circulation.
                 Less supply available = higher price potential.</p>
@@ -588,7 +588,7 @@
     </div>
 </div>
 
-<!-- â•â•â• COMPLETE FEE FLOW â•â•â• -->
+<!-- ═══ COMPLETE FEE FLOW ═══ -->
 <div class="section section-dark">
     <div class="tk-section">
         <h2>Complete Fee Flow</h2>
@@ -609,7 +609,7 @@
                 <tr>
                     <td class="label">Network Allocation</td>
                     <td class="pct">45%</td>
-                    <td>Smart contract engine â€” allocations across the entire protocol</td>
+                    <td>Smart contract engine — allocations across the entire protocol</td>
                     <td>$472,500</td>
                 </tr>
                 <tr>
@@ -646,14 +646,14 @@
     </div>
 </div>
 
-<!-- â•â•â• FINAL CTA â•â•â• -->
+<!-- ═══ FINAL CTA ═══ -->
 <section class="section section-cta" style="padding:4rem 1.5rem;">
     <div class="container" style="max-width:700px;text-align:center;">
         <h2 style="font-size:2.2rem;">The Economics Are Public</h2>
         <p style="font-size:1.05rem;color:var(--text-muted);max-width:520px;margin:.5rem auto 1rem;line-height:1.7;">
             Burns reduce supply. Rewards incentivize patience. Penalties protect holders.
             Staking creates scarcity. The marketplace creates demand.
-            And every number is published math â€” not a promise.
+            And every number is published math — not a promise.
         </p>
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;">
             No hidden mechanics. No admin overrides. No inflation. Just seven mechanisms and a fixed supply.

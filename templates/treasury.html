@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Treasury &amp; Infrastructure â€” Helios Protocol{% endblock %}
-{% block og_title %}Treasury &amp; Web3 Infrastructure â€” Helios Protocol{% endblock %}
+{% block title %}Treasury &amp; Infrastructure — Helios Protocol{% endblock %}
+{% block og_title %}Treasury &amp; Web3 Infrastructure — Helios Protocol{% endblock %}
 {% block og_description %}How capital flows through the Helios protocol. Fiat to stablecoin to physical gold. XRPL and Stellar settlement infrastructure. Proof of reserves.{% endblock %}
 {% block og_url %}/treasury{% endblock %}
 
@@ -15,11 +15,11 @@
                 All reserves are auditable on-chain.
             </p>
             <p style="color:var(--gold);font-weight:600;font-size:.8rem;letter-spacing:.12em;opacity:.7;font-family:'Inter',sans-serif;">
-                FIAT â†’ STABLECOIN â†’ GOLD â†’ CERTIFICATES â†’ ALLOCATION
+                FIAT → STABLECOIN → GOLD → CERTIFICATES → ALLOCATION
             </p>
         </div>
 
-        <!-- â•â•â• 5-STEP MONEY FLOW â•â•â• -->
+        <!-- ═══ 5-STEP MONEY FLOW ═══ -->
         <div style="max-width:800px;margin:0 auto 4rem;">
             <h2 style="text-align:center;margin-bottom:1.5rem;">How Capital Flows Through the Protocol</h2>
 
@@ -27,7 +27,7 @@
                 <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
                     <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">1</div>
                     <div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Member Joins â€” $100 Membership</h3>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Member Joins — $100 Membership</h3>
                         <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
                             A $100 membership fee is submitted via standard payment rails.
                             Every dollar is allocated according to published percentages:
@@ -40,7 +40,7 @@
                 <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
                     <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">2</div>
                     <div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Fiat â†’ Stablecoin Conversion</h3>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Fiat → Stablecoin Conversion</h3>
                         <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
                             Incoming fiat is converted to USDC/USDT via regulated anchors on Stellar
                             or direct on-ramp partners. Stablecoins provide transparent, auditable
@@ -52,7 +52,7 @@
                 <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
                     <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">3</div>
                     <div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Stablecoin â†’ Physical Gold Acquisition</h3>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Stablecoin → Physical Gold Acquisition</h3>
                         <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
                             The precious metals allocation ($15 per membership) is used to purchase
                             physical gold by weight through APMEX, one of the world's largest
@@ -65,7 +65,7 @@
                 <div style="display:flex;gap:1.2rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
                     <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;font-family:'Inter',sans-serif;">4</div>
                     <div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Gold â†’ Digital Certificate Issuance</h3>
+                        <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Gold → Digital Certificate Issuance</h3>
                         <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
                             Physical gold is tokenized into three certificate classes on XRPL:
                             <strong>Gold Certificates</strong> (primary value instrument),
@@ -81,7 +81,7 @@
                     <div>
                         <h3 style="font-size:1.05rem;margin-bottom:.3rem;">Smart Contract Propagation</h3>
                         <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;">
-                            The deterministic weighting model (W<sub>h</sub> = W<sub>1</sub> Â· r<sup>(hâˆ’1)</sup>)
+                            The deterministic weighting model (W<sub>h</sub> = W<sub>1</sub> · r<sup>(h−1)</sup>)
                             distributes gold-backed certificate value across the full connection depth
                             of the protocol mesh. Depth 1 receives 50%, Depth 2 receives 25%,
                             and so on. Fixed math. No discretion. No manual intervention.
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <!-- â•â•â• PROOF OF RESERVES â€” Live Data â•â•â• -->
+        <!-- ═══ PROOF OF RESERVES — Live Data ═══ -->
         <div style="margin-bottom:4rem;">
             <h2 style="text-align:center;margin-bottom:.5rem;">Proof of Reserves</h2>
             <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
@@ -102,22 +102,22 @@
             <div class="treasury-summary" id="treasury-summary">
                 <div class="treasury-stat-card">
                     <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">Au</div>
-                    <div class="treasury-stat-value" id="ts-total-oz">â€”</div>
+                    <div class="treasury-stat-value" id="ts-total-oz">—</div>
                     <div class="treasury-stat-label">Total Ounces</div>
                 </div>
                 <div class="treasury-stat-card">
                     <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">$</div>
-                    <div class="treasury-stat-value" id="ts-total-cost">â€”</div>
+                    <div class="treasury-stat-value" id="ts-total-cost">—</div>
                     <div class="treasury-stat-label">Total Cost (USD)</div>
                 </div>
                 <div class="treasury-stat-card">
                     <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">TX</div>
-                    <div class="treasury-stat-value" id="ts-anchored">â€”</div>
+                    <div class="treasury-stat-value" id="ts-anchored">—</div>
                     <div class="treasury-stat-label">On-Chain Anchored</div>
                 </div>
                 <div class="treasury-stat-card">
                     <div style="font-size:1.5rem;color:var(--gold);margin-bottom:.5rem;">NFT</div>
-                    <div class="treasury-stat-value" id="ts-receipt-count">â€”</div>
+                    <div class="treasury-stat-value" id="ts-receipt-count">—</div>
                     <div class="treasury-stat-label">Vault Receipts</div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
             </div>
         </div>
 
-        <!-- â•â•â• TREASURY POLICY â•â•â• -->
+        <!-- ═══ TREASURY POLICY ═══ -->
         <div class="treasury-policy">
             <h2>Treasury Policy</h2>
             <div class="policy-grid">
@@ -141,7 +141,7 @@
                 </div>
                 <div class="policy-item">
                     <span class="policy-label">Metal Coefficient (m)</span>
-                    <span class="policy-value">0.07 (range: 0.05â€“0.12)</span>
+                    <span class="policy-value">0.07 (range: 0.05–0.12)</span>
                 </div>
                 <div class="policy-item">
                     <span class="policy-label">Audit Interval</span>
@@ -170,7 +170,7 @@
             </div>
         </div>
 
-        <!-- â•â•â• WEB3 INFRASTRUCTURE â•â•â• -->
+        <!-- ═══ WEB3 INFRASTRUCTURE ═══ -->
         <div style="margin-top:4rem;margin-bottom:4rem;">
             <h2 style="text-align:center;margin-bottom:.5rem;">Web3 Settlement Infrastructure</h2>
             <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
@@ -180,13 +180,13 @@
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:800px;margin:0 auto;">
                 <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;">
-                    <h3 style="color:var(--gold);font-size:1.15rem;margin-bottom:.75rem;">XRPL â€” Certificate Layer</h3>
+                    <h3 style="color:var(--gold);font-size:1.15rem;margin-bottom:.75rem;">XRPL — Certificate Layer</h3>
                     <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;margin-bottom:1rem;">
                         Primary infrastructure for certificate issuance, ownership tracking,
                         and proof-of-custody anchoring.
                     </p>
                     <ul style="list-style:none;padding:0;">
-                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">3â€“5 second settlement finality</li>
+                        <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">3–5 second settlement finality</li>
                         <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Near-zero transaction fees (~$0.0002)</li>
                         <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Native NFT support (XLS-20)</li>
                         <li style="color:var(--text-muted);font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--border);">Trustline-based asset issuance</li>
@@ -194,7 +194,7 @@
                     </ul>
                 </div>
                 <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;">
-                    <h3 style="color:var(--gold);font-size:1.15rem;margin-bottom:.75rem;">Stellar â€” Settlement Layer</h3>
+                    <h3 style="color:var(--gold);font-size:1.15rem;margin-bottom:.75rem;">Stellar — Settlement Layer</h3>
                     <p style="color:var(--text-muted);font-size:.92rem;line-height:1.7;margin-bottom:1rem;">
                         Primary infrastructure for stablecoin settlement, fiat conversion,
                         and regulated money movement.
@@ -210,7 +210,7 @@
             </div>
         </div>
 
-        <!-- â•â•â• .HELIOS NAMESPACE â•â•â• -->
+        <!-- ═══ .HELIOS NAMESPACE ═══ -->
         <div style="max-width:700px;margin:0 auto 4rem;text-align:center;">
             <h2>.helios Decentralized Namespace</h2>
             <p class="section-subtitle" style="max-width:560px;margin:0 auto 1.5rem;">
@@ -239,7 +239,7 @@
             </div>
         </div>
 
-        <!-- â•â•â• VAULT RECEIPTS TABLE â•â•â• -->
+        <!-- ═══ VAULT RECEIPTS TABLE ═══ -->
         <div class="treasury-receipts">
             <h2>Vault Receipts (MVR-NFTs)</h2>
             <p class="section-subtitle">Each row represents a physical metal purchase, anchored immutably on XRPL.</p>
@@ -328,9 +328,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             tbody.innerHTML = data2.receipts.map(function(r) {
                 return '<tr>' +
-                    '<td><code>' + r.mvr_id.substring(0, 12) + 'â€¦</code></td>' +
+                    '<td><code>' + r.mvr_id.substring(0, 12) + '…</code></td>' +
                     '<td>' + r.metal + '</td>' +
-                    '<td>' + (r.form || 'â€”') + '</td>' +
+                    '<td>' + (r.form || '—') + '</td>' +
                     '<td>' + r.weight_oz + ' oz</td>' +
                     '<td>' + r.quantity + '</td>' +
                     '<td>' + r.total_oz + ' oz</td>' +

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Join Helios{% if referrer %} â€” Invited by {{ referrer }}{% endif %}{% endblock %}
-{% block og_title %}Join Helios â€” Create Your Identity{% endblock %}
+{% block title %}Join Helios{% if referrer %} — Invited by {{ referrer }}{% endif %}{% endblock %}
+{% block og_title %}Join Helios — Create Your Identity{% endblock %}
 {% block og_description %}30 seconds. $100 entry. Metal-backed treasury. Energy certificates. Join the field.{% endblock %}
 {% block og_url %}/join{% if referrer %}/{{ referrer }}{% endif %}{% endblock %}
 
@@ -130,7 +130,7 @@ let verificationId = null;
 let phoneVerified = false;
 const referrer = "{{ referrer or '' }}" || (function() {
     // Client-side referrer detection for static hosting (Netlify)
-    // URL: /enter/kenny or /join/kenny â†’ referrer = "kenny"
+    // URL: /enter/kenny or /join/kenny → referrer = "kenny"
     const parts = window.location.pathname.split('/').filter(Boolean);
     if ((parts[0] === 'enter' || parts[0] === 'join' || parts[0] === 'activate') && parts[1]) {
         // Show referrer badge dynamically
@@ -149,7 +149,7 @@ const referrer = "{{ referrer or '' }}" || (function() {
     return '';
 })();
 
-// â”€â”€â”€ Step 1: Name validation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Step 1: Name validation ──────────────────────────────
 nameInput.addEventListener('input', function() {
     const name = this.value.toLowerCase().trim();
     this.value = name;
@@ -183,7 +183,7 @@ nameInput.addEventListener('input', function() {
         });
 });
 
-// Step 1 â†’ Step 2 (create account then verify phone)
+// Step 1 → Step 2 (create account then verify phone)
 btnStep1.addEventListener('click', function() {
     const name = nameInput.value.trim();
 
@@ -212,7 +212,7 @@ btnStep1.addEventListener('click', function() {
     });
 });
 
-// â”€â”€â”€ Step 2: Phone Verification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Step 2: Phone Verification ──────────────────────────────
 document.getElementById('btn-send-code').addEventListener('click', function() {
     const phone = document.getElementById('phone-input').value.trim();
     const phoneStatus = document.getElementById('phone-status');
@@ -354,7 +354,7 @@ phraseSaved.addEventListener('change', function() {
     btnStep3.disabled = !this.checked;
 });
 
-// Step 3 â†’ Step 4
+// Step 3 → Step 4
 btnStep3.addEventListener('click', function() {
     document.getElementById('welcome-name').textContent = registrationData.helios_id;
 

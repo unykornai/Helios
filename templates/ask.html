@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Member Advisory â€” Helios Protocol{% endblock %}
-{% block og_title %}Member Advisory â€” Helios Protocol{% endblock %}
+{% block title %}Member Advisory — Helios Protocol{% endblock %}
+{% block og_title %}Member Advisory — Helios Protocol{% endblock %}
 {% block og_description %}AI-powered advisory for the Helios protocol. Understand settlement mechanics, reserve composition, allocation formulas, and smart contract structure.{% endblock %}
 {% block og_url %}/ask{% endblock %}
 
 {% block head %}
 <style>
-/* â”€â”€â”€ Avatar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Avatar ──────────────────────────────────────────────────── */
 .avatar-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
 .helios-avatar { width: 140px; height: 140px; cursor: pointer; transition: transform .3s; }
 .helios-avatar:hover { transform: scale(1.02); }
@@ -49,7 +49,7 @@
     min-height: 1.1rem; font-family: 'Inter', sans-serif;
 }
 
-/* â”€â”€â”€ Topic Guide Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Topic Guide Cards ───────────────────────────────────────── */
 .guide-section { margin-bottom: 1.8rem; }
 .guide-title {
     font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
@@ -84,7 +84,7 @@
 }
 .topic-sub { font-size: .72rem; color: var(--text-muted); font-weight: 400; font-family: 'Inter', sans-serif; }
 
-/* â”€â”€â”€ Voice Toggle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Voice Toggle ────────────────────────────────────────────── */
 .voice-toggle-bar {
     display: inline-flex; align-items: center;
     gap: .8rem; padding: .45rem 1rem; border-radius: 20px;
@@ -106,7 +106,7 @@
 }
 .voice-toggle.active::after { transform: translateX(16px); }
 
-/* â”€â”€â”€ Chat Area â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Chat Area ───────────────────────────────────────────────── */
 .chat-container {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); max-height: 400px; overflow-y: auto;
@@ -182,7 +182,7 @@
 }
 .chat-input-area .btn { white-space: nowrap; }
 
-/* â”€â”€â”€ Page Links â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Page Links ──────────────────────────────────────────────── */
 .page-links {
     display: flex; flex-wrap: wrap; gap: .5rem;
     justify-content: center;
@@ -211,7 +211,7 @@
 {% block content %}
 <section class="section ask-section">
     <div class="container container-sm">
-        <!-- â•â•â• ADVISORY AVATAR â•â•â• -->
+        <!-- ═══ ADVISORY AVATAR ═══ -->
         <div class="avatar-container">
             <svg class="helios-avatar" id="helios-avatar" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -263,7 +263,7 @@
             <div class="avatar-status" id="avatar-status">Voice-powered advisory &middot; Tap to listen</div>
         </div>
 
-        <!-- â•â•â• VOICE TOGGLE â•â•â• -->
+        <!-- ═══ VOICE TOGGLE ═══ -->
         <div class="voice-toggle-wrap">
             <div class="voice-toggle-bar">
                 <span class="voice-toggle-label">Text</span>
@@ -272,21 +272,21 @@
             </div>
         </div>
 
-        <!-- â•â•â• INQUIRY TOPICS â•â•â• -->
+        <!-- ═══ INQUIRY TOPICS ═══ -->
         <div class="guide-section">
             <div class="guide-title">Smart Contract Allocation</div>
             <div class="topic-grid">
                 <div class="topic-card" onclick="askQuestion('How does the smart contract allocation engine work in Helios?')">
-                    <div class="topic-marker">âš™</div>
+                    <div class="topic-marker">⚙</div>
                     <div><div class="topic-text">Allocation Engine</div><div class="topic-sub">Propagation across the connection mesh</div></div>
                 </div>
-                <div class="topic-card" onclick="askQuestion('Walk me through the $100 activation fee allocation â€” where does every dollar go?')">
+                <div class="topic-card" onclick="askQuestion('Walk me through the $100 activation fee allocation — where does every dollar go?')">
                     <div class="topic-marker">$</div>
                     <div><div class="topic-text">Fee Allocation</div><div class="topic-sub">Complete dollar breakdown</div></div>
                 </div>
                 <div class="topic-card" onclick="askQuestion('Explain the formula W_h = W_1 times r to the power of h minus 1. What is the allocation at each depth?')">
                     <div class="topic-marker">W</div>
-                    <div><div class="topic-text">Weighting Formula</div><div class="topic-sub">W<sub>h</sub> = W<sub>1</sub> Â· r<sup>(hâˆ’1)</sup></div></div>
+                    <div><div class="topic-text">Weighting Formula</div><div class="topic-sub">W<sub>h</sub> = W<sub>1</sub> · r<sup>(h−1)</sup></div></div>
                 </div>
                 <div class="topic-card" onclick="askQuestion('What rewards are available? How do the connection, staking, and Engagement rewards work?')">
                     <div class="topic-marker">B</div>
@@ -330,7 +330,7 @@
                 </div>
                 <div class="topic-card" onclick="askQuestion('How is the SHA-256 proof chain created from physical gold to digital certificate?')">
                     <div class="topic-marker">P</div>
-                    <div><div class="topic-text">Proof Chain</div><div class="topic-sub">Gold â†’ IPFS â†’ XRPL</div></div>
+                    <div><div class="topic-text">Proof Chain</div><div class="topic-sub">Gold → IPFS → XRPL</div></div>
                 </div>
                 <div class="topic-card" onclick="askQuestion('What structural safeguards prevent protocol misuse or fund misappropriation?')">
                     <div class="topic-marker">S</div>
@@ -339,7 +339,7 @@
             </div>
         </div>
 
-        <!-- â•â•â• CHAT â•â•â• -->
+        <!-- ═══ CHAT ═══ -->
         <div id="chat-container" class="chat-container">
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-message assistant">
@@ -361,7 +361,7 @@
             <button id="chat-send" class="btn btn-primary">Submit</button>
         </div>
 
-        <!-- â•â•â• PAGE LINKS â•â•â• -->
+        <!-- ═══ PAGE LINKS ═══ -->
         <div class="page-links">
             <a href="/earnings" class="page-link">Allocation Model</a>
             <a href="/certificates" class="page-link">Certificates</a>
@@ -388,7 +388,7 @@ var currentAudio = null;
 var lastAnswer = null;
 var voiceEnabled = true;
 
-// â•â•â• Voice Toggle â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══ Voice Toggle ═════════════════════════════════════════════
 function toggleVoice() {
     var toggle = document.getElementById('voiceToggle');
     voiceEnabled = !voiceEnabled;
@@ -398,7 +398,7 @@ function toggleVoice() {
         : 'Text-only mode';
 }
 
-// â•â•â• Avatar State Machine â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══ Avatar State Machine ═════════════════════════════════════
 function setAvatarState(state) {
     avatar.classList.remove('avatar-speaking', 'avatar-thinking');
     if (state === 'speaking') {
@@ -433,7 +433,7 @@ avatar.addEventListener('click', function() {
     }
 });
 
-// â•â•â• Chat Functions â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══ Chat Functions ═══════════════════════════════════════════
 function addMessage(role, text, showVoice) {
     var div = document.createElement('div');
     div.className = 'chat-message ' + role;
@@ -564,7 +564,7 @@ async function askQuestion(question) {
 chatSend.addEventListener('click', function() { askQuestion(chatInput.value); });
 chatInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') askQuestion(chatInput.value); });
 
-// â•â•â• Auto-greet with voice on first visit â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══ Auto-greet with voice on first visit ═════════════════════
 (function() {
     var greeted = sessionStorage.getItem('helios_greeted');
     if (!greeted && voiceEnabled) {
