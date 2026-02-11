@@ -1,7 +1,7 @@
 /**
  * Helios Neural Field Visualization
- * ═══════════════════════════════════════
- * D3.js force-directed graph — undirected, no hierarchy.
+ * â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+ * D3.js force-directed graph â€” undirected, no hierarchy.
  * Concentric influence rings. Pulsing energy propagation.
  * Gold on dark. No "above" or "below".
  */
@@ -48,13 +48,13 @@ function renderField(data) {
             .attr('stroke-dasharray', '4,8');
     }
 
-    // Node state colors — no hierarchy, just connectivity
+    // Node state colors â€” no hierarchy, just connectivity
     const stateColor = {
-        'stable': '#f59e0b',       // Gold — fully saturated
-        'propagating': '#fbbf24',   // Light gold — active
-        'connected': '#3b82f6',     // Blue — growing
-        'acknowledged': '#8b5cf6',  // Purple — new
-        'instantiated': '#6366f1'   // Indigo — just joined
+        'stable': '#f59e0b',       // Gold â€” fully saturated
+        'propagating': '#fbbf24',   // Light gold â€” active
+        'connected': '#3b82f6',     // Blue â€” growing
+        'acknowledged': '#8b5cf6',  // Purple â€” new
+        'instantiated': '#6366f1'   // Indigo â€” just joined
     };
 
     // Size based on bond count, not "rank"
@@ -83,7 +83,7 @@ function renderField(data) {
             target: e.target
         }));
 
-    // Force simulation — undirected, no hierarchy bias
+    // Force simulation â€” undirected, no hierarchy bias
     const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink(links).id(d => d.id).distance(100))
         .force('charge', d3.forceManyBody().strength(-250))
@@ -136,26 +136,26 @@ function renderField(data) {
     node.append('circle')
         .attr('r', d => d.radius)
         .attr('fill', d => stateColor[d.node_state] || '#6366f1')
-        .attr('stroke', d => d.is_origin ? '#fde68a' : 'rgba(245,158,11,0.2)')
+        .attr('stroke', d => d.is_origin ? '#64d2ff' : 'rgba(41,151,255,0.2)')
         .attr('stroke-width', d => d.is_origin ? 2.5 : 1)
         .attr('filter', d => d.is_origin ? 'url(#nodeGlow)' : null)
         .attr('cursor', 'pointer')
         .on('mouseover', function(event, d) {
-            d3.select(this).attr('stroke', '#fde68a').attr('stroke-width', 2.5);
+            d3.select(this).attr('stroke', '#64d2ff').attr('stroke-width', 2.5);
             showDetail(d);
         })
         .on('mouseout', function(event, d) {
             if (!d.is_origin) {
-                d3.select(this).attr('stroke', 'rgba(245,158,11,0.2)').attr('stroke-width', 1);
+                d3.select(this).attr('stroke', 'rgba(41,151,255,0.2)').attr('stroke-width', 1);
             }
         });
 
     // Bond count indicator (small number)
     node.append('text')
-        .text(d => d.is_origin ? '☀' : (d.bond_count || ''))
+        .text(d => d.is_origin ? 'â˜€' : (d.bond_count || ''))
         .attr('text-anchor', 'middle')
         .attr('dy', d => d.is_origin ? 5 : 4)
-        .attr('fill', d => d.is_origin ? '#fde68a' : 'rgba(255,255,255,0.7)')
+        .attr('fill', d => d.is_origin ? '#64d2ff' : 'rgba(255,255,255,0.7)')
         .attr('font-size', d => d.is_origin ? '14px' : '9px')
         .attr('font-family', 'Inter, sans-serif')
         .attr('font-weight', '600');

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Vault — Certificates &amp; Energy — Helios{% endblock %}
+{% block title %}Vault â€” Certificates &amp; Energy â€” Helios{% endblock %}
 
 {% block content %}
 <section class="section vault-section">
     <div class="container">
         <div class="vault-header">
-            <h1>🔐 Your Vault</h1>
+            <h1>ðŸ” Your Vault</h1>
             <p class="section-subtitle">Certificates. Stored energy. Redemption options.</p>
         </div>
 
@@ -13,17 +13,17 @@
         <div class="vault-balance-row">
             <div class="vault-balance-card">
                 <div class="vb-label">Energy Balance</div>
-                <div class="vb-amount" id="vault-energy">— HE</div>
+                <div class="vb-amount" id="vault-energy">â€” HE</div>
                 <div class="vb-sub">Helios Energy available</div>
             </div>
             <div class="vault-balance-card">
                 <div class="vb-label">Active Certificates</div>
-                <div class="vb-amount" id="vault-active-certs">—</div>
+                <div class="vb-amount" id="vault-active-certs">â€”</div>
                 <div class="vb-sub">HC-NFTs (stored energy batteries)</div>
             </div>
             <div class="vault-balance-card">
                 <div class="vb-label">Total Stored</div>
-                <div class="vb-amount" id="vault-stored-he">— HE</div>
+                <div class="vb-amount" id="vault-stored-he">â€” HE</div>
                 <div class="vb-sub">Energy locked in certificates</div>
             </div>
         </div>
@@ -63,7 +63,7 @@
             <h2>Redeem or Cancel</h2>
             <div class="redeem-grid">
                 <div class="redeem-option">
-                    <h3>🥇 Redeem for Gold</h3>
+                    <h3>ðŸ¥‡ Redeem for Gold</h3>
                     <p>Link certificate to a Metal Vault Receipt. Full value, no friction.</p>
                     <input type="text" id="redeem-gold-cert" class="input-large" placeholder="Certificate ID">
                     <input type="text" id="redeem-gold-mvr" class="input-large" placeholder="MVR ID (linked receipt)">
@@ -71,14 +71,14 @@
                     <p id="redeem-gold-status" class="action-status"></p>
                 </div>
                 <div class="redeem-option">
-                    <h3>💵 Redeem for Stablecoin</h3>
+                    <h3>ðŸ’µ Redeem for Stablecoin</h3>
                     <p>Convert certificate energy to stablecoin. Full value, no friction.</p>
                     <input type="text" id="redeem-stable-cert" class="input-large" placeholder="Certificate ID">
                     <button class="btn btn-primary" onclick="redeemStablecoin()">Redeem Stablecoin</button>
                     <p id="redeem-stable-status" class="action-status"></p>
                 </div>
                 <div class="redeem-option redeem-cancel">
-                    <h3>✕ Cancel Certificate</h3>
+                    <h3>âœ• Cancel Certificate</h3>
                     <p>Return energy to balance. 2% friction burned permanently.</p>
                     <input type="text" id="cancel-cert" class="input-large" placeholder="Certificate ID">
                     <button class="btn btn-secondary" onclick="cancelCert()">Cancel (2% friction)</button>
@@ -161,7 +161,7 @@ async function loadVault() {
             <div class="cert-card cert-${c.state}">
                 <div class="cert-top">
                     <span class="cert-state-badge cert-badge-${c.state}">${c.state.toUpperCase()}</span>
-                    <code class="cert-id">${c.certificate_id.substring(0, 12)}…</code>
+                    <code class="cert-id">${c.certificate_id.substring(0, 12)}â€¦</code>
                 </div>
                 <div class="cert-body">
                     <div class="cert-metric">
@@ -177,7 +177,7 @@ async function loadVault() {
                         <span class="cm-label">Mint Rate</span>
                     </div>
                 </div>
-                ${c.state === 'redeemed' ? `<div class="cert-redeem-info">Redeemed: ${c.redemption_type} — $${parseFloat(c.redemption_amount || 0).toFixed(2)}</div>` : ''}
+                ${c.state === 'redeemed' ? `<div class="cert-redeem-info">Redeemed: ${c.redemption_type} â€” $${parseFloat(c.redemption_amount || 0).toFixed(2)}</div>` : ''}
                 ${c.state === 'cancelled' ? `<div class="cert-cancel-info">Friction paid: ${parseFloat(c.friction_paid || 0).toFixed(4)} HE</div>` : ''}
             </div>
         `).join('');
@@ -194,7 +194,7 @@ async function mintCertificate() {
         });
         const data = await res.json();
         if (data.error) { setStatus('mint-status', data.error, 'error'); }
-        else { setStatus('mint-status', `Certificate minted: ${data.certificate_id.substring(0, 12)}…`, 'success'); loadVault(); }
+        else { setStatus('mint-status', `Certificate minted: ${data.certificate_id.substring(0, 12)}â€¦`, 'success'); loadVault(); }
     } catch(e) { setStatus('mint-status', 'Mint failed.', 'error'); }
 }
 

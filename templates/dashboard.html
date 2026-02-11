@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Dashboard — Helios{% endblock %}
+{% block title %}Dashboard â€” Helios{% endblock %}
 
 {% block content %}
 <section class="section dashboard">
@@ -13,11 +13,11 @@
             <!-- Balance Card -->
             <div class="dash-card dash-card-balance">
                 <h3>Balance</h3>
-                <div class="balance-amount" id="dash-balance">—</div>
+                <div class="balance-amount" id="dash-balance">â€”</div>
                 <div class="balance-detail">
-                    <span>Earned: <b id="dash-earned">—</b></span>
-                    <span>Sent: <b id="dash-sent">—</b></span>
-                    <span>Received: <b id="dash-received">—</b></span>
+                    <span>Earned: <b id="dash-earned">â€”</b></span>
+                    <span>Sent: <b id="dash-sent">â€”</b></span>
+                    <span>Received: <b id="dash-received">â€”</b></span>
                 </div>
                 <div class="balance-actions">
                     <button class="btn btn-primary" onclick="openSend()">Send</button>
@@ -30,19 +30,19 @@
                 <h3>Your Network</h3>
                 <div class="stat-row">
                     <div class="stat">
-                        <div class="stat-value" id="dash-network-total">—</div>
+                        <div class="stat-value" id="dash-network-total">â€”</div>
                         <div class="stat-label">Total Members</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value" id="dash-direct">—</div>
+                        <div class="stat-value" id="dash-direct">â€”</div>
                         <div class="stat-label">Direct</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value" id="dash-health">—</div>
+                        <div class="stat-value" id="dash-health">â€”</div>
                         <div class="stat-label">Health</div>
                     </div>
                 </div>
-                <a href="/network" class="btn btn-secondary btn-full">View Network →</a>
+                <a href="/network" class="btn btn-secondary btn-full">View Network â†’</a>
             </div>
 
             <!-- Activity Card -->
@@ -55,7 +55,7 @@
                                 stroke-dasharray="339.3" stroke-dashoffset="339.3" id="activity-ring"
                                 stroke-linecap="round" transform="rotate(-90, 60, 60)"/>
                     </svg>
-                    <div class="ring-value" id="dash-activity">—</div>
+                    <div class="ring-value" id="dash-activity">â€”</div>
                 </div>
                 <p class="activity-note">Stay above 10 to earn rewards</p>
             </div>
@@ -63,9 +63,9 @@
             <!-- Rewards Card -->
             <div class="dash-card">
                 <h3>Total Earned</h3>
-                <div class="earned-total" id="dash-total-earned">—</div>
+                <div class="earned-total" id="dash-total-earned">â€”</div>
                 <div id="dash-earnings-breakdown"></div>
-                <a href="/api/rewards/pool" target="_blank" class="verify-link">Verify pool stats →</a>
+                <a href="/api/rewards/pool" target="_blank" class="verify-link">Verify pool stats â†’</a>
             </div>
         </div>
 
@@ -133,7 +133,7 @@ async function loadDashboard() {
     // Load identity
     const id = await fetch(`/api/identity/verify/${heliosId}`).then(r=>r.json());
     if (id.success && id.data.exists) {
-        document.getElementById('dash-name').textContent = `☀️ ${id.data.display_name}`;
+        document.getElementById('dash-name').textContent = `â˜€ï¸ ${id.data.display_name}`;
         document.getElementById('dash-since').textContent = `Member since ${new Date(id.data.member_since).toLocaleDateString()}`;
     }
 
@@ -149,7 +149,7 @@ async function loadDashboard() {
     if (hist.success && hist.data.length > 0) {
         list.innerHTML = hist.data.map(h => `
             <div class="history-item history-${h.type}">
-                <div class="history-icon">${h.type === 'sent' ? '↑' : h.type === 'received' ? '↓' : '⭐'}</div>
+                <div class="history-icon">${h.type === 'sent' ? 'â†‘' : h.type === 'received' ? 'â†“' : 'â­'}</div>
                 <div class="history-detail">
                     <p>${h.display}</p>
                     <small>${new Date(h.date).toLocaleString()}</small>

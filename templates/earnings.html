@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Allocation Model — Helios Protocol{% endblock %}
-{% block og_title %}Allocation Model — Helios Protocol{% endblock %}
+{% block title %}Allocation Model â€” Helios Protocol{% endblock %}
+{% block og_title %}Allocation Model â€” Helios Protocol{% endblock %}
 {% block og_description %}Deterministic allocation protocol. Monthly and yearly earnings projections. Gold-backed certificates. BTC, ETH, and stablecoin access.{% endblock %}
 {% block og_url %}/earnings{% endblock %}
 
 {% block head %}
 <style>
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ALLOCATION MODEL — Smart Contract Propagation
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+   ALLOCATION MODEL â€” Smart Contract Propagation
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” */
 
 .alloc-page { position: relative; z-index: 1; }
 .alloc-hero {
@@ -36,7 +36,7 @@
     margin-bottom: 1.5rem; max-width: 760px;
 }
 
-/* ─── Tier Selector ───────────────────────────────────────────── */
+/* â”€â”€â”€ Tier Selector â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .tier-selector {
     display: flex; gap: .6rem; justify-content: center;
     flex-wrap: wrap; margin-bottom: 2.5rem;
@@ -48,9 +48,9 @@
     color: var(--text-muted); cursor: pointer; transition: all .25s;
     text-align: center;
 }
-.tier-btn:hover { border-color: rgba(201,168,76,.3); color: var(--text); }
+.tier-btn:hover { border-color: rgba(41,151,255,.3); color: var(--text); }
 .tier-btn.active {
-    background: rgba(201,168,76,.08); border-color: var(--gold);
+    background: rgba(41,151,255,.08); border-color: var(--gold);
     color: var(--gold);
 }
 .tier-btn .tb-amount {
@@ -61,7 +61,7 @@
     opacity: .7; margin-top: .1rem;
 }
 
-/* ─── Tier Cards Grid ─────────────────────────────────────────── */
+/* â”€â”€â”€ Tier Cards Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .tier-cards {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     gap: 1rem; margin-bottom: 3rem;
@@ -75,9 +75,9 @@
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: var(--gold); opacity: 0; transition: opacity .3s;
 }
-.tier-card:hover { border-color: rgba(201,168,76,.25); transform: translateY(-2px); }
+.tier-card:hover { border-color: rgba(41,151,255,.25); transform: translateY(-2px); }
 .tier-card:hover::before { opacity: 1; }
-.tier-card.featured { border-color: rgba(201,168,76,.3); }
+.tier-card.featured { border-color: rgba(41,151,255,.3); }
 .tier-card.featured::before { opacity: 1; }
 .tc-name {
     font-size: .72rem; text-transform: uppercase; letter-spacing: .1em;
@@ -115,7 +115,7 @@
     content: '\2713'; color: var(--gold); margin-right: .4rem; font-weight: 700;
 }
 
-/* ─── Formula Display ─────────────────────────────────────────── */
+/* â”€â”€â”€ Formula Display â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .formula-block {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 2.5rem;
@@ -134,7 +134,7 @@
 .formula-var-val { font-size: 1.3rem; font-weight: 700; color: var(--gold); }
 .formula-var-desc { font-size: .75rem; color: var(--text-muted); }
 
-/* ─── Settlement Channel Grid ─────────────────────────────────── */
+/* â”€â”€â”€ Settlement Channel Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .streams-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.2rem; margin-bottom: 3rem;
@@ -149,7 +149,7 @@
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     opacity: 0; transition: opacity .3s;
 }
-.stream-card:hover { border-color: rgba(201,168,76,0.25); transform: translateY(-1px); }
+.stream-card:hover { border-color: rgba(41,151,255,0.25); transform: translateY(-1px); }
 .stream-card:hover::before { opacity: 1; }
 .stream-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: .4rem; }
 .stream-amount { font-size: 1.3rem; font-weight: 700; color: var(--gold); margin-bottom: .5rem; }
@@ -162,10 +162,10 @@
 }
 .tag-instant { background: rgba(61,139,110,0.12); color: var(--green); }
 .tag-tiered { background: rgba(74,126,181,0.12); color: var(--blue); }
-.tag-reserve { background: rgba(201,168,76,0.12); color: var(--gold); }
+.tag-reserve { background: rgba(41,151,255,0.12); color: var(--gold); }
 .tag-crypto { background: rgba(147,51,234,0.12); color: #a78bfa; }
 
-/* ─── Network + Earnings Table ────────────────────────────────── */
+/* â”€â”€â”€ Network + Earnings Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .earnings-table-wrap {
     overflow-x: auto; margin-bottom: 2rem;
     border: 1px solid var(--border); border-radius: var(--radius);
@@ -174,7 +174,7 @@
     width: 100%; border-collapse: collapse; font-size: .82rem;
 }
 .earnings-table th {
-    background: rgba(201,168,76,0.06);
+    background: rgba(41,151,255,0.06);
     padding: .6rem .7rem; text-align: right;
     font-weight: 600; color: var(--gold);
     border-bottom: 1px solid var(--border);
@@ -190,8 +190,8 @@
 }
 .earnings-table td:first-child,
 .earnings-table td:nth-child(2) { text-align: left; font-family: 'EB Garamond', serif; }
-.earnings-table tr:hover { background: rgba(201,168,76,0.02); }
-.earnings-table .row-highlight { background: rgba(201,168,76,0.04); }
+.earnings-table tr:hover { background: rgba(41,151,255,0.02); }
+.earnings-table .row-highlight { background: rgba(41,151,255,0.04); }
 .earnings-table .row-highlight td { font-weight: 600; }
 .tier-primary { font-weight: 700; color: var(--gold); }
 .earnings-table tfoot td {
@@ -199,7 +199,7 @@
     padding: .7rem .7rem; font-size: .88rem;
 }
 
-/* ─── Summary Cards ───────────────────────────────────────────── */
+/* â”€â”€â”€ Summary Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .summary-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem; margin-bottom: 3rem;
@@ -208,7 +208,7 @@
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 1.3rem; text-align: center;
 }
-.summary-card.gold-border { border-color: rgba(201,168,76,.3); }
+.summary-card.gold-border { border-color: rgba(41,151,255,.3); }
 .sc-label {
     font-size: .68rem; text-transform: uppercase; letter-spacing: .06em;
     color: var(--text-muted); font-weight: 600; margin-bottom: .3rem;
@@ -220,7 +220,7 @@
 }
 .sc-sub { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
 
-/* ─── Bonus Cards ─────────────────────────────────────────────── */
+/* â”€â”€â”€ Bonus Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .bonus-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.2rem; margin-bottom: 3rem;
@@ -230,10 +230,10 @@
     border-radius: var(--radius); padding: 1.5rem; text-align: center;
     transition: all .3s;
 }
-.bonus-card:hover { border-color: rgba(201,168,76,0.25); transform: translateY(-1px); }
+.bonus-card:hover { border-color: rgba(41,151,255,0.25); transform: translateY(-1px); }
 .bonus-icon {
     width: 48px; height: 48px; border-radius: 50%;
-    background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15);
+    background: rgba(41,151,255,0.08); border: 1px solid rgba(41,151,255,0.15);
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto .75rem; font-size: 1.1rem; font-weight: 700;
     color: var(--gold); font-family: 'Inter', sans-serif;
@@ -241,7 +241,7 @@
 .bonus-name { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; }
 .bonus-desc { font-size: .82rem; color: var(--text-muted); line-height: 1.6; }
 
-/* ─── Staking Section ─────────────────────────────────────────── */
+/* â”€â”€â”€ Staking Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .staking-block {
     background: rgba(74,126,181,0.04); border: 1px solid rgba(74,126,181,0.15);
     border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
@@ -265,7 +265,7 @@
 }
 .staking-label { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
 
-/* ─── Crypto Access Block ─────────────────────────────────────── */
+/* â”€â”€â”€ Crypto Access Block â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .crypto-block {
     background: rgba(147,51,234,0.04); border: 1px solid rgba(147,51,234,0.15);
     border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
@@ -286,7 +286,7 @@
     letter-spacing: .04em;
 }
 
-/* ─── Calculator ──────────────────────────────────────────────── */
+/* â”€â”€â”€ Calculator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .calc-section {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem;
@@ -309,7 +309,7 @@
 }
 .calc-input-group input:focus, .calc-input-group select:focus {
     outline: none; border-color: var(--gold);
-    box-shadow: 0 0 0 2px rgba(201,168,76,0.1);
+    box-shadow: 0 0 0 2px rgba(41,151,255,0.1);
 }
 .calc-results {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -329,7 +329,7 @@
 }
 .calc-result-sub { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
 
-/* ─── CTA + Disclaimer ───────────────────────────────────────── */
+/* â”€â”€â”€ CTA + Disclaimer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .alloc-cta {
     text-align: center; padding: 3rem 2rem 5rem;
 }
@@ -340,7 +340,7 @@
     font-size: .78rem; color: var(--text-muted); line-height: 1.6; opacity: 0.7;
 }
 
-/* ─── Advisory Link ───────────────────────────────────────────── */
+/* â”€â”€â”€ Advisory Link â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ask-inline {
     display: flex; align-items: center; gap: 1rem;
     background: var(--bg-card); border: 1px solid var(--border);
@@ -351,7 +351,7 @@
 .ask-inline-text h4 { font-size: .95rem; font-weight: 600; color: var(--text); margin-bottom: .15rem; }
 .ask-inline-text p { font-size: .82rem; color: var(--text-muted); }
 
-/* ─── How It Works Steps ──────────────────────────────────────── */
+/* â”€â”€â”€ How It Works Steps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .how-steps {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem; margin-bottom: 3rem;
@@ -362,7 +362,7 @@
 }
 .how-step-num {
     width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.2);
+    background: rgba(41,151,255,.08); border: 1px solid rgba(41,151,255,.2);
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto .6rem; font-size: .82rem; font-weight: 700;
     color: var(--gold); font-family: 'Inter', sans-serif;
@@ -388,7 +388,7 @@
 
 {% block content %}
 <div class="alloc-page">
-    <!-- ═══ HERO ═══ -->
+    <!-- â•â•â• HERO â•â•â• -->
     <section class="alloc-hero">
         <h1>ALLOCATION MODEL</h1>
         <p class="hero-sub">
@@ -401,7 +401,7 @@
         </p>
     </section>
 
-    <!-- ═══ HOW IT WORKS (SIMPLE) ═══ -->
+    <!-- â•â•â• HOW IT WORKS (SIMPLE) â•â•â• -->
     <section class="alloc-section">
         <h2>How Allocations Work &mdash; 5 Simple Steps</h2>
         <p class="section-desc">
@@ -439,7 +439,7 @@
         </div>
     </section>
 
-    <!-- ═══ 5 MEMBERSHIP TIERS ═══ -->
+    <!-- â•â•â• 5 MEMBERSHIP TIERS â•â•â• -->
     <section class="alloc-section">
         <h2>Contract Tiers</h2>
         <p class="section-desc">
@@ -531,7 +531,7 @@
         </div>
     </section>
 
-    <!-- ═══ THE FORMULA ═══ -->
+    <!-- â•â•â• THE FORMULA â•â•â• -->
     <section class="alloc-section">
         <h2>Depth Weighting Formula</h2>
         <p class="section-desc">
@@ -575,7 +575,7 @@
         </div>
     </section>
 
-    <!-- ═══ 4 EARNING CHANNELS ═══ -->
+    <!-- â•â•â• 4 EARNING CHANNELS â•â•â• -->
     <section class="alloc-section">
         <h2>Four Allocation Channels</h2>
         <p class="section-desc">
@@ -626,7 +626,7 @@
         </div>
     </section>
 
-    <!-- ═══ CONTRACT SELECTOR + SMART CONTRACT PROPAGATION TABLE ═══ -->
+    <!-- â•â•â• CONTRACT SELECTOR + SMART CONTRACT PROPAGATION TABLE â•â•â• -->
     <section class="alloc-section">
         <h2>Smart Contract Propagation Table</h2>
         <p class="section-desc">
@@ -680,7 +680,7 @@
         <div class="summary-grid" id="summaryCards"></div>
     </section>
 
-    <!-- ═══ MEMBERSHIP FEE ALLOCATION ═══ -->
+    <!-- â•â•â• MEMBERSHIP FEE ALLOCATION â•â•â• -->
     <section class="alloc-section">
         <h2>Where Your Membership Fee Goes</h2>
         <p class="section-desc">
@@ -717,7 +717,7 @@
         </div>
     </section>
 
-    <!-- ═══ BONUSES ═══ -->
+    <!-- â•â•â• BONUSES â•â•â• -->
     <section class="alloc-section">
         <h2>Certificate Bonuses</h2>
         <p class="section-desc">
@@ -753,7 +753,7 @@
         </div>
     </section>
 
-    <!-- ═══ STAKING ═══ -->
+    <!-- â•â•â• STAKING â•â•â• -->
     <section class="alloc-section">
         <div class="staking-block">
             <h3>Certificate Staking</h3>
@@ -791,7 +791,7 @@
         </div>
     </section>
 
-    <!-- ═══ CRYPTO ACCESS ═══ -->
+    <!-- â•â•â• CRYPTO ACCESS â•â•â• -->
     <section class="alloc-section">
         <div class="crypto-block">
             <h3>Crypto &amp; Digital Asset Access</h3>
@@ -816,7 +816,7 @@
         </div>
     </section>
 
-    <!-- ═══ ADVISORY LINK ═══ -->
+    <!-- â•â•â• ADVISORY LINK â•â•â• -->
     <section class="alloc-section">
         <a href="/guide" class="ask-inline">
             <div class="ask-inline-text">
@@ -826,7 +826,7 @@
         </a>
     </section>
 
-    <!-- ═══ CALCULATOR ═══ -->
+    <!-- â•â•â• CALCULATOR â•â•â• -->
     <section class="alloc-section">
         <div class="calc-section">
             <h3>Earnings Projection Calculator</h3>
@@ -910,7 +910,7 @@
         </div>
     </section>
 
-    <!-- ═══ CTA ═══ -->
+    <!-- â•â•â• CTA â•â•â• -->
     <section class="alloc-cta">
         <h2>Gold-Backed. Smart Contract Governed.</h2>
         <p>Choose your contract. Activate your position. Let the code work.
@@ -919,7 +919,7 @@
         <a href="/certificates" class="btn btn-ghost">View Certificate Types</a>
     </section>
 
-    <!-- ═══ DISCLAIMER ═══ -->
+    <!-- â•â•â• DISCLAIMER â•â•â• -->
     <div class="alloc-disclaimer">
         <strong>Disclaimer:</strong> All projections are mathematical models derived from the protocol's
         deterministic allocation formula: W<sub>L</sub> = W<sub>1</sub> &middot; r<sup>(L&minus;1)</sup>
@@ -935,7 +935,7 @@
 
 {% block scripts %}
 <script>
-// ═══ TIER CONFIG ═══════════════════════════════════════════════
+// â•â•â• TIER CONFIG â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 var TIERS = {
     100:  { name: 'Tier 1',  pool: 45,     direct: 22.50,   mult: '1\u00d7' },
     250:  { name: 'Tier 2',  pool: 112.50, direct: 56.25,   mult: '2.5\u00d7' },
@@ -966,7 +966,7 @@ var LABELS = [
 
 var activeTier = 100;
 
-// ═══ TIER SELECTOR ═══════════════════════════════════════════
+// â•â•â• TIER SELECTOR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 function setTier(tier) {
     activeTier = tier;
     var btns = document.querySelectorAll('.tier-btn');
@@ -976,7 +976,7 @@ function setTier(tier) {
     buildEarningsTable();
 }
 
-// ═══ SMART CONTRACT PROPAGATION TABLE ════════════════════════
+// â•â•â• SMART CONTRACT PROPAGATION TABLE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 function buildEarningsTable() {
     var t = TIERS[activeTier];
     var pool = t.pool;
@@ -1061,7 +1061,7 @@ function monthlyL5(pool) {
     return total;
 }
 
-// ═══ CALCULATOR ═══════════════════════════════════════════════
+// â•â•â• CALCULATOR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 function recalculate() {
     var yourTier = parseInt(document.getElementById('calcTier').value);
     var bonds = parseInt(document.getElementById('calcBonds').value);
@@ -1092,7 +1092,7 @@ function recalculate() {
     document.getElementById('resultPeriod').textContent = 'over ' + months + ' month' + (months > 1 ? 's' : '');
 }
 
-// ═══ FORMATTERS ══════════════════════════════════════════════
+// â•â•â• FORMATTERS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 function fmtMoney(n) {
     if (n >= 1000000000) return (n / 1000000000).toFixed(1) + 'B';
     if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
@@ -1121,7 +1121,7 @@ function fmtCalc(n) {
     return n.toFixed(4);
 }
 
-// ═══ INIT ════════════════════════════════════════════════════
+// â•â•â• INIT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 document.addEventListener('DOMContentLoaded', function() {
     buildEarningsTable();
     recalculate();

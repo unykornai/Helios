@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Helios — Token Launch & Early Registration{% endblock %}
-{% block og_title %}Helios — Founding Member Token Offering{% endblock %}
+{% block title %}Helios â€” Token Launch & Early Registration{% endblock %}
+{% block og_title %}Helios â€” Founding Member Token Offering{% endblock %}
 {% block og_description %}Register early. Lock in the lowest token price. Secure founding access before the protocol opens to the public.{% endblock %}
 {% block og_url %}/launch{% endblock %}
 
@@ -9,24 +9,24 @@
     .launch-hero { padding:5rem 1.5rem 3.5rem; text-align:center; position:relative; overflow:hidden; }
     .launch-hero h1 { font-size:2.8rem; color:var(--gold); margin-bottom:.5rem; letter-spacing:.04em; }
     .launch-hero .hero-sub { font-size:1.15rem; color:var(--text-muted); max-width:640px; margin:0 auto 1rem; line-height:1.7; }
-    .launch-badge { display:inline-block; background:rgba(201,168,76,.12); border:1px solid var(--gold); color:var(--gold); font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; padding:.45rem 1.2rem; border-radius:2rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:1.5rem; }
+    .launch-badge { display:inline-block; background:rgba(41,151,255,.12); border:1px solid var(--gold); color:var(--gold); font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; padding:.45rem 1.2rem; border-radius:2rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:1.5rem; }
     .launch-badge.live { animation: badge-pulse 2s ease-in-out infinite; }
-    @keyframes badge-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.3)} 50%{box-shadow:0 0 20px 4px rgba(201,168,76,.15)} }
+    @keyframes badge-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(41,151,255,.3)} 50%{box-shadow:0 0 20px 4px rgba(41,151,255,.15)} }
 
     .phase-timeline { max-width:880px; margin:0 auto; position:relative; padding-left:2.5rem; }
-    .phase-timeline::before { content:''; position:absolute; left:1rem; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,.2) 100%); }
+    .phase-timeline::before { content:''; position:absolute; left:1rem; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--gold) 0%, rgba(41,151,255,.2) 100%); }
     .tl-item { position:relative; margin-bottom:2.5rem; }
     .tl-dot { position:absolute; left:-1.85rem; top:.35rem; width:14px; height:14px; border-radius:50%; border:2px solid var(--gold); background:var(--bg); z-index:1; }
-    .tl-dot.active { background:var(--gold); box-shadow:0 0 12px rgba(201,168,76,.4); }
-    .tl-dot.future { border-color:rgba(201,168,76,.35); }
+    .tl-dot.active { background:var(--gold); box-shadow:0 0 12px rgba(41,151,255,.4); }
+    .tl-dot.future { border-color:rgba(41,151,255,.35); }
     .tl-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem 1.8rem; }
-    .tl-card.active-phase { border-color:var(--gold); box-shadow:0 0 30px rgba(201,168,76,.08); }
+    .tl-card.active-phase { border-color:var(--gold); box-shadow:0 0 30px rgba(41,151,255,.08); }
     .tl-date { font-family:'Inter',sans-serif; font-size:.72rem; color:var(--gold); text-transform:uppercase; letter-spacing:.1em; font-weight:600; margin-bottom:.4rem; }
     .tl-card h3 { font-size:1.25rem; margin-bottom:.5rem; color:var(--text); }
     .tl-card p { color:var(--text-muted); font-size:.92rem; line-height:1.65; margin:0; }
     .tl-card ul { list-style:none; padding:0; margin:.8rem 0 0; }
     .tl-card ul li { color:var(--text-muted); font-size:.88rem; padding:.3rem 0; padding-left:1.2rem; position:relative; }
-    .tl-card ul li::before { content:'→'; position:absolute; left:0; color:var(--gold); }
+    .tl-card ul li::before { content:'â†’'; position:absolute; left:0; color:var(--gold); }
 
     .token-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem; max-width:900px; margin:0 auto; }
     .token-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; text-align:center; }
@@ -48,12 +48,12 @@
     .trust-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; }
     .trust-card h4 { color:var(--gold); font-size:.95rem; margin-bottom:.5rem; }
     .trust-card p { color:var(--text-muted); font-size:.88rem; line-height:1.65; margin:0; }
-    .trust-card code { background:rgba(201,168,76,.1); color:var(--gold); padding:1px 6px; border-radius:3px; font-size:.82rem; }
+    .trust-card code { background:rgba(41,151,255,.1); color:var(--gold); padding:1px 6px; border-radius:3px; font-size:.82rem; }
 
     .issuance-table { width:100%; border-collapse:collapse; max-width:800px; margin:0 auto; }
     .issuance-table th { font-family:'Inter',sans-serif; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); padding:.6rem .8rem; border-bottom:1px solid var(--border); text-align:left; }
     .issuance-table td { padding:.65rem .8rem; border-bottom:1px solid rgba(255,255,255,.04); font-size:.9rem; color:var(--text-muted); }
-    .issuance-table tr:hover td { background:rgba(201,168,76,.03); }
+    .issuance-table tr:hover td { background:rgba(41,151,255,.03); }
     .issuance-table .pool-name { color:var(--text); font-weight:500; }
     .issuance-table .pct { color:var(--gold); font-weight:600; font-family:'Inter',sans-serif; }
     .issuance-table .lock { font-size:.78rem; }
@@ -73,7 +73,7 @@
     .fl-label h4 { font-size:.82rem; color:var(--gold); margin-bottom:.25rem; font-family:'Inter',sans-serif; letter-spacing:.02em; }
     .fl-label p { font-size:.74rem; color:var(--text-muted); line-height:1.5; margin:0; }
     .fl-node { transition: stroke .4s ease, fill .4s ease; }
-    .fl-node.lit { stroke:var(--gold); stroke-width:2.5; fill:rgba(201,168,76,.15); filter:url(#fl2-glow); }
+    .fl-node.lit { stroke:var(--gold); stroke-width:2.5; fill:rgba(41,151,255,.15); filter:url(#fl2-glow); }
     .fl-num { transition: fill .4s ease; }
     .fl-num.lit { fill:var(--gold); }
     .fl-seg { transition: stroke .5s ease; }
@@ -88,7 +88,7 @@
     }
 </style>
 
-<!-- ═══ HERO ═══ -->
+<!-- â•â•â• HERO â•â•â• -->
 <section class="launch-hero">
     <div class="container" style="max-width:800px;">
         <div class="launch-badge live">Founding Window Open</div>
@@ -106,20 +106,20 @@
             <div class="cd-unit"><div class="num" id="cd-mins">--</div><div class="label">Minutes</div></div>
             <div class="cd-unit"><div class="num" id="cd-secs">--</div><div class="label">Seconds</div></div>
         </div>
-        <p style="font-size:.78rem;color:var(--text-muted);margin-top:.5rem;">Until Founding Window closes · Phase 1 pricing ends</p>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-top:.5rem;">Until Founding Window closes Â· Phase 1 pricing ends</p>
 
         <div style="margin-top:1.5rem;">
-            <a href="/activate" class="btn btn-primary btn-lg">Register Now — Lock Your Price</a>
+            <a href="/activate" class="btn btn-primary btn-lg">Register Now â€” Lock Your Price</a>
         </div>
     </div>
 </section>
 
-<!-- ═══ ACTIVATION FLOWLINE ═══ -->
+<!-- â•â•â• ACTIVATION FLOWLINE â•â•â• -->
 <section class="section" style="padding-bottom:2rem;">
     <div class="container" style="max-width:900px;">
         <h2 style="text-align:center;">The Activation Flowline</h2>
         <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
-            Watch how value activates through the protocol — step by step,
+            Watch how value activates through the protocol â€” step by step,
             like electricity through a wire.
         </p>
 
@@ -127,47 +127,47 @@
             <svg class="flowline-svg fl-svg-launch" viewBox="0 0 740 120" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="fl2-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#c9a84c" stop-opacity="0"/>
-                        <stop offset="40%" stop-color="#c9a84c" stop-opacity="1"/>
-                        <stop offset="60%" stop-color="#e8d694" stop-opacity="1"/>
-                        <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+                        <stop offset="0%" stop-color="#2997ff" stop-opacity="0"/>
+                        <stop offset="40%" stop-color="#2997ff" stop-opacity="1"/>
+                        <stop offset="60%" stop-color="#93c5fd" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#2997ff" stop-opacity="0"/>
                     </linearGradient>
                     <filter id="fl2-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     <filter id="fl2-glow-s"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                 </defs>
-                <line x1="92" y1="60" x2="648" y2="60" stroke="rgba(201,168,76,0.12)" stroke-width="2"/>
-                <line class="fl-seg fl2" data-seg="1" x1="92"  y1="60" x2="277" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
-                <line class="fl-seg fl2" data-seg="2" x1="277" y1="60" x2="463" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
-                <line class="fl-seg fl2" data-seg="3" x1="463" y1="60" x2="648" y2="60" stroke="rgba(201,168,76,0.06)" stroke-width="2.5"/>
+                <line x1="92" y1="60" x2="648" y2="60" stroke="rgba(41,151,255,0.12)" stroke-width="2"/>
+                <line class="fl-seg fl2" data-seg="1" x1="92"  y1="60" x2="277" y2="60" stroke="rgba(41,151,255,0.06)" stroke-width="2.5"/>
+                <line class="fl-seg fl2" data-seg="2" x1="277" y1="60" x2="463" y2="60" stroke="rgba(41,151,255,0.06)" stroke-width="2.5"/>
+                <line class="fl-seg fl2" data-seg="3" x1="463" y1="60" x2="648" y2="60" stroke="rgba(41,151,255,0.06)" stroke-width="2.5"/>
                 <rect class="fl-bolt fl2-bolt" x="0" y="56" width="50" height="8" rx="4" fill="url(#fl2-grad)" filter="url(#fl2-glow-s)" opacity="0"/>
-                <circle class="fl-node fl2" data-step="0" cx="92"  cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
-                <circle class="fl-node fl2" data-step="1" cx="277" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
-                <circle class="fl-node fl2" data-step="2" cx="463" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
-                <circle class="fl-node fl2" data-step="3" cx="648" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(201,168,76,0.25)" stroke-width="2"/>
-                <text class="fl-num fl2" data-step="0" x="92"  y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">1</text>
-                <text class="fl-num fl2" data-step="1" x="277" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">2</text>
-                <text class="fl-num fl2" data-step="2" x="463" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">3</text>
-                <text class="fl-num fl2" data-step="3" x="648" y="65" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">4</text>
+                <circle class="fl-node fl2" data-step="0" cx="92"  cy="60" r="18" fill="var(--bg-card)" stroke="rgba(41,151,255,0.25)" stroke-width="2"/>
+                <circle class="fl-node fl2" data-step="1" cx="277" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(41,151,255,0.25)" stroke-width="2"/>
+                <circle class="fl-node fl2" data-step="2" cx="463" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(41,151,255,0.25)" stroke-width="2"/>
+                <circle class="fl-node fl2" data-step="3" cx="648" cy="60" r="18" fill="var(--bg-card)" stroke="rgba(41,151,255,0.25)" stroke-width="2"/>
+                <text class="fl-num fl2" data-step="0" x="92"  y="65" text-anchor="middle" fill="rgba(41,151,255,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">1</text>
+                <text class="fl-num fl2" data-step="1" x="277" y="65" text-anchor="middle" fill="rgba(41,151,255,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">2</text>
+                <text class="fl-num fl2" data-step="2" x="463" y="65" text-anchor="middle" fill="rgba(41,151,255,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">3</text>
+                <text class="fl-num fl2" data-step="3" x="648" y="65" text-anchor="middle" fill="rgba(41,151,255,0.4)" font-family="Inter,sans-serif" font-size="14" font-weight="700">4</text>
             </svg>
 
             <div class="flowline-labels" style="grid-template-columns:repeat(4,1fr);">
                 <div class="fl-label fl2-label" data-step="0">
-                    <div class="fl-label-icon">🔑</div>
+                    <div class="fl-label-icon">ðŸ”‘</div>
                     <h4>Register & Select Contract</h4>
                     <p>Select your contract. Lock in $0.10/HLS founding price. Activate your wallet.</p>
                 </div>
                 <div class="fl-label fl2-label" data-step="1">
-                    <div class="fl-label-icon">🔗</div>
+                    <div class="fl-label-icon">ðŸ”—</div>
                     <h4>Set Up Trustlines</h4>
                     <p>Connect your XRPL & Stellar wallets. Trustlines open the channel for tokens to flow.</p>
                 </div>
                 <div class="fl-label fl2-label" data-step="2">
-                    <div class="fl-label-icon">💎</div>
+                    <div class="fl-label-icon">ðŸ’Ž</div>
                     <h4>Purchase HLS Tokens</h4>
                     <p>Buy HLS at founding price. Get 20% bonus tokens. Your tokens land in your wallet.</p>
                 </div>
                 <div class="fl-label fl2-label" data-step="3">
-                    <div class="fl-label-icon">⚡</div>
+                    <div class="fl-label-icon">âš¡</div>
                     <h4>Smart Contracts Activate</h4>
                     <p>Smart contract engine activates. Gold is purchased. Certificates mint. Value propagates.</p>
                 </div>
@@ -176,14 +176,14 @@
 
         <div style="text-align:center;margin-top:1.5rem;">
             <p style="font-size:.82rem;color:var(--text-muted);">
-                The Flowline shows how value moves through Helios — from your membership activation
+                The Flowline shows how value moves through Helios â€” from your membership activation
                 to gold-backed certificates distributed across the entire network.
             </p>
         </div>
     </div>
 </section>
 
-<!-- ═══ 3-PHASE TIMELINE ═══ -->
+<!-- â•â•â• 3-PHASE TIMELINE â•â•â• -->
 <section class="section section-dark">
     <div class="container" style="max-width:900px;">
         <h2 style="text-align:center;">The Roadmap</h2>
@@ -197,8 +197,8 @@
             <div class="tl-item">
                 <div class="tl-dot active"></div>
                 <div class="tl-card active-phase">
-                    <div class="tl-date">Phase 1 — Founding Window · Feb 10 – Mar 31, 2026</div>
-                    <h3>🟢 Token Offering — Founding Members</h3>
+                    <div class="tl-date">Phase 1 â€” Founding Window Â· Feb 10 â€“ Mar 31, 2026</div>
+                    <h3>ðŸŸ¢ Token Offering â€” Founding Members</h3>
                     <p>
                         This is where it starts. Founding members register, set up trustlines,
                         and purchase HLS tokens at the lowest price the protocol will ever offer.
@@ -207,7 +207,7 @@
                     <ul>
                         <li>HLS token price: <strong style="color:var(--gold);">$0.10 per token</strong></li>
                         <li>20% bonus tokens on all purchases</li>
-                        <li>Founding Member badge — permanent, non-transferable</li>
+                        <li>Founding Member badge â€” permanent, non-transferable</li>
                         <li>Priority .helios identity reservation</li>
                         <li>Trustline setup on XRPL + Stellar</li>
                         <li>First gold purchase with treasury allocation</li>
@@ -219,7 +219,7 @@
             <div class="tl-item">
                 <div class="tl-dot future"></div>
                 <div class="tl-card">
-                    <div class="tl-date">Phase 2 — Builder Phase · Apr 1 – May 31, 2026</div>
+                    <div class="tl-date">Phase 2 â€” Builder Phase Â· Apr 1 â€“ May 31, 2026</div>
                     <h3>Builder Expansion</h3>
                     <p>
                         Token price increases. The founding contracts are established.
@@ -241,16 +241,16 @@
             <div class="tl-item">
                 <div class="tl-dot future"></div>
                 <div class="tl-card">
-                    <div class="tl-date">Phase 3 — Public Launch · Jun 1, 2026 →</div>
+                    <div class="tl-date">Phase 3 â€” Public Launch Â· Jun 1, 2026 â†’</div>
                     <h3>Full Protocol Live</h3>
                     <p>
                         The protocol opens to the public. Token price at full market rate.
-                        All systems operational — allocation engine, gold certificates,
+                        All systems operational â€” allocation engine, gold certificates,
                         crypto conversions, staking, and the full certificate marketplace.
                     </p>
                     <ul>
-                        <li>HLS token price: <strong>$0.50 per token</strong> (5× founding price)</li>
-                        <li>No bonus tokens — market rate only</li>
+                        <li>HLS token price: <strong>$0.50 per token</strong> (5Ã— founding price)</li>
+                        <li>No bonus tokens â€” market rate only</li>
                         <li>Full NFT certificate marketplace</li>
                         <li>Staking program live (5-30% bonuses)</li>
                         <li>Cross-chain settlement fully operational</li>
@@ -262,57 +262,57 @@
     </div>
 </section>
 
-<!-- ═══ TOKEN PRICING BY PHASE ═══ -->
+<!-- â•â•â• TOKEN PRICING BY PHASE â•â•â• -->
 <section class="section">
     <div class="container" style="max-width:900px;">
         <h2 style="text-align:center;">Token Pricing</h2>
         <p class="section-subtitle" style="max-width:600px;margin:0 auto 2rem;">
             HLS token price increases with each phase. Founding members pay the least
-            and receive the most bonus tokens. The math is simple — early = cheaper.
+            and receive the most bonus tokens. The math is simple â€” early = cheaper.
         </p>
 
         <div class="token-grid">
             <div class="token-card featured">
-                <h4>Phase 1 · Founding</h4>
+                <h4>Phase 1 Â· Founding</h4>
                 <div class="token-price">$0.10 <small>/ HLS</small></div>
-                <div class="detail">Feb 10 – Mar 31, 2026</div>
+                <div class="detail">Feb 10 â€“ Mar 31, 2026</div>
                 <div class="bonus-tag">+20% BONUS TOKENS</div>
                 <div class="detail" style="margin-top:.8rem;">
-                    $100 → 1,200 HLS<br>
-                    $1,000 → 12,000 HLS<br>
-                    $5,000 → 60,000 HLS
+                    $100 â†’ 1,200 HLS<br>
+                    $1,000 â†’ 12,000 HLS<br>
+                    $5,000 â†’ 60,000 HLS
                 </div>
             </div>
             <div class="token-card">
-                <h4>Phase 2 · Builder</h4>
+                <h4>Phase 2 Â· Builder</h4>
                 <div class="token-price">$0.25 <small>/ HLS</small></div>
-                <div class="detail">Apr 1 – May 31, 2026</div>
-                <div class="bonus-tag" style="background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.25);color:var(--gold);">+10% BONUS</div>
+                <div class="detail">Apr 1 â€“ May 31, 2026</div>
+                <div class="bonus-tag" style="background:rgba(41,151,255,.08);border-color:rgba(41,151,255,.25);color:var(--gold);">+10% BONUS</div>
                 <div class="detail" style="margin-top:.8rem;">
-                    $100 → 440 HLS<br>
-                    $1,000 → 4,400 HLS<br>
-                    $5,000 → 22,000 HLS
+                    $100 â†’ 440 HLS<br>
+                    $1,000 â†’ 4,400 HLS<br>
+                    $5,000 â†’ 22,000 HLS
                 </div>
             </div>
             <div class="token-card">
-                <h4>Phase 3 · Public</h4>
+                <h4>Phase 3 Â· Public</h4>
                 <div class="token-price">$0.50 <small>/ HLS</small></div>
-                <div class="detail">Jun 1, 2026 →</div>
+                <div class="detail">Jun 1, 2026 â†’</div>
                 <div class="detail" style="margin-top:1.3rem;">
-                    $100 → 200 HLS<br>
-                    $1,000 → 2,000 HLS<br>
-                    $5,000 → 10,000 HLS
+                    $100 â†’ 200 HLS<br>
+                    $1,000 â†’ 2,000 HLS<br>
+                    $5,000 â†’ 10,000 HLS
                 </div>
             </div>
         </div>
 
         <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-top:1.5rem;">
-            Founding members get <strong style="color:var(--gold);">6× more tokens</strong> per dollar than public launch buyers.
+            Founding members get <strong style="color:var(--gold);">6Ã— more tokens</strong> per dollar than public launch buyers.
         </p>
     </div>
 </section>
 
-<!-- ═══ WHY REGISTER EARLY ═══ -->
+<!-- â•â•â• WHY REGISTER EARLY â•â•â• -->
 <section class="section section-dark">
     <div class="container" style="max-width:900px;">
         <h2 style="text-align:center;">Why Register Now</h2>
@@ -323,37 +323,37 @@
 
         <div class="benefit-grid">
             <div class="benefit-card">
-                <div class="b-icon">💰</div>
-                <h4>Lowest Token Price — Ever</h4>
+                <div class="b-icon">ðŸ’°</div>
+                <h4>Lowest Token Price â€” Ever</h4>
                 <p>$0.10 per HLS. Phase 2 is $0.25. Public launch is $0.50.
                 Your $1,000 buys 12,000 tokens now vs 2,000 at public launch.</p>
             </div>
             <div class="benefit-card">
-                <div class="b-icon">🎁</div>
+                <div class="b-icon">ðŸŽ</div>
                 <h4>20% Bonus Tokens</h4>
                 <p>Every purchase during the Founding Window gets an automatic 20% bonus.
                 Buy 1,000 tokens, receive 1,200. This drops to 10% in Phase 2 and 0% at public launch.</p>
             </div>
             <div class="benefit-card">
-                <div class="b-icon">👑</div>
-                <h4>Founding Access — First to Activate</h4>
+                <div class="b-icon">ðŸ‘‘</div>
+                <h4>Founding Access â€” First to Activate</h4>
                 <p>Everyone who registers during Phase 1 becomes a founding member.
                 When the smart contract engine activates, your contracts are live from day one. That access is permanent.</p>
             </div>
             <div class="benefit-card">
-                <div class="b-icon">🏷️</div>
+                <div class="b-icon">ðŸ·ï¸</div>
                 <h4>Priority .helios Identity</h4>
-                <p>First pick of .helios names. king.helios, money.helios, gold.helios —
+                <p>First pick of .helios names. king.helios, money.helios, gold.helios â€”
                 whatever you want. Founding members reserve before anyone else.</p>
             </div>
             <div class="benefit-card">
-                <div class="b-icon">🥇</div>
+                <div class="b-icon">ðŸ¥‡</div>
                 <h4>Founding Member Badge</h4>
                 <p>A permanent, non-transferable on-chain badge that marks you as a founding member.
                 This cannot be purchased later at any price. You were either here or you weren't.</p>
             </div>
             <div class="benefit-card">
-                <div class="b-icon">🔗</div>
+                <div class="b-icon">ðŸ”—</div>
                 <h4>First Trustline Access</h4>
                 <p>Your XRPL and Stellar trustlines are set up during Phase 1.
                 When tokens begin flowing, your wallet is already connected and ready.</p>
@@ -362,13 +362,13 @@
     </div>
 </section>
 
-<!-- ═══ TOKEN ISSUANCE BREAKDOWN ═══ -->
+<!-- â•â•â• TOKEN ISSUANCE BREAKDOWN â•â•â• -->
 <section class="section">
     <div class="container" style="max-width:900px;">
         <h2 style="text-align:center;">HLS Token Issuance</h2>
         <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
             100 million HLS tokens. Fixed supply. No minting function.
-            Nobody — not even founders — can create more tokens after genesis.
+            Nobody â€” not even founders â€” can create more tokens after genesis.
         </p>
 
         <table class="issuance-table">
@@ -386,7 +386,7 @@
                     <td class="pool-name">Settlement Pool</td>
                     <td class="pct">40%</td>
                     <td>40,000,000</td>
-                    <td class="lock">Locked — released as network grows</td>
+                    <td class="lock">Locked â€” released as network grows</td>
                     <td>Powers the smart contract allocation engine</td>
                 </tr>
                 <tr>
@@ -422,19 +422,19 @@
     </div>
 </section>
 
-<!-- ═══ TRUSTLINES ═══ -->
+<!-- â•â•â• TRUSTLINES â•â•â• -->
 <section class="section section-dark">
     <div class="container" style="max-width:900px;">
         <h2 style="text-align:center;">Trustlines & Wallet Setup</h2>
         <p class="section-subtitle" style="max-width:640px;margin:0 auto 2rem;">
             Before you can hold HLS tokens or receive certificates, your wallet needs
             trustlines on XRPL and Stellar. Think of trustlines like opening a lane
-            on the highway — once it's set, value flows freely.
+            on the highway â€” once it's set, value flows freely.
         </p>
 
         <div class="trust-grid">
             <div class="trust-card">
-                <h4>🔗 XRPL Trustline</h4>
+                <h4>ðŸ”— XRPL Trustline</h4>
                 <p>
                     Enables your XRPL wallet to hold HLS tokens and receive
                     gold-backed NFT certificates. One-time setup. Uses the standard
@@ -443,7 +443,7 @@
                 </p>
             </div>
             <div class="trust-card">
-                <h4>⭐ Stellar Trustline</h4>
+                <h4>â­ Stellar Trustline</h4>
                 <p>
                     Connects your Stellar wallet to the HLS asset issuer.
                     Enables stablecoin settlement (USDC), cross-asset swaps,
@@ -452,7 +452,7 @@
                 </p>
             </div>
             <div class="trust-card">
-                <h4>📋 What You Need</h4>
+                <h4>ðŸ“‹ What You Need</h4>
                 <p>
                     An XRPL wallet (XUMM/Xaman recommended) and a Stellar wallet
                     (Lobstr or StellarTerm). Founding members receive step-by-step
@@ -461,7 +461,7 @@
                 </p>
             </div>
             <div class="trust-card">
-                <h4>⚡ When It Happens</h4>
+                <h4>âš¡ When It Happens</h4>
                 <p>
                     Trustlines are set up during Phase 1. When you register,
                     we walk you through the wallet setup. By the time Phase 2
@@ -473,7 +473,7 @@
     </div>
 </section>
 
-<!-- ═══ WHAT HAPPENS AFTER ═══ -->
+<!-- â•â•â• WHAT HAPPENS AFTER â•â•â• -->
 <section class="section">
     <div class="container" style="max-width:800px;">
         <h2 style="text-align:center;">After the Founding Window</h2>
@@ -483,7 +483,7 @@
 
         <div style="display:grid;gap:1rem;max-width:700px;margin:0 auto;">
             <div style="display:flex;gap:1rem;align-items:flex-start;">
-                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">1</div>
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(41,151,255,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">1</div>
                 <div>
                     <strong style="color:var(--text);">Liquidity Pools Form (Phase 2)</strong>
                     <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
@@ -493,7 +493,7 @@
                 </div>
             </div>
             <div style="display:flex;gap:1rem;align-items:flex-start;">
-                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">2</div>
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(41,151,255,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">2</div>
                 <div>
                     <strong style="color:var(--text);">NFT Certificates Mint (Phase 2)</strong>
                     <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
@@ -503,7 +503,7 @@
                 </div>
             </div>
             <div style="display:flex;gap:1rem;align-items:flex-start;">
-                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">3</div>
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(41,151,255,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">3</div>
                 <div>
                     <strong style="color:var(--text);">Smart Contract Engine Activates (Phase 2)</strong>
                     <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
@@ -513,7 +513,7 @@
                 </div>
             </div>
             <div style="display:flex;gap:1rem;align-items:flex-start;">
-                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">4</div>
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(41,151,255,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">4</div>
                 <div>
                     <strong style="color:var(--text);">Staking Goes Live (Phase 3)</strong>
                     <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
@@ -523,12 +523,12 @@
                 </div>
             </div>
             <div style="display:flex;gap:1rem;align-items:flex-start;">
-                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">5</div>
+                <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(41,151,255,.12);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;font-size:.85rem;">5</div>
                 <div>
                     <strong style="color:var(--text);">DEX Listing (Phase 3)</strong>
                     <p style="color:var(--text-muted);font-size:.88rem;margin:.3rem 0 0;">
                         HLS lists on decentralized exchanges. Your $0.10 tokens
-                        enter a market where the public price is $0.50. Your 6× advantage materializes.
+                        enter a market where the public price is $0.50. Your 6Ã— advantage materializes.
                     </p>
                 </div>
             </div>
@@ -536,7 +536,7 @@
     </div>
 </section>
 
-<!-- ═══ SIMPLE MATH ═══ -->
+<!-- â•â•â• SIMPLE MATH â•â•â• -->
 <section class="section section-dark">
     <div class="container" style="max-width:800px;text-align:center;">
         <h2>The Math Is Simple</h2>
@@ -557,7 +557,7 @@
             <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
                 <div style="font-size:.75rem;color:var(--text-muted);font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;">At $0.50 public price</div>
                 <div style="font-size:2rem;font-weight:700;color:#4cc978;font-family:'Inter',sans-serif;">$6,000</div>
-                <div style="font-size:.78rem;color:var(--text-muted);">6× your investment</div>
+                <div style="font-size:.78rem;color:var(--text-muted);">6Ã— your investment</div>
             </div>
         </div>
 
@@ -569,13 +569,13 @@
     </div>
 </section>
 
-<!-- ═══ FINAL CTA ═══ -->
+<!-- â•â•â• FINAL CTA â•â•â• -->
 <section class="section section-cta" style="padding:4rem 1.5rem;">
     <div class="container" style="max-width:700px;text-align:center;">
         <h2 style="font-size:2.2rem;">The Founding Window Is Open</h2>
         <p style="font-size:1.05rem;color:var(--text-muted);max-width:520px;margin:.5rem auto 1rem;line-height:1.7;">
             $0.10/HLS. 20% bonus. Founding access. Priority .helios identity.
-            This pricing ends March 31, 2026. After that, it's 2.5× more expensive
+            This pricing ends March 31, 2026. After that, it's 2.5Ã— more expensive
             and the bonus drops.
         </p>
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;">
@@ -610,7 +610,7 @@
     tick(); setInterval(tick, 1000);
 })();
 
-// ═══ ACTIVATION FLOWLINE — Launch Page (4-step) ═══
+// â•â•â• ACTIVATION FLOWLINE â€” Launch Page (4-step) â•â•â•
 (function(){
     var svg = document.querySelector('.fl-svg-launch');
     if(!svg) return;
@@ -645,7 +645,7 @@
         var ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
         ring.setAttribute('cx', stepCx[i]); ring.setAttribute('cy',60);
         ring.setAttribute('r',18); ring.setAttribute('fill','none');
-        ring.setAttribute('stroke','#c9a84c'); ring.setAttribute('stroke-width','2');
+        ring.setAttribute('stroke','#2997ff'); ring.setAttribute('stroke-width','2');
         ring.classList.add('fl-ring'); svg.appendChild(ring);
         setTimeout(function(){ if(ring.parentNode) ring.remove(); },1300);
     }

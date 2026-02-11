@@ -1,44 +1,69 @@
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HELIOS — Design System
-   Institutional. Deterministic. Asset-Backed.
-   Private membership protocol — settlement infrastructure.
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+   HELIOS â€” Liquid Metal Design System
+   Titanium. Glass. Precision-engineered surfaces.
+   Private membership protocol â€” settlement infrastructure.
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” */
 
 :root {
-    --bg:           #0c0f14;
-    --bg-card:      #141820;
-    --bg-hover:     #1c2230;
-    --text:         #d8dbe2;
-    --text-muted:   #7d8590;
-    --gold:         #c9a84c;
-    --gold-dark:    #a68939;
-    --gold-light:   #dfc676;
-    --blue:         #4a7eb5;
-    --purple:       #7868a6;
-    --green:        #3d8b6e;
-    --red:          #b54a4a;
-    --border:       #242833;
-    --radius:       8px;
-    --radius-sm:    6px;
-    --shadow:       0 4px 24px rgba(0,0,0,0.3);
+    /* â”€ Surfaces â”€ */
+    --bg:           #000000;
+    --bg-card:      #1c1c1e;
+    --bg-hover:     #2c2c2e;
+    --bg-elevated:  #1c1c1e;
+
+    /* â”€ Typography â”€ */
+    --text:         #f5f5f7;
+    --text-muted:   #86868b;
+
+    /* â”€ Gold (refined) â”€ */
+    --gold:         #fbbf24;
+    --gold-dark:    #d97706;
+    --gold-light:   #fde68a;
+
+    /* â”€ Accent palette â”€ */
+    --blue:         #2997ff;
+    --purple:       #bf5af2;
+    --green:        #30d158;
+    --red:          #ff453a;
+    --teal:         #64d2ff;
+
+    /* â”€ Liquid metal â”€ */
+    --metal:        #a1a1a6;
+    --metal-light:  #d1d1d6;
+    --metal-dark:   #636366;
+    --chrome:       #e5e5ea;
+
+    /* â”€ Glass â”€ */
+    --glass-bg:     rgba(255,255,255,0.03);
+    --glass-border: rgba(255,255,255,0.08);
+    --glass-blur:   20px;
+
+    /* â”€ System â”€ */
+    --border:       rgba(255,255,255,0.08);
+    --radius:       12px;
+    --radius-sm:    8px;
+    --shadow:       0 8px 32px rgba(0,0,0,0.5);
+    --shadow-lg:    0 24px 64px rgba(0,0,0,0.6);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'EB Garamond', 'Georgia', serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
     min-height: 100vh;
-    font-size: 17px;
-    letter-spacing: 0.01em;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'EB Garamond', 'Georgia', serif;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .helios-nav, .helios-nav *, .btn, .btn *,
@@ -54,13 +79,14 @@ h1, h2, h3, h4, h5, h6 {
 a { color: var(--gold); text-decoration: none; }
 a:hover { color: var(--gold-dark); }
 
-/* ─── Navigation ──────────────────────────────────────────────── */
+/* â”€â”€â”€ Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .helios-nav {
     position: fixed; top: 0; left: 0; right: 0;
-    background: rgba(15, 15, 26, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
     padding: 0 2rem;
 }
@@ -78,7 +104,7 @@ a:hover { color: var(--gold-dark); }
 }
 .logo-coin {
     font-size: 1.4rem;
-    filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4));
+    filter: drop-shadow(0 0 4px rgba(41, 151, 255, 0.4));
 }
 .logo-text {
     color: var(--text); font-weight: 800; letter-spacing: .12em;
@@ -90,14 +116,14 @@ a:hover { color: var(--gold-dark); }
 .nav-links a:hover { color: var(--text); }
 .nav-ask { color: var(--gold) !important; font-weight: 600 !important; }
 .nav-cta {
-    background: var(--gold); color: var(--bg) !important;
-    padding: .5rem 1.2rem; border-radius: var(--radius-sm);
+    background: linear-gradient(180deg, #fbbf24, #d97706); color: #000 !important;
+    padding: .5rem 1.2rem; border-radius: 980px;
     font-weight: 600;
 }
-.nav-cta:hover { background: var(--gold-dark); }
+.nav-cta:hover { background: linear-gradient(180deg, #fcd34d, #f59e0b); }
 .nav-gold { color: var(--gold) !important; font-weight: 600 !important; }
 
-/* ─── Mobile Nav Toggle ──────────────────────────────────────── */
+/* â”€â”€â”€ Mobile Nav Toggle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .nav-toggle {
     display: none; background: none; border: none; cursor: pointer;
@@ -114,17 +140,17 @@ a:hover { color: var(--gold-dark); }
     .nav-links {
         display: none; position: absolute; top: 64px; left: 0; right: 0;
         flex-direction: column; gap: 0;
-        background: rgba(15, 15, 26, 0.98);
+        background: rgba(0, 0, 0, 0.92);
         backdrop-filter: blur(20px);
         border-bottom: 1px solid var(--border);
         padding: .5rem 0;
     }
     .nav-links.nav-open { display: flex; }
     .nav-links a { padding: .75rem 2rem; font-size: 1rem; }
-    .nav-links a:hover { background: rgba(245,158,11,0.05); }
+    .nav-links a:hover { background: rgba(41,151,255,0.05); }
 }
 
-/* ─── Layout ──────────────────────────────────────────────────── */
+/* â”€â”€â”€ Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 main { margin-top: 64px; }
 
@@ -132,7 +158,7 @@ main { margin-top: 64px; }
 .container-sm { max-width: 640px; }
 
 .section { padding: 5rem 0; }
-.section-dark { background: var(--bg-card); }
+.section-dark { background: var(--bg-card); background: linear-gradient(180deg, rgba(28,28,30,0.6) 0%, rgba(28,28,30,0.3) 100%); }
 .section-cta { text-align: center; padding: 6rem 0; }
 
 h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
@@ -144,32 +170,47 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     font-size: 1.1rem; margin-bottom: 3rem;
 }
 
-/* ─── Buttons ─────────────────────────────────────────────────── */
+/* â”€â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .btn {
     display: inline-flex; align-items: center; justify-content: center;
-    padding: .6rem 1.5rem; border-radius: var(--radius-sm);
+    padding: .65rem 1.5rem; border-radius: 980px;
     font-weight: 600; font-size: .95rem; border: none; cursor: pointer;
-    transition: all .2s; text-decoration: none;
+    transition: all .3s cubic-bezier(.4,0,.2,1); text-decoration: none;
+    letter-spacing: -0.01em;
 }
 .btn:disabled { opacity: .4; cursor: not-allowed; }
-.btn-primary { background: var(--gold); color: var(--bg); }
-.btn-primary:hover:not(:disabled) { background: var(--gold-dark); transform: translateY(-1px); }
-.btn-secondary { background: var(--bg-hover); color: var(--text); border: 1px solid var(--border); }
-.btn-secondary:hover { background: var(--border); }
-.btn-ghost { background: transparent; color: var(--gold); }
-.btn-ghost:hover { background: rgba(245, 158, 11, 0.1); }
+.btn-primary {
+    background: linear-gradient(180deg, #fbbf24, #d97706);
+    color: #000; box-shadow: 0 1px 2px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.15);
+}
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(180deg, #fcd34d, #f59e0b);
+    transform: scale(1.02); box-shadow: 0 4px 16px rgba(251,191,36,.25);
+}
+.btn-secondary {
+    background: var(--bg-hover); color: var(--text);
+    border: 1px solid var(--glass-border);
+}
+.btn-secondary:hover { background: var(--metal-dark); }
+.btn-ghost {
+    background: transparent; color: var(--blue);
+    border: 1px solid var(--glass-border);
+}
+.btn-ghost:hover { background: rgba(41,151,255,0.08); border-color: rgba(41,151,255,0.3); }
 .btn-lg { padding: .8rem 2rem; font-size: 1.1rem; }
 .btn-full { width: 100%; }
 
-/* ─── Hero — Helios Coin ──────────────────────────────────────── */
+/* â”€â”€â”€ Hero â€” Helios Coin â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .hero {
     text-align: center;
     padding: 8rem 2rem 4rem;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-card) 100%);
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(41,151,255,0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 50% 120%, rgba(191,90,242,0.05), transparent),
+                var(--bg);
 }
 
 .hero-neural-bg {
@@ -185,23 +226,25 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .helios-coin {
     width: 140px; height: 140px;
     margin: 0 auto;
-    filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.2));
+    filter: drop-shadow(0 0 30px rgba(41,151,255,0.15)) drop-shadow(0 0 60px rgba(191,90,242,0.08));
     animation: coin-float 8s ease-in-out infinite;
 }
 
 @keyframes coin-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
 }
 
 .hero-title {
     position: relative; z-index: 1;
-    font-size: 3.5rem;
-    font-weight: 600;
-    letter-spacing: .15em;
-    color: var(--gold);
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    background: linear-gradient(180deg, var(--chrome) 0%, var(--metal) 40%, var(--metal-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: .5rem;
-    text-shadow: none;
 }
 
 .hero-tagline {
@@ -237,7 +280,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .hero h1 { font-size: 3rem; color: var(--gold); margin-bottom: .5rem; position: relative; z-index: 1; }
 .hero-sub { color: var(--text-muted); font-size: 1.15rem; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; position: relative; z-index: 1; }
 
-/* ─── Protocol Principles Grid ────────────────────────────────── */
+/* â”€â”€â”€ Protocol Principles Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .principle-grid {
     display: grid;
@@ -247,15 +290,18 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 }
 
 .principle-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     padding: 2rem;
-    transition: border-color .3s, transform .3s;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color .3s, transform .3s, box-shadow .3s;
 }
 .principle-card:hover {
-    border-color: rgba(201, 168, 76, 0.25);
-    transform: translateY(-1px);
+    border-color: rgba(41, 151, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
 .principle-icon {
@@ -278,22 +324,23 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     line-height: 1.6;
 }
 
-/* ─── Trust Grid (legacy compat) ──────────────────────────────── */
+/* â”€â”€â”€ Trust Grid (legacy compat) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .trust-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem; margin-top: 2rem;
 }
 .trust-card {
-    background: var(--bg); border: 1px solid var(--border);
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
     border-radius: var(--radius); padding: 2rem;
-    transition: border-color .2s;
+    transition: border-color .3s;
+    backdrop-filter: blur(12px);
 }
-.trust-card:hover { border-color: var(--gold); }
+.trust-card:hover { border-color: rgba(41,151,255,0.3); }
 .trust-icon { font-size: 2rem; display: block; margin-bottom: 1rem; }
 .trust-card p { color: var(--text-muted); }
 
-/* ─── How the Field Works — Phase Grid ────────────────────────── */
+/* â”€â”€â”€ How the Field Works â€” Phase Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .phase-grid {
     display: grid;
@@ -310,17 +357,17 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     border-radius: var(--radius);
     transition: border-color .3s;
 }
-.phase:hover { border-color: rgba(201, 168, 76, 0.25); }
+.phase:hover { border-color: rgba(41, 151, 255, 0.2); }
 
 .phase-marker {
     width: 56px; height: 56px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    background: linear-gradient(135deg, var(--metal-light), var(--metal), var(--metal-dark));
     color: var(--bg);
     display: flex; align-items: center; justify-content: center;
     font-weight: 900; font-size: 1.3rem;
     margin: 0 auto 1.2rem;
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .phase h3 {
@@ -335,7 +382,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     line-height: 1.6;
 }
 
-/* ─── Energy Decay Visualization ──────────────────────────────── */
+/* â”€â”€â”€ Energy Decay Visualization â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .decay-visual {
     max-width: 800px;
@@ -365,7 +412,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 
 .decay-hop .decay-bar {
     height: 28px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    background: linear-gradient(90deg, var(--blue), var(--purple));
     border-radius: 4px;
     min-width: 4px;
     transition: width .5s ease;
@@ -395,7 +442,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     opacity: .7;
 }
 
-/* ─── Steps ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ Steps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .steps-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -404,7 +451,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .step { text-align: center; }
 .step-number {
     width: 48px; height: 48px; border-radius: 50%;
-    background: var(--gold); color: var(--bg);
+    background: linear-gradient(135deg, var(--blue), var(--purple)); color: #fff;
     display: flex; align-items: center; justify-content: center;
     font-weight: 800; font-size: 1.2rem;
     margin: 0 auto 1rem;
@@ -412,7 +459,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .step p { color: var(--text-muted); }
 .step code { background: var(--bg-card); padding: .2rem .5rem; border-radius: 4px; color: var(--gold); }
 
-/* ─── Reward Breakdown ────────────────────────────────────────── */
+/* â”€â”€â”€ Reward Breakdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .reward-breakdown { max-width: 800px; margin: 2rem auto 0; }
 .reward-bar { display: flex; height: 48px; border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
@@ -423,7 +470,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .reward-details p { margin-bottom: .8rem; }
 .reward-details p strong { color: var(--gold); }
 
-/* ─── Join Flow ───────────────────────────────────────────────── */
+/* â”€â”€â”€ Join Flow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .join-section { padding-top: 3rem; }
 .join-step { display: none; }
@@ -465,9 +512,9 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .input-rules { color: var(--text-muted); margin-bottom: 1.5rem; }
 
 .referrer-badge {
-    background: rgba(245, 158, 11, 0.1); border: 1px solid var(--gold);
+    background: rgba(41,151,255,0.08); border: 1px solid var(--blue);
     border-radius: var(--radius-sm); padding: .8rem; margin-bottom: 1.5rem;
-    color: var(--gold);
+    color: var(--blue);
 }
 
 .recovery-grid {
@@ -497,7 +544,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .qr-label { color: var(--text-muted); margin-bottom: 2rem; }
 .welcome-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-/* ─── Dashboard ───────────────────────────────────────────────── */
+/* â”€â”€â”€ Dashboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .dashboard { padding-top: 3rem; }
 .dash-header { margin-bottom: 2rem; }
@@ -552,7 +599,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 
 .empty, .loading { color: var(--text-muted); text-align: center; padding: 2rem; }
 
-/* ─── Modal ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .modal {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -571,7 +618,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .success { color: var(--green); margin-top: .5rem; }
 .error { color: var(--red); margin-top: .5rem; }
 
-/* ─── Neural Field Viz ────────────────────────────────────────── */
+/* â”€â”€â”€ Neural Field Viz â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .network-viz {
     width: 100%; height: 600px;
@@ -603,7 +650,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     font-weight: 600;
 }
 
-/* ─── Ask Helios Chat ─────────────────────────────────────────── */
+/* â”€â”€â”€ Ask Helios Chat â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ask-section { padding-top: 2rem; }
 .ask-header { text-align: center; margin-bottom: 2rem; }
@@ -619,7 +666,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     color: var(--text); font-size: .85rem; cursor: pointer;
     transition: all .2s;
 }
-.quick-btn:hover { border-color: var(--gold); color: var(--gold); }
+.quick-btn:hover { border-color: var(--blue); color: var(--blue); }
 
 .chat-container {
     background: var(--bg-card); border: 1px solid var(--border);
@@ -647,19 +694,19 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .follow-btn {
     background: transparent; border: 1px solid var(--border);
     border-radius: 16px; padding: .3rem .8rem;
-    color: var(--gold); font-size: .8rem; cursor: pointer;
+    color: var(--blue); font-size: .8rem; cursor: pointer;
 }
-.follow-btn:hover { background: rgba(245,158,11,0.1); }
+.follow-btn:hover { background: rgba(41,151,255,0.08); }
 
 .chat-input-area {
     display: flex; gap: .5rem; margin-top: 1rem;
 }
 .chat-input-area .input-large { flex: 1; }
 
-/* ─── Footer ──────────────────────────────────────────────────── */
+/* â”€â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .helios-footer {
-    background: var(--bg-card); border-top: 1px solid var(--border);
+    background: var(--bg-card); border-top: 1px solid var(--glass-border);
     padding: 3rem 2rem; margin-top: 4rem;
 }
 .footer-container {
@@ -687,7 +734,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     margin-left: auto;
 }
 
-/* ─── Protocol Page ───────────────────────────────────────────── */
+/* â”€â”€â”€ Protocol Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .protocol-section { padding-top: 2rem; }
 
@@ -706,10 +753,10 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .protocol-stat .stat-value { font-size: 2rem; color: var(--gold); }
 .protocol-stat .stat-label { color: var(--text-muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
 
-/* ─── Responsive ──────────────────────────────────────────────── */
+/* â”€â”€â”€ Responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 @media (max-width: 768px) {
-    .hero-title { font-size: 2.5rem; letter-spacing: .1em; }
+    .hero-title { font-size: 2.8rem; letter-spacing: .06em; }
     .hero-tagline { font-size: 1rem; }
     .helios-coin { width: 120px; height: 120px; }
     .principle-grid { grid-template-columns: 1fr; }
@@ -725,7 +772,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     .decay-hop span:first-child { width: 60px; font-size: .75rem; }
 }
 
-/* ─── Voice Button (Ask Helios) ───────────────────────────────── */
+/* â”€â”€â”€ Voice Button (Ask Helios) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .voice-btn {
     background: transparent; border: 1px solid var(--border);
     border-radius: 50%; width: 32px; height: 32px;
@@ -733,15 +780,15 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     display: inline-flex; align-items: center; justify-content: center;
     margin-top: .5rem; transition: all .2s;
 }
-.voice-btn:hover { border-color: var(--gold); background: rgba(245,158,11,0.1); }
-.voice-btn.playing { border-color: var(--gold); background: rgba(245,158,11,0.15); animation: pulse-voice 1.5s infinite; }
+.voice-btn:hover { border-color: var(--blue); background: rgba(41,151,255,0.08); }
+.voice-btn.playing { border-color: var(--blue); background: rgba(41,151,255,0.12); animation: pulse-voice 1.5s infinite; }
 
 @keyframes pulse-voice {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.3); }
-    50% { box-shadow: 0 0 0 8px rgba(245,158,11,0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(41,151,255,0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(41,151,255,0); }
 }
 
-/* ─── Treasury Page ───────────────────────────────────────────── */
+/* â”€â”€â”€ Treasury Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .treasury-section { padding-top: 2rem; }
 .treasury-header { text-align: center; margin-bottom: 3rem; }
@@ -778,7 +825,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     border-radius: var(--radius); padding: 1.5rem; text-align: center;
     transition: border-color .3s;
 }
-.metal-card:hover { border-color: var(--gold); }
+.metal-card:hover { border-color: rgba(41,151,255,0.3); }
 .metal-name { font-weight: 700; font-size: 1.1rem; color: var(--gold); margin-bottom: .5rem; }
 .metal-oz { font-size: 1.4rem; font-weight: 800; }
 .metal-cost { color: var(--text-muted); font-size: .95rem; margin-top: .25rem; }
@@ -819,7 +866,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 }
 .custody-in_treasury { background: rgba(59,130,246,0.15); color: var(--blue); }
 .custody-in_vault { background: rgba(16,185,129,0.15); color: var(--green); }
-.custody-in_transit { background: rgba(245,158,11,0.15); color: var(--gold); }
+.custody-in_transit { background: rgba(41,151,255,0.12); color: var(--gold); }
 .custody-delivered { background: rgba(139,92,246,0.15); color: var(--purple); }
 
 .treasury-verify, .metrics-verify {
@@ -833,7 +880,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     border-radius: var(--radius);
 }
 
-/* ─── Vault Page ──────────────────────────────────────────────── */
+/* â”€â”€â”€ Vault Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .vault-section { padding-top: 2rem; }
 .vault-header { text-align: center; margin-bottom: 2rem; }
@@ -895,7 +942,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     border-radius: var(--radius); padding: 1.25rem;
     transition: border-color .3s;
 }
-.cert-card:hover { border-color: rgba(245,158,11,0.3); }
+.cert-card:hover { border-color: rgba(41,151,255,0.2); }
 .cert-active { border-left: 3px solid var(--green); }
 .cert-redeemed { border-left: 3px solid var(--blue); opacity: .8; }
 .cert-cancelled { border-left: 3px solid var(--red); opacity: .6; }
@@ -914,7 +961,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 
 .cert-redeem-info, .cert-cancel-info { margin-top: .75rem; font-size: .85rem; color: var(--text-muted); }
 
-/* ─── Activate Page ───────────────────────────────────────────── */
+/* â”€â”€â”€ Activate Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .activate-section { padding-top: 3rem; }
 .activate-header { text-align: center; margin-bottom: 3rem; }
@@ -922,7 +969,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .activate-coin { margin-bottom: 1.5rem; }
 .activate-coin-svg {
     width: 100px; height: 100px;
-    filter: drop-shadow(0 0 20px rgba(245,158,11,0.3));
+    filter: drop-shadow(0 0 30px rgba(41,151,255,0.2)) drop-shadow(0 0 60px rgba(191,90,242,0.1));
     animation: coin-float 6s ease-in-out infinite;
 }
 
@@ -974,7 +1021,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .benefit-item p { color: var(--text-muted); font-size: .9rem; }
 
 .activate-referrer {
-    background: rgba(245,158,11,0.1); border: 1px solid var(--gold);
+    background: rgba(41,151,255,0.06); border: 1px solid rgba(41,151,255,0.3);
     border-radius: var(--radius-sm); padding: .8rem 1.2rem;
     text-align: center; margin-bottom: 1.5rem;
 }
@@ -992,7 +1039,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 }
 .conservation-note { color: var(--text-muted); font-size: .9rem; }
 
-/* ─── Metrics Page ────────────────────────────────────────────── */
+/* â”€â”€â”€ Metrics Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .metrics-section { padding-top: 2rem; }
 .metrics-header { text-align: center; margin-bottom: 3rem; }
@@ -1025,7 +1072,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .gauge-thresholds { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; }
 .threshold { font-size: .7rem; padding: .15rem .5rem; border-radius: 8px; font-weight: 600; }
 .threshold-green { background: rgba(16,185,129,0.15); color: var(--green); }
-.threshold-yellow { background: rgba(245,158,11,0.15); color: var(--gold); }
+.threshold-yellow { background: rgba(251,191,36,0.12); color: var(--gold); }
 .threshold-red { background: rgba(239,68,68,0.15); color: var(--red); }
 
 .health-summary { margin-bottom: 3rem; }
@@ -1058,7 +1105,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .conservation-text strong { display: block; margin-bottom: .5rem; }
 .conservation-text p { color: var(--text-muted); font-size: .9rem; margin: .2rem 0; }
 
-/* ─── Phone Verification (Join Flow) ──────────────────────────── */
+/* â”€â”€â”€ Phone Verification (Join Flow) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .code-input-grid {
     display: flex; gap: .5rem; justify-content: center; margin: 1.5rem 0;
 }
@@ -1080,7 +1127,7 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     display: inline-block;
 }
 
-/* ─── Infrastructure Status Page ──────────────────────────────── */
+/* â”€â”€â”€ Infrastructure Status Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .infra-section { padding-top: 2rem; }
 
 .status-grid {
@@ -1109,18 +1156,21 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
 .status-detail { color: var(--text-muted); font-size: .9rem; }
 .status-detail span { display: block; margin-bottom: .3rem; }
 
-/* ─── Math Formula Display ─────────────────────────────────────── */
+/* â”€â”€â”€ Math Formula Display â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .math-formula {
     font-family: 'EB Garamond', 'Georgia', serif;
     font-size: 2rem;
     font-weight: 600;
-    color: var(--gold);
+    background: linear-gradient(135deg, var(--chrome), var(--metal-light), var(--gold), var(--metal-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: 0.05em;
 }
 .math-formula sub { font-size: 0.7em; vertical-align: -0.15em; }
 .math-formula sup { font-size: 0.7em; vertical-align: 0.5em; }
 
-/* ─── Flow Step Indicator ──────────────────────────────────────── */
+/* â”€â”€â”€ Flow Step Indicator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flow-indicator {
     font-family: 'Inter', sans-serif;
     font-size: .75rem;
@@ -1130,7 +1180,87 @@ h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; }
     color: var(--text-muted);
     text-align: center;
     padding: .6rem 1.2rem;
-    border: 1px solid var(--border);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius);
-    background: var(--bg-card);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+}
+
+/* â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+   LIQUID METAL â€” Glass & Chrome Effects
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” */
+
+/* Glass card effect */
+.glass-card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+}
+
+/* Metallic shimmer border */
+.metal-border {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+}
+.metal-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(229,229,234,0.15), rgba(161,161,166,0.05), rgba(41,151,255,0.1), rgba(161,161,166,0.05), rgba(229,229,234,0.15));
+    z-index: -1;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    padding: 1px;
+}
+
+/* Metallic text gradient */
+.text-metal {
+    background: linear-gradient(180deg, var(--chrome), var(--metal), var(--metal-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Gold text gradient */
+.text-gold {
+    background: linear-gradient(180deg, #fde68a, #fbbf24, #d97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Animated metallic sheen */
+@keyframes metal-sheen {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.sheen {
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.03) 40%,
+        rgba(255,255,255,0.08) 50%,
+        rgba(255,255,255,0.03) 60%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: metal-sheen 8s ease-in-out infinite;
+}
+
+/* Subtle glow effects */
+.glow-blue { box-shadow: 0 0 40px rgba(41,151,255,0.1); }
+.glow-gold { box-shadow: 0 0 40px rgba(251,191,36,0.1); }
+.glow-purple { box-shadow: 0 0 40px rgba(191,90,242,0.1); }
+
+/* Liquid metal divider */
+.metal-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--metal-dark), var(--metal-light), var(--metal-dark), transparent);
+    border: none;
+    margin: 3rem 0;
 }
